@@ -8,7 +8,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import SigninForm from '../../../../components/auth/SigninForm';
+import SigninForm from './SigninForm';
 import { getRedirectPathname } from '@/lib/server/getRedirectPathname';
 import { useTheme } from '@/components/providers/ThemeProvider';
 import { User } from '@/types/users';
