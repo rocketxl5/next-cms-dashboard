@@ -1,25 +1,24 @@
-// app/(protected)/admin/layout.tsx
-import { AppShell, SideSlot, HeaderSlot, MainSlot } from "@/layout-primitives";
-import { DashboardHeader, DashboardSidebar } from "./components";
+import { AppShell, SideSlot, HeaderSlot, MainSlot } from '@/layout-primitives';
+import { DashboardHeader, DashboardSidebar } from './components';
 
-type RootLayoutProps = {
+type DashboardLayoutProps = {
   children: React.ReactNode;
 };
 
-export default async function DashboardLayout({children}: RootLayoutProps) {
+export default async function DashboardLayout({
+  children,
+}: DashboardLayoutProps) {
   return (
     <AppShell>
-     <SideSlot>
+      <SideSlot>
         <DashboardSidebar />
-     </SideSlot>
-     <div className="flex flex-col flex-1 overflow-hidden">
+      </SideSlot>
+      <div className="flex flex-col flex-1 overflow-hidden">
         <HeaderSlot>
-            <DashboardHeader />
+          <DashboardHeader />
         </HeaderSlot>
-        <MainSlot>
-          {children}
-        </MainSlot>
-     </div>
-  </AppShell>
-  )
+        <MainSlot>{children}</MainSlot>
+      </div>
+    </AppShell>
+  );
 }

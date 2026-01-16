@@ -1,10 +1,8 @@
-// app/(protected)/user/page.tsx
-
-// Default Auth user landing page 
-export default function AuthUserLandingPage() {
+export default function UserAccountPage() {
   return (
-    <main className="p-6">
-      <h1>Auth User Landing Page </h1>
-    </main>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold">Welcome to the User Account Page!</h1>
+      <p>This is the default account view.</p>
+    </div>
   );
 }

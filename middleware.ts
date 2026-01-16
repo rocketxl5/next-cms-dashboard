@@ -4,7 +4,7 @@ import { verifyAccessTokenEdge } from '@/lib/auth/tokens';
 import { redirectToSignin } from '@/lib/server/redirects';
 import { COOKIE_KEYS } from '@/types/cookies';
 
-const PROTECTED = ['/dashboard'];
+const PROTECTED = ['/dashboard', '/account'];
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -53,5 +53,5 @@ export async function middleware(req: NextRequest) {
 // 7️⃣ Matcher config
 // ----------------------------
 export const config = {
-  matcher: ['/dashboard', '/dashboard/:path*'],
+  matcher: ['/dashboard', '/dashboard/:path*', '/account', '/account/:path*'],
 };

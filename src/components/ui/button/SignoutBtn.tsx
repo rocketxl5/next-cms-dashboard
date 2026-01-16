@@ -54,7 +54,7 @@ export function SignoutBtn() {
     <button
       onClick={handleSignOut}
       disabled={loading}
-      className="rounded border px-4 py-2"
+      className="rounded border px-4 py-2 mx-2"
     >
       {loading ? 'Signing out...' : 'Sign Out'}
     </button>

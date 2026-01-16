@@ -26,5 +26,9 @@ export function ToggleThemeBtn() {
     }
   };
 
-  return <button onClick={handleClick}>Toggle theme: {theme}</button>;
+  return (
+    <button className="mx-2" onClick={handleClick}>
+      Toggle theme: {theme}
+    </button>
+  );
 }

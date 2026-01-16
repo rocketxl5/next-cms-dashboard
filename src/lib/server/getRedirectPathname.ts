@@ -19,7 +19,7 @@ export function getRedirectPathname(
     case 'SUPER_ADMIN':
       return '/dashboard';
     case 'USER': 
-      return '/user'
+      return '/account';
     default: 
       return '/'
   }

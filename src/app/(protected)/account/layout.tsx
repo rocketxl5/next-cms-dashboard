@@ -1,14 +1,18 @@
-// app/(protected)/user/layout.tsx
-import { requireRole } from '@/lib/server/requireRole';
-import { Role } from '@prisma/client';
-
-type RootLayoutProps = {
+import { AppShell, HeaderSlot, MainSlot } from '@/layout-primitives';
+import { AccountHeader } from './components/AccountHeader';
+type AccountLayoutProps = {
   children: React.ReactNode;
 };
 
-// Protected Layout for Auth Users
-export default async function UserLayout(props: RootLayoutProps) {
-  await requireRole({ roles: [Role.USER], forbiddenRedirect: '/admin' });
-
-  return <div>Dashboard Users Layout</div>;
+export default async function AccountLayout({ children }: AccountLayoutProps) {
+  return (
+    <AppShell>
+      <div className="flex flex-col flex-1 overflow-hidden">
+        <HeaderSlot>
+          <AccountHeader />
+        </HeaderSlot>
+        <MainSlot>{children}</MainSlot>
+      </div>
+    </AppShell>
+  );
 }
