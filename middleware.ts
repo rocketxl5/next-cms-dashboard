@@ -4,8 +4,7 @@ import { verifyAccessTokenEdge } from '@/lib/auth/tokens';
 import { redirectToSignin } from '@/lib/server/redirects';
 import { COOKIE_KEYS } from '@/types/cookies';
 
-const PROTECTED = ['/dashboard', '/admin'];
-const ADMIN_ONLY = ['/admin']; // only /admin strictly admin
+const PROTECTED = ['/dashboard'];
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -32,33 +31,16 @@ export async function middleware(req: NextRequest) {
   // ----------------------------
   const token = req.cookies.get(COOKIE_KEYS.accessToken)?.value;
   if (!token) {
-    console.warn('[MIDDLEWARE] No access token, redirecting to signin');
     return redirectToSignin(req);
   }
 
   // ----------------------------
   // 4️⃣ Verify token
   // ----------------------------
-  let payload;
   try {
-    payload = await verifyAccessTokenEdge(token);
+    await verifyAccessTokenEdge(token);
   } catch {
-    console.warn('[MIDDLEWARE] Invalid token, redirecting to signin');
     return redirectToSignin(req);
-  }
-
-  // ----------------------------
-  // 5️⃣ Role restriction
-  // ----------------------------
-  const isAdminPage = ADMIN_ONLY.some(
-    (p) => pathname === p || pathname.startsWith(`${p}/`)
-  );
-
-  if (isAdminPage && !['ADMIN', 'SUPER_ADMIN'].includes(payload.role)) {
-    console.warn(
-      `[MIDDLEWARE] User role "${payload.role}" not allowed on ${pathname}`
-    );
-    return NextResponse.redirect(new URL('/', req.url));
   }
 
   // ----------------------------
@@ -71,10 +53,5 @@ export async function middleware(req: NextRequest) {
 // 7️⃣ Matcher config
 // ----------------------------
 export const config = {
-  matcher: [
-    '/dashboard', // root
-    '/dashboard/:path*', // nested
-    '/admin', // root
-    '/admin/:path*', // nested
-  ],
+  matcher: ['/dashboard', '/dashboard/:path*'],
 };

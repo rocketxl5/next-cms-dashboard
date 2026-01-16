@@ -17,7 +17,7 @@ export function getRedirectPathname(
   switch (role) {
     case 'ADMIN': 
     case 'SUPER_ADMIN':
-      return '/admin'
+      return '/dashboard';
     case 'USER': 
       return '/user'
     default: 

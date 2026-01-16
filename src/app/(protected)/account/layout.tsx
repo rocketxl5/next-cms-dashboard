@@ -1,5 +1,4 @@
 // app/(protected)/user/layout.tsx
-import { AccountLayout } from '@/components/layout/AccountLayout';
 import { requireRole } from '@/lib/server/requireRole';
 import { Role } from '@prisma/client';
 
@@ -11,5 +10,5 @@ type RootLayoutProps = {
 export default async function UserLayout(props: RootLayoutProps) {
   await requireRole({ roles: [Role.USER], forbiddenRedirect: '/admin' });
 
-  return <AccountLayout context="user" {...props} />;
+  return <div>Dashboard Users Layout</div>;
 }
