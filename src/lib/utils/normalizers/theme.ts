@@ -1,4 +1,4 @@
-import { ThemeClassName } from '@/lib/theme/mapTheme';
+import { ThemeClassName } from '@/lib/theme';
 
 export function isThemeClassName(
   value: string | undefined

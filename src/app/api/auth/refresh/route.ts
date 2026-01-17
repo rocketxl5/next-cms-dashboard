@@ -28,15 +28,15 @@
  */
 
 import { NextResponse } from 'next/server';
-import { getCookie } from '@/lib/server/getCookie';
 import prisma from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
 import {
   verifyRefreshToken,
   createAccessToken,
   createRefreshToken,
-} from '@/lib/auth/tokens';
-import { setAuthCookies } from '@/lib/auth/auth-cookies';
+  setAuthCookies,
+} from '@/lib/auth';
+import { getCookie } from '@/lib/server';
 import { unauthorized, internalServerError } from '@/lib/http';
 
 export async function POST() {

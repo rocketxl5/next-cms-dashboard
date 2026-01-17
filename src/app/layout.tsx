@@ -1,5 +1,5 @@
 import Providers from './providers';
-import { getTheme } from '@/lib/theme/getTheme';
+import { getTheme } from '@/lib/theme';
 import './globals.css';
 
 type RootLayoutProps = {

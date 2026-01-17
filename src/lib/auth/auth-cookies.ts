@@ -28,8 +28,8 @@
  *   - /api/auth/logout
  * -------------------------------------------------------
  */
-import { COOKIE_KEYS } from '@/types/cookies';
 import { NextResponse } from 'next/server';
+import { COOKIE_KEYS } from '@/types';
 const isProd = process.env.NODE_ENV === 'production';
 
 const accessCookieOptions = {

@@ -33,16 +33,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
-
+import { normalizeEmail, normalizeObject, assertRequired } from '@/lib/utils';
 import {
-  normalizeEmail,
-  normalizeObject,
-  assertRequired,
-} from '@/lib/utils/normalizers';
-
-import { createAccessToken, createRefreshToken } from '@/lib/auth/tokens';
-import { setAuthCookies } from '@/lib/auth/auth-cookies';
-import { mapDatabaseThemeToCss } from '@/lib/theme/mapTheme';
+  createAccessToken,
+  createRefreshToken,
+  setAuthCookies,
+} from '@/lib/auth';
+import { mapDatabaseThemeToCss } from '@/lib/theme';
 import { unauthorized, internalServerError } from '@/lib/http';
 
 const prisma = new PrismaClient();

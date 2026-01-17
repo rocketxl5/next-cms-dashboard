@@ -1,6 +1,6 @@
 // lib/server/withRole.ts
 import { NextRequest, NextResponse } from 'next/server';
-import type { User } from '@/types/users';
+import type { User } from '@/types';
 import { getSession } from './getSession';
 
 /**

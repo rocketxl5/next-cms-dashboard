@@ -1,5 +1,4 @@
-import { getSession } from '../server/getSession';
-import { getCookie } from '../server/getCookie';
+import { getCookie, getSession } from '../server';
 import { ThemeClassName } from './mapTheme';
 
 /**

@@ -23,9 +23,9 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import prisma from '@/lib/prisma';
-import { verifyAccessToken } from '@/lib/auth/tokens';
+import { verifyAccessToken } from '@/lib/auth';
 import { unauthorized, internalServerError } from '@/lib/http';
-import { COOKIE_KEYS } from '@/types/cookies';
+import { COOKIE_KEYS } from '@/types';
 
 export async function GET() {
   try {

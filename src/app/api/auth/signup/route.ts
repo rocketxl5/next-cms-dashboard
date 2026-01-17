@@ -20,6 +20,7 @@
  * - Passwords handled securely (hashed, never returned)
  */
 
+import { NextResponse } from 'next/server'; // Optional: cleaner JSON responses
 import bcrypt from 'bcryptjs'; // For secure password hashing
 import { prisma } from '@/lib/prisma'; // Prisma client
 import {
@@ -27,8 +28,7 @@ import {
   normalizeSlug,
   normalizeObject,
   assertRequired,
-} from '@/lib/utils/normalizers'; // Normalization + validation utilities
-import { NextResponse } from 'next/server'; // Optional: cleaner JSON responses
+} from '@/lib/utils'; // Normalization + validation utilities
 
 /**
  * Interface representing the expected shape of the signup payload

@@ -1,8 +1,6 @@
 import { redirect } from 'next/navigation';
-import { Header } from '@/components/ui/Header';
-import { Footer } from '@/components/ui/Footer';
-import { getRedirectPathname } from '@/lib/server/getRedirectPathname';
-import { getSession } from '@/lib/server/getSession';
+import { Footer, Header } from '@/components/ui';
+import { getRedirectPathname, getSession } from '@/lib/server';
 
 type RootLayoutProps = {
   children: React.ReactNode;

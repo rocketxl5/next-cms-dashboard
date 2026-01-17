@@ -41,7 +41,7 @@
  */
 
 import { NextResponse } from 'next/server';
-import { withRole } from '@/lib/server/withRole';
+import { withRole } from '@/lib/server';
 // -------------------------------------------------------
 // GET — Fetch admin settings
 // -------------------------------------------------------

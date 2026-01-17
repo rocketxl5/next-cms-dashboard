@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { verifyAccessTokenEdge } from '@/lib/auth/tokens';
-import { redirectToSignin } from '@/lib/server/redirects';
+import { verifyAccessTokenEdge } from '@/lib/auth';
+import { redirectToSignin } from '@/lib/server';
 import { COOKIE_KEYS } from '@/types/cookies';
 
 const PROTECTED = ['/dashboard', '/account'];

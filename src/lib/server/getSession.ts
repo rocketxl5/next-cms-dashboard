@@ -1,7 +1,6 @@
 import { getCookie } from './getCookie';
-import { verifyAccessToken } from '../auth/tokens';
-import { User } from '@/types/users';
-import { COOKIE_KEYS } from '@/types/cookies';
+import { verifyAccessToken } from '../auth';
+import { COOKIE_KEYS, User } from '@/types';
 
 /**
  * The resolved session object.

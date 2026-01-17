@@ -29,8 +29,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { signOut } from '@/lib/server/signOut';
 import { useTheme } from '@/providers/ThemeProvider';
+import { signOut } from '@/lib/server';
 
 export function SignoutBtn() {
   const [loading, setLoading] = useState(false);

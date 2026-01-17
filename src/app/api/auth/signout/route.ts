@@ -43,8 +43,7 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { cookies } from 'next/headers';
-import { verifyRefreshToken } from '@/lib/auth/tokens';
-import { clearAuthCookies } from '@/lib/auth/auth-cookies';
+import { clearAuthCookies, verifyRefreshToken } from '@/lib/auth';
 
 export async function POST() {
   const res = NextResponse.json(null, { status: 200 });

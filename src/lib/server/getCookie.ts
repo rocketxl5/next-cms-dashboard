@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { COOKIE_KEYS, CookieKey } from '@/types/cookies';
+import { COOKIE_KEYS, CookieKey } from '@/types';
 /**
  * Read a cookie value on the server
  * --------------------------------------------------

@@ -37,7 +37,7 @@
  */
 
 import { NextResponse } from 'next/server';
-import { withRole } from '@/lib/server/withRole';
+import { withRole } from '@/lib/server';
 import prisma from '@/lib/prisma';
 
 // --------------------

@@ -22,8 +22,7 @@
   */
 
 // Import UI buttons
-import { ToggleThemeBtn } from './button/ToggleThemeBtn';
-import { SignoutBtn } from './button/SignoutBtn';
+import { SignoutBtn, ToggleThemeBtn } from './button';
 
 // Import types
 import type { AppContext } from '@/types/contexts';

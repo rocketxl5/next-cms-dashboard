@@ -9,10 +9,10 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import SigninForm from './SigninForm';
-import { getRedirectPathname } from '@/lib/server/getRedirectPathname';
+import { User } from '@/types';
+import { ThemeClassName } from '@/lib/theme';
+import { getRedirectPathname } from '@/lib/server';
 import { useTheme } from '@/providers/ThemeProvider';
-import { User } from '@/types/users';
-import { ThemeClassName } from '@/lib/theme/mapTheme';
 
 export default function SigninPage() {
   const router = useRouter();
