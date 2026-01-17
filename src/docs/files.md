@@ -97,16 +97,18 @@ lib/
   server/
     enforceRole.ts
     getCookie.ts              ← Cookie helpers
-    getRedirectPathname.ts    ← Client-side redirect resolution
     getSession.ts
-    redirects.ts              ← Server-side redirects (middleware)
+    getTheme.ts
+    redirect.ts              ← Server-side redirects (middleware)
     requireAuth.ts
     requireRole.ts            ← Server-only guards
     signOut.ts
     withRole.ts
+
+  shared/ 
+    getRedirectPathname.ts    ← Client-side redirect resolution
   
   theme/
-    getTheme.ts
     mapTheme.ts
     resolveNextTheme.ts
 

@@ -27,10 +27,11 @@
 
 'use client';
 
+// import { cookies } from 'next/headers';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTheme } from '@/providers/ThemeProvider';
-import { signOut } from '@/lib/server';
+import { signOut } from '@/lib/shared';
 
 export function SignoutBtn() {
   const [loading, setLoading] = useState(false);
@@ -41,7 +42,7 @@ export function SignoutBtn() {
     setLoading(true);
 
     try {
-      await signOut();
+      await signOut()
       setDefaultTheme();
       router.refresh(); // re-evaluate layouts
       router.push('/auth/signin');

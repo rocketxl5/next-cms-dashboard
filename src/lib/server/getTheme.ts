@@ -1,5 +1,5 @@
 import { getCookie, getSession } from '../server';
-import { ThemeClassName } from './mapTheme';
+import { ThemeClassName } from '../theme';
 
 /**
  * Resolves the current theme class name for the application.

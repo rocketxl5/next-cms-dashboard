@@ -1,7 +1,7 @@
 // lib/server/withRole.ts
 import { NextRequest, NextResponse } from 'next/server';
-import type { User } from '@/types';
 import { getSession } from './getSession';
+import type { User } from '@/types';
 
 /**
  * Pure role enforcement for API routes.
