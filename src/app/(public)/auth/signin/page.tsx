@@ -10,7 +10,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import SigninForm from './SigninForm';
 import { getRedirectPathname } from '@/lib/server/getRedirectPathname';
-import { useTheme } from '@/components/providers/ThemeProvider';
+import { useTheme } from '@/providers/ThemeProvider';
 import { User } from '@/types/users';
 import { ThemeClassName } from '@/lib/theme/mapTheme';
 

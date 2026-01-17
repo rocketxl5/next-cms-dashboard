@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
+import { Header } from '@/components/ui/Header';
+import { Footer } from '@/components/ui/Footer';
 import { getRedirectPathname } from '@/lib/server/getRedirectPathname';
 import { getSession } from '@/lib/server/getSession';
 

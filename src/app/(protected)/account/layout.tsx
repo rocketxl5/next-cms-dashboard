@@ -1,4 +1,4 @@
-import { AppShell, HeaderSlot, MainSlot } from '@/layout-primitives';
+import { AppShell, HeaderSlot, MainSlot } from '@/components/layout-primitives';
 import { AccountHeader } from './components/AccountHeader';
 type AccountLayoutProps = {
   children: React.ReactNode;

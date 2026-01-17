@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import { ThemeProvider } from '@/providers/ThemeProvider';
 import { ThemeClassName } from '@/lib/theme/mapTheme';
 
 /**

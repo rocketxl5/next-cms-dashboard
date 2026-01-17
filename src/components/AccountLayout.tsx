@@ -18,8 +18,8 @@
   */
 
 // Import shared layout components
-import { Header } from './Header';
-import { Footer } from './Footer';
+import { Header } from './ui/Header';
+import { Footer } from './ui/Footer';
 
 // Props type for AccountLayout component
 type AccountLayoutProps = {

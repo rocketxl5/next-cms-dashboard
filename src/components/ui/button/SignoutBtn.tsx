@@ -30,7 +30,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signOut } from '@/lib/server/signOut';
-import { useTheme } from '@/components/providers/ThemeProvider';
+import { useTheme } from '@/providers/ThemeProvider';
 
 export function SignoutBtn() {
   const [loading, setLoading] = useState(false);

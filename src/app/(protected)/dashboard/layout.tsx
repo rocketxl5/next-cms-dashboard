@@ -1,4 +1,9 @@
-import { AppShell, SideSlot, HeaderSlot, MainSlot } from '@/layout-primitives';
+import {
+  AppShell,
+  SideSlot,
+  HeaderSlot,
+  MainSlot,
+} from '@/components/layout-primitives';
 import { DashboardHeader, DashboardSidebar } from './components';
 
 type DashboardLayoutProps = {
