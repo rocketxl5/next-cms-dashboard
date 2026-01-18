@@ -1,9 +1,4 @@
-import {
-  AppShell,
-  SideSlot,
-  HeaderSlot,
-  MainSlot,
-} from '@/components/layout-primitives';
+import { AppShell, HeaderSlot, MainSlot } from '@/components/layout-primitives';
 import { DashboardHeader, DashboardSidebar } from './components';
 
 type DashboardLayoutProps = {
@@ -15,9 +10,7 @@ export default async function DashboardLayout({
 }: DashboardLayoutProps) {
   return (
     <AppShell>
-      <SideSlot>
-        <DashboardSidebar />
-      </SideSlot>
+      <DashboardSidebar />
       <div className="flex flex-col flex-1 overflow-hidden">
         <HeaderSlot>
           <DashboardHeader />
