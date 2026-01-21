@@ -1,5 +1,5 @@
-import { AppShell, HeaderSlot, MainSlot } from '@/components/layout-primitives';
-import { DashboardHeader, DashboardSidebar } from './components';
+import { AppShell, HeaderSlot } from '@/components/layout-primitives';
+import { DashboardHeader, DashboardSidebar, DashboardMain } from './components';
 
 type DashboardLayoutProps = {
   children: React.ReactNode;
@@ -15,7 +15,7 @@ export default async function DashboardLayout({
         <HeaderSlot>
           <DashboardHeader />
         </HeaderSlot>
-        <MainSlot>{children}</MainSlot>
+        <DashboardMain />
       </div>
     </AppShell>
   );

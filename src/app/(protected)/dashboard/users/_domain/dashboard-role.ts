@@ -1,9 +1,8 @@
-import { UserRole } from "./user-role";
+import { UserRole } from './user-role';
 
-export type DashboardRole = Exclude<UserRole, 'USER'>
+export type DashboardRole = Extract<UserRole, 'ADMIN' | 'SUPER_ADMIN'>;
 
 export const DASHBOARD_ROLES: readonly DashboardRole[] = [
-    'ADMIN',
-    'SUPER_ADMIN'
-]
-;
+  'ADMIN',
+  'SUPER_ADMIN',
+];

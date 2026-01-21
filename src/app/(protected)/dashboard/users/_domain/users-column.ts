@@ -1,4 +1,14 @@
-import { TableColumn } from "./table-column";
-import { UserRow } from "./user-row";
+// users/_domain/users-column.ts
+import { TableColumn } from './table-column';
 
-export type UsersColumn = TableColumn<UserRow>;
+/**
+ * UsersColumn
+ * -----------
+ * A column definition for any users table.
+ *
+ * Generic on the row type so it can support:
+ * - full domain users (UserRow)
+ * - dashboard users (DashboardUserRow)
+ * - future projections
+ */
+export type UsersColumn<Row> = TableColumn<Row>;
