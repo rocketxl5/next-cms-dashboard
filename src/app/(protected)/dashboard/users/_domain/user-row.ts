@@ -1,18 +1,20 @@
-import { UserStatus } from "./user-status";
-import { UserRole } from "./user-role";
+import { UserStatus } from './user-status';
+import { Role } from '@prisma/client';
 
 export type UserRow = {
   id: string;
-  name: string;
+  name: string | null;
   email: string;
-
-  role: UserRole;
+  role: Role;
   status: UserStatus;
-
+  isActive: boolean;
+  isVerified: boolean;
   createdAt: string;
   updatedAt: string;
-  /**
-   * UI-only flags
-   */
-  isCurrentUser?: boolean;
+};
+
+import { DashboardRole } from './dashboard-role';
+
+export type DashboardUserRow = Omit<UserRow, 'role'> & {
+  role: DashboardRole;
 };

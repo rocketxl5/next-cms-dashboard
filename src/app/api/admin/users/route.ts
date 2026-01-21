@@ -37,10 +37,11 @@
  */
 
 import { NextResponse } from 'next/server';
-import { withRole } from '@/lib/server/withRole';
-import { Role } from '@prisma/client';
-import prisma from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
+import prisma from '@/lib/prisma';
+import { Role } from '@prisma/client';
+import { withRole } from '@/lib/server/withRole';
+import { getUsers } from '@/lib/server';
 
 // --------------------
 // Local types for payloads
@@ -64,28 +65,16 @@ type UserUpdatePayload = {
 // --------------------
 // GET — List all users
 // --------------------
-export const GET = withRole(['ADMIN', 'SUPER_ADMIN'], async (req, user) => {
+export const GET = withRole(['ADMIN', 'SUPER_ADMIN'], async () => {
   try {
-    const users = await prisma.user.findMany({
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        role: true,
-        isActive: true,
-        isVerified: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-      orderBy: { createdAt: 'desc' },
-    });
+    const users = await getUsers();
 
     return NextResponse.json(users, { status: 200 });
   } catch (error) {
     console.error('❌ Error fetching users:', error);
     return NextResponse.json(
       { error: 'Failed to fetch users' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 });

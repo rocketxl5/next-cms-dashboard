@@ -1,7 +1,7 @@
 import { UsersColumn } from '../_domain/users-column';
+import { DashboardUserRow } from '../_domain';
 import { StatusBadge } from '../_components/StatusBadge';
 import { RoleBadge } from '../_components/RoleBadge';
-import { DashboardUserRow } from '../_domain/dashboard-user-row';
 
 export const usersColumns: UsersColumn<DashboardUserRow>[] = [
   {

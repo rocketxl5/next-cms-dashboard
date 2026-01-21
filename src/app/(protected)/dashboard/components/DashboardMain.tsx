@@ -1,11 +1,13 @@
 import { MainSlot } from '@/components/layout-primitives';
-import { UsersTable } from '../users/_components/UsersTable';
 
-export function DashboardMain() {
+interface DashboardMainProps {
+  children: React.ReactNode;
+}
+
+export function DashboardMain({ children }: DashboardMainProps) {
   return (
     <MainSlot>
-      {/* <UsersTable /> */}
-      <div>Hello</div>
+      <div className="h-full overflow-y-auto">{children}</div>
     </MainSlot>
   );
 }

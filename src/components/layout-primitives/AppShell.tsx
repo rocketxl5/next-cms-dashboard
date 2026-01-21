@@ -4,9 +4,5 @@ type AppShellProps = {
 }
 
 export function AppShell({children}: AppShellProps) {
-    return (
-        <div className="h-screen w-full overflow-hidden flex">
-            {children}
-        </div>
-    )
+    return <div className="h-screen w-full flex">{children}</div>;
 }
