@@ -16,5 +16,5 @@ export type UserRow = {
 import { DashboardRole } from './dashboard-role';
 
 export type DashboardUserRow = Omit<UserRow, 'role'> & {
-  role: DashboardRole;
+  role: Role;
 };

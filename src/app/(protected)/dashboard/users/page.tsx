@@ -1,5 +1,5 @@
-import { UsersTable } from './_components/UsersTable';
+import UsersPage from './_components/UsersPage';
 
 export default function DashboardUsersPage() {
-  return <></>;
+  return <UsersPage />;
 }

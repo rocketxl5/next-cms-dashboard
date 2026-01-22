@@ -18,7 +18,7 @@ type PrismaUser = {
  * Returns null if role is not allowed in dashboard.
  */
 export function prismaToDashboardUser(user: PrismaUser): DashboardUserRow | null {
-  if (!isDashboardRole(user.role)) return null;
+  // if (!isDashboardRole(user.role)) return null;
 
   return {
     id: user.id,
