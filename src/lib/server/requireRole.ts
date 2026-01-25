@@ -61,7 +61,7 @@ type RequireRoleOptions = {
  *
  * Notes:
  * - Uses `next/navigation`'s `redirect` for server-side redirection.
- * - Always returns `User` when access is allowed; otherwise never returns (redirects).
+ * - Always returns `SessionUser` when access is allowed; otherwise never returns (redirects).
  */
 export async function requireRole({
   roles,

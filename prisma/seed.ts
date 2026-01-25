@@ -6,15 +6,14 @@
  *   - Running in a live production database may overwrite or create demo data.
  * 
  * Purpose:
- *   - Create super admin, editor, author, and regular user
- *   - Seed sample CMS content: products, pages, blog posts
+ *   - Create super admin, user
  *   - Mark seed records with isSeed
  *
  * Run:
  *   npx prisma db seed
  */
 
-import { PrismaClient, Role, ContentType, ContentStatus } from '@prisma/client';
+import { PrismaClient, Role } from '@prisma/client';
 import type { User } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
@@ -28,8 +27,6 @@ async function main() {
   // ----------------------------
   const users = [
     { name: 'Super Admin', email: 'admin@example.com', role: Role.ADMIN },
-    { name: 'Editor User', email: 'editor@example.com', role: Role.EDITOR },
-    { name: 'Author User', email: 'author@example.com', role: Role.AUTHOR },
     { name: 'Regular User', email: 'user@example.com', role: Role.USER },
   ];
 
@@ -48,58 +45,10 @@ async function main() {
         isSeed: true,
       },
     });
-    createdUsers[u.role] = user; // store for authorId references
+    createdUsers[u.role] = user; 
   }
 
-  // ----------------------------
-  // 2️⃣ Seed ContentItems
-  // ----------------------------
-  const contentItems = [
-    {
-      title: 'Sample Product 1',
-      slug: 'sample-product-1',
-      description: 'This is a demo product.',
-      price: 19.99,
-      type: ContentType.PRODUCT,
-      status: ContentStatus.PUBLISHED,
-      authorId: createdUsers[Role.ADMIN].id,
-    },
-    {
-      title: 'Hello World Blog',
-      slug: 'hello-world-blog',
-      body: { text: 'This is a demo blog post.' },
-      type: ContentType.POST,
-      status: ContentStatus.PUBLISHED,
-      authorId: createdUsers[Role.AUTHOR].id,
-    },
-  ];
-
-  for (const item of contentItems) {
-    await prisma.contentItem.upsert({
-      where: { slug: item.slug! },
-      update: {
-        title: item.title,
-        body: item.body,
-        description: item.description,
-        price: item.price,
-        status: item.status,
-        type: item.type,
-        authorId: item.authorId,
-      },
-      create: {
-        title: item.title,
-        slug: item.slug,
-        body: item.body,
-        description: item.description,
-        price: item.price,
-        status: item.status,
-        type: item.type,
-        authorId: item.authorId,
-        isSeed: true,
-      },
-    });
-  }
-
+  
   // ----------------------------
   // 3️⃣ Seed Global Settings
   // ----------------------------

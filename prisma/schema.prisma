@@ -31,8 +31,6 @@ enum ContentStatus {
 
 enum Role {
   USER
-  AUTHOR
-  EDITOR
   ADMIN
   SUPER_ADMIN
 }

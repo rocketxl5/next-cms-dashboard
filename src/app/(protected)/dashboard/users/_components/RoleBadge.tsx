@@ -1,13 +1,11 @@
-import { Role } from '@prisma/client';
+import { AppRole } from '@/types/enums';
 import { classNames } from '@/lib/utils/classNames';
 
 interface RoleBadgeProps {
-  role: Role; // <- use full Prisma Role
+  role: AppRole; // <- use full Prisma Role
 }
 
 export function RoleBadge({ role }: RoleBadgeProps) {
-  const isAdmin = role === 'ADMIN' || role === 'SUPER_ADMIN';
-
   return (
     <span
       className={classNames(

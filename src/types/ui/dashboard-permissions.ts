@@ -1,5 +1,5 @@
 /**
- * Trust zone: UI
+ * TRUST ZONE: UI Conctext
  *
  * UI-only permissions derived from
  * already-authorized dashboard roles.
@@ -8,6 +8,8 @@
  * It only controls visibility and UI behavior.
  * 
  * Persmission pattern: Permission-by-intent 
+ * 
+ * LEVEL 4 in type ladder hierarchy
  */
 
 import { DashboardRole } from '../server/dashboard-role';

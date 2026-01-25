@@ -1,21 +1,4 @@
-import { Role } from '@prisma/client';
-
-export type DatabaseDashboardUser = {
-  id: string;
-  name: string | null;
-  email: string;
-  role: Role;
-  theme: string;
-  isActive: boolean;
-  isVerified: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-};
-
 /**
- * 
- * LEVEL - 0 of Trust Zone Ladder
- * 
  * TRUST ZONE: Database (Untrusted)
  *  “What did we fetch from the database?”
  *
@@ -35,4 +18,20 @@ export type DatabaseDashboardUser = {
  * - UI
  * - API responses
  * - React components
+ *
+ * Ground Zero of type ladder hierarchy
  */
+
+import { Role } from '@prisma/client';
+
+export type DatabaseDashboardUser = {
+  id: string;
+  name: string | null;
+  email: string;
+  role: Role;
+  theme: string;
+  isActive: boolean;
+  isVerified: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+};

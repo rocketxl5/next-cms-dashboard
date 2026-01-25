@@ -12,7 +12,7 @@ import SigninForm from './SigninForm';
 import { ThemeClassName } from '@/lib/theme';
 import { getRedirectPathname } from '@/lib/shared';
 import { useTheme } from '@/providers/ThemeProvider';
-import { User } from '@/types';
+import { SessionUser } from '@/types/shared';
 
 export default function SigninPage() {
   const router = useRouter();
@@ -21,7 +21,7 @@ export default function SigninPage() {
 
   return (
     <SigninForm
-      onSuccess={(user: User) => {
+      onSuccess={(user: SessionUser) => {
         // 1️⃣ Sync theme for SSR + provider
         setUserTheme(user.theme as ThemeClassName);
 

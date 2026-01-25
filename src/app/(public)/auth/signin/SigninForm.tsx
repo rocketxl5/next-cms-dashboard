@@ -25,10 +25,10 @@ import { apiFetch } from '@/lib/api/apiFetch';
 import { signinSchema } from '@/lib/validators';
 import { withSuspense } from '@/components/hoc/withSuspense';
 import { SigninSkeleton } from './SiginSkeleton';
-import type { User } from '@/types/users';
+import { SessionUser } from '@/types/shared';
 
 type SigninFormProps = {
-  onSuccess: (user: User) => void;
+  onSuccess: (user: SessionUser) => void;
 };
 
 const SigninForm = ({ onSuccess }: SigninFormProps) => {

@@ -22,4 +22,4 @@ export const passwordSchema = z
   .regex(/[0-9]/, { message: 'Password must contain a number' })
   .regex(/^\S+$/, { message: 'Password must not contain spaces' });
 
-export const roleEnum = z.enum(['USER', 'AUTHOR', 'EDITOR', 'ADMIN', 'SUPER_ADMIN']);
+export const roleEnum = z.enum(['USER', 'ADMIN', 'SUPER_ADMIN']);

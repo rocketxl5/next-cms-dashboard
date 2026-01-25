@@ -1,5 +1,5 @@
 /**
- * TRUST ZONE 2: Server / Policy
+ * TRUST ZONE: Server / Policy
  *
  * Represents:
  * - Roles that are allowed to access the dashboard
@@ -7,6 +7,8 @@
  * Important:
  * - Independent of Prisma
  * - Depends only on app-level role knowledge
+ * 
+ * LEVEL 2 of type ladder hierarchy
  */
 
 import { AppRole } from '../enums/roles';

@@ -10,7 +10,7 @@ export const APP_ROLES = [
 export type AppRole = typeof APP_ROLES[number];
 
 /**
- * LEVEL 1 — APP-LEVEL ROLES (SHARED)
+ * TRUST ZONE — Enums / App invariant (SHARED)
  *
  * Represents:
  * - All roles the application understands
@@ -21,5 +21,7 @@ export type AppRole = typeof APP_ROLES[number];
  *
  * Does NOT guarantee:
  * - Authorization for any feature
+ * 
+ * LEVEL 1 in type ladder hierarchy
  */
 

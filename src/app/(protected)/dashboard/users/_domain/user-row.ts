@@ -13,7 +13,7 @@ export type UserRow = {
   updatedAt: string;
 };
 
-import { DashboardRole } from './dashboard-role';
+import { DashboardRole } from './dashboard-user';
 
 export type DashboardUserRow = Omit<UserRow, 'role'> & {
   role: Role;
