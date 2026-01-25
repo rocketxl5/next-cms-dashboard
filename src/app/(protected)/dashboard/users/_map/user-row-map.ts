@@ -24,7 +24,7 @@ type PrismaUser = {
 export function prismaToDashboardUser(
   user: PrismaUser,
 ): DashboardUserRow | null {
-  // if (!isDashboardUserRole(user.role)) return null;
+  if (!isDashboardUserRole(user.role)) return null;
 
   return {
     id: user.id,
