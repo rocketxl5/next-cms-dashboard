@@ -28,12 +28,13 @@
 
 import { redirect } from 'next/navigation';
 import { getSession } from './getSession';
-import { Role } from '@prisma/client';
+import { AppRole } from '@/types/enums';
+import { SessionUser } from '@/types/shared';
 
 /**
  * Represents one or multiple allowed roles for a protected resource.
  */
-type AllowedRoles = Role | Role[];
+type AllowedRoles = AppRole | readonly AppRole[];
 
 /**
  * Options for `requireRole`.
@@ -66,7 +67,7 @@ export async function requireRole({
   roles,
   unauthenticatedRedirect = '/auth/signin',
   forbiddenRedirect = '/',
-}: RequireRoleOptions) {
+}: RequireRoleOptions): Promise<SessionUser> {
   // Get the current user session
   const session = await getSession();
 

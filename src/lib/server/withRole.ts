@@ -1,29 +1,21 @@
-// lib/server/withRole.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { getSession } from './getSession';
-import type { User } from '@/types';
+import { AppRole } from '@/types/enums';
+import { SessionUser } from '@/types/shared';
 
 /**
- * Pure role enforcement for API routes.
- *
- * This function checks whether the current session exists
- * and if the user has one of the allowed roles.
- *
- * Returns a discriminated object:
- * - { ok: true, user } → authorized
- * - { ok: false, reason: 'unauthenticated' | 'forbidden' } → unauthorized
- *
- * No redirects or side effects; suitable for API logic.
+ * Checks authentication + role for API routes.
+ * No redirects; returns structured results.
  */
 export async function requireRoleApi(
-  roles: User['role'] | User['role'][]
-): Promise<{
-  ok: boolean;
-  reason?: 'unauthenticated' | 'forbidden';
-  user?: User;
-}> {
+  roles: AppRole | readonly AppRole[],
+): Promise<
+  | { ok: true; user: SessionUser }
+  | { ok: false; reason: 'unauthenticated' | 'forbidden' }
+> {
   // Resolve session
   const session = await getSession();
+
   if (!session) return { ok: false, reason: 'unauthenticated' };
 
   // Normalize roles input
@@ -52,34 +44,31 @@ export async function requireRoleApi(
  * @param handler - The actual API route handler to execute on success
  * @returns A wrapped handler ready for Next.js API route use
  */
+
 export function withRole(
-  roles: User['role'] | User['role'][],
-  handler: (req: NextRequest, user: User) => Promise<Response>
+  roles: AppRole | readonly AppRole[],
+  handler: (req: NextRequest, user: SessionUser) => Promise<Response>,
 ) {
   return async (
     req: NextRequest,
-    context: { params: Promise<Record<string, string>> }
-  ) => {
+    context: { params: Promise<Record<string, string>> },
+  ): Promise<Response> => {
     try {
       // Perform role enforcement
       const auth = await requireRoleApi(roles);
 
-      if (!auth.ok || !auth.user) {
+      if (!auth.ok) {
         const status = auth.reason === 'unauthenticated' ? 401 : 403;
-        return NextResponse.json(
-          { error: auth.reason || 'Forbidden' },
-          { status }
-        );
+        return NextResponse.json({ error: auth.reason }, { status });
       }
 
       // Call the original handler with the authenticated user
       return handler(req, auth.user);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
+    } catch (error) {
       console.error('withRole error', error);
       return NextResponse.json(
-        { error: error.message || 'Internal Server Error' },
-        { status: 500 }
+        { error: 'Internal Server Error' },
+        { status: 500 },
       );
     }
   };

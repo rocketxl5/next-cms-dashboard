@@ -8,6 +8,7 @@ export async function getUsers(): Promise<DatabaseDashboardUser[]> {
       name: true,
       email: true,
       role: true,
+      theme: true,
       isActive: true,
       isVerified: true,
       createdAt: true,

@@ -5,6 +5,7 @@ export type DatabaseDashboardUser = {
   name: string | null;
   email: string;
   role: Role;
+  theme: string;
   isActive: boolean;
   isVerified: boolean;
   createdAt: Date;

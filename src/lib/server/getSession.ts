@@ -1,6 +1,7 @@
 import { getCookie } from './getCookie';
 import { verifyAccessToken } from '../auth';
-import { COOKIE_KEYS, User } from '@/types';
+import { COOKIE_KEYS } from '@/types';
+import { SessionUser } from '@/types/shared';
 
 /**
  * The resolved session object.
@@ -8,7 +9,7 @@ import { COOKIE_KEYS, User } from '@/types';
  * - `{ user: User }` when a valid session exists
  * - `null` when no valid session is found
  */
-export type Session = { user: User } | null;
+export type Session = { user: SessionUser } | null;
 
 /**
  * Retrieves the current user's session from cookies.
@@ -36,7 +37,7 @@ export async function getSession(): Promise<Session> {
     const payload = verifyAccessToken(token);
 
     // Map token payload to application User object
-    const user: User = {
+    const user: SessionUser = {
       id: payload.id,
       role: payload.role,
       email: payload.email,

@@ -8,7 +8,8 @@
 import { AppRole } from "../enums/roles";
 
 export type SessionUser = {
-    id: string;
-    email: string;
-    role: AppRole;
-}
+  id: string;
+  email: string;
+  role: AppRole;
+  theme: string;
+};

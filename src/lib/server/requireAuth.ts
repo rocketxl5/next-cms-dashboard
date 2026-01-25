@@ -1,5 +1,6 @@
 import { requireRole } from './requireRole';
-import { Role } from '@prisma/client';
+import { SessionUser } from '@/types/shared';
+import { APP_ROLES } from '@/types/enums';
 
 /**
  * Enforces that the current request is made by any authenticated user.
@@ -10,8 +11,8 @@ import { Role } from '@prisma/client';
  *
  * @returns The result of `requireRole`, including `{ ok: boolean, user?, status? }`
  */
-export async function requireAuth() {
+export async function requireAuth(): Promise<SessionUser> {
   return requireRole({
-    roles: Object.values(Role), // allow any authenticated role
+    roles: APP_ROLES, // allow any authenticated role
   });
 }
