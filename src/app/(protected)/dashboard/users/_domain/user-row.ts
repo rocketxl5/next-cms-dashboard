@@ -1,11 +1,11 @@
 import { UserStatus } from './user-status';
-import { DashboardRole } from '@/types/server';
+import { AppRole } from '@/types/enums';
 
 export type UserRow = {
   id: string;
   name: string | null;
   email: string;
-  role: DashboardRole;
+  role: AppRole;
   status: UserStatus;
   isActive: boolean;
   isVerified: boolean;
@@ -13,6 +13,4 @@ export type UserRow = {
   updatedAt: string;
 };
 
-export type DashboardUserRow = Omit<UserRow, 'role'> & {
-  role: DashboardRole;
-};
+export type DashboardUserRow = UserRow;

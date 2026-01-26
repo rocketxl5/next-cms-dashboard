@@ -1,10 +1,6 @@
 // _map/prisma-to-dashboard-user.ts
 import { Role } from '@prisma/client';
-import {
-  deriveUserStatus,
-  DashboardUserRow,
-  isDashboardUserRole,
-} from '../_domain';
+import { deriveUserStatus, DashboardUserRow } from '../_domain';
 
 type PrismaUser = {
   id: string;
@@ -24,8 +20,6 @@ type PrismaUser = {
 export function prismaToDashboardUser(
   user: PrismaUser,
 ): DashboardUserRow | null {
-  if (!isDashboardUserRole(user.role)) return null;
-
   return {
     id: user.id,
     name: user.name,
