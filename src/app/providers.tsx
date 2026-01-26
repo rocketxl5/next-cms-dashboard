@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from '@/providers/ThemeProvider';
-import { ThemeClassName } from '@/lib/theme';
+import { Theme } from '@/types/enums/theme';
 
 /**
  * Top-level providers wrapper.
@@ -30,7 +30,7 @@ export default function Providers({
   initialTheme,
   children,
 }: {
-  initialTheme: ThemeClassName;
+  initialTheme: Theme;
   children: React.ReactNode;
 }) {
   // Create a persistent QueryClient instance per app session
@@ -43,7 +43,7 @@ export default function Providers({
             refetchOnWindowFocus: false,
           },
         },
-      })
+      }),
   );
 
   return (

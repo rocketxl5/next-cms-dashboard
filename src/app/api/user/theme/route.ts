@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { getSession } from '@/lib/server';
 import {
-  ThemeClassName,
   mapCssThemeToDatabase,
   mapDatabaseThemeToCss,
 } from '@/lib/theme/mapTheme';
+import { Theme } from '@/types/enums';
 import { isThemeClassName } from '@/lib/utils/normalizers/theme';
 
 export async function PATCH(req: NextRequest) {
@@ -23,7 +23,7 @@ export async function PATCH(req: NextRequest) {
   if (!isThemeClassName(theme)) {
     return NextResponse.json(
       { ok: false, error: 'Invalid theme' },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -38,11 +38,11 @@ export async function PATCH(req: NextRequest) {
     console.error('Failed to update user theme:', error);
     return NextResponse.json(
       { ok: false, error: 'Database update failed' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
-  const updatedTheme: ThemeClassName = mapDatabaseThemeToCss(updatedUser.theme);
+  const updatedTheme: Theme = mapDatabaseThemeToCss(updatedUser.theme);
 
   return NextResponse.json({ ok: true, theme: updatedTheme });
 }

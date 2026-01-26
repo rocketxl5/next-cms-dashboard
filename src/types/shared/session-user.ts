@@ -5,7 +5,7 @@
  * and exposed to the client.
  */
 
-import { AppRole } from "../enums/roles";
+import { AppRole } from '../enums/role';
 
 export type SessionUser = {
   id: string;

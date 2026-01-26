@@ -9,8 +9,8 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import SigninForm from './SigninForm';
-import { ThemeClassName } from '@/lib/theme';
 import { getRedirectPathname } from '@/lib/shared';
+import { Theme } from '@/types/enums/theme';
 import { useTheme } from '@/providers/ThemeProvider';
 import { SessionUser } from '@/types/shared';
 
@@ -23,7 +23,7 @@ export default function SigninPage() {
     <SigninForm
       onSuccess={(user: SessionUser) => {
         // 1️⃣ Sync theme for SSR + provider
-        setUserTheme(user.theme as ThemeClassName);
+        setUserTheme(user.theme as Theme);
 
         // 2️⃣ Refresh server components so layouts & RootLayout pick up session
         router.refresh(); // Triggers RootLayout → getTheme → ThemeProvider

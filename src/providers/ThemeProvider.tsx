@@ -7,7 +7,7 @@ import {
   useEffect,
   ReactNode,
 } from 'react';
-import { ThemeClassName } from '@/lib/theme/mapTheme';
+import { Theme } from '@/types/enums';
 
 /**
  * Shape of the theme context value.
@@ -18,10 +18,10 @@ import { ThemeClassName } from '@/lib/theme/mapTheme';
  * - setUserTheme: explicitly set user-preference theme
  */
 type ThemeContextValue = {
-  theme: ThemeClassName;
+  theme: Theme;
   toggleTheme: () => void;
   setDefaultTheme: () => void;
-  setUserTheme: (theme: ThemeClassName) => void;
+  setUserTheme: (theme: Theme) => void;
 };
 
 // Create context with nullable default; must be wrapped in provider
@@ -44,10 +44,10 @@ export function ThemeProvider({
   initialTheme,
   children,
 }: {
-  initialTheme: ThemeClassName;
+  initialTheme: Theme;
   children: ReactNode;
 }) {
-  const [theme, setTheme] = useState<ThemeClassName>(initialTheme);
+  const [theme, setTheme] = useState<Theme>(initialTheme);
 
   /**
    * Toggles between light and dark themes.
@@ -66,7 +66,7 @@ export function ThemeProvider({
   /**
    * Explicitly sets the theme according to user preference.
    */
-  const setUserTheme = (userTheme: ThemeClassName) => {
+  const setUserTheme = (userTheme: Theme) => {
     setTheme(userTheme);
   };
 

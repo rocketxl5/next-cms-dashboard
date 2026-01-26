@@ -1,5 +1,5 @@
 import { getCookie, getSession } from '../server';
-import { ThemeClassName } from '../theme';
+import { Theme } from '@/types/enums';
 
 /**
  * Resolves the current theme class name for the application.
@@ -12,18 +12,18 @@ import { ThemeClassName } from '../theme';
  * This helper always returns a valid ThemeClassName
  * ("light" | "dark") and never propagates invalid values.
  */
-export async function getTheme(): Promise<ThemeClassName> {
+export async function getTheme(): Promise<Theme> {
   // Attempt to resolve the current user session (server-side)
   const session = await getSession();
 
   /**
-   * Normalizes any theme-like input into a valid ThemeClassName.
+   * Normalizes any theme-like input into a valid Theme.
    *
    * Only "dark" is treated explicitly; all other values
    * (including undefined, null, or unexpected strings)
    * safely fall back to "light".
    */
-  const setTheme = (theme?: string): ThemeClassName => {
+  const setTheme = (theme?: string): Theme => {
     return theme === 'dark' ? 'dark' : 'light';
   };
 

@@ -1,4 +1,4 @@
-import { ThemeClassName } from './mapTheme';
+import { Theme } from '@/types/enums';
 
 /**
  * Resolve the next UI theme from the current one.
@@ -13,6 +13,6 @@ import { ThemeClassName } from './mapTheme';
  * - DB ↔ UI mapping helpers
  */
 
-export const resolveNextTheme = (theme: ThemeClassName): ThemeClassName => {
+export const resolveNextTheme = (theme: Theme) => {
   return theme === 'light' ? 'dark' : 'light';
 };

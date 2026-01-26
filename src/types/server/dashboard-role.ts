@@ -11,7 +11,7 @@
  * LEVEL 2 of type ladder hierarchy
  */
 
-import { AppRole } from '../enums/roles';
+import { AppRole } from '../enums/role';
 
 export const DASHBOARD_ROLE = ['ADMIN', 'SUPER_ADMIN'] as const;
 

@@ -1,4 +1,5 @@
 import { Theme as DbTheme } from '@prisma/client';
+import type { Theme } from '@/types/enums/theme';
 
 /**
  * Exhaustiveness guard used to ensure all enum / union cases
@@ -12,14 +13,6 @@ function assertNever(x: never): never {
 }
 
 /**
- * Theme values used by the UI layer (CSS / Tailwind / DOM).
- *
- * - "system" represents a user preference, not a concrete color mode
- * - Resolution of "system" → "light" | "dark" happens elsewhere
- */
-export type ThemeClassName = 'light' | 'dark' | 'system';
-
-/**
  * Maps a database-stored theme enum to a CSS-compatible theme value.
  *
  * Notes:
@@ -28,7 +21,7 @@ export type ThemeClassName = 'light' | 'dark' | 'system';
  * - "SYSTEM" is resolved to "light" as an SSR-safe default
  *   to avoid hydration mismatches and flash issues
  */
-export function mapDatabaseThemeToCss(theme: DbTheme): ThemeClassName {
+export function mapDatabaseThemeToCss(theme: DbTheme): Theme {
   switch (theme) {
     case 'DARK':
       return 'dark';
@@ -48,7 +41,7 @@ export function mapDatabaseThemeToCss(theme: DbTheme): ThemeClassName {
  * This function performs a strict, explicit mapping
  * to prevent invalid values from reaching the database.
  */
-export function mapCssThemeToDatabase(theme: ThemeClassName): DbTheme {
+export function mapCssThemeToDatabase(theme: Theme): DbTheme {
   switch (theme) {
     case 'dark':
       return 'DARK';
