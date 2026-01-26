@@ -1,6 +1,6 @@
 import { getCookie } from './getCookie';
 import { verifyAccessToken } from '../auth';
-import { COOKIE_KEYS } from '@/types';
+import { COOKIE_KEYS } from '@/types/server';
 import { SessionUser } from '@/types/shared';
 
 /**

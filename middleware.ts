@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { verifyAccessTokenEdge } from '@/lib/auth';
 import { redirectToSignin } from '@/lib/server';
-import { COOKIE_KEYS } from '@/types/cookies';
+import { COOKIE_KEYS } from '@/types/server';
 
 const PROTECTED = ['/dashboard', '/account'];
 

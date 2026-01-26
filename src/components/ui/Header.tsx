@@ -25,7 +25,7 @@
 import { SignoutBtn, ToggleThemeBtn } from './button';
 
 // Import types
-import type { AppContext } from '@/types/contexts';
+import type { AppContext } from '@/types/shared/context';
 
 // Define header titles based on context
 const HEADER_TITLES: Record<AppContext, string> = {

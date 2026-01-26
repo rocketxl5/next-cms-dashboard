@@ -29,7 +29,7 @@
  * -------------------------------------------------------
  */
 import { NextResponse } from 'next/server';
-import { COOKIE_KEYS } from '@/types';
+import { COOKIE_KEYS } from '@/types/server';
 const isProd = process.env.NODE_ENV === 'production';
 
 const accessCookieOptions = {
