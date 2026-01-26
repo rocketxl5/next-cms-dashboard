@@ -7,7 +7,7 @@
  * It is NOT stored directly in the database.
  */
 
-export type UserStatus = 'active' | 'inactive' | 'suspended';
+import { UserStatus } from '@/types/shared';
 
 type UserFlags = {
   isActive: boolean;

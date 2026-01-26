@@ -1,5 +1,5 @@
-import { UserStatus } from './user-status';
 import { AppRole } from '@/types/enums';
+import { UserStatus } from '@/types/shared';
 
 export type UserRow = {
   id: string;
