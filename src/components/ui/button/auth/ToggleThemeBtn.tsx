@@ -19,7 +19,7 @@ export function ToggleThemeBtn() {
       });
 
       if(!res.ok) {
-        console.error('Server error updating theme', res.status)
+        console.error('Server error updating theme', res.status);
       }
     } catch (error) {
       console.error('Network error updating theme', error);

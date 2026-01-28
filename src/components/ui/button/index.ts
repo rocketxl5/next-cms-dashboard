@@ -1,2 +1,2 @@
-export * from './SignoutBtn';
-export * from './ToggleThemeBtn';
+export * from './auth/SignoutBtn';
+export * from './auth/ToggleThemeBtn';

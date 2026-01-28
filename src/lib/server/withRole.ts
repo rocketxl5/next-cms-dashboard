@@ -1,3 +1,19 @@
+/**
+ * Higher-order function for API route handlers.
+ *
+ * Wraps a handler function to enforce role-based access control.
+ * Handles:
+ * - Session lookup and role checking via `requireRoleApi`
+ * - Returns proper HTTP status codes:
+ *   - 401 Unauthorized for no session
+ *   - 403 Forbidden for insufficient role
+ *   - 500 Internal Server Error for unexpected exceptions
+ *
+ * @param roles - Allowed role(s) for this API route
+ * @param handler - The actual API route handler to execute on success
+ * @returns A wrapped handler ready for Next.js API route use
+ */
+
 import { NextRequest, NextResponse } from 'next/server';
 import { getSession } from './getSession';
 import { AppRole } from '@/types/enums';
@@ -28,22 +44,6 @@ export async function requireRoleApi(
   // Authorized
   return { ok: true, user: session.user };
 }
-
-/**
- * Higher-order function for API route handlers.
- *
- * Wraps a handler function to enforce role-based access control.
- * Handles:
- * - Session lookup and role checking via `requireRoleApi`
- * - Returns proper HTTP status codes:
- *   - 401 Unauthorized for no session
- *   - 403 Forbidden for insufficient role
- *   - 500 Internal Server Error for unexpected exceptions
- *
- * @param roles - Allowed role(s) for this API route
- * @param handler - The actual API route handler to execute on success
- * @returns A wrapped handler ready for Next.js API route use
- */
 
 export function withRole(
   roles: AppRole | readonly AppRole[],

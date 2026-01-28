@@ -1,11 +1,12 @@
 /**
- * TRUST ZONE: UI Conctext
+ * TRUST ZONE: UI Context
+ * 
+ * ⚠️ This file does NOT enforce security.
+ * It only controls visibility and UI behavior.
  *
  * UI-only permissions derived from
  * already-authorized dashboard roles.
  *
- * ⚠️ This file does NOT enforce security.
- * It only controls visibility and UI behavior.
  * 
  * Persmission pattern: Permission-by-intent 
  * 
@@ -29,5 +30,9 @@ export function canEditUserRole(role: DashboardRole) {
 }
 
 export function canSuspendUser(role: DashboardRole) {
+  return role === 'ADMIN';
+}
+
+export function canDeleteUser(role: DashboardRole) {
   return role === 'ADMIN';
 }

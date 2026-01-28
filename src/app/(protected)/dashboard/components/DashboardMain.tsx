@@ -1,3 +1,5 @@
+'use client';
+
 import { MainSlot } from '@/components/layout-primitives';
 
 interface DashboardMainProps {

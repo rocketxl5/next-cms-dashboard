@@ -1,3 +1,5 @@
+'use client';
+
 import { HeaderSlot } from '@/components/layout-primitives';
 import { SignoutBtn, ToggleThemeBtn } from '@/components/ui/button';
 

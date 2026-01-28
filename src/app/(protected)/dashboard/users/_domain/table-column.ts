@@ -1,6 +1,8 @@
-export type TableColumn<Row> = {
-    key: string;
-    header: string;
-    render: (user: Row) => React.ReactNode;
-    align?: 'left' | 'right' | 'center';
-}
+import { CurrentDashboardUser } from '@/types/shared';
+
+export type TableColumn<Row, CurrentUserType = CurrentDashboardUser> = {
+  key: string;
+  header: string;
+  render: (user: Row, currentUser: CurrentUserType) => React.ReactNode;
+  align?: 'left' | 'right' | 'center';
+};

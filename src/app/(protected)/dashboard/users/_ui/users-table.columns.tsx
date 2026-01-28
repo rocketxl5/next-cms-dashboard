@@ -1,7 +1,6 @@
-import { UsersColumn } from '../_domain/users-column';
-import { DashboardUserRow } from '../_domain';
-import { StatusBadge } from '../_components/StatusBadge';
-import { RoleBadge } from '../_components/RoleBadge';
+import { DashboardUserRow, UsersColumn } from '../_domain';
+import { RoleBadge, StatusBadge, DeleteUserCell } from '../_components';
+import { canDeleteUser } from '@/types/ui';
 
 export const usersColumns: UsersColumn<DashboardUserRow>[] = [
   {
@@ -18,5 +17,14 @@ export const usersColumns: UsersColumn<DashboardUserRow>[] = [
     key: 'status',
     header: 'Status',
     render: (user) => <StatusBadge status={user.status} />,
+  },
+  {
+    key: 'actions',
+    header: 'Actions',
+    render: (user, currentUser) => {
+      const canDelete = canDeleteUser(currentUser.role);
+
+      return <DeleteUserCell userId={user.id} canDelete={canDelete} />;
+    },
   },
 ];

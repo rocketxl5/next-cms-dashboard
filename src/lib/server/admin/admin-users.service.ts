@@ -1,3 +1,4 @@
+// lib/server/admin/admin-users.service.ts
 import prisma from '@/lib/prisma';
 import { DatabaseDashboardUser } from '@/types/db/database-dashboard-user';
 
@@ -15,5 +16,11 @@ export async function getUsers(): Promise<DatabaseDashboardUser[]> {
       updatedAt: true,
     },
     orderBy: { createdAt: 'desc' },
+  });
+}
+
+export async function deleteUser(userId: string): Promise<void> {
+  await prisma.user.delete({
+    where: { id: userId },
   });
 }
