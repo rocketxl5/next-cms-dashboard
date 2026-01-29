@@ -18,5 +18,9 @@ export function DashboardActionButton({
 }: DashboardActionButtonProps) {
   if (!can) return null;
 
-  return <Button>{children}</Button>;
+  return (
+    <Button onClick={onClick} data-variant={variant}>
+      {children}
+    </Button>
+  );
 }

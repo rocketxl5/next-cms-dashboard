@@ -1,6 +1,6 @@
 import { DashboardUserRow, UsersColumn } from '../_domain';
 import { RoleBadge, StatusBadge, DeleteUserCell } from '../_components';
-import { canDeleteUser } from '@/types/ui';
+import { canDeleteUser } from '@/lib/permissions';
 
 export const usersColumns: UsersColumn<DashboardUserRow>[] = [
   {

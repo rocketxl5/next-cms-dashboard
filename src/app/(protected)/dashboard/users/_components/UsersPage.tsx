@@ -11,5 +11,6 @@ export default async function UsersPage() {
   const rows: DashboardUserRow[] = users
     .map(prismaToDashboardUser)
     .filter((u): u is DashboardUserRow => u !== null);
+
   return <UsersTable users={rows} currentUser={dashboardUser} />;
 }
