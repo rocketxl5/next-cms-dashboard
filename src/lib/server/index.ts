@@ -1,6 +1,5 @@
 import 'server-only';
 
-export * from './admin/admin-users.service';
 export * from './getCookie';
 export * from './getSession';
 export * from './getTheme';

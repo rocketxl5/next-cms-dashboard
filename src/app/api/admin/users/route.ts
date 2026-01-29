@@ -41,7 +41,7 @@ import bcrypt from 'bcryptjs';
 import prisma from '@/lib/prisma';
 import { Role } from '@prisma/client';
 import { withRole } from '@/lib/server/withRole';
-import { getUsers } from '@/lib/server';
+import { getUsers } from '@/lib/server/admin/admin-users.service';
 
 // --------------------
 // Local types for payloads
