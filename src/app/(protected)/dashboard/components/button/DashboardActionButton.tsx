@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@/components/ui/button/Button';
 import { ReactNode } from 'react';
+import { Button } from '@/components/ui/button/Button';
 
 interface DashboardActionButtonProps {
   can: boolean;

@@ -22,9 +22,8 @@ export const usersColumns: UsersColumn<DashboardUserRow>[] = [
     key: 'actions',
     header: 'Actions',
     render: (user, currentUser) => {
-      const canDelete =
-        canDeleteUser(currentUser.role) &&
-        canActOnUser(currentUser.role, user.role);
+      const canDelete = canDeleteUser(currentUser.role);
+      //  && canActOnUser(currentUser.role, user.role);
 
       return <DeleteUserCell userId={user.id} canDelete={canDelete} />;
     },
