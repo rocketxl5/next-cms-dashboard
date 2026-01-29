@@ -1,6 +1,6 @@
 import { DashboardUserRow, UsersColumn } from '../_domain';
 import { RoleBadge, StatusBadge, DeleteUserCell } from '../_components';
-import { canDeleteUser } from '@/lib/permissions';
+import { canDeleteUser, canActOnUser } from '@/lib/permissions';
 
 export const usersColumns: UsersColumn<DashboardUserRow>[] = [
   {
@@ -22,7 +22,9 @@ export const usersColumns: UsersColumn<DashboardUserRow>[] = [
     key: 'actions',
     header: 'Actions',
     render: (user, currentUser) => {
-      const canDelete = canDeleteUser(currentUser.role);
+      const canDelete =
+        canDeleteUser(currentUser.role) &&
+        canActOnUser(currentUser.role, user.role);
 
       return <DeleteUserCell userId={user.id} canDelete={canDelete} />;
     },
