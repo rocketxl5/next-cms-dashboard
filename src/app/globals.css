@@ -1,25 +1,42 @@
 @import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
 
 
 /* Base them (light) */
 :root {
-    --color-bg: #FAFAFA; /* Neutral 50 */
-    --color-fg: #0A0A0A; /* Neutral 950 */
-    --color-border: #D4D4D4 /* Neutral 200 */
+  /* Base UI */
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
+
+  /* Brand */
+  --primary: 221 83% 53%;
+  --primary-foreground: 210 40% 98%;
+
+  /* Feedback */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+
+  /* Muted / UI support */
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 16% 47%;
 }
 
 /* Dark theme */
 .dark {
-  --color-bg: #0A0A0A;
-  --color-fg: #FAFAFA;
-  --color-border: #262626; /* Neutral 800 */
+  --background: 222 47% 11%;
+  --foreground: 210 40% 98%;
+
+  --primary: 217 91% 60%;
+  --primary-foreground: 222 47% 11%;
+
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 210 40% 98%;
+
+  --muted: 223 47% 11%;
+  --muted-foreground: 215 20% 65%;
 }
 
-@layer base {
-  body {
-    background-color: var(--color-bg);
-    color: var(--color-fg);
-    border: var(--color-border);
-  }
+/* Base body styles */
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
 }
