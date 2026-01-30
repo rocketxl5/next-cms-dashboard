@@ -1,20 +1,25 @@
 import * as React from 'react';
+import {
+  buttonVariants,
+  type ButtonVariants,
+} from '@/lib/ui/variants/button-variants';
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+  ButtonVariants;
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-     ({ type = 'button', className, children, ...props }, ref) => {
+  ({ type = 'button', variant, className, children, ...props }, ref) => {
     return (
       <button
         ref={ref}
         type={type}
-        className={className}
+        className={buttonVariants({ variant, className })}
         {...props}
       >
         {children}
       </button>
     );
-  }
-)
+  },
+);
 
 Button.displayName = 'Button';

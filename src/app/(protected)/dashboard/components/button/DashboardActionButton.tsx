@@ -19,7 +19,7 @@ export function DashboardActionButton({
   if (!can) return null;
 
   return (
-    <Button onClick={onClick} data-variant={variant}>
+    <Button onClick={onClick} variant={variant}>
       {children}
     </Button>
   );
