@@ -8,8 +8,13 @@ export const createUserSchema = z.object({
   role: roleEnum.default('USER'),
 });
 
-export const updateUserSchema = z.object({
-  name: nameSchema.optional(),
-  email: emailSchema.optional(),
-  role: roleEnum.optional(),
-});
+export const updateUserSchema = z
+  .object({
+    id: z.string(),
+    name: nameSchema.optional(),
+    email: emailSchema.optional(),
+    role: roleEnum.optional(),
+  })
+  .refine((data) => data.name || data.email || data.role, {
+    message: 'At least one field must be provided',
+  });

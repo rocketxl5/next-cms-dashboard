@@ -44,6 +44,10 @@ export function canEditUserRole(role: AppRole) {
   return role === 'SUPER_ADMIN';
 }
 
+export function canEditUser(role: AppRole) {
+  return role === 'ADMIN' || role === 'SUPER_ADMIN';
+}
+
 export function canSuspendUser(role: AppRole) {
   return role === 'SUPER_ADMIN';
 }

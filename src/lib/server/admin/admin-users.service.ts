@@ -1,5 +1,6 @@
 // lib/server/admin/admin-users.service.ts
 import prisma from '@/lib/prisma';
+import { Prisma } from '@prisma/client';
 import { DatabaseDashboardUser } from '@/types/db/database-dashboard-user';
 
 export async function getUsers(): Promise<DatabaseDashboardUser[]> {
@@ -22,5 +23,12 @@ export async function getUsers(): Promise<DatabaseDashboardUser[]> {
 export async function deleteUser(userId: string): Promise<void> {
   await prisma.user.delete({
     where: { id: userId },
+  });
+}
+
+export async function editUser(id: string, data: Prisma.UserUpdateInput) {
+  return prisma.user.update({
+    where: { id },
+    data,
   });
 }
