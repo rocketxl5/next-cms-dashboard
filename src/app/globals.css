@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@import "../styles/tailwind-safelist.css"; /* if using manual utility classes */
 
 /* Base them (light) */
 :root {
@@ -39,4 +39,8 @@
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
+}
+
+button:hover {
+  cursor: pointer;
 }
