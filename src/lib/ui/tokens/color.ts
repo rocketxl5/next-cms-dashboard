@@ -32,6 +32,10 @@ export const color = {
       background: 'bg-role-admin',
       foreground: 'text-role-admin',
     },
+    EDITOR: {
+      background: 'bg-role-editor',
+      foreground: 'text-role-editor',
+    },
     USER: {
       background: 'bg-role-user',
       foreground: 'text-role-user',
@@ -52,5 +56,5 @@ export const color = {
       background: 'bg-status-suspended',
       foreground: 'text-status-suspended',
     },
-  } as Record<UserStatus, {background, foreground}>
+  } as Record<UserStatus, { background; foreground }>,
 } as const;

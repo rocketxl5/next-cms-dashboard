@@ -39,6 +39,13 @@
     color: hsl(var(--role-admin-fg));
   }
 
+  .bg-role-editor {
+    background-color: hsl(var(--role-editor-bg));
+  }
+  .text-role-editor {
+    color: hsl(var(--role-editor-fg));
+  }
+
   .bg-role-user {
     background-color: hsl(var(--role-user-bg));
   }

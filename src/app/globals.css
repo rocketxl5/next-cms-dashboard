@@ -24,15 +24,18 @@
   --role-admin-bg: 45 100% 90%; /* light yellow */
   --role-admin-fg: 45 95% 30%; /* dark yellow */
 
+  --role-editor-bg: 221 83% 92%; /* light blue */
+  --role-editor-fg: 221 72% 40%; /* blue */
+
   --role-user-bg: 210 16% 90%; /* light gray */
   --role-user-fg: 210 10% 40%; /* dark gray */
 
   /* Status badge colors */
-  --status-active-bg: 120 60% 90%;      /* light green */
-  --status-active-fg: 120 50% 37%;      /* green text */
+  --status-active-bg: 120 60% 90%; /* light green */
+  --status-active-fg: 120 50% 37%; /* green text */
 
-  --status-suspended-bg: 45 100% 90%;   /* light yellow (10% opacity style) */
-  --status-suspended-fg: 45 95% 37%;    /* yellow text */
+  --status-suspended-bg: 45 100% 90%; /* light yellow (10% opacity style) */
+  --status-suspended-fg: 45 95% 37%; /* yellow text */
 }
 
 /* Dark theme */
