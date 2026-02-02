@@ -13,7 +13,7 @@
 
 import { AppRole } from '../enums/role';
 
-export const DASHBOARD_ROLE = ['ADMIN', 'SUPER_ADMIN'] as const;
+export const DASHBOARD_ROLE = ['EDITOR', 'ADMIN', 'SUPER_ADMIN'] as const;
 
 export type DashboardRole = (typeof DASHBOARD_ROLE)[number];
 

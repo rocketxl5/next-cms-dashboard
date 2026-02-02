@@ -61,8 +61,9 @@ import { AppRole } from '@/types/enums';
 
 export const ROLE_RANK: Record<AppRole, number> = {
   USER: 1,
-  ADMIN: 2,
-  SUPER_ADMIN: 3,
+  EDITOR: 2,
+  ADMIN: 3,
+  SUPER_ADMIN: 4,
 };
 
 export function isHigherRole(a: AppRole, b: AppRole) {

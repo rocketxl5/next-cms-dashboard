@@ -14,7 +14,7 @@
  * LEVEL 1 in type ladder hierarchy
  */
 
-export const APP_ROLES = ['USER', 'ADMIN', 'SUPER_ADMIN'] as const;
+export const APP_ROLES = ['USER', 'EDITOR', 'ADMIN', 'SUPER_ADMIN'] as const;
 
 /**
  * "USER" | "ADMIN" | "SUPER_ADMIN"
