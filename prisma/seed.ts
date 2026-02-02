@@ -20,7 +20,7 @@ import bcrypt from 'bcryptjs';
 const prisma = new PrismaClient();
 
 async function main() {
-  const hashedPassword = await bcrypt.hash('r0cKet68', 10);
+  const hashedPassword = await bcrypt.hash('r0cK3t68', 10);
 
   // ----------------------------
   // 1️⃣ Seed Users
@@ -35,6 +35,8 @@ async function main() {
     { name: 'Max', email: 'max@next.com', role: Role.USER },
     { name: 'Frank', email: 'frank@next.com', role: Role.USER },
     { name: 'Seb', email: 'seb@next.com', role: Role.USER },
+    { name: 'Joe', email: 'joe@next.com', role: Role.EDITOR },
+    { name: 'Bea', email: 'bea@next.com', role: Role.EDITOR },
   ];
 
   const createdUsers: Record<string, User> = {};
