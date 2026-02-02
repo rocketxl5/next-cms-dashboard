@@ -1,23 +1,38 @@
-@import "tailwindcss";
-@import "../styles/tailwind-safelist.css"; /* if using manual utility classes */
+@import 'tailwindcss';
+@import '../styles/tailwind-safelist.css';
 
 /* Base them (light) */
 :root {
-  /* Base UI */
+  /* Button colors */
   --background: 0 0% 100%;
   --foreground: 222 47% 11%;
 
-  /* Brand */
   --primary: 221 83% 53%;
   --primary-foreground: 210 40% 98%;
 
-  /* Feedback */
   --destructive: 0 84% 60%;
   --destructive-foreground: 210 40% 98%;
 
-  /* Muted / UI support */
+  /* Muted (Status, Button) */
   --muted: 210 40% 96%;
   --muted-foreground: 215 16% 47%;
+
+  /* Role badge colors */
+  --role-super-admin-bg: 0 84% 90%; /* light red */
+  --role-super-admin-fg: 0 70% 40%; /* dark red */
+
+  --role-admin-bg: 45 100% 90%; /* light yellow */
+  --role-admin-fg: 45 95% 30%; /* dark yellow */
+
+  --role-user-bg: 210 16% 90%; /* light gray */
+  --role-user-fg: 210 10% 40%; /* dark gray */
+
+  /* Status badge colors */
+  --status-active-bg: 120 60% 90%;      /* light green */
+  --status-active-fg: 120 50% 37%;      /* green text */
+
+  --status-suspended-bg: 45 100% 90%;   /* light yellow (10% opacity style) */
+  --status-suspended-fg: 45 95% 37%;    /* yellow text */
 }
 
 /* Dark theme */

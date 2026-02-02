@@ -1,10 +1,64 @@
 @layer utilities {
-  .bg-primary { background-color: hsl(var(--primary)); }
-  .text-primary-foreground { color: hsl(var(--primary-foreground)); }
+    
+  .bg-primary {
+    background-color: hsl(var(--primary));
+  }
+  .text-primary-foreground {
+    color: hsl(var(--primary-foreground));
+  }
 
-  .bg-destructive { background-color: hsl(var(--destructive)); }
-  .text-destructive-foreground { color: hsl(var(--destructive-foreground)); }
+  .bg-destructive {
+    background-color: hsl(var(--destructive));
+  }
+  .text-destructive-foreground {
+    color: hsl(var(--destructive-foreground));
+  }
 
-  .bg-muted { background-color: hsl(var(--muted)); }
-  .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+  /* Muted */
+
+  .bg-muted {
+    background-color: hsl(var(--muted));
+  }
+  .text-muted-foreground {
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Role badge colors */
+
+  .bg-role-super-admin {
+    background-color: hsl(var(--role-super-admin-bg));
+  }
+  .text-role-super-admin {
+    color: hsl(var(--role-super-admin-fg));
+  }
+
+  .bg-role-admin {
+    background-color: hsl(var(--role-admin-bg));
+  }
+  .text-role-admin {
+    color: hsl(var(--role-admin-fg));
+  }
+
+  .bg-role-user {
+    background-color: hsl(var(--role-user-bg));
+  }
+  .text-role-user {
+    color: hsl(var(--role-user-fg));
+  }
+
+  /* Status badge colors */
+
+  .bg-status-active {
+    background-color: hsl(var(--status-active-bg));
+  }
+  .text-status-active {
+    color: hsl(var(--status-active-fg));
+  }
+
+  .bg-status-suspended {
+    background-color: hsl(var(--status-suspended-bg));
+  }
+  .text-status-suspended {
+    color: hsl(var(--status-suspended-fg));
+  }
 }
