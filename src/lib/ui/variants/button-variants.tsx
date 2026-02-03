@@ -16,6 +16,3 @@ export const buttonVariants = cva('px-4 py-2 rounded-md font-medium', {
 });
 
 export type ButtonVariants = VariantProps<typeof buttonVariants>;
-
-    // default: 'bg-blue-600 text-slate-50',
-    //   destructive: 'bg-red-600 text-slate-50',

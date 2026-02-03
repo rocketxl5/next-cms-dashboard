@@ -1,5 +1,5 @@
 import { AppRole } from '@/types/enums';
-import { color } from '@/lib/ui/tokens';
+import { color } from '@/lib/ui/tokens/primitives';
 import { classNames } from '@/lib/utils/classNames';
 
 interface RoleBadgeProps {

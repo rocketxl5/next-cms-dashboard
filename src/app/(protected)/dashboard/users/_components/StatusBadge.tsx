@@ -1,6 +1,6 @@
 import { classNames } from '@/lib/utils/classNames';
+import { color } from '@/lib/ui/tokens/primitives';
 import { UserStatus } from '@/types/shared';
-import { color } from '@/lib/ui/tokens';
 
 interface StatusBadgeProps {
   status: UserStatus;

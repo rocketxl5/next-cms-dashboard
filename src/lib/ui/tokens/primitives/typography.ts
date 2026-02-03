@@ -3,6 +3,9 @@ export const typography = {
     sm: '0.875rem',
     base: '1rem',
     lg: '1.125rem',
+    xl: '1.25rem',
+    xxl: '1.5rem', // 2xl 
+    xxxl: '1.875rem', // 3xl
   },
   weight: {
     normal: 400,
