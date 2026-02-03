@@ -4,8 +4,9 @@ export const typography = {
     base: '1rem',
     lg: '1.125rem',
     xl: '1.25rem',
-    xxl: '1.5rem', // 2xl 
+    xxl: '1.5rem', // 2xl
     xxxl: '1.875rem', // 3xl
+    xxxxl: '2.25rem', // 4xl
   },
   weight: {
     normal: 400,

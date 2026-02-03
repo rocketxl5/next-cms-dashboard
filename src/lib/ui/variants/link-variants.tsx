@@ -12,12 +12,11 @@ export const linkVariants = cva(
       },
       size: linkTokens.size,
       layout: linkTokens.layout,
-
-      dafautlVariants: {
-        variant: 'default',
-        size: 'md',
-        layout: 'inline',
-      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'md',
+      layout: 'inline',
     },
   },
 );

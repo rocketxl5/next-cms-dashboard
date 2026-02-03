@@ -1,45 +1,28 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { SideSlot } from '@/components/layout-primitives';
-import { dashboardNav } from '@/types/ui';
+import { DashboardLink } from './link/DashboardLink';
 import { DashboardRole } from '@/types/server';
+import { LinkVariants } from '@/lib/ui/variants';
+import { dashboardNav } from '@/types/ui';
 
-type RoleProps = {
+interface DashboardSidebarProps extends LinkVariants {
   role: DashboardRole;
-};
+}
 
-export function DashboardSidebar({ role }: RoleProps) {
-  const pathname = usePathname();
-
+export function DashboardSidebar({ role }: DashboardSidebarProps) {
   return (
     <SideSlot>
-      <nav className="flex flex-col gap-1 p-4">
+      <nav className="w-full flex flex-col gap-1 p-4">
         {/* Dashboard root */}
-        <Link
-          href="/dashboard"
-          className="mb-6 text-sm font-semibold tracking-tight hover:opacity-80"
-        >
-          Dashboard
-        </Link>
+        <DashboardLink href="/dashboard">Dashboard</DashboardLink>
 
         {/* Section navigation */}
         {dashboardNav.map((item) => {
-          const isActive = pathname.startsWith(item.href);
           return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={[
-                'rounded-md px-3 text-sm transition-colors',
-                isActive
-                  ? 'bg-muted font-medium'
-                  : 'text-muted-foreground hover:bg-muted',
-              ].join(' ')}
-            >
+            <DashboardLink key={item.href} href={item.href}>
               {item.label}
-            </Link>
+            </DashboardLink>
           );
         })}
       </nav>

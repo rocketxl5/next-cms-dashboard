@@ -1,25 +1,25 @@
 'use client';
 
-import { ReactNode } from 'react';
 import { Button } from '@/components/ui/button/Button';
+import { ButtonVariants } from '@/lib/ui/variants';
 
-interface DashboardActionButtonProps {
+interface DashboardActionButtonProps extends ButtonVariants {
   can: boolean;
   onClick: () => void;
-  children: ReactNode;
-  variant?: 'default' | 'destructive';
+  children: React.ReactNode;
 }
 
 export function DashboardActionButton({
   can,
   onClick,
   children,
+  size,
   variant,
 }: DashboardActionButtonProps) {
   if (!can) return null;
 
   return (
-    <Button onClick={onClick} variant={variant}>
+    <Button onClick={onClick} variant={variant} size={size}>
       {children}
     </Button>
   );

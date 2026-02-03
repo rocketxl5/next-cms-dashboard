@@ -13,6 +13,7 @@ export function DeleteUserCell({ userId, canDelete }: DeleteUserCellProps) {
   return (
     <DashboardActionButton
       can={canDelete}
+      size="sm"
       variant="destructive"
       onClick={() => deleteUserAction(userId)}
     >
