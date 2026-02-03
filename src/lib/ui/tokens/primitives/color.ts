@@ -8,6 +8,11 @@ import { AppRole } from '@/types/enums';
 import { UserStatus } from '@/types/shared';
 
 export const color = {
+  // ===== Base / primitive colors =====
+  foreground: 'text-foreground', // default text
+  background: 'bg-background', // default page background
+  border: 'border-muted', // default border
+
   // Button
   primary: {
     background: 'bg-primary',
@@ -16,6 +21,22 @@ export const color = {
   destructive: {
     background: 'bg-destructive',
     foreground: 'text-destructive-foreground',
+  },
+  success: {
+    foreground: 'text-success-foreground',
+    background: 'bg-success',
+  },
+  warning: {
+    foreground: 'text-warning-foreground',
+    background: 'bg-warning',
+  },
+  info: {
+    foreground: 'text-info-foreground',
+    background: 'bg-info',
+  },
+  link: {
+    default: 'text-primary hover:underline', // link style
+    subtle: 'text-muted-foreground hover:text-foreground', // inline subtle link
   },
   muted: {
     background: 'bg-muted',
@@ -56,5 +77,5 @@ export const color = {
       background: 'bg-status-suspended',
       foreground: 'text-status-suspended',
     },
-  } as Record<UserStatus, { background; foreground }>,
+  } as Record<UserStatus, { background: string; foreground: string }>,
 } as const;

@@ -1,10 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import {
-  buttonVariants,
-  type ButtonVariants,
-} from '@/lib/ui/variants/button-variants';
+import { buttonVariants, type ButtonVariants } from '@/lib/ui/variants';
 import { cn } from '@/lib/utils/cn';
 
 export interface ButtonProps

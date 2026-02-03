@@ -3,19 +3,30 @@
 
 /* Base them (light) */
 :root {
-  /* Button colors */
+  /* General */
   --background: 0 0% 100%;
   --foreground: 222 47% 11%;
-
+  
+  /* Button colors */
   --primary: 221 83% 53%;
   --primary-foreground: 210 40% 98%;
 
   --destructive: 0 84% 60%;
   --destructive-foreground: 210 40% 98%;
 
-  /* Muted (Status, Button) */
+  /* Muted */
   --muted: 210 40% 96%;
   --muted-foreground: 215 16% 47%;
+
+  /* Feedback colors */
+  --success: 145 63% 45%;          /* green for background */
+  --success-foreground: 145 55% 15%; /* darker green for text */
+
+  --warning: 45 100% 50%;          /* yellow/orange background */
+  --warning-foreground: 45 90% 15%;  /* dark yellow/orange text */
+
+  --info: 210 90% 60%;             /* bright blue background */
+  --info-foreground: 210 60% 15%;   /* darker blue text */
 
   /* Role badge colors */
   --role-super-admin-bg: 0 84% 90%; /* light red */
