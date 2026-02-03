@@ -12,12 +12,24 @@ export const linkVariants = cva(
       },
       size: linkTokens.size,
       layout: linkTokens.layout,
+      active: {
+        true: '',
+        false: '',
+      },
     },
     defaultVariants: {
       variant: 'default',
       size: 'md',
       layout: 'inline',
+      active: false,
     },
+    compoundVariants: [
+      {
+        variant: 'nav',
+        active: true,
+        className: 'bg-muted font-medium',
+      },
+    ],
   },
 );
 

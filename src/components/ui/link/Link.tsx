@@ -9,18 +9,22 @@ export interface LinkProps extends Omit<NextLinkProps, 'className'>, LinkVariant
     className?: string;
 }
 export function Link({
-    href,
-    variant,
-    size,
-    layout,
-    className,
-    children,
-    ...props
+  href,
+  variant,
+  size,
+  layout,
+  active,
+  className,
+  children,
+  ...props
 }: LinkProps) {
-    return (
-        <NextLink href={href}
-        className={cn(linkVariants({variant, size, layout}), className)} {...props}>
-            {children}
-        </NextLink>
-    )
+  return (
+    <NextLink
+      href={href}
+      className={cn(linkVariants({ variant, size, layout, active }), className)}
+      {...props}
+    >
+      {children}
+    </NextLink>
+  );
 }

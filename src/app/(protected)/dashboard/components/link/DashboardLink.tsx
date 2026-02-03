@@ -15,7 +15,7 @@ export function DashboardLink({ href, children }: DashboardLinkProps) {
     href === '/dashboard' ? pathname === href : pathname.startsWith(href);
 
   return (
-    <Link href={href} className={isActive ? 'bg-muted font-medium' : undefined}>
+    <Link href={href} variant="nav" active={isActive}>
       {children}
     </Link>
   );
