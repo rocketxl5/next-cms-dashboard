@@ -4,8 +4,13 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SideSlot } from '@/components/layout-primitives';
 import { dashboardNav } from '@/types/ui';
+import { DashboardRole } from '@/types/server';
 
-export function DashboardSidebar() {
+type RoleProps = {
+  role: DashboardRole;
+};
+
+export function DashboardSidebar({ role }: RoleProps) {
   const pathname = usePathname();
 
   return (
