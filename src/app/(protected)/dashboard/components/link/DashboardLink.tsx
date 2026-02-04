@@ -59,6 +59,7 @@
 
 import { usePathname } from 'next/navigation';
 import { Link } from '@/components/ui/link/Link';
+import { isRouteActive } from '@/lib/utils/isRouteActive';
 
 interface DashboardLinkProps {
   href: string;
@@ -71,10 +72,7 @@ export function DashboardLink({ href, children }: DashboardLinkProps) {
   /**
    * Determines active navigation state.
    */
-  const isActive =
-    href === '/dashboard'
-      ? pathname === href
-      : pathname === href || pathname.startsWith(`${href}/`);
+  const isActive = isRouteActive(pathname, href, '/dashboard');
 
   return (
     <Link href={href} variant="nav" active={isActive}>
