@@ -4,7 +4,7 @@ import { SideSlot } from '@/components/layout-primitives';
 import { DashboardLink } from './link/DashboardLink';
 import { DashboardRole } from '@/types/server';
 import { LinkVariants } from '@/lib/ui/variants';
-import { dashboardNav } from '@/types/ui';
+import { allowedDashboardNav } from '../lib/allowed-dashboard-nav';
 
 interface DashboardSidebarProps extends LinkVariants {
   role: DashboardRole;
@@ -18,7 +18,7 @@ export function DashboardSidebar({ role }: DashboardSidebarProps) {
         <DashboardLink href="/dashboard">Dashboard</DashboardLink>
 
         {/* Section navigation */}
-        {dashboardNav.map((item) => {
+        {allowedDashboardNav(role).map((item) => {
           return (
             <DashboardLink key={item.href} href={item.href}>
               {item.label}
