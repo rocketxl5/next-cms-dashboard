@@ -12,5 +12,3 @@ export type UserRow = {
   createdAt: string;
   updatedAt: string;
 };
-
-export type DashboardUserRow = UserRow;

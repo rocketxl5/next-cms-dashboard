@@ -8,7 +8,7 @@ import { TableColumn } from './table-column';
  *
  * Generic on the row type so it can support:
  * - full domain users (UserRow)
- * - dashboard users (DashboardUserRow)
+ * - dashboard users (UserRow)
  * - future projections
  */
 export type UsersColumn<Row> = TableColumn<Row>;

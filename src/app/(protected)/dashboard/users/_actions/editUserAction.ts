@@ -7,9 +7,9 @@ import { canActOnUser, canEditUserRole } from '@/lib/permissions';
 import { editUser } from '@/lib/server/admin/admin-users.service';
 import { requireRole } from '@/lib/server';
 
-export async function editUserAction(rawData: unknown) {
+export async function editUserAction(rawData: object) {
   const actor = await requireRole({
-    roles: ['SUPER_ADMIN'],
+    roles: ['ADMIN', 'SUPER_ADMIN'],
   });
 
   const data = updateUserSchema.parse(rawData);

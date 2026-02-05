@@ -17,7 +17,8 @@
  * - Hiding a link does NOT grant or restrict access on its own
  */
 
-import { Capability } from '@/lib/permissions/role-capabilities';
+// import { Capability } from '@/lib/permissions/role-capabilities';
+import { Capability } from "@/lib/permissions";
 
 /**
  * Shape of a single dashboard navigation entry.
@@ -45,11 +46,11 @@ export const dashboardNav: DashboardNavItem[] = [
   {
     label: 'Users',
     href: '/dashboard/users',
-    capability: 'manage_users',
+    capability: 'EDIT_USER',
   },
   {
     label: 'Content',
     href: '/dashboard/content',
-    capability: 'manage_content',
+    capability: 'EDIT_CONTENT',
   },
 ];

@@ -23,7 +23,34 @@ import { DashboardRole } from '@/types/server';
  * - Keep SUPER_ADMIN / ADMIN in sync
  * - Preserve literal types via `as const`
  */
-const CAPABILITIES = ['manage_users', 'manage_content'] as const;
+const CAPABILITIES = [
+  'VIEW_USERS',
+  'INVITE_USER',
+  'EDIT_USER',
+  'EDIT_USER_ROLE',
+  'DELETE_USER',
+  'SUSPEND_USER',
+
+  'VIEW_OWN_PROFILE',
+  'EDIT_OWN_PROFILE',
+  'EDIT_OTHER_PROFILE',
+  'RESET_USER_PASSWORD',
+
+  'CREATE_CONTENT',
+  'EDIT_CONTENT',
+  'PUBLISH_CONTENT',
+  'DELETE_CONTENT',
+
+  'VIEW_AUDIT_LOGS',
+  'CHANGE_SECURITY_SETTINGS',
+  'MANAGE_API_KEYS',
+
+  'VIEW_BILLING',
+  'EDIT_BILLING',
+  'DELETE_ORGANIZATION',
+] as const;
+
+export type Capability = (typeof CAPABILITIES)[number]
 
 /**
  * Mapping of dashboard roles to the capabilities they grant.
@@ -33,10 +60,26 @@ const CAPABILITIES = ['manage_users', 'manage_content'] as const;
  * - Capabilities are explicit by design
  * - SUPER_ADMIN is treated as a superset role
  */
-export const ROLE_CAPABILITIES = {
-  SUPER_ADMIN: CAPABILITIES,
-  ADMIN: ['manage_users', 'manage_content'],
-  EDITOR: ['manage_content'],
+export const ROLE_CAPABILITIES: Record<DashboardRole, readonly Capability[]> = {
+  SUPER_ADMIN: [...CAPABILITIES],
+  ADMIN: [
+    'VIEW_USERS',
+    'INVITE_USER',
+    'EDIT_USER',
+
+    'VIEW_OWN_PROFILE',
+    'EDIT_OWN_PROFILE',
+    'EDIT_OTHER_PROFILE',
+    'RESET_USER_PASSWORD',
+
+    'CREATE_CONTENT',
+    'EDIT_CONTENT',
+    'PUBLISH_CONTENT',
+
+    'VIEW_BILLING',
+  ],
+
+  EDITOR: ['CREATE_CONTENT', 'EDIT_CONTENT', 'PUBLISH_CONTENT'],
 } as const;
 
 /**
@@ -46,8 +89,8 @@ export const ROLE_CAPABILITIES = {
  * - No drift between data and types
  * - Compiler errors when capabilities are added/removed
  */
-export type Capability =
-  (typeof ROLE_CAPABILITIES)[keyof typeof ROLE_CAPABILITIES][number];
+// export type Capability =
+//   (typeof ROLE_CAPABILITIES)[keyof typeof ROLE_CAPABILITIES][number];
 
 /**
  * Checks whether a given dashboard role grants a specific capability.

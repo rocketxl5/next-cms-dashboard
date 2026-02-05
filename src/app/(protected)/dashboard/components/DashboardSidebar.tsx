@@ -4,7 +4,7 @@ import { SideSlot } from '@/components/layout-primitives';
 import { DashboardLink } from './link/DashboardLink';
 import { DashboardRole } from '@/types/server';
 import { LinkVariants } from '@/lib/ui/variants';
-import { allowedDashboardNav } from '../lib/allowed-dashboard-nav';
+import { allowedDashboardNav } from '@/lib/permissions';
 
 interface DashboardSidebarProps extends LinkVariants {
   role: DashboardRole;

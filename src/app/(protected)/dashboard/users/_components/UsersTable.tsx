@@ -1,9 +1,9 @@
 import { usersColumns } from '../_ui/users-table.columns';
-import { DashboardUserRow } from '../_domain';
+import { UserRow } from '../_domain';
 import { CurrentDashboardUser } from '@/types/shared';
 
 type UsersTableProps = {
-  users: DashboardUserRow[];
+  users: UserRow[];
   currentUser: CurrentDashboardUser;
 };
 

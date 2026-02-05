@@ -1,4 +1,4 @@
-import { DashboardUserRow, UsersColumn } from '../_domain';
+import { UserRow, UsersColumn } from '../_domain';
 import { DashboardRole } from '@/types/server';
 import {
   RoleBadge,
@@ -8,7 +8,7 @@ import {
 } from '../_components';
 import { canDeleteUser, canActOnUser, canEditUser } from '@/lib/permissions';
 
-export const usersColumns: UsersColumn<DashboardUserRow>[] = [
+export const usersColumns: UsersColumn<UserRow>[] = [
   {
     key: 'email',
     header: 'Email',
@@ -45,9 +45,9 @@ export const usersColumns: UsersColumn<DashboardUserRow>[] = [
         <div className="flex gap-4">
           <DeleteUserCell userId={user.id} canDelete={canDelete} />
           <EditUserCell
-            userId={user.id}
+            user={user}
             canEdit={canEdit}
-            currentRole={user.role as DashboardRole}
+            // currentRole={user.role as DashboardRole}
           />
         </div>
       );
