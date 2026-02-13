@@ -1,0 +1,10 @@
+export const CONTENT_CAPABILITIES = {
+  CREATE: 'CONTENT_CREATE',
+  EDIT: 'CONTENT_EDIT',
+  DELETE: 'CONTENT_DELETE',
+  PUBLISH: 'CONTENT_PUBLISH',
+  SUSPEND: 'CONTENT_SUSPEND',
+} as const;
+
+export type ContentCapability =
+  (typeof CONTENT_CAPABILITIES)[keyof typeof CONTENT_CAPABILITIES];

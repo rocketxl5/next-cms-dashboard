@@ -61,7 +61,7 @@ export const color = {
       background: 'bg-role-user',
       foreground: 'text-role-user',
     },
-  } as Record<AppRole, { background: string; foreground: string }>,
+  } satisfies Record<AppRole, { background: string; foreground: string }>,
 
   // Status badge
   status: {
@@ -77,5 +77,5 @@ export const color = {
       background: 'bg-status-suspended',
       foreground: 'text-status-suspended',
     },
-  } as Record<UserStatus, { background: string; foreground: string }>,
+  } satisfies Record<UserStatus, { background: string; foreground: string }>,
 } as const;

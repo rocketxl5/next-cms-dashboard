@@ -1,5 +1,4 @@
 import { UserRow, UsersColumn } from '../_domain';
-import { DashboardRole } from '@/types/server';
 import {
   RoleBadge,
   StatusBadge,

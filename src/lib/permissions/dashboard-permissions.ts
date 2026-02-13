@@ -7,24 +7,27 @@
  */
 
 import { AppRole } from "../../types/enums";
+import { DashboardRole } from '@/types/server';
+import { Capability } from '@/types/permissions/feature.capabilities';
+import { can } from './role-capabilities';
 
 /* ---------------------------------------------------
  * PROFILE & ACCOUNT
  * --------------------------------------------------- */
 
-export function canViewOwnProfile(role: AppRole) {
-  return role === 'USER' || role === 'ADMIN' || role === 'SUPER_ADMIN';
-}
+// export function canViewOwnProfile(role: AppRole) {
+//   return can(role, 'VIEW_OWN' as Capability);
+// }
 
 export function canEditOwnProfile(role: AppRole) {
   return role === 'USER' || role === 'ADMIN' || role === 'SUPER_ADMIN';
 }
 
-export function canEditOtherUserProfile(role: AppRole) {
+export function canEditOtherUserProfile(role: DashboardRole) {
   return role === 'ADMIN' || role === 'SUPER_ADMIN';
 }
 
-export function canResetUserPassword(role: AppRole) {
+export function canResetUserPassword(role: DashboardRole) {
   return role === 'ADMIN' || role === 'SUPER_ADMIN';
 }
 
@@ -32,27 +35,27 @@ export function canResetUserPassword(role: AppRole) {
  * USER MANAGEMENT
  * --------------------------------------------------- */
 
-export function canViewUsers(role: AppRole) {
+export function canViewUsers(role: DashboardRole) {
   return role === 'ADMIN' || role === 'SUPER_ADMIN';
 }
 
-export function canInviteUser(role: AppRole) {
+export function canInviteUser(role: DashboardRole) {
   return role === 'ADMIN' || role === 'SUPER_ADMIN';
 }
 
-export function canEditUserRole(role: AppRole) {
+export function canEditUserRole(role: DashboardRole) {
   return role === 'SUPER_ADMIN';
 }
 
-export function canEditUser(role: AppRole) {
-  return role === 'ADMIN' || role === 'SUPER_ADMIN';
+export function canEditUser(role: DashboardRole) {
+  return can(role, 'EDIT_USER' as Capability);
 }
 
-export function canSuspendUser(role: AppRole) {
+export function canSuspendUser(role: DashboardRole) {
   return role === 'SUPER_ADMIN';
 }
 
-export function canDeleteUser(role: AppRole) {
+export function canDeleteUser(role: DashboardRole) {
   return role === 'SUPER_ADMIN';
 }
 
@@ -60,19 +63,19 @@ export function canDeleteUser(role: AppRole) {
  * CONTENT MANAGEMENT
  * --------------------------------------------------- */
 
-export function canCreateContent(role: AppRole) {
+export function canCreateContent(role: DashboardRole) {
   return role === 'ADMIN' || role === 'SUPER_ADMIN';
 }
 
-export function canEditContent(role: AppRole) {
+export function canEditContent(role: DashboardRole) {
   return role === 'ADMIN' || role === 'SUPER_ADMIN';
 }
 
-export function canPublishContent(role: AppRole) {
+export function canPublishContent(role: DashboardRole) {
   return role === 'ADMIN' || role === 'SUPER_ADMIN';
 }
 
-export function canDeleteContent(role: AppRole) {
+export function canDeleteContent(role: DashboardRole) {
   return role === 'SUPER_ADMIN';
 }
 
@@ -80,15 +83,15 @@ export function canDeleteContent(role: AppRole) {
  * SYSTEM & SECURITY
  * --------------------------------------------------- */
 
-export function canViewAuditLogs(role: AppRole) {
+export function canViewAuditLogs(role: DashboardRole) {
   return role === 'SUPER_ADMIN';
 }
 
-export function canChangeSecuritySettings(role: AppRole) {
+export function canChangeSecuritySettings(role: DashboardRole) {
   return role === 'SUPER_ADMIN';
 }
 
-export function canManageApiKeys(role: AppRole) {
+export function canManageApiKeys(role: DashboardRole) {
   return role === 'SUPER_ADMIN';
 }
 
@@ -96,14 +99,14 @@ export function canManageApiKeys(role: AppRole) {
  * BILLING & ORGANIZATION
  * --------------------------------------------------- */
 
-export function canViewBilling(role: AppRole) {
+export function canViewBilling(role: DashboardRole) {
   return role === 'ADMIN' || role === 'SUPER_ADMIN';
 }
 
-export function canEditBilling(role: AppRole) {
+export function canEditBilling(role: DashboardRole) {
   return role === 'SUPER_ADMIN';
 }
 
-export function canDeleteOrganization(role: AppRole) {
+export function canDeleteOrganization(role: DashboardRole) {
   return role === 'SUPER_ADMIN';
 }

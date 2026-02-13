@@ -17,6 +17,6 @@
 export const APP_ROLES = ['USER', 'EDITOR', 'ADMIN', 'SUPER_ADMIN'] as const;
 
 /**
- * "USER" | "ADMIN" | "SUPER_ADMIN"
+ * "USER" | "EDITOR" | "ADMIN" | "SUPER_ADMIN"
  */
 export type AppRole = (typeof APP_ROLES)[number];
