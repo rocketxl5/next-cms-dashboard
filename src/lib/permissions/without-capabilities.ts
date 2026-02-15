@@ -1,6 +1,6 @@
 import { AppRole } from "@/types/enums";
 import { FEATURE_CAPABILITIES } from "@/types/permissions/feature.capabilities";
-import { Capability } from "@/types/permissions/feature.capabilities";
+import { Capability } from '@/types/permissions';
 import { ROLE_CAPABILITY_EXCLUSIONS } from "@/types/permissions/role-exclusion.capabillities";
 
 export function without(

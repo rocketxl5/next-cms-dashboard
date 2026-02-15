@@ -1,4 +1,4 @@
-import { Capability } from '@/lib/permissions';
+import { Capability } from '../permissions';
 
 export type DashboardNavItem = {
   label: string;
