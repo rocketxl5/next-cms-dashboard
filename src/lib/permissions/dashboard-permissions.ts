@@ -6,10 +6,8 @@
  * SUPER_ADMIN → authority & irreversible actions
  */
 
-import { AppRole } from "../../types/enums";
+import { AppRole } from '@/types/enums';
 import { DashboardRole } from '@/types/server';
-import { Capability } from '@/types/permissions/feature.capabilities';
-import { can } from './role-capabilities';
 
 /* ---------------------------------------------------
  * PROFILE & ACCOUNT
@@ -48,7 +46,7 @@ export function canEditUserRole(role: DashboardRole) {
 }
 
 export function canEditUser(role: DashboardRole) {
-  return can(role, 'EDIT_USER' as Capability);
+  return role === 'SUPER_ADMIN';
 }
 
 export function canSuspendUser(role: DashboardRole) {

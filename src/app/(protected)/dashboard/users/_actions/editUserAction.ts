@@ -5,12 +5,11 @@ import { revalidatePath } from 'next/cache';
 import { updateUserSchema } from '@/lib/validators';
 import { canActOnUser, canEditUserRole } from '@/lib/permissions';
 import { editUser } from '@/lib/server/admin/admin-users.service';
-import { requireRole } from '@/lib/server';
+import { requireDashboardRole } from '@/lib/server/requireDashboardRole';
+import { DASHBOARD_ROLE } from '@/types/server';
 
 export async function editUserAction(rawData: object) {
-  const actor = await requireRole({
-    roles: ['ADMIN', 'SUPER_ADMIN'],
-  });
+  const actor = await requireDashboardRole({ roles: DASHBOARD_ROLE });
 
   const data = updateUserSchema.parse(rawData);
 
