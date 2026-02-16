@@ -3,7 +3,8 @@
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { updateUserSchema } from '@/lib/validators';
-import { canActOnUser, canEditUserRole } from '@/lib/permissions';
+import { canEditUserRole } from '@/lib/permissions';
+import { canActOnUser } from '@/lib/server';
 import { editUser } from '@/lib/server/admin/admin-users.service';
 import { requireDashboardRole } from '@/lib/server/requireDashboardRole';
 import { DASHBOARD_ROLE } from '@/types/server';

@@ -8,6 +8,7 @@
 
 import { AppRole } from '@/types/enums';
 import { DashboardRole } from '@/types/server';
+import { can } from './role-capabilities';
 
 /* ---------------------------------------------------
  * PROFILE & ACCOUNT

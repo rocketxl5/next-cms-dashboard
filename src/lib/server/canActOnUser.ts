@@ -57,7 +57,7 @@
  */
 
 import { AppRole } from '@/types/enums';
-import { isHigherRole } from './role-hierarchy';
+import { isHigherRole } from '../permissions';
 import { isDashboardRole } from '@/types/server';
 
 export function canActOnUser(actorRole: AppRole, targetRole: AppRole) {

@@ -5,7 +5,8 @@ import {
   DeleteUserCell,
   EditUserCell,
 } from '../_components';
-import { canDeleteUser, canActOnUser, canEditUser } from '@/lib/permissions';
+import { canDeleteUser, canEditUser } from '@/lib/permissions';
+import { canActOnUser } from '@/lib/server';
 
 export const usersColumns: UsersColumn<UserRow>[] = [
   {
@@ -43,11 +44,7 @@ export const usersColumns: UsersColumn<UserRow>[] = [
       return (
         <div className="flex gap-4">
           <DeleteUserCell userId={user.id} canDelete={canDelete} />
-          <EditUserCell
-            user={user}
-            canEdit={canEdit}
-            // currentRole={user.role as DashboardRole}
-          />
+          <EditUserCell user={user} canEdit={canEdit} />
         </div>
       );
     },
