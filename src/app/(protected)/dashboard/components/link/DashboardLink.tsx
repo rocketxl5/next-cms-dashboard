@@ -59,7 +59,7 @@
 
 import { usePathname } from 'next/navigation';
 import { Link } from '@/components/ui/link/Link';
-import { isRouteActive } from '@/lib/utils/isRouteActive';
+import { isRouteActive } from '@/lib/utils';
 
 interface DashboardLinkProps {
   href: string;

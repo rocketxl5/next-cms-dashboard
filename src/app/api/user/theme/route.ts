@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { getSession } from '@/lib/server';
-import {
-  mapCssThemeToDatabase,
-  mapDatabaseThemeToCss,
-} from '@/lib/theme/map-theme';
+import { mapCssThemeToDatabase, mapDatabaseThemeToCss } from '@/lib/theme';
 import { Theme } from '@/types/enums';
 import { isThemeClassName } from '@/lib/utils/normalizers/theme';
 

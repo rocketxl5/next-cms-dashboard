@@ -2,7 +2,7 @@ import {
   Capability,
   FEATURE_CAPABILITIES,
 } from './feature.capabilities';
-import { valuesOf } from '@/lib/utils/valuesOf';
+import { valuesOf } from '@/lib/utils/values-of';
 import { DashboardRole } from '@/types/server';
 
 export const SYSTEM_ROLE_CAPABILITIES = {

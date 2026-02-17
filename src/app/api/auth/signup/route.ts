@@ -28,7 +28,7 @@ import {
   normalizeSlug,
   normalizeObject,
   assertRequired,
-} from '@/lib/utils'; // Normalization + validation utilities
+} from '@/lib/utils/normalizers'; // Normalization + validation utilities
 
 /**
  * Interface representing the expected shape of the signup payload
