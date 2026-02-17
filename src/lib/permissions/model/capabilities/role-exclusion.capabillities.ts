@@ -1,0 +1,11 @@
+import { CONTENT_CAPABILITIES, USER_CAPABILITIES } from './domains';
+
+export const ROLE_CAPABILITY_EXCLUSIONS = {
+  ADMIN: {
+    USERS: [USER_CAPABILITIES.DELETE],
+  },
+
+  EDITOR: {
+    CONTENT: [CONTENT_CAPABILITIES.DELETE],
+  },
+} as const;

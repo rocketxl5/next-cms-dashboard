@@ -1,3 +1,5 @@
+import { ValueOf } from "@/types/utils/value-of";
+
 export const CONTENT_CAPABILITIES = {
   CREATE: 'CONTENT_CREATE',
   EDIT: 'CONTENT_EDIT',
@@ -6,5 +8,4 @@ export const CONTENT_CAPABILITIES = {
   SUSPEND: 'CONTENT_SUSPEND',
 } as const;
 
-export type ContentCapability =
-  (typeof CONTENT_CAPABILITIES)[keyof typeof CONTENT_CAPABILITIES];
+export type ContentCapability = ValueOf<typeof CONTENT_CAPABILITIES>;

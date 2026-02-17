@@ -1,5 +1,5 @@
-import { USER_CAPABILITIES, UserCapability } from "@/types/permissions";
-import { PolicyDefinition } from "@/types/server/policy/policy-definition";
+import { USER_CAPABILITIES, UserCapability } from "@/lib/permissions/model/capabilities/domains";
+import { PolicyDefinition } from "@/types/permissions";
 
 export const USER_POLICIES: Record<UserCapability, PolicyDefinition> = {
   [USER_CAPABILITIES.CREATE]: { capabilities: [USER_CAPABILITIES.CREATE] },

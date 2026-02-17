@@ -1,9 +1,9 @@
 import { AppRole } from "@/types/enums";
-import { FEATURE_CAPABILITIES } from "@/types/permissions/feature.capabilities";
-import { Capability } from '@/types/permissions';
-import { ROLE_CAPABILITY_EXCLUSIONS } from "@/types/permissions/role-exclusion.capabillities";
+import { FEATURE_CAPABILITIES } from "@/lib/permissions/model/capabilities/feature.capabilities";
+import { Capability } from '@/lib/permissions/model/capabilities';
+import { ROLE_CAPABILITY_EXCLUSIONS } from "@/lib/permissions/model/capabilities/role-exclusion.capabillities";
 
-export function without(
+export function cannot(
     role: AppRole,
     feature: keyof typeof FEATURE_CAPABILITIES,
 ): Capability[] {

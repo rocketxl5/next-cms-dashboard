@@ -5,8 +5,11 @@ import {
   DeleteUserCell,
   EditUserCell,
 } from '../_components';
-import { canDeleteUser, canEditUser } from '@/lib/permissions';
-import { canActOnUser } from '@/lib/server';
+import {
+  canDeleteUser,
+  canEditUser,
+} from '@/lib/permissions/policies/dashboard';
+import { canActOnUser } from '@/lib/permissions/authority';
 
 export const usersColumns: UsersColumn<UserRow>[] = [
   {

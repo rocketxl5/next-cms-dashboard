@@ -57,8 +57,8 @@
  */
 
 import { AppRole } from '@/types/enums';
-import { isHigherRole } from '../permissions';
 import { isDashboardRole } from '@/types/server';
+import { isHigherRole } from './role-hierarchy';
 
 export function canActOnUser(actorRole: AppRole, targetRole: AppRole) {
   if (!isDashboardRole(actorRole)) return false;

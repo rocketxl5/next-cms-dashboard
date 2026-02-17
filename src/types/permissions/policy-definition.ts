@@ -1,4 +1,4 @@
-import { Capability } from "@/types/permissions"
+import { Capability } from "@/lib/permissions/model/capabilities"
 import { AuthorityRule } from "./authority-rule";
 
 export type PolicyDefinition = {

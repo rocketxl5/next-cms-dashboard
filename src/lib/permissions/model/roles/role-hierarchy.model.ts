@@ -65,15 +65,3 @@ export const ROLE_RANK: Record<AppRole, number> = {
   ADMIN: 3,
   SUPER_ADMIN: 4,
 };
-
-export function isHigherRole(a: AppRole, b: AppRole) {
-  return ROLE_RANK[a] > ROLE_RANK[b];
-}
-
-export function isSameOrHigherRole(a: AppRole, b: AppRole) {
-  return ROLE_RANK[a] >= ROLE_RANK[b];
-}
-
-export function isLowerRole(a: AppRole, b: AppRole) {
-  return ROLE_RANK[a] < ROLE_RANK[b];
-}

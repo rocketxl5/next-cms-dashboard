@@ -1,5 +1,5 @@
-import { CONTENT_CAPABILITIES, ContentCapability } from "@/types/permissions";
-import { PolicyDefinition } from "@/types/server/policy/policy-definition";
+import { CONTENT_CAPABILITIES, ContentCapability } from "@/lib/permissions/model/capabilities/domains";
+import { PolicyDefinition } from "@/types/permissions";
 
 export const CONTENT_POLICIES: Record<ContentCapability, PolicyDefinition> = {
     [CONTENT_CAPABILITIES.CREATE]: { capabilities: [CONTENT_CAPABILITIES.CREATE] },
