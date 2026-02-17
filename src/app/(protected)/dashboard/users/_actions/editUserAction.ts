@@ -3,8 +3,7 @@
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { updateUserSchema } from '@/lib/validators';
-import { canEditUserRole } from '@/lib/permissions/policies/dashboard';
-import { canActOnUser } from '@/lib/permissions/authority';
+import { userActions } from '@/lib/permissions/dashboard';
 import { editUser } from '@/lib/server/admin';
 import { requireDashboardRole } from '@/lib/server';
 import { DASHBOARD_ROLE } from '@/types/server';
@@ -23,11 +22,7 @@ export async function editUserAction(rawData: object) {
     throw new Error('User not found');
   }
 
-  if (!canActOnUser(actor.role, target.role)) {
-    throw new Error('Forbidden: Cannot act on this user');
-  }
-
-  if (!canEditUserRole(actor.role)) {
+  if (!userActions.canEditUserRole(actor.role, target.role)) {
     throw new Error('Restricted: Only Super Admin can perform role change');
   }
 
