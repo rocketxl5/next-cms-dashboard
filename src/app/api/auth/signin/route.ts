@@ -33,7 +33,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
-import { normalizeEmail, normalizeObject, assertRequired } from '@/lib/utils';
+import {
+  normalizeEmail,
+  normalizeObject,
+  assertRequired,
+} from '@/lib/utils/normalizers';
 import {
   createAccessToken,
   createRefreshToken,
