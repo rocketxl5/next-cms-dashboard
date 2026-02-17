@@ -1,2 +1,2 @@
-export * from './getRedirectPathname';
-export * from './signOut';
+export * from './get-redirect-pathname';
+export * from './sign-out';

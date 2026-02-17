@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import { getSession } from './getSession';
+import { getSession } from './get-session';
 import { CurrentDashboardUser } from '@/types/shared';
 import { toDashboardUser } from '@/app/(protected)/dashboard/users/_map/dashboard-user-map';
 

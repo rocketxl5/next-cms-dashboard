@@ -15,7 +15,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getSession } from './getSession';
+import { getSession } from './get-session';
 import { AppRole } from '@/types/enums';
 import { SessionUser } from '@/types/shared';
 

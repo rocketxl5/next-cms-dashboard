@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import { getSession } from './getSession';
+import { getSession } from './get-session';
 import { SessionUser } from '@/types/shared';
 import { RequireRoleOptions } from '@/types/shared/require-role-options';
 

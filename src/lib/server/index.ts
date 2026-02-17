@@ -1,10 +1,11 @@
 import 'server-only';
 
-export * from './getCookie';
-export * from './getSession';
-export * from './getTheme';
+export * from './get-cookie';
+export * from './get-session';
+export * from './get-theme';
 export * from './redirect';
-export * from './requireAuth';
-export * from './requireDashboardUser';
-export * from './requireRole';
-export * from './withRole';
+export * from './require-auth';
+export * from './require-dashboard-role';
+export * from './require-dashboard-user';
+export * from './require-role';
+export * from './with-role';

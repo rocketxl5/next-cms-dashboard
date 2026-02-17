@@ -4,7 +4,7 @@ import { getSession } from '@/lib/server';
 import {
   mapCssThemeToDatabase,
   mapDatabaseThemeToCss,
-} from '@/lib/theme/mapTheme';
+} from '@/lib/theme/map-theme';
 import { Theme } from '@/types/enums';
 import { isThemeClassName } from '@/lib/utils/normalizers/theme';
 

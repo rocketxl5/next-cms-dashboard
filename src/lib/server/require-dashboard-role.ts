@@ -1,8 +1,8 @@
 import { SessionUser } from "@/types/shared";
-import { requireRole } from "./requireRole";
+import { requireRole } from "./require-role";
 import { DashboardRole } from "@/types/server";
 import { isDashboardRole } from "@/types/server";
-import { RequireRoleOptions } from "@/types/shared/require-role-options";
+import { RequireRoleOptions } from "@/types/shared";
 
 export async function requireDashboardRole(options: RequireRoleOptions) {
   const user = await requireRole(options);

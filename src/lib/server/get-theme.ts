@@ -1,4 +1,4 @@
-import { getCookie, getSession } from '../server';
+import { getCookie, getSession } from '.';
 import { Theme } from '@/types/enums';
 
 /**

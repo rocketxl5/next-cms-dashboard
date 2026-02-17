@@ -40,7 +40,7 @@ import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import prisma from '@/lib/prisma';
 import { Role } from '@prisma/client';
-import { withRole } from '@/lib/server/withRole';
+import { withRole } from '@/lib/server/with-role';
 import { getUsers } from '@/lib/server/admin/admin-users.service';
 
 // --------------------

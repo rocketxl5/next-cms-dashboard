@@ -5,8 +5,8 @@ import { revalidatePath } from 'next/cache';
 import { updateUserSchema } from '@/lib/validators';
 import { canEditUserRole } from '@/lib/permissions/policies/dashboard';
 import { canActOnUser } from '@/lib/permissions/authority';
-import { editUser } from '@/lib/server/admin/admin-users.service';
-import { requireDashboardRole } from '@/lib/server/requireDashboardRole';
+import { editUser } from '@/lib/server/admin';
+import { requireDashboardRole } from '@/lib/server';
 import { DASHBOARD_ROLE } from '@/types/server';
 
 export async function editUserAction(rawData: object) {

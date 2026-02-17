@@ -1,1 +1,1 @@
-export * from './allowedDashboardNav';
+export * from './allowed-dashboard-nav';

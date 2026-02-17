@@ -1,4 +1,4 @@
-import { requireRole } from './requireRole';
+import { requireRole } from './require-role';
 import { SessionUser } from '@/types/shared';
 import { APP_ROLES } from '@/types/enums';
 

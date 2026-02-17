@@ -1,4 +1,4 @@
-import { getCookie } from './getCookie';
+import { getCookie } from './get-cookie';
 import { verifyAccessToken } from '../auth';
 import { COOKIE_KEYS } from '@/types/server';
 import { SessionUser } from '@/types/shared';

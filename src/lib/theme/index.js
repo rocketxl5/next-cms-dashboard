@@ -1,3 +1,3 @@
 // export * from './getTheme';
-export * from './mapTheme';
-export * from './resolveNextTheme';
+export * from './map-theme';
+export * from './resolve-next-theme';
