@@ -14,7 +14,6 @@ export const CONTENT_EDITOR_CAPABILITIES = [
     FEATURE_CAPABILITIES.CONTENT.SUSPEND,
 ] as const satisfies readonly Capability[];
 
-
 //      CONTENT
 //   CREATE: 'CONTENT_CREATE',
 //   EDIT: 'CONTENT_EDIT',
