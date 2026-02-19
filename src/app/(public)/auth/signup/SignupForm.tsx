@@ -22,7 +22,7 @@
 */
 
 import { useState } from 'react';
-import { apiFetch } from '@/lib/api/apiFetch';
+import { apiFetch } from '@/lib/api/api-fetch';
 import { withSuspense } from '@/components/hoc/withSuspense';
 import { signupFormSchema } from './schema';
 import { SignupSkeleton } from './SignupSkeleton';

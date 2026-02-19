@@ -21,7 +21,7 @@
 */
 
 import { useState } from 'react';
-import { apiFetch } from '@/lib/api/apiFetch';
+import { apiFetch } from '@/lib/api/api-fetch';
 import { signinSchema } from '@/lib/validators';
 import { withSuspense } from '@/components/hoc/withSuspense';
 import { SigninSkeleton } from './SiginSkeleton';
