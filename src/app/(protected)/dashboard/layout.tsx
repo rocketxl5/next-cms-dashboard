@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import { getSession } from '@/lib/server';
 import { AppShell } from '@/components/layout-primitives';
-import { DashboardRole } from '@/types/server';
+import { DashboardRole } from '@/types/shared';
 import { DashboardHeader, DashboardSidebar, DashboardMain } from './components';
 
 type DashboardLayoutProps = {

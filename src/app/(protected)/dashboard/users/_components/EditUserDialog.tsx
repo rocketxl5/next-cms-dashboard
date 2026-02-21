@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { editUserAction } from '../_actions/editUserAction';
+import { editUserAction } from '../_actions/edit-user-action';
 import { UserRow } from '../_domain';
 
 interface EditUserDialogProps {

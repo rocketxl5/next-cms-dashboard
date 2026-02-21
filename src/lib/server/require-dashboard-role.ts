@@ -1,7 +1,6 @@
 import { SessionUser } from "@/types/shared";
 import { requireRole } from "./require-role";
-import { DashboardRole } from "@/types/server";
-import { isDashboardRole } from "@/types/server";
+import { DashboardRole, isDashboardRole } from '@/types/shared';
 import { RequireRoleOptions } from "@/types/shared";
 
 export async function requireDashboardRole(options: RequireRoleOptions) {

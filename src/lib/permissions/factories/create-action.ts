@@ -1,6 +1,6 @@
-import { DashboardRole } from "@/types/server";
-import { Capability } from "../model/capabilities";
-import { hasPermission } from "../has-permission";
+import { DashboardRole } from '@/types/shared';
+import { Capability } from '../model/capabilities';
+import { hasPermission } from '../has-permission';
 
 /**
  * Creates a dashboard action helper that only requires capability checks.
@@ -9,7 +9,7 @@ import { hasPermission } from "../has-permission";
  *   const canViewUsers = createAction('USER_VIEW');
  */
 export function createAction(capability: Capability) {
-    return function action(role: DashboardRole): boolean {
-        return hasPermission(role, capability);
-    }
+  return function action(role: DashboardRole): boolean {
+    return hasPermission(role, capability);
+  };
 }

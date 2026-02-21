@@ -2,7 +2,7 @@
 
 import { BaseProps } from './base-props';
 import { DashboardActionButton } from '../../../components';
-import { deleteUserAction } from '../../_actions/deleteUserAction';
+import { deleteUserAction } from '../../_actions/delete-user-action';
 
 
 interface DeleteUserCellProps extends BaseProps {

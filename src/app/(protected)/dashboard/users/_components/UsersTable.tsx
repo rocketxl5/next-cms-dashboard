@@ -1,6 +1,9 @@
-import { usersColumns } from '../_ui/users-table.columns';
+'use client';
+
+import { buildUsersColumns } from '../_ui/users-table.columns';
 import { UserRow } from '../_domain';
 import { CurrentDashboardUser } from '@/types/shared';
+import { useUserSelection } from '@/hooks/useUserSelection';
 
 type UsersTableProps = {
   users: UserRow[];
@@ -8,13 +11,17 @@ type UsersTableProps = {
 };
 
 export function UsersTable({ users, currentUser }: UsersTableProps) {
+  const { selectedUserIds, toggleUserSelection } = useUserSelection();
+
+  const columns = buildUsersColumns(selectedUserIds, toggleUserSelection);
+
   if (!users.length) return <div className="p4">No users found</div>;
 
   return (
     <table className="w-full border-collapse">
-      <thead>
+      {/* <thead>
         <tr>
-          {usersColumns.map((column) => (
+          {columns.map((column) => (
             <th key={column.key} className="text-left px-4 py-2">
               {column.header}
             </th>
@@ -24,14 +31,14 @@ export function UsersTable({ users, currentUser }: UsersTableProps) {
       <tbody>
         {users.map((user) => (
           <tr key={user.id} className="border-t">
-            {usersColumns.map((column) => (
+            {columns.map((column) => (
               <td key={column.key} className="px-4 py-2">
                 {column.render(user, currentUser)}
               </td>
             ))}
           </tr>
         ))}
-      </tbody>
+      </tbody> */}
     </table>
   );
 }

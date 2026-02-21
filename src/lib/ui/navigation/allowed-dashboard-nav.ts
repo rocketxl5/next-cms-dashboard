@@ -1,5 +1,5 @@
 import { dashboardNav } from '@/types/ui';
-import { DashboardRole } from '@/types/server';
+import { DashboardRole } from '@/types/shared';
 import { can } from '@/lib/permissions/evaluation';
 
 export function allowedDashboardNav(role: DashboardRole) {

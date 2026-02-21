@@ -1,5 +1,5 @@
 import { AppRole } from '@/types/enums';
-import { DashboardRole } from '@/types/server';
+import { DashboardRole } from '@/types/shared';
 import { Capability } from './model/capabilities';
 import { POLICIES } from './policies/policies';
 import { canActOnUser } from './authority';

@@ -1,5 +1,4 @@
-import { CurrentDashboardUser } from '@/types/shared';
-import { DashboardRole } from '@/types/server';
+import { CurrentDashboardUser, DashboardRole } from '@/types/shared';
 
 export function toDashboardUser(role: string): CurrentDashboardUser | null {
   if (role === 'ADMIN' || role === 'SUPER_ADMIN') {

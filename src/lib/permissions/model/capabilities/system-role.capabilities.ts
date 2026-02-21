@@ -1,14 +1,11 @@
-import {
-  Capability,
-  FEATURE_CAPABILITIES,
-} from './feature.capabilities';
+import { Capability } from './feature.capabilities';
 import {
   CONTENT_ALL_CAPABILITIES,
   CONTENT_EDITOR_CAPABILITIES,
   USERS_ALL_CAPABILITIES,
   USERS_ADMIN_CAPABILITIES,
 } from './role_capabilities';
-import { DashboardRole } from '@/types/server';
+import { DashboardRole } from '@/types/shared';
 
 export const SYSTEM_ROLE_CAPABILITIES = {
   SUPER_ADMIN: [...CONTENT_ALL_CAPABILITIES, ...USERS_ALL_CAPABILITIES],

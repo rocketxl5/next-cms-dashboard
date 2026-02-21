@@ -6,7 +6,7 @@ import { updateUserSchema } from '@/lib/validators';
 import { userActions } from '@/lib/permissions/dashboard';
 import { editUser } from '@/lib/server/admin';
 import { requireDashboardRole } from '@/lib/server';
-import { DASHBOARD_ROLE } from '@/types/server';
+import { DASHBOARD_ROLE } from '@/types/shared';
 
 export async function editUserAction(rawData: object) {
   const actor = await requireDashboardRole({ roles: DASHBOARD_ROLE });

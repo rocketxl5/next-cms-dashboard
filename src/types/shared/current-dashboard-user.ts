@@ -1,4 +1,4 @@
-import { DashboardRole } from '../server';
+import { DashboardRole } from '../shared';
 
 export type CurrentDashboardUser = {
   role: DashboardRole;

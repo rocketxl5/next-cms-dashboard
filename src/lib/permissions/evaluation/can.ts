@@ -38,7 +38,7 @@
  * ---------------------------------------------------------------------------
  */
 
-import { DashboardRole } from '@/types/server';
+import { DashboardRole } from '@/types/shared';
 import { SYSTEM_ROLE_CAPABILITIES } from '@/lib/permissions/model/capabilities/system-role.capabilities';
 import { Capability } from '@/lib/permissions/model/capabilities';
 

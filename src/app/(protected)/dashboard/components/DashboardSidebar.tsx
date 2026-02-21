@@ -2,7 +2,7 @@
 
 import { SideSlot } from '@/components/layout-primitives';
 import { DashboardLink } from './link/DashboardLink';
-import { DashboardRole } from '@/types/server';
+import { DashboardRole } from '@/types/shared';
 import { LinkVariants } from '@/lib/ui/variants';
 import { allowedDashboardNav } from '@/lib/ui/navigation';
 
