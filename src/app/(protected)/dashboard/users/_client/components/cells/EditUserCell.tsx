@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { DashboardActionButton } from '@/app/(protected)/dashboard/components';
 import { EditUserDialog } from '../EditUserDialog';
-import { UserRow } from '../../_domain';
+import { UserRow } from '@/app/(protected)/dashboard/users/_domain';
 
 interface EditUserCellProps {
   user: UserRow;

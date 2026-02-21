@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { editUserAction } from '../_actions/edit-user-action';
-import { UserRow } from '../_domain';
+import { UserRow } from '@/app/(protected)/dashboard/users/_domain';
+import { editUserAction } from '@/app/(protected)/dashboard/users/_server/actions';
 
 interface EditUserDialogProps {
   user: UserRow;

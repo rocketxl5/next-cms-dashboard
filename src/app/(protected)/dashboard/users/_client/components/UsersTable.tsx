@@ -1,7 +1,7 @@
 'use client';
 
-import { buildUsersColumns } from '../_ui/users-table.columns';
-import { UserRow } from '../_domain';
+import { buildUsersColumns } from '../factory/build-users-columns';
+import { UserRow } from '../../_domain';
 import { CurrentDashboardUser } from '@/types/shared';
 import { useUserSelection } from '@/hooks/useUserSelection';
 
@@ -19,7 +19,7 @@ export function UsersTable({ users, currentUser }: UsersTableProps) {
 
   return (
     <table className="w-full border-collapse">
-      {/* <thead>
+      <thead>
         <tr>
           {columns.map((column) => (
             <th key={column.key} className="text-left px-4 py-2">
@@ -38,7 +38,7 @@ export function UsersTable({ users, currentUser }: UsersTableProps) {
             ))}
           </tr>
         ))}
-      </tbody> */}
+      </tbody>
     </table>
   );
 }

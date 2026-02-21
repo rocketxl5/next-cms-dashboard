@@ -1,8 +1,8 @@
 'use client';
 
-import { BaseProps } from './base-props';
-import { DashboardActionButton } from '../../../components';
-import { deleteUserAction } from '../../_actions/delete-user-action';
+import { BaseProps } from '@/app/(protected)/dashboard/users/_domain';
+import { DashboardActionButton } from '@/app/(protected)/dashboard/components';
+import { deleteUserAction } from '@/app/(protected)/dashboard/users/_server/actions';
 
 
 interface DeleteUserCellProps extends BaseProps {

@@ -1,4 +1,4 @@
-import { UsersTable } from './UsersTable';
+import { UsersTable } from '../_client/components/UsersTable';
 import { getUsers } from '@/lib/server/admin/admin-users.service';
 import { prismaToDashboardUser } from '../_map/user-row-map';
 import { UserRow } from '../_domain';
