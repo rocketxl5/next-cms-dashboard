@@ -1,12 +1,7 @@
 import { UserRow, UsersColumn } from '@/app/(protected)/dashboard/users/_domain';
-import {
-  RoleBadge,
-  StatusBadge,
-  DeleteUserCell,
-  EditUserCell,
-} from '../components';
+import { RoleBadge, StatusBadge } from '../components';
 import { Checkbox } from '@/components/ui/Checkbox';
-import { userActions } from '@/lib/permissions/dashboard';
+// import { userActions } from '@/lib/permissions/dashboard';
 
 export const buildUsersColumns = (
   selectedUserIds: Set<string>,
@@ -15,7 +10,7 @@ export const buildUsersColumns = (
   {
     key: 'checkbox',
     header: '',
-    render: (user) => <Checkbox />,
+    render: (user: UserRow) => <Checkbox />,
   },
   {
     key: 'name',
@@ -36,21 +31,5 @@ export const buildUsersColumns = (
     key: 'status',
     header: 'Status',
     render: (user) => <StatusBadge status={user.status} />,
-  },
-  {
-    key: 'actions',
-    header: 'Actions',
-    render: (user, currentUser) => {
-      const canDelete = userActions.canDeleteUser(currentUser.role, user.role);
-
-      const canEdit = userActions.canEditUser(currentUser.role, user.role);
-
-      return (
-        <div className="flex gap-4">
-          <DeleteUserCell userId={user.id} canDelete={canDelete} />
-          <EditUserCell user={user} canEdit={canEdit} />
-        </div>
-      );
-    },
   },
 ];
