@@ -43,23 +43,29 @@ async function main() {
     { name: 'juliette', email: 'juliette@next.com', role: Role.EDITOR },
   ];
 
-  const createdUsers: Record<string, User> = {};
+const createdUsers: Record<Role, User[]> = {
+  USER: [],
+  EDITOR: [],
+  ADMIN: [],
+  SUPER_ADMIN: [],
+};
 
-  for (const u of users) {
-    const user = await prisma.user.upsert({
-      where: { email: u.email },
-      update: {},
-      create: {
-        name: u.name,
-        email: u.email,
-        password: hashedPassword,
-        role: u.role,
-        status: Status.ACTIVE,
-        isSeed: true,
-      },
-    });
-    createdUsers[u.role] = user;
-  }
+for (const u of users) {
+  const user = await prisma.user.upsert({
+    where: { email: u.email },
+    update: {},
+    create: {
+      name: u.name,
+      email: u.email,
+      password: hashedPassword,
+      role: u.role,
+      status: Status.ACTIVE,
+      isSeed: true,
+    },
+  });
+
+  createdUsers[u.role].push(user);
+}
 
   // ----------------------------
   // 3️⃣ Seed Global Settings
