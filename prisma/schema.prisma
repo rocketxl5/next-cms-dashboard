@@ -36,6 +36,12 @@ enum Role {
   SUPER_ADMIN
 }
 
+enum Status {
+  ACTIVE
+  PENDING
+  SUSPENDED
+}
+
 enum Theme {
   LIGHT
   DARK
@@ -59,7 +65,7 @@ model User {
 
   contents          ContentItem[]
 
-  isActive          Boolean   @default(true)
+  status            Status    @default(ACTIVE)
   isVerified        Boolean   @default(false)
   isSeed            Boolean   @default(false) 
 

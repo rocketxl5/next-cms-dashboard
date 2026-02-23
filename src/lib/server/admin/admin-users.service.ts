@@ -32,3 +32,32 @@ export async function editUser(id: string, data: Prisma.UserUpdateInput) {
     data,
   });
 }
+
+
+// BULK SERVICES
+export async function getUsersById(userIds: string[]) {
+  return prisma.user.findMany({
+    where: {id: {in: userIds}},
+    select: {id: true, role: true},
+  });
+}
+
+export async function deleteUsers(userIds: string[]): Promise<void> {
+  await prisma.$transaction([
+    prisma.user.deleteMany({
+      where: {id: {in: userIds}}
+    })
+  ])
+}
+
+// export async function editUsersStatus(status: boolean, userIds: string[]) {
+//   await prisma.user.updateMany({
+//     where: {
+//       id: {in: userIds},
+//     },
+//     data:{
+//       isActive: status,
+//     }
+//   })
+// }
+

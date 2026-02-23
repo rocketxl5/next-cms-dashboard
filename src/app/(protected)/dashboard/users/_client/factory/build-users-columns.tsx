@@ -1,6 +1,8 @@
 import { UserRow, UsersColumn } from '@/app/(protected)/dashboard/users/_domain';
 import { RoleBadge, StatusBadge } from '../components';
 import { Checkbox } from '@/components/ui/Checkbox';
+import { canActOnUser } from '@/lib/permissions/authority';
+import { CurrentDashboardUser } from '@/types/shared';
 // import { userActions } from '@/lib/permissions/dashboard';
 
 export const buildUsersColumns = (
@@ -10,7 +12,17 @@ export const buildUsersColumns = (
   {
     key: 'checkbox',
     header: '',
-    render: (user: UserRow) => <Checkbox />,
+    render: (user, currentUser) => {
+      if (!canActOnUser(currentUser.role, user.role)) return null;
+
+      return (
+        <Checkbox
+          id={`select-${user.id}`}
+          checked={selectedUserIds.has(user.id)}
+          onChange={() => toggleUserSelection(user.id)}
+        />
+      );
+    },
   },
   {
     key: 'name',
