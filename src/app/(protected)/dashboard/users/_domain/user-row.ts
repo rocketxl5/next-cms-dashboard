@@ -1,5 +1,4 @@
-import { AppRole } from '@/types/enums';
-import { UserStatus } from '@/types/shared';
+import { AppRole, UserStatus } from '@/types/enums';
 
 export type UserRow = {
   id: string;
@@ -7,8 +6,6 @@ export type UserRow = {
   email: string;
   role: AppRole;
   status: UserStatus;
-  isActive: boolean;
-  isVerified: boolean;
   createdAt: string;
   updatedAt: string;
 };

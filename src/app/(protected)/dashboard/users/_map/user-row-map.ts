@@ -1,14 +1,14 @@
 // _map/prisma-to-dashboard-user.ts
 import { Role } from '@prisma/client';
-import { deriveUserStatus, UserRow } from '../_domain';
+import { UserRow } from '../_domain';
+import { UserStatus } from '@/types/enums';
 
 type PrismaUser = {
   id: string;
   name: string | null;
   email: string;
   role: Role;
-  isActive: boolean;
-  isVerified: boolean;
+  status: UserStatus;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -23,12 +23,7 @@ export function prismaToDashboardUser(user: PrismaUser): UserRow | null {
     name: user.name,
     email: user.email,
     role: user.role, // TypeScript knows this is DashboardRole
-    status: deriveUserStatus({
-      isActive: user.isActive,
-      isVerified: user.isVerified,
-    }),
-    isActive: user.isActive,
-    isVerified: user.isVerified,
+    status: user.status,
     createdAt: user.createdAt.toISOString(),
     updatedAt: user.updatedAt.toISOString(),
   };

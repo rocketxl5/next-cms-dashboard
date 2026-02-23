@@ -31,12 +31,16 @@ async function main() {
       email: 'superadmin@next.com',
       role: Role.SUPER_ADMIN,
     },
-    { name: 'Admin', email: 'admin@next.com', role: Role.ADMIN },
+    { name: 'Admin_1', email: 'admin1@next.com', role: Role.ADMIN },
+    { name: 'Admin_2', email: 'admin2@next.com', role: Role.ADMIN },
     { name: 'Max', email: 'max@next.com', role: Role.USER },
     { name: 'Frank', email: 'frank@next.com', role: Role.USER },
+    { name: 'Martin', email: 'martin@next.com', role: Role.USER },
+    { name: 'Gilles', email: 'gilles@next.com', role: Role.USER },
     { name: 'Seb', email: 'seb@next.com', role: Role.USER },
-    { name: 'Joe', email: 'joe@next.com', role: Role.EDITOR },
+    { name: 'Maxime', email: 'maxime@next.com', role: Role.EDITOR },
     { name: 'Bea', email: 'bea@next.com', role: Role.EDITOR },
+    { name: 'juliette', email: 'juliette@next.com', role: Role.EDITOR },
   ];
 
   const createdUsers: Record<string, User> = {};
@@ -50,11 +54,10 @@ async function main() {
         email: u.email,
         password: hashedPassword,
         role: u.role,
-        isVerified: true,
         isSeed: true,
       },
     });
-    createdUsers[u.role] = user; 
+    createdUsers[u.role] = user;
   }
 
   

@@ -1,45 +1,8 @@
-/**
- * ADMIN USERS API — CRUD
- * -------------------------------------------------------
- * Purpose:
- *   Provides admins and super admins full management access
- *   to all users in the system for auditing, updates, or removal.
- *
- * Routes / Methods:
- *   GET    : List all users
- *   POST   : Create a new user
- *   PUT    : Update an existing user by ID
- *   DELETE : Remove a user by ID
- *
- * Auth:
- *   - Requires a valid access token (handled by middleware)
- *   - Role: ADMIN or SUPER_ADMIN
- *
- * Implementation Notes:
- *   - Uses Prisma User model
- *   - Returns only safe fields (excludes password, refreshTokenHash)
- *   - POST/PUT expects { name, email, role, isActive, isVerified }
- *   - DELETE expects user ID as query parameter
- *   - Errors are caught and returned as JSON with HTTP 500
- *
- * Related Files:
- *   - /lib/auth/withRole.ts → withRole()
- *   - /lib/prisma.ts    → Prisma instance
- *   - prisma/schema.prisma
- *
- * Usage (Postman / Frontend):
- *   - GET    /api/admin/users
- *   - POST   /api/admin/users → JSON body { name, email, password, role }
- *   - PUT    /api/admin/users?id=<id> → JSON body { name?, role?, isActive?, isVerified? }
- *   - DELETE /api/admin/users?id=<id>
- *   Headers: Authorization: Bearer <access_token>
- * -------------------------------------------------------
- */
-
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import prisma from '@/lib/prisma';
 import { Role } from '@prisma/client';
+import { UserStatus } from '@/types/enums';
 import { withRole } from '@/lib/server/with-role';
 import { getUsers } from '@/lib/server/admin/admin-users.service';
 
@@ -51,15 +14,13 @@ type UserCreatePayload = {
   email: string;
   password: string;
   role: Role;
-  isActive?: boolean;
-  isVerified?: boolean;
+  status: UserStatus;
 };
 
 type UserUpdatePayload = {
   name?: string;
   role?: Role;
-  isActive?: boolean;
-  isVerified?: boolean;
+  status?: UserStatus;
 };
 
 // --------------------
@@ -88,7 +49,7 @@ export const POST = withRole(['ADMIN', 'SUPER_ADMIN'], async (req, user) => {
   if (!data.email || !data.password || !data.role) {
     return NextResponse.json(
       { error: 'Email, password, and role are required' },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -101,16 +62,14 @@ export const POST = withRole(['ADMIN', 'SUPER_ADMIN'], async (req, user) => {
         email: data.email,
         password: hashedPassword,
         role: data.role,
-        isActive: data.isActive ?? true,
-        isVerified: data.isVerified ?? false,
+        // status: data.status,
       },
       select: {
         id: true,
         name: true,
         email: true,
         role: true,
-        isActive: true,
-        isVerified: true,
+        // status: true,
         createdAt: true,
         updatedAt: true,
       },
@@ -121,7 +80,7 @@ export const POST = withRole(['ADMIN', 'SUPER_ADMIN'], async (req, user) => {
     console.error('❌ Error creating user:', error);
     return NextResponse.json(
       { error: 'Failed to create user' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 });
@@ -143,16 +102,14 @@ export const PUT = withRole(['ADMIN', 'SUPER_ADMIN'], async (req, user) => {
       data: {
         name: data.name,
         role: data.role,
-        isActive: data.isActive,
-        isVerified: data.isVerified,
+        // status: data.status,
       },
       select: {
         id: true,
         name: true,
         email: true,
         role: true,
-        isActive: true,
-        isVerified: true,
+        // status: true,
         createdAt: true,
         updatedAt: true,
       },
@@ -163,7 +120,7 @@ export const PUT = withRole(['ADMIN', 'SUPER_ADMIN'], async (req, user) => {
     console.error('❌ Error updating user:', error);
     return NextResponse.json(
       { error: 'Failed to update user' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 });
@@ -184,7 +141,7 @@ export const DELETE = withRole(['ADMIN', 'SUPER_ADMIN'], async (req, user) => {
     console.error('❌ Error deleting user:', error);
     return NextResponse.json(
       { error: 'Failed to delete user' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 });
