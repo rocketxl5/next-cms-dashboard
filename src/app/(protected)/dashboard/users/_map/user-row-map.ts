@@ -1,14 +1,13 @@
 // _map/prisma-to-dashboard-user.ts
-import { Role } from '@prisma/client';
+import { Role, Status } from '@prisma/client';
 import { UserRow } from '../_domain';
-import { UserStatus } from '@/types/enums';
 
 type PrismaUser = {
   id: string;
   name: string | null;
   email: string;
   role: Role;
-  status: UserStatus;
+  status: Status;
   createdAt: Date;
   updatedAt: Date;
 };

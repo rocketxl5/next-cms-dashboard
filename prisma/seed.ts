@@ -13,7 +13,7 @@
  *   npx prisma db seed
  */
 
-import { PrismaClient, Role } from '@prisma/client';
+import { PrismaClient, Role, Status } from '@prisma/client';
 import type { User } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
@@ -54,13 +54,13 @@ async function main() {
         email: u.email,
         password: hashedPassword,
         role: u.role,
+        status: Status.ACTIVE,
         isSeed: true,
       },
     });
     createdUsers[u.role] = user;
   }
 
-  
   // ----------------------------
   // 3️⃣ Seed Global Settings
   // ----------------------------

@@ -1,4 +1,4 @@
-import {UserRow } from '../../_domain';
+import { UserRow } from '../../_domain';
 
 type SelectedUsersProps = {
   selectedUserIds: Set<string>;
