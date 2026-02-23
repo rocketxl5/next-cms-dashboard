@@ -22,7 +22,7 @@
  * Ground Zero of type ladder hierarchy
  */
 
-import { Role } from '@prisma/client';
+import { Role, Status } from '@prisma/client';
 
 export type DatabaseDashboardUser = {
   id: string;
@@ -30,8 +30,7 @@ export type DatabaseDashboardUser = {
   email: string;
   role: Role;
   theme: string;
-  isActive: boolean;
-  isVerified: boolean;
+  status: Status;
   createdAt: Date;
   updatedAt: Date;
 };

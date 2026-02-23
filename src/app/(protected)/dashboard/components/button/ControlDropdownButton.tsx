@@ -19,7 +19,7 @@ export function ControlDropdownButton({
   };
 
   useEffect(() => {
-    if (isOpen) setIsOpen(false);
+    // if (isOpen) setIsOpen(false);
   }, [selectedUserIds]);
 
   return (
