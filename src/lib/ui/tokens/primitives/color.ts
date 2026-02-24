@@ -5,7 +5,7 @@
  */
 
 import { AppRole } from '@/types/enums';
-import { UserStatus } from '@/types/shared';
+import { UserStatusBadge } from '@/types/shared/user-status-badge';
 
 export const color = {
   // ===== Base / primitive colors =====
@@ -69,7 +69,7 @@ export const color = {
       background: 'bg-status-active',
       foreground: 'text-status-active',
     },
-    inactive: {
+    pending: {
       background: 'bg-muted',
       foreground: 'text-muted-foreground',
     },
@@ -77,5 +77,8 @@ export const color = {
       background: 'bg-status-suspended',
       foreground: 'text-status-suspended',
     },
-  } satisfies Record<UserStatus, { background: string; foreground: string }>,
+  } satisfies Record<
+    UserStatusBadge,
+    { background: string; foreground: string }
+  >,
 } as const;

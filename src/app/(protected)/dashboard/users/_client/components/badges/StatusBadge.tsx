@@ -1,13 +1,14 @@
 import { classNames } from '@/lib/utils/classNames';
 import { color } from '@/lib/ui/tokens/primitives';
 import { UserStatus } from '@/types/enums';
+import { MAP_USER_STATUS } from '@/types/shared';
 
 interface StatusBadgeProps {
   status: UserStatus;
 }
 
 export function StatusBadge({ status }: StatusBadgeProps) {
-  const statusToken = color.status[status.toLowerCase()];
+  const statusToken = color.status[MAP_USER_STATUS[status]];
   return (
     <span
       className={classNames(
