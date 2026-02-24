@@ -2,6 +2,7 @@
 import prisma from '@/lib/prisma';
 import { Prisma } from '@prisma/client';
 import { DatabaseDashboardUser } from '@/types/db/database-dashboard-user';
+import { UserStatus } from '@/types/enums';
 
 export async function getUsers(): Promise<DatabaseDashboardUser[]> {
   return prisma.user.findMany({
@@ -32,31 +33,38 @@ export async function editUser(id: string, data: Prisma.UserUpdateInput) {
   });
 }
 
-
 // BULK SERVICES
-export async function getUsersById(userIds: string[]) {
+export async function getUsersToDelete(userIds: string[]) {
   return prisma.user.findMany({
-    where: {id: {in: userIds}},
-    select: {id: true, role: true},
+    where: { id: { in: userIds } },
+    select: { id: true, role: true },
+  });
+}
+
+export async function getUsersToSuspend(userIds: string[]) {
+  return prisma.user.findMany({
+    where: { id: { in: userIds } },
+    select: { id: true, role: true, status: true },
   });
 }
 
 export async function deleteUsers(userIds: string[]): Promise<void> {
-  await prisma.$transaction([
-    prisma.user.deleteMany({
-      where: {id: {in: userIds}}
-    })
-  ])
+  await prisma.user.deleteMany({
+    where: { id: { in: userIds } },
+  });
 }
 
-// export async function editUsersStatus(status: boolean, userIds: string[]) {
-//   await prisma.user.updateMany({
-//     where: {
-//       id: {in: userIds},
-//     },
-//     data:{
-//       isActive: status,
-//     }
-//   })
-// }
-
+export async function updateUsersStatus(
+  userIds: string[],
+  status: UserStatus,
+): Promise<void> {
+  await prisma.user.updateMany({
+    where: {
+      id: { in: userIds },
+      status: { not: status }, // idempotent
+    },
+    data: {
+      status,
+    },
+  });
+}

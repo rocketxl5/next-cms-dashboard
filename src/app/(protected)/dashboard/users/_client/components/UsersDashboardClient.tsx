@@ -2,7 +2,8 @@
 
 import { UsersTable } from './UsersTable';
 import { BulkBar } from '../../../components/BulkBar';
-import { useUserSelection } from '@/hooks/useUserSelection';
+// import { useUserSelection } from '@/hooks/useUserSelection';
+import { useUserSelection } from '@/providers/UserSelectionProvider';
 import { CurrentDashboardUser } from '@/types/shared';
 import { BULK_USER_ACTIONS, BulkUserAction, UserRow } from '../../_domain';
 import { getSelectedUsers } from '../helper/allowed-bulk-actions';
@@ -22,7 +23,7 @@ export function UserDashboardClient({
   users,
   currentUser,
 }: UsersDashboardClientProps) {
-  const { clearSelection, selectedUserIds, toggleUserSelection } =
+  const { selectedUserIds, toggleUserSelection } =
     useUserSelection();
   // select_button abled > 0 | disabled < 1
   const hasSelection = selectedUserIds.size > 0;
@@ -52,15 +53,13 @@ export function UserDashboardClient({
   return (
     <>
       <BulkBar
-        selectedUserIds={selectedUserIds}
+        // selectedUserIds={selectedUserIds}
         hasSelection={hasSelection}
         allowedBulkActions={allowedBulkActions}
       />
       <UsersTable
         users={users}
         currentUser={currentUser}
-        selectedUserIds={selectedUserIds}
-        toggleUserSelection={toggleUserSelection}
       />
     </>
   );

@@ -1,32 +1,27 @@
 import { useEffect, useState } from 'react';
 import { BulkUserAction, BulkUserActionKey } from '../../users/_domain';
+import { useUserSelection } from '@/providers/UserSelectionProvider';
 
 export type ControlDropdownButtonProps = {
   allowedBulkActions: BulkUserAction[];
   hasSelection: boolean;
-  selectedUserIds: Set<string>;
 };
 export function ControlDropdownButton({
   hasSelection,
   allowedBulkActions,
-  selectedUserIds,
 }: ControlDropdownButtonProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
+  const { isDropdownOpen, setIsDropdownOpen } = useUserSelection();
+  
   const handleBulkAction = (actionkey: BulkUserActionKey) => {
     console.log('Selected action: ', actionkey);
-    setIsOpen(false);
+    if (isDropdownOpen) setIsDropdownOpen(false);
   };
-
-  useEffect(() => {
-    // if (isOpen) setIsOpen(false);
-  }, [selectedUserIds]);
 
   return (
     <div className="relative">
       <button
         disabled={!hasSelection}
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         className={`px-3 py-2 rounded border ${
           hasSelection
             ? 'bg-blue-600 text-white'
@@ -36,7 +31,7 @@ export function ControlDropdownButton({
         Select Action
       </button>
 
-      {isOpen && hasSelection && (
+      {isDropdownOpen && hasSelection && (
         <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow md z-10">
           {allowedBulkActions.length > 0 ? (
             allowedBulkActions.map((action) => (

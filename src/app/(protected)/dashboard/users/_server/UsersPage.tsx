@@ -3,6 +3,7 @@ import { prismaToDashboardUser } from '../_map/user-row-map';
 import { UserRow } from '../_domain';
 import { requireDashboardUser } from '@/lib/server';
 import { UserDashboardClient } from '../_client/components/UsersDashboardClient';
+import { UserSelectionProvider } from '@/providers/UserSelectionProvider';
 
 export default async function UsersPage() {
   const dashboardUser = await requireDashboardUser();
@@ -11,5 +12,9 @@ export default async function UsersPage() {
     .map(prismaToDashboardUser)
     .filter((u): u is UserRow => u !== null);
 
-  return <UserDashboardClient users={rows} currentUser={dashboardUser} />;
+  return (
+    <UserSelectionProvider>
+      <UserDashboardClient users={rows} currentUser={dashboardUser} />
+    </UserSelectionProvider>
+  );
 }

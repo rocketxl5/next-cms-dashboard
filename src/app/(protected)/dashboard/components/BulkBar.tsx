@@ -1,17 +1,15 @@
 import { ControlDropdownButton } from './button/ControlDropdownButton';
 import { BulkUserAction } from '../users/_domain';
+import { useUserSelection } from '@/providers/UserSelectionProvider';
 
 type BulkBarProps = {
   allowedBulkActions: BulkUserAction[];
-  selectedUserIds: Set<string>;
   hasSelection: boolean;
 };
 
-export function BulkBar({
-  allowedBulkActions,
-  selectedUserIds,
-  hasSelection,
-}: BulkBarProps) {
+export function BulkBar({ allowedBulkActions, hasSelection }: BulkBarProps) {
+  const { selectedUserIds } = useUserSelection();
+
   return (
     <div className="flex items-center justify-between mb-4">
       <div className="text-sm text-gray-600">
@@ -21,7 +19,6 @@ export function BulkBar({
       <ControlDropdownButton
         allowedBulkActions={allowedBulkActions}
         hasSelection={hasSelection}
-        selectedUserIds={selectedUserIds}
       />
     </div>
   );

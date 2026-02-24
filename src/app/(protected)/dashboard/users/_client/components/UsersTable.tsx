@@ -3,20 +3,15 @@
 import { buildUsersColumns } from '../factory/build-users-columns';
 import { UserRow } from '../../_domain';
 import { CurrentDashboardUser } from '@/types/shared';
+import { useUserSelection } from '@/providers/UserSelectionProvider';
 
 type UsersTableProps = {
   users: UserRow[];
   currentUser: CurrentDashboardUser;
-  selectedUserIds: Set<string>;
-  toggleUserSelection: (id: string) => void;
 };
 
-export function UsersTable({
-  users,
-  currentUser,
-  selectedUserIds,
-  toggleUserSelection,
-}: UsersTableProps) {
+export function UsersTable({ users, currentUser }: UsersTableProps) {
+  const { selectedUserIds, toggleUserSelection } = useUserSelection();
   const columns = buildUsersColumns(selectedUserIds, toggleUserSelection);
 
   if (!users.length) return <div className="p4">No users found</div>;
