@@ -5,7 +5,7 @@ import { DashboardTopBar } from '../../../components/DashboardTopBar';
 import { useUserSelection } from '@/providers';
 import { CurrentDashboardUser } from '@/types/shared';
 import { UserRow } from '../../_domain';
-import { getAllowedBulkActions, getSelectedUsers } from '@/lib/dashboard';
+import { getAllowedBulkActions, getSelectedUsers } from '@/lib/domain';
 
 type UsersDashboardClientProps = {
   users: UserRow[];

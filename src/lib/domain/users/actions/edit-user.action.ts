@@ -3,7 +3,7 @@
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { updateUserSchema } from '@/lib/validators';
-import { userActions } from '@/lib/permissions/dashboard';
+import { userActions } from '@/lib/permissions/resources';
 import { editUser } from '@/lib/server/services';
 import { requireDashboardRole } from '@/lib/server';
 import { DASHBOARD_ROLE } from '@/types/shared';

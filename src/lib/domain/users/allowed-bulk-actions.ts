@@ -4,7 +4,7 @@ import {
   canDeleteUser,
   canSuspendUser,
   canEditUserRole,
-} from '@/lib/permissions/dashboard/actions/users';
+} from '@/lib/permissions/resources/users';
 import { CurrentDashboardUser } from '@/types/shared';
 
 type SelectedUsersProps = {

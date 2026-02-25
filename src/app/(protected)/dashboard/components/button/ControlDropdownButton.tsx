@@ -1,5 +1,5 @@
 import { BulkUserAction, BulkUserActionKey } from '../../users/_domain';
-import { handleBulkAction } from '@/lib/dashboard';
+import { handleBulkAction } from '@/lib/domain';
 import { useUserSelection } from '@/providers';
 
 export type ControlDropdownButtonProps = {
