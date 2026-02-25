@@ -1,4 +1,4 @@
-import { getUsers } from '@/lib/server/admin/admin-users.service';
+import { getUsers } from '@/lib/server/services/admin-users.service';
 import { prismaToDashboardUser } from '../_map/user-row-map';
 import { UserRow } from '../_domain';
 import { requireDashboardUser } from '@/lib/server';

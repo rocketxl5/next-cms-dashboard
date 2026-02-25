@@ -10,7 +10,6 @@ import {
 
 type UserSelectionContextValue = {
   selectedUserIds: Set<string>;
-//   hasSelection: boolean;
   toggleUserSelection: (id: string) => void;
   isSelected: (id: string) => void;
   clearSelection: () => void;

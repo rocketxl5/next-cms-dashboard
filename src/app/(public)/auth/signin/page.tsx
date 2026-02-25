@@ -11,7 +11,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import SigninForm from './SigninForm';
 import { getRedirectPathname } from '@/lib/shared';
 import { Theme } from '@/types/enums/theme';
-import { useTheme } from '@/providers/ThemeProvider';
+import { useTheme } from '@/providers';
 import { SessionUser } from '@/types/shared';
 
 export default function SigninPage() {

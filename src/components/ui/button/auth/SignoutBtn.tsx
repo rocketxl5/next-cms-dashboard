@@ -29,7 +29,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useTheme } from '@/providers/ThemeProvider';
+import { useTheme } from '@/providers';
 import { signOut } from '@/lib/shared';
 
 export function SignoutBtn() {

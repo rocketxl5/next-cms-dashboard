@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import { getSession } from '@/lib/server';
 import { AppShell } from '@/components/layout-primitives';
 import { DashboardRole } from '@/types/shared';
-import { DashboardHeader, DashboardSidebar, DashboardMain } from './components';
+import { DashboardHeader, DashboardSideBar, DashboardMain } from './components';
 
 type DashboardLayoutProps = {
   children: React.ReactNode;
@@ -17,7 +17,7 @@ export default async function DashboardLayout({
 
   return (
     <AppShell>
-      <DashboardSidebar role={session.user.role as DashboardRole} />
+      <DashboardSideBar role={session.user.role as DashboardRole} />
       <div className="flex flex-col flex-1">
         <DashboardHeader />
         <DashboardMain>{children}</DashboardMain>

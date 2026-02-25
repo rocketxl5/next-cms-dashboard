@@ -3,7 +3,7 @@
 import { buildUsersColumns } from '../factory/build-users-columns';
 import { UserRow } from '../../_domain';
 import { CurrentDashboardUser } from '@/types/shared';
-import { useUserSelection } from '@/providers/UserSelectionProvider';
+import { useUserSelection } from '@/providers';
 
 type UsersTableProps = {
   users: UserRow[];

@@ -4,7 +4,7 @@ import prisma from '@/lib/prisma';
 import { Role } from '@prisma/client';
 import { UserStatus } from '@/types/enums';
 import { withRole } from '@/lib/server/with-role';
-import { getUsers } from '@/lib/server/admin/admin-users.service';
+import { getUsers } from '@/lib/server/services/admin-users.service';
 
 // --------------------
 // Local types for payloads

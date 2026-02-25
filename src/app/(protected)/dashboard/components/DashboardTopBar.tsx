@@ -2,12 +2,12 @@ import { ControlDropdownButton } from './button/ControlDropdownButton';
 import { BulkUserAction } from '../users/_domain';
 import { useUserSelection } from '@/providers/UserSelectionProvider';
 
-type BulkBarProps = {
+type DashboardTopBarProps = {
   allowedBulkActions: BulkUserAction[];
-  hasSelection: boolean;
+  selectedCount: number;
 };
 
-export function BulkBar({ allowedBulkActions, hasSelection }: BulkBarProps) {
+export function DashboardTopBar({ allowedBulkActions, selectedCount }: DashboardTopBarProps) {
   const { selectedUserIds } = useUserSelection();
 
   return (
@@ -18,7 +18,7 @@ export function BulkBar({ allowedBulkActions, hasSelection }: BulkBarProps) {
 
       <ControlDropdownButton
         allowedBulkActions={allowedBulkActions}
-        hasSelection={hasSelection}
+        hasSelection={selectedCount > 0}
       />
     </div>
   );

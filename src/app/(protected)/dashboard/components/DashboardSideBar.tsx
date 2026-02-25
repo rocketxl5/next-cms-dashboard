@@ -6,11 +6,11 @@ import { DashboardRole } from '@/types/shared';
 import { LinkVariants } from '@/lib/ui/variants';
 import { allowedDashboardNav } from '@/lib/ui/navigation';
 
-interface DashboardSidebarProps extends LinkVariants {
+interface DashboardSideBarProps extends LinkVariants {
   role: DashboardRole;
 }
 
-export function DashboardSidebar({ role }: DashboardSidebarProps) {
+export function DashboardSideBar({ role }: DashboardSideBarProps) {
   return (
     <SideSlot>
       <nav className="w-full flex flex-col gap-1 p-4">

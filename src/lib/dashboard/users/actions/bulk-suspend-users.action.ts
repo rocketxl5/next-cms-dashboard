@@ -2,24 +2,24 @@
 
 import { revalidatePath } from 'next/cache';
 import { requireDashboardUser } from '@/lib/server';
-import { canDeleteUser } from '@/lib/permissions/dashboard/actions/users';
-import { deleteUsers, getUsersToDelete } from '@/lib/server/admin';
+import { canSuspendUser } from '@/lib/permissions/dashboard/actions/users';
+import { getUsersToSuspend, updateUsersStatus } from '@/lib/server/services';
 
-export async function bulkDeleteUsers(userIds: string[]) {
+export async function bulkSuspendUsers(userIds: string[]) {
   const actor = await requireDashboardUser();
 
-  const users = await getUsersToDelete(userIds);
+  const users = await getUsersToSuspend(userIds);
 
   if (users.length !== userIds.length)
     throw new Error('Some users were not found');
 
   //   Validate ALL before mutating
   for (const user of users) {
-    if (!canDeleteUser(actor.role, user.role))
+    if (!canSuspendUser(actor.role, user.role))
       throw new Error('Forbidden: Some users could not be deleted');
   }
 
-  await deleteUsers(userIds);
+  await updateUsersStatus(userIds, 'SUSPENDED');
 
   revalidatePath('/dashboard/users');
 }

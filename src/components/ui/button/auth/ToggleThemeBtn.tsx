@@ -1,6 +1,6 @@
 'use client';
 
-import { useTheme } from '@/providers/ThemeProvider';
+import { useTheme } from '@/providers';
 import { resolveNextTheme } from '@/lib/theme';
 
 export function ToggleThemeBtn() {
