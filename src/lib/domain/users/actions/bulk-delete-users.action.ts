@@ -3,12 +3,12 @@
 import { revalidatePath } from 'next/cache';
 import { requireDashboardUser } from '@/lib/server';
 import { canDeleteUser } from '@/lib/permissions/resources/users';
-import { deleteUsers, getUsersToDelete } from '@/lib/server/services';
+import { deleteUsers, getUsersRole } from '@/lib/server/services';
 
 export async function bulkDeleteUsers(userIds: string[]) {
   const actor = await requireDashboardUser();
 
-  const users = await getUsersToDelete(userIds);
+  const users = await getUsersRole(userIds);
 
   if (users.length !== userIds.length)
     throw new Error('Some users were not found');

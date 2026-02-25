@@ -1,3 +1,4 @@
+export * from './can-activate-user.action';
 export * from './can-create-user.action';
 export * from './can-delete-user.action';
 export * from './can-edit-user-role.action';

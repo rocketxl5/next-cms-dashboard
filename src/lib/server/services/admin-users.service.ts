@@ -34,14 +34,14 @@ export async function editUser(id: string, data: Prisma.UserUpdateInput) {
 }
 
 // BULK SERVICES
-export async function getUsersToDelete(userIds: string[]) {
+export async function getUsersRole(userIds: string[]) {
   return prisma.user.findMany({
     where: { id: { in: userIds } },
     select: { id: true, role: true },
   });
 }
 
-export async function getUsersToSuspend(userIds: string[]) {
+export async function getUsersRoleAndStatus(userIds: string[]) {
   return prisma.user.findMany({
     where: { id: { in: userIds } },
     select: { id: true, role: true, status: true },

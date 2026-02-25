@@ -1,5 +1,9 @@
-import { BULK_USER_ACTIONS, UserRow } from '@/app/(protected)/dashboard/users/_domain';
 import {
+  BULK_USER_ACTIONS,
+  UserRow,
+} from '@/app/(protected)/dashboard/users/_domain';
+import {
+  canActivateUser,
   canEditUser,
   canDeleteUser,
   canSuspendUser,
@@ -33,6 +37,9 @@ export function getAllowedBulkActions({
       switch (action.key) {
         case 'edit':
           return canEditUser(currentUser.role, user.role);
+
+        case 'activate':
+          return canActivateUser(currentUser.role, user.role);
 
         case 'suspend':
           return canSuspendUser(currentUser.role, user.role);
