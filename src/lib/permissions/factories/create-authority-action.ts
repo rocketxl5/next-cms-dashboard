@@ -9,11 +9,16 @@ import { hasPermission } from '../has-permission';
  * Example:
  *   const canEditUser = createAuthorityAction('USER_EDIT');
  */
-export function createAuthorityAction(capability: Capability) {
+export function createAuthorityAction<TContext extends object>(
+  capability: Capability,
+) {
   return function action(
     actorRole: DashboardRole,
-    targetRole: AppRole,
+    context: AppRole | TContext,
   ): boolean {
-    return hasPermission(actorRole, capability, { targetRole });
+    if (typeof context === 'string') {
+      return hasPermission(actorRole, capability, { targetRole: context });
+    }
+    return hasPermission(actorRole, capability, context);
   };
 }

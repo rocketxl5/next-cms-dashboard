@@ -6,7 +6,7 @@ export const USER_CAPABILITIES = {
   EDIT: 'USER_EDIT',
   EDIT_ROLE: 'USER_EDIT_ROLE',
   INVITE: 'USER_INVITE',
-  SUSPEND: 'USER_SUSPEND',
+  UPDATE_STATUS: 'USER_UPDATE_STATUS',
   VIEW: 'USER_VIEW',
 } as const;
 
@@ -19,5 +19,5 @@ export type UserCapability = ValueOf<typeof USER_CAPABILITIES>;
 //   | "USER_EDIT"
 //   | "USER_EDIT_ROLE"
 //   | "USER_INVITE"
-//   | "USER_SUSPEND"
+//   | "UPDATE_STATUS"
 //   | "USER_VIEW";

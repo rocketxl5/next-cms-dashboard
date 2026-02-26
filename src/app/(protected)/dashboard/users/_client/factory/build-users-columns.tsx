@@ -2,7 +2,8 @@ import { UserRow, UsersColumn } from '@/app/(protected)/dashboard/users/_domain'
 import { RoleBadge, StatusBadge } from '../components';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { canActOnUser } from '@/lib/permissions/authority';
-import { CurrentDashboardUser } from '@/types/shared';
+import { hasPermission } from '@/lib/permissions/has-permission';
+import { DashboardActionButton } from '../../../components';
 // import { userActions } from '@/lib/permissions/dashboard';
 
 export const buildUsersColumns = (
@@ -43,5 +44,33 @@ export const buildUsersColumns = (
     key: 'status',
     header: 'Status',
     render: (user) => <StatusBadge status={user.status} />,
+  },
+  {
+    key: 'actions',
+    header: 'Actions',
+    render: (user, currentUser) => {
+      const canEdit = hasPermission(currentUser.role, 'USER_EDIT', {
+        targetRole: user.role,
+      });
+      console.log(canEdit);
+
+      // if (!canEdit) return null;
+
+      const isSelected = selectedUserIds.has(user.id);
+
+      return (
+        <div className="flex gap-4">
+          <DashboardActionButton
+            can={canEdit}
+            selected={isSelected}
+            size="sm"
+            variant="default"
+            onClick={() => console.log('active')}
+          >
+            Edit
+          </DashboardActionButton>
+        </div>
+      );
+    },
   },
 ];

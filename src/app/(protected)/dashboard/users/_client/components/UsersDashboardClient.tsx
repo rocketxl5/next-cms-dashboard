@@ -23,7 +23,7 @@ export function UserDashboardClient({
     selectedUsers,
     currentUser,
   });
-
+  console.log(allowedBulkActions);
   return (
     <>
       <DashboardTopBar

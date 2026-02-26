@@ -1,5 +1,8 @@
-import { USER_CAPABILITIES, UserCapability } from "@/lib/permissions/model/capabilities/domains";
-import { PolicyDefinition } from "@/types/permissions";
+import {
+  USER_CAPABILITIES,
+  UserCapability,
+} from '../../model/capabilities/domains';
+import { PolicyDefinition } from '@/types/permissions';
 
 export const USER_POLICIES: Record<UserCapability, PolicyDefinition> = {
   [USER_CAPABILITIES.CREATE]: { capabilities: [USER_CAPABILITIES.CREATE] },
@@ -10,6 +13,8 @@ export const USER_POLICIES: Record<UserCapability, PolicyDefinition> = {
     authority: 'ACT_ON_USER',
   },
   [USER_CAPABILITIES.INVITE]: { capabilities: [USER_CAPABILITIES.INVITE] },
-  [USER_CAPABILITIES.SUSPEND]: { capabilities: [USER_CAPABILITIES.SUSPEND] },
+  [USER_CAPABILITIES.UPDATE_STATUS]: {
+    capabilities: [USER_CAPABILITIES.UPDATE_STATUS],
+  },
   [USER_CAPABILITIES.VIEW]: { capabilities: [USER_CAPABILITIES.VIEW] },
 };

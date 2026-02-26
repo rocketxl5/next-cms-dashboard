@@ -4,6 +4,23 @@ import { Prisma } from '@prisma/client';
 import { DatabaseDashboardUser } from '@/types/db/database-dashboard-user';
 import { UserStatus } from '@/types/enums';
 
+// GET USERS
+export async function getUser(id: string): Promise<DatabaseDashboardUser | null> {
+  return prisma.user.findUnique({
+    where: {id},
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      theme: true,
+      status: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  })
+}
+
 export async function getUsers(): Promise<DatabaseDashboardUser[]> {
   return prisma.user.findMany({
     select: {
@@ -20,20 +37,6 @@ export async function getUsers(): Promise<DatabaseDashboardUser[]> {
   });
 }
 
-export async function deleteUser(userId: string): Promise<void> {
-  await prisma.user.delete({
-    where: { id: userId },
-  });
-}
-
-export async function editUser(id: string, data: Prisma.UserUpdateInput) {
-  return prisma.user.update({
-    where: { id },
-    data,
-  });
-}
-
-// BULK SERVICES
 export async function getUsersRole(userIds: string[]) {
   return prisma.user.findMany({
     where: { id: { in: userIds } },
@@ -48,6 +51,21 @@ export async function getUsersRoleAndStatus(userIds: string[]) {
   });
 }
 
+// UNITARY ACTIONS
+export async function deleteUser(userId: string): Promise<void> {
+  await prisma.user.delete({
+    where: { id: userId },
+  });
+}
+
+export async function editUser(id: string, data: Prisma.UserUpdateInput) {
+  return prisma.user.update({
+    where: { id },
+    data,
+  });
+}
+
+// BULK ACTIONS
 export async function deleteUsers(userIds: string[]): Promise<void> {
   await prisma.user.deleteMany({
     where: { id: { in: userIds } },

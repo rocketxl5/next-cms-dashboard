@@ -1,4 +1,4 @@
-import { AppRole } from '@/types/enums';
+import { AppRole, UserStatus } from '@/types/enums';
 import { DashboardRole } from '@/types/shared';
 import { Capability } from './model/capabilities';
 import { POLICIES } from './policies/policies';
@@ -7,6 +7,8 @@ import { can } from './evaluation';
 
 interface PolicyContext {
   targetRole?: AppRole;
+  currentStatus?: UserStatus;
+  nextStatus?: UserStatus;
 }
 
 export function hasPermission(
@@ -18,7 +20,7 @@ export function hasPermission(
 
   // capability not defined in policies
   if (!policy) return false;
-  
+
   // -----------------------------
   // Capability requirement check
   // -----------------------------
@@ -34,9 +36,11 @@ export function hasPermission(
   // Authority requirement check
   // -----------------------------
   if (policy.authority === 'ACT_ON_USER') {
-    if(!context.targetRole) return false;
+    if (!context.targetRole) return false;
 
-    return canActOnUser(actorRole, context.targetRole);
+    const hasAuthority = canActOnUser(actorRole, context.targetRole);
+
+    if (!hasAuthority) return false;
   }
 
   // All checks passed

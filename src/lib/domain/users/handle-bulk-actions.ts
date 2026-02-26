@@ -1,9 +1,5 @@
 import { BulkUserActionKey } from '@/app/(protected)/dashboard/users/_domain';
-import {
-  bulkDeleteUsers,
-  bulkSuspendUsers,
-  bulkActivateUsers,
-} from './actions';
+import { bulkDeleteUsers, bulkUpdateUsersStatus } from './actions';
 
 export async function handleBulkAction(
   actionKey: BulkUserActionKey,
@@ -22,17 +18,14 @@ export async function handleBulkAction(
         clearSelection();
         break;
       case 'activate':
-        await bulkActivateUsers(userIds);
+        await bulkUpdateUsersStatus(userIds, 'ACTIVE');
         console.log('Activated users:', userIds);
         clearSelection();
         break;
       case 'suspend':
-        await bulkSuspendUsers(userIds);
+        await bulkUpdateUsersStatus(userIds, 'SUSPENDED');
         console.log('Suspended user:', userIds);
         clearSelection();
-        break;
-      case 'edit':
-        console.log('Open edit modal for users:', userIds);
         break;
 
       case 'edit_role':

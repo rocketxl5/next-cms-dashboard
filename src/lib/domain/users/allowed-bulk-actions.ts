@@ -2,14 +2,8 @@ import {
   BULK_USER_ACTIONS,
   UserRow,
 } from '@/app/(protected)/dashboard/users/_domain';
-import {
-  canActivateUser,
-  canEditUser,
-  canDeleteUser,
-  canSuspendUser,
-  canEditUserRole,
-} from '@/lib/permissions/resources/users';
 import { CurrentDashboardUser } from '@/types/shared';
+import { BULK_ACTION_PERMISSION_MAP } from './map-bulk-actions';
 
 type SelectedUsersProps = {
   selectedUserIds: Set<string>;
@@ -33,26 +27,20 @@ export function getAllowedBulkActions({
   currentUser,
 }: AllowedBulkActionsProps) {
   return BULK_USER_ACTIONS.filter((action) => {
+    const resolver = BULK_ACTION_PERMISSION_MAP[action.key];
+
+    if (!resolver) return false;
+
     return selectedUsers.every((user) => {
-      switch (action.key) {
-        case 'edit':
-          return canEditUser(currentUser.role, user.role);
+      const allowed = resolver(currentUser, user);
 
-        case 'activate':
-          return canActivateUser(currentUser.role, user.role);
-
-        case 'suspend':
-          return canSuspendUser(currentUser.role, user.role);
-
-        case 'delete':
-          return canDeleteUser(currentUser.role, user.role);
-
-        case 'edit_role':
-          return canEditUserRole(currentUser.role, user.role);
-
-        default:
-          return false;
-      }
+      console.log({
+        action: action.key,
+        userId: user.id,
+        status: user.status,
+        allowed,
+      });
+      return allowed;
     });
   });
 }
