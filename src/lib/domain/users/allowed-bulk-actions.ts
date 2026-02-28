@@ -28,6 +28,7 @@ export function getAllowedBulkActions({
   currentUser,
 }: AllowedBulkActionsProps) {
   const uniformValue = getUniformValue(selectedUsers, 'status');
+
   return BULK_USER_ACTIONS.filter((action) => {
     const resolver = BULK_ACTION_PERMISSION_MAP[action.key];
 

@@ -17,19 +17,17 @@ export async function handleBulkAction(
         console.log('Deleted users:', userIds);
         clearSelection();
         break;
+
       case 'activate':
         await bulkUpdateUsersStatus(userIds, 'ACTIVE');
         console.log('Activated users:', userIds);
         clearSelection();
         break;
+
       case 'suspend':
         await bulkUpdateUsersStatus(userIds, 'SUSPENDED');
         console.log('Suspended user:', userIds);
         clearSelection();
-        break;
-
-      case 'edit_role':
-        console.log('Open edit role modal for users:', userIds);
         break;
 
       default:

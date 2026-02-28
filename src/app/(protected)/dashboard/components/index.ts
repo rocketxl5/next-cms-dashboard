@@ -3,3 +3,4 @@ export * from './DashboardMain';
 export * from './DashboardSideBar';
 export * from './DashboardTopBar';
 export * from './button/DashboardActionButton';
+export * from './select/RoleSelect';

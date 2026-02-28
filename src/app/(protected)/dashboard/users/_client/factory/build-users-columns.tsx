@@ -3,7 +3,12 @@ import { RoleBadge, StatusBadge } from '../components';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { canActOnUser } from '@/lib/permissions/authority';
 import { hasPermission } from '@/lib/permissions/has-permission';
-import { DashboardActionButton } from '../../../components';
+import { canEditUserRole } from '@/lib/permissions/resources/users';
+import { APP_ROLES, AppRole } from '@/types/enums';
+import {
+  DashboardActionButton,
+  RoleSelect,
+} from '@/app/(protected)/dashboard/components';
 // import { userActions } from '@/lib/permissions/dashboard';
 
 export const buildUsersColumns = (
@@ -38,7 +43,23 @@ export const buildUsersColumns = (
   {
     key: 'role',
     header: 'Role',
-    render: (user) => <RoleBadge role={user.role} />,
+    render: (user, currentUser) => {
+      const canEditRole = canEditUserRole(currentUser.role, user.role);
+
+      if (!canEditRole) return <RoleBadge role={user.role} />;
+
+      const assignableRoles: AppRole[] = APP_ROLES.filter((role) =>
+        canEditUserRole(currentUser.role, role),
+      );
+
+      return (
+        <RoleSelect
+          value={user.role}
+          assignableRoles={assignableRoles}
+          handleChange={(role) => <></>}
+        />
+      );
+    },
   },
   {
     key: 'status',
@@ -52,7 +73,6 @@ export const buildUsersColumns = (
       const canEdit = hasPermission(currentUser.role, 'USER_EDIT', {
         targetRole: user.role,
       });
-      console.log(canEdit);
 
       // if (!canEdit) return null;
 

@@ -8,6 +8,7 @@ interface RoleBadgeProps {
 
 export function RoleBadge({ role }: RoleBadgeProps) {
   const roleToken = color.role[role];
+
   return (
     <span
       className={classNames(

@@ -37,8 +37,4 @@ export const BULK_ACTION_PERMISSION_MAP: Record<
   delete: (currentUser, user) => {
     return canDeleteUser(currentUser.role, user.role);
   },
-
-  edit_role: (currentUser, user) => {
-    return canEditUserRole(currentUser.role, user.role);
-  },
 };

@@ -1,9 +1,9 @@
 'use client';
 
-import { buildUsersColumns } from '../factory/build-users-columns';
 import { UserRow } from '../../_domain';
-import { CurrentDashboardUser } from '@/types/shared';
 import { useUserSelection } from '@/providers';
+import { CurrentDashboardUser } from '@/types/shared';
+import { buildUsersColumns } from '../factory/build-users-columns';
 
 type UsersTableProps = {
   users: UserRow[];
