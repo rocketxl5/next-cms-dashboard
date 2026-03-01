@@ -18,7 +18,7 @@ export async function bulkSuspendUsers(userIds: string[]) {
 
   //   Validate ALL before mutating
   for (const user of users) {
-    if (!canSuspendUser(actor.role, user.role))
+    if (!canSuspendUser(actor.role, { targetRole: user.role }))
       throw new Error('Forbidden: Some users could not be deleted');
   }
 

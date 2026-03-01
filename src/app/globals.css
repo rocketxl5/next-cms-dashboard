@@ -64,6 +64,18 @@
   --muted-foreground: 215 20% 65%;
 }
 
+[data-theme="dark"] select {
+  background-color: hsl(222, 47%, 11%);
+  color: hsl(210, 40%, 98%);
+  border-color: hsl(223, 47%, 11%);
+}
+
+[data-theme="dark"] option {
+  background-color: hsl(222, 47%, 11%);
+  color: hsl(210, 40%, 98%);
+  border-color: hsl(223, 47%, 11%);
+}
+
 /* Base body styles */
 body {
   background-color: hsl(var(--background));

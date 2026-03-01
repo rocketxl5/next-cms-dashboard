@@ -4,8 +4,8 @@ import {
 } from '@/app/(protected)/dashboard/users/_domain';
 import { RoleBadge, StatusBadge } from '../components';
 import { Checkbox } from '@/components/ui/Checkbox';
-import { canUpdateUserRole } from '@/lib/permissions/resources/users/actions';
-import { getUserRowPermissions } from '@/lib/permissions/resources/users/get-user-row-permission';
+import { userActions } from '@/lib/permissions/resources';
+import { getUserRowPermissions } from '@/lib/permissions/resources';
 import { APP_ROLES, AppRole } from '@/types/enums';
 import {
   DashboardActionButton,
@@ -15,6 +15,7 @@ import {
 export const buildUsersColumns = (
   selectedUserIds: Set<string>,
   toggleUserSelection: (id: string) => void,
+  handleUserRoleUpdate: (userId: string, role: AppRole) => void,
 ): UsersColumn<UserRow>[] => [
   {
     key: 'checkbox',
@@ -49,18 +50,20 @@ export const buildUsersColumns = (
     render: (user, currentUser) => {
       const permissions = getUserRowPermissions(currentUser, user);
 
-      if (!permissions.canUpdateRole || permissions.self)
-        return <RoleBadge role={user.role} />;
+      // if (!permissions.canUpdateRole || permissions.self)
+      if (!permissions.canUpdateRole) return <RoleBadge role={user.role} />;
 
       const assignableRoles: AppRole[] = APP_ROLES.filter((role) =>
-        canUpdateUserRole(currentUser.role, role),
+        userActions.canUpdateUserRole(currentUser.role, { targetRole: role }),
       );
+
+      console.log(assignableRoles);
 
       return (
         <RoleSelect
           value={user.role}
           assignableRoles={assignableRoles}
-          handleChange={(role) => <></>}
+          handleChange={(role) => handleUserRoleUpdate(user.id, role)}
         />
       );
     },

@@ -1,4 +1,5 @@
 import { AppRole } from '@/types/enums';
+import { useTheme } from '@/providers';
 
 interface RoleSelectProps {
   value: AppRole;
@@ -11,22 +12,28 @@ export function RoleSelect({
   handleChange,
   assignableRoles,
 }: RoleSelectProps) {
-    
-  return  (
-      <div className="space-y-2">
-        <select
-          id="role"
-          className="w-full rounded-md border px-3 py-2 text-sm"
-          name="role"
-          value={value}
-          onChange={(e) => handleChange(e.target.value as AppRole)}
-        >
-          {assignableRoles.map((role) => (
-            <option key={role} value={role} className='text-stone-950'>
-              {role}
-            </option>
-          ))}
-        </select>
-      </div>
-    );
+  const { theme } = useTheme();
+  console.log(theme);
+
+  return (
+    <div className="space-y-2">
+      <select
+        data-theme={theme}
+        className="
+
+    border border-zinc-300
+    w-full px-3 py-2 text-sm
+  "
+        name="role"
+        value={value}
+        onChange={(e) => handleChange(e.target.value as AppRole)}
+      >
+        {assignableRoles.map((role) => (
+          <option data-theme={theme} key={role} value={role}>
+            {role}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
 }

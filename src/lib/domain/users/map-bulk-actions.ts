@@ -34,6 +34,6 @@ export const BULK_ACTION_PERMISSION_MAP: Record<
   },
 
   delete: (currentUser, user) => {
-    return canDeleteUser(currentUser.role, user.role);
+    return canDeleteUser(currentUser.role, { targetRole: user.role });
   },
 };

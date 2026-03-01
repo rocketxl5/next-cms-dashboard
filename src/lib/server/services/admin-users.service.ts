@@ -61,15 +61,21 @@ export async function deleteUser(userId: string): Promise<void> {
   });
 }
 
-export async function editUser(userId: string, data: Prisma.UserUpdateInput) {
-  return prisma.user.update({
+export async function editUser(
+  userId: string,
+  data: Prisma.UserUpdateInput,
+): Promise<void> {
+  await prisma.user.update({
     where: { id: userId },
     data,
   });
 }
 
-export function updateRole(userId: string, role: AppRole) {
-  return prisma.user.update({
+export async function updateUserRole(
+  userId: string,
+  role: AppRole,
+): Promise<void> {
+  await prisma.user.update({
     where: { id: userId },
     data: { role },
   });

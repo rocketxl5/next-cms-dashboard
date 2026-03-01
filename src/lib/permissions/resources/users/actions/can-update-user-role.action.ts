@@ -1,3 +1,3 @@
-import { createAuthorityAction } from "@/lib/permissions/factories";
+import { createAuthorityAction } from '@/lib/permissions/factories';
 
-export const canUpdateUserRole = createAuthorityAction('USER_EDIT_ROLE');
+export const canUpdateUserRole = createAuthorityAction('USER_UPDATE_ROLE');

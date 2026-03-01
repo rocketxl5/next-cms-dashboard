@@ -1,7 +1,7 @@
 import { hasPermission } from '@/lib/permissions/has-permission';
 import { canActOnUser } from '@/lib/permissions/authority';
 import { isSelfAction } from '@/lib/permissions/evaluation';
-import { canUpdateUserRole } from './actions';
+import { userActions } from '..';
 import { CurrentDashboardUser } from '@/types/shared';
 import { UserRow } from '@/app/(protected)/dashboard/users/_domain';
 
@@ -24,7 +24,11 @@ export function getUserRowPermissions(
     targetRole: user.role,
   });
 
-  const canUpdateRole = canUpdateUserRole(currentUser.role, user.role);
+  const canUpdateRole = userActions.canUpdateUserRole(currentUser.role, {
+    actorUserId: currentUser.id,
+    targetUserId: user.id,
+    targetRole: user.role,
+  });
 
   return {
     self,

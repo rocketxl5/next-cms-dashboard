@@ -1,9 +1,12 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { UserRow } from '../../_domain';
 import { useUserSelection } from '@/providers';
 import { CurrentDashboardUser } from '@/types/shared';
 import { buildUsersColumns } from '../factory/build-users-columns';
+import { AppRole } from '@/types/enums';
+import { updateUserRoleAction } from '@/lib/domain/users/actions/single';
 
 type UsersTableProps = {
   users: UserRow[];
@@ -12,8 +15,18 @@ type UsersTableProps = {
 
 export function UsersTable({ users, currentUser }: UsersTableProps) {
   const { selectedUserIds, toggleUserSelection } = useUserSelection();
-  const columns = buildUsersColumns(selectedUserIds, toggleUserSelection);
+  const router = useRouter();
 
+  async function handleUserRoleUpdate(userId: string, role: AppRole) {
+    await updateUserRoleAction(userId, role);
+    router.refresh();
+  }
+
+  const columns = buildUsersColumns(
+    selectedUserIds,
+    toggleUserSelection,
+    handleUserRoleUpdate,
+  );
   if (!users.length) return <div className="p4">No users found</div>;
 
   return (

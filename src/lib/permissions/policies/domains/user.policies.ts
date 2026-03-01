@@ -23,8 +23,8 @@ export const USER_POLICIES: Record<UserCapability, PolicyDefinition> = {
     ...USER_TARGET_POLICY,
   },
 
-  [USER_CAPABILITIES.EDIT_ROLE]: {
-    capabilities: [USER_CAPABILITIES.EDIT_ROLE],
+  [USER_CAPABILITIES.UPDATE_ROLE]: {
+    capabilities: [USER_CAPABILITIES.UPDATE_ROLE],
     ...USER_TARGET_POLICY,
   },
 

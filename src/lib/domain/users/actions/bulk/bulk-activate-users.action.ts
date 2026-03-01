@@ -15,7 +15,7 @@ export async function bulkActivateUsers(userIds: string[]) {
 
   //   Validate ALL before mutating
   for (const user of users) {
-    if (!canActivateUser(actor.role, user.role))
+    if (!canActivateUser(actor.role, { targetRole: user.role }))
       throw new Error('Forbidden: Some users could not be deleted');
   }
 
