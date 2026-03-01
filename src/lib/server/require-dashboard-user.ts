@@ -10,7 +10,7 @@ export async function requireDashboardUser(): Promise<CurrentDashboardUser> {
     redirect('/auth/signin');
   }
 
-  const dashboardUser = toDashboardUser(session.user.role);
+  const dashboardUser = toDashboardUser(session.user.id, session.user.role);
 
   if (!dashboardUser) {
     redirect('/403'); // or '/unauthorized'

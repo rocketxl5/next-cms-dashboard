@@ -5,7 +5,7 @@ export function isHigherRole(a: AppRole, b: AppRole) {
   return ROLE_RANK[a] > ROLE_RANK[b];
 }
 
-export function isSameOrHigherRole(a: AppRole, b: AppRole) {
+export function isHigherOrSameRole(a: AppRole, b: AppRole) {
   return ROLE_RANK[a] >= ROLE_RANK[b];
 }
 

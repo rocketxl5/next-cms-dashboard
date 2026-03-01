@@ -3,11 +3,14 @@ import prisma from '@/lib/prisma';
 import { Prisma } from '@prisma/client';
 import { DatabaseDashboardUser } from '@/types/db/database-dashboard-user';
 import { UserStatus } from '@/types/enums';
+import { AppRole } from '@/types/enums';
 
 // GET USERS
-export async function getUser(id: string): Promise<DatabaseDashboardUser | null> {
+export async function getUser(
+  id: string,
+): Promise<DatabaseDashboardUser | null> {
   return prisma.user.findUnique({
-    where: {id},
+    where: { id },
     select: {
       id: true,
       name: true,
@@ -18,7 +21,7 @@ export async function getUser(id: string): Promise<DatabaseDashboardUser | null>
       createdAt: true,
       updatedAt: true,
     },
-  })
+  });
 }
 
 export async function getUsers(): Promise<DatabaseDashboardUser[]> {
@@ -58,10 +61,17 @@ export async function deleteUser(userId: string): Promise<void> {
   });
 }
 
-export async function editUser(id: string, data: Prisma.UserUpdateInput) {
+export async function editUser(userId: string, data: Prisma.UserUpdateInput) {
   return prisma.user.update({
-    where: { id },
+    where: { id: userId },
     data,
+  });
+}
+
+export function updateRole(userId: string, role: AppRole) {
+  return prisma.user.update({
+    where: { id: userId },
+    data: { role },
   });
 }
 

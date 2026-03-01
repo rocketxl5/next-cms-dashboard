@@ -4,8 +4,7 @@ import { BulkUserActionKey } from '@/app/(protected)/dashboard/users/_domain';
 import {
   canUpdateUserStatus,
   canDeleteUser,
-  canEditUserRole,
-} from '@/lib/permissions/resources/users';
+} from '@/lib/permissions/resources/users/actions';
 
 type BulkActionPermissionResolver = (
   currentUser: CurrentDashboardUser,

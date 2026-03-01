@@ -1,15 +1,16 @@
-import { UserRow, UsersColumn } from '@/app/(protected)/dashboard/users/_domain';
+import {
+  UserRow,
+  UsersColumn,
+} from '@/app/(protected)/dashboard/users/_domain';
 import { RoleBadge, StatusBadge } from '../components';
 import { Checkbox } from '@/components/ui/Checkbox';
-import { canActOnUser } from '@/lib/permissions/authority';
-import { hasPermission } from '@/lib/permissions/has-permission';
-import { canEditUserRole } from '@/lib/permissions/resources/users';
+import { canUpdateUserRole } from '@/lib/permissions/resources/users/actions';
+import { getUserRowPermissions } from '@/lib/permissions/resources/users/get-user-row-permission';
 import { APP_ROLES, AppRole } from '@/types/enums';
 import {
   DashboardActionButton,
   RoleSelect,
 } from '@/app/(protected)/dashboard/components';
-// import { userActions } from '@/lib/permissions/dashboard';
 
 export const buildUsersColumns = (
   selectedUserIds: Set<string>,
@@ -19,7 +20,9 @@ export const buildUsersColumns = (
     key: 'checkbox',
     header: '',
     render: (user, currentUser) => {
-      if (!canActOnUser(currentUser.role, user.role)) return null;
+      const permissions = getUserRowPermissions(currentUser, user);
+
+      if (!permissions.canAct) return null;
 
       return (
         <Checkbox
@@ -44,12 +47,13 @@ export const buildUsersColumns = (
     key: 'role',
     header: 'Role',
     render: (user, currentUser) => {
-      const canEditRole = canEditUserRole(currentUser.role, user.role);
+      const permissions = getUserRowPermissions(currentUser, user);
 
-      if (!canEditRole) return <RoleBadge role={user.role} />;
+      if (!permissions.canUpdateRole || permissions.self)
+        return <RoleBadge role={user.role} />;
 
       const assignableRoles: AppRole[] = APP_ROLES.filter((role) =>
-        canEditUserRole(currentUser.role, role),
+        canUpdateUserRole(currentUser.role, role),
       );
 
       return (
@@ -70,18 +74,17 @@ export const buildUsersColumns = (
     key: 'actions',
     header: 'Actions',
     render: (user, currentUser) => {
-      const canEdit = hasPermission(currentUser.role, 'USER_EDIT', {
-        targetRole: user.role,
-      });
+      const permissions = getUserRowPermissions(currentUser, user);
+      const can = permissions.canEdit;
 
-      // if (!canEdit) return null;
+      if (!can) return null;
 
       const isSelected = selectedUserIds.has(user.id);
 
       return (
         <div className="flex gap-4">
           <DashboardActionButton
-            can={canEdit}
+            can={can}
             selected={isSelected}
             size="sm"
             variant="default"

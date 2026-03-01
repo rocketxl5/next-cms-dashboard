@@ -1,8 +1,8 @@
 import { AppRole, UserStatus } from "@/types/enums";
 import { DashboardRole } from "@/types/shared";
-import { hasPermission } from "../../has-permission";
-import { USER_CAPABILITIES } from "../../model/capabilities/domains";
-import { isValidStatusTransition } from "../../evaluation";
+import { hasPermission } from "@/lib/permissions/has-permission";
+import { USER_CAPABILITIES } from "@/lib/permissions/model/capabilities/domains";
+import { isValidStatusTransition } from "@/lib/permissions/evaluation";
 
 export function canUpdateUserStatus(
     actorRole: DashboardRole,

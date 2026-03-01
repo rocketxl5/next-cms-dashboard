@@ -41,7 +41,7 @@ const allowedBulkActions = BULK_USER_ACTIONS.filter(action => {
         return canDeleteUser(currentUser.role, user.role);
 
       case 'changeRole':
-        return canEditUserRole(currentUser.role, user.role);
+        return canUpdateUserRole(currentUser.role, user.role);
 
       default:
         return false;

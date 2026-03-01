@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { requireDashboardUser } from '@/lib/server';
-import { canDeleteUser } from '@/lib/permissions/resources/users';
+import { canDeleteUser } from '@/lib/permissions/resources/users/actions';
 import { deleteUsers, getUsersRole } from '@/lib/server/services';
 
 export async function bulkDeleteUsers(userIds: string[]) {

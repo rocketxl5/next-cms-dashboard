@@ -1,7 +1,7 @@
 'use client';
 
 import { UsersTable } from './UsersTable';
-import { DashboardTopBar } from '../../../components/DashboardTopBar';
+import { DashboardTopBar } from '../../../components';
 import { useUserSelection } from '@/providers';
 import { CurrentDashboardUser } from '@/types/shared';
 import { UserRow } from '../../_domain';

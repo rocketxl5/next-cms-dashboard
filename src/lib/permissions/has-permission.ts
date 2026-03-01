@@ -1,14 +1,14 @@
-import { AppRole, UserStatus } from '@/types/enums';
+import { AppRole } from '@/types/enums';
 import { DashboardRole } from '@/types/shared';
 import { Capability } from './model/capabilities';
-import { POLICIES } from './policies/policies';
+import { POLICIES } from './policies';
 import { canActOnUser } from './authority';
 import { can } from './evaluation';
 
 interface PolicyContext {
   targetRole?: AppRole;
-  currentStatus?: UserStatus;
-  nextStatus?: UserStatus;
+  actorUserId?: string;
+  targetUserId?: string;
 }
 
 export function hasPermission(
@@ -38,7 +38,14 @@ export function hasPermission(
   if (policy.authority === 'ACT_ON_USER') {
     if (!context.targetRole) return false;
 
-    const hasAuthority = canActOnUser(actorRole, context.targetRole);
+    const { targetRole, actorUserId, targetUserId } = context;
+
+    const hasAuthority = canActOnUser(
+      actorRole,
+      targetRole,
+      actorUserId,
+      targetUserId,
+    );
 
     if (!hasAuthority) return false;
   }

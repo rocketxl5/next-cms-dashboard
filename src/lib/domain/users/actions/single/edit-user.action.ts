@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { requireDashboardUser } from '@/lib/server';
 import { updateUserSchema } from '@/lib/validators';
-import { canEditUser } from '@/lib/permissions/resources/users';
+import { canEditUser } from '@/lib/permissions/resources/users/actions';
 import { editUser, getUser } from '@/lib/server/services';
 
 export async function editUserAction(userId: string, rawData: object) {

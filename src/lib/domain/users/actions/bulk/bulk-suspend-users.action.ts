@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { requireDashboardUser } from '@/lib/server';
-import { canSuspendUser } from '@/lib/permissions/resources/users';
+import { canSuspendUser } from '@/lib/permissions/resources/users/actions';
 import {
   getUsersRoleAndStatus,
   updateUsersStatus,

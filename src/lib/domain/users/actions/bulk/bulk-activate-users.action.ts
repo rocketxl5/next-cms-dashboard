@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { requireDashboardUser } from '@/lib/server';
-import { canActivateUser } from '@/lib/permissions/resources/users';
+import { canActivateUser } from '@/lib/permissions/resources/users/actions';
 import { getUsersRoleAndStatus, updateUsersStatus } from '@/lib/server/services';
 
 export async function bulkActivateUsers(userIds: string[]) {
