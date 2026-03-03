@@ -3,7 +3,7 @@ import {
   UsersColumn,
 } from '@/app/(protected)/dashboard/users/_domain';
 import { RoleBadge, StatusBadge } from '../components';
-import { Checkbox } from '@/components/ui/Checkbox';
+import { Checkbox } from '@/components/ui';
 import { userActions } from '@/lib/permissions/resources';
 import { getUserRowPermissions } from '@/lib/permissions/resources';
 import { APP_ROLES, AppRole } from '@/types/enums';
