@@ -1,5 +1,7 @@
 import z from "zod";
-import { createUserFormSchema, UserFormMode } from "@/app/(protected)/dashboard/users/_client/components/form/user-form.schema";
+import { createUserFormSchema } from '@/app/(protected)/dashboard/users/_client/components/form';
+
+export type UserFormMode = 'create' | 'edit';
 
 export type UserFormValues = z.infer<ReturnType<typeof createUserFormSchema>>;
 
