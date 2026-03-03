@@ -1,3 +1,3 @@
 export * from './auth/SignoutBtn';
-export * from './auth/ToggleThemeBtn';
+export * from './theme/ToggleThemeBtn';
 export * from './Button';

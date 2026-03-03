@@ -1,4 +1,4 @@
-import { SignoutBtn, ToggleThemeBtn } from '@/components/ui';
+import { SignoutBtn, ToggleThemeBtn } from '@/components/ui/button';
 
 export function AccountHeader() {
   return (
