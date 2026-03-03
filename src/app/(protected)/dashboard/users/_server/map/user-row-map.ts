@@ -1,6 +1,6 @@
 // _map/prisma-to-dashboard-user.ts
 import { Role, Status } from '@prisma/client';
-import { UserRow } from '../_domain';
+import { UserRow } from '../../_domain';
 
 type PrismaUser = {
   id: string;
