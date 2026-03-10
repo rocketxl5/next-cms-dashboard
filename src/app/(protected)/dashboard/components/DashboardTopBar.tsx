@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { ControlDropdownButton } from './button/ControlDropdownButton';
-import { BulkUserAction } from '../users/_domain';
+import { BulkUserAction } from '../users/list/_domain';
 import { useUserSelection } from '@/providers/UserSelectionProvider';
 
 type DashboardTopBarProps = {
