@@ -1,7 +1,7 @@
 import {
   BULK_USER_ACTIONS,
   UserRow,
-} from '@/app/(protected)/dashboard/users/_domain';
+} from '@/app/(protected)/dashboard/users/list/_domain';
 import { CurrentDashboardUser } from '@/types/shared';
 import { BULK_ACTION_PERMISSION_MAP } from './map-bulk-actions';
 import { getUniformValue } from '@/lib/utils';

@@ -4,12 +4,12 @@ import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input, Label } from '@/components/ui';
-import { createUserFormSchema } from './user-form.schema';
+import { createUserFormSchema } from '../_domain/user-form.schema';
 import { UserFormProps, UserFormValues } from '@/types/form';
 import { APP_ROLES, USER_STATUS, THEME } from '@/types/enums';
 import { getInputFields } from '@/lib/form/auth-fields';
 
-export function UserForm({ mode, defaultValues }: UserFormProps) {
+export function UserForm({ mode, defaultValues, onSubmit }: UserFormProps) {
   const schema = useMemo(() => createUserFormSchema(mode), [mode]);
 
   const form = useForm<UserFormValues>({
@@ -34,7 +34,7 @@ export function UserForm({ mode, defaultValues }: UserFormProps) {
   const fields = getInputFields(mode);
   return (
     <form
-      onSubmit={handleSubmit((data) => console.log(data))}
+      onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-4"
     >
       {fields.map((field) => {

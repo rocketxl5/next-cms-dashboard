@@ -1,5 +1,5 @@
-import { prismaToDashboardUser } from '../../_server/map/user-row-map';
-import { UserRow } from '../../_domain';
+import { prismaToDashboardUser } from './map/user-row-map';
+import { UserRow } from '../_domain';
 import { UsersPageClient } from '../_client/UsersPageClient';
 import { UserSelectionProvider } from '@/providers/UserSelectionProvider';
 import { getUsers } from '@/lib/server/services/admin-users.service';

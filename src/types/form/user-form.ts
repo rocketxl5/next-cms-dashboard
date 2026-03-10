@@ -1,5 +1,5 @@
 import z from "zod";
-import { createUserFormSchema } from '@/app/(protected)/dashboard/users/_client/components/form';
+import { createUserFormSchema } from '@/app/(protected)/dashboard/users/form/_domain/user-form.schema';
 
 export type UserFormMode = 'create' | 'edit';
 
