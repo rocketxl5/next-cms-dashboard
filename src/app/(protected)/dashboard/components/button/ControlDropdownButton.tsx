@@ -1,4 +1,4 @@
-import { BulkUserAction, BulkUserActionKey } from '../../users/_domain';
+import { BulkUserAction, BulkUserActionKey } from '../../users/list/_domain';
 import { handleBulkAction } from '@/lib/domain';
 import { useUserSelection } from '@/providers';
 
