@@ -1,10 +1,10 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { UserRow } from '../../_domain';
+import { UserRow } from '../_domain';
 import { useUserSelection } from '@/providers';
 import { CurrentDashboardUser } from '@/types/shared';
-import { buildUsersColumns } from '../factory/build-users-columns';
+import { buildUsersColumns } from './factory/build-users-columns';
 import { AppRole } from '@/types/enums';
 import { updateUserRoleAction } from '@/lib/domain/users/actions/single';
 

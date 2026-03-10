@@ -4,18 +4,18 @@ import { UsersTable } from './UsersTable';
 import { DashboardTopBar } from '../../../components';
 import { useUserSelection } from '@/providers';
 import { CurrentDashboardUser } from '@/types/shared';
-import { UserRow } from '../../_domain';
+import { UserRow } from '../_domain';
 import { getAllowedBulkActions, getSelectedUsers } from '@/lib/domain';
 
-type UsersDashboardClientProps = {
+type UsersPageClientProps = {
   users: UserRow[];
   currentUser: CurrentDashboardUser;
 };
 
-export function UserDashboardClient({
+export function UsersPageClient({
   users,
   currentUser,
-}: UsersDashboardClientProps) {
+}: UsersPageClientProps) {
   const { selectedUserIds } = useUserSelection();
   const selectedCount = selectedUserIds.size;
   const selectedUsers = getSelectedUsers({ selectedUserIds, users });

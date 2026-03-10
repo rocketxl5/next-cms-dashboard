@@ -5,7 +5,7 @@ import {
 import {
   RoleBadge,
   StatusBadge,
-} from '@/app/(protected)/dashboard/users/_client/components';
+} from '../components';
 import { Checkbox } from '@/components/ui';
 import { UserRow, UsersColumn } from '../../_domain';
 import {
