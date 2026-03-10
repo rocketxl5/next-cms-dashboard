@@ -1,6 +1,8 @@
-import { UserRow } from '@/app/(protected)/dashboard/users/_domain';
 import { CurrentDashboardUser } from '@/types/shared';
-import { BulkUserActionKey } from '@/app/(protected)/dashboard/users/_domain';
+import {
+  BulkUserActionKey,
+  UserRow,
+} from '@/app/(protected)/dashboard/users/list/_domain';
 import {
   canUpdateUserStatus,
   canDeleteUser,

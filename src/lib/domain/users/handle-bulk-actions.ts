@@ -1,4 +1,4 @@
-import { BulkUserActionKey } from '@/app/(protected)/dashboard/users/_domain';
+import { BulkUserActionKey } from '@/app/(protected)/dashboard/users/list/_domain';
 import { bulkDeleteUsers, bulkUpdateUsersStatus } from './actions/bulk';
 
 export async function handleBulkAction(
