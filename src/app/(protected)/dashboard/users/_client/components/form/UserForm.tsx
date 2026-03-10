@@ -9,7 +9,7 @@ import { UserFormProps, UserFormValues } from '@/types/form';
 import { APP_ROLES, USER_STATUS, THEME } from '@/types/enums';
 import { getInputFields } from '@/lib/form/auth-fields';
 
-export function UserForm({ mode, defaultValues, onSubmit }: UserFormProps) {
+export function UserForm({ mode, defaultValues }: UserFormProps) {
   const schema = useMemo(() => createUserFormSchema(mode), [mode]);
 
   const form = useForm<UserFormValues>({
@@ -33,7 +33,10 @@ export function UserForm({ mode, defaultValues, onSubmit }: UserFormProps) {
 
   const fields = getInputFields(mode);
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+    <form
+      onSubmit={handleSubmit((data) => console.log(data))}
+      className="flex flex-col gap-4"
+    >
       {fields.map((field) => {
         return (
           <div key={field.name}>

@@ -1,16 +1,18 @@
 import {
-  UserRow,
-  UsersColumn,
-} from '@/app/(protected)/dashboard/users/_domain';
-import { RoleBadge, StatusBadge } from '../components';
-import { Checkbox } from '@/components/ui';
-import { userActions } from '@/lib/permissions/resources';
-import { getUserRowPermissions } from '@/lib/permissions/resources';
-import { APP_ROLES, AppRole } from '@/types/enums';
-import {
   DashboardActionButton,
   RoleSelect,
 } from '@/app/(protected)/dashboard/components';
+import {
+  RoleBadge,
+  StatusBadge,
+} from '@/app/(protected)/dashboard/users/_client/components';
+import { Checkbox } from '@/components/ui';
+import { UserRow, UsersColumn } from '../../_domain';
+import {
+  getUserRowPermissions,
+  userActions,
+} from '@/lib/permissions/resources';
+import { APP_ROLES, AppRole } from '@/types/enums';
 
 export const buildUsersColumns = (
   selectedUserIds: Set<string>,
