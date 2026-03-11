@@ -1,6 +1,9 @@
 import z from 'zod';
 import { APP_ROLES, USER_STATUS, THEME } from '@/types/enums';
-import { UserFormMode } from '@/types/form';
+
+export type UserFormMode = 'create' | 'edit';
+
+export type UserFormValues = z.infer<ReturnType<typeof createUserFormSchema>>;
 
 export function createUserFormSchema(mode: UserFormMode) {
   return z.object({
