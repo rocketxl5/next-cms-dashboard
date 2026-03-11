@@ -52,19 +52,16 @@ export const buildUsersColumns = (
     render: (user, currentUser) => {
       const permissions = getUserRowPermissions(currentUser, user);
 
-      // if (!permissions.canUpdateRole || permissions.self)
       if (!permissions.canUpdateRole) return <RoleBadge role={user.role} />;
 
-      const assignableRoles: AppRole[] = APP_ROLES.filter((role) =>
+      const options: AppRole[] = APP_ROLES.filter((role) =>
         userActions.canUpdateUserRole(currentUser.role, { targetRole: role }),
       );
-
-      console.log(assignableRoles);
 
       return (
         <RoleSelect
           value={user.role}
-          assignableRoles={assignableRoles}
+          options={options}
           handleChange={(role) => handleUserRoleUpdate(user.id, role)}
         />
       );

@@ -1,17 +1,11 @@
 import { AppRole } from '@/types/enums';
 import { Select } from '@/components/ui';
-
-interface RoleSelectProps {
-  value: AppRole;
-  handleChange: (role: AppRole) => void;
-  assignableRoles: AppRole[];
-  disabled?: boolean;
-}
+import { RoleSelectProps } from '@/types/form';
 
 export function RoleSelect({
   value,
   handleChange,
-  assignableRoles,
+  options,
   disabled,
 }: RoleSelectProps) {
   return (
@@ -21,7 +15,7 @@ export function RoleSelect({
       disabled={disabled}
       onChange={(e) => handleChange(e.target.value as AppRole)}
     >
-      {assignableRoles.map((role) => (
+      {options.map((role) => (
         <option key={role} value={role}>
           {role}
         </option>

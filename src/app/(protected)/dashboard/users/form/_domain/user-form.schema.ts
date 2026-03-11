@@ -1,35 +1,25 @@
 import z from 'zod';
 import { APP_ROLES, USER_STATUS, THEME } from '@/types/enums';
 
-export type UserFormMode = 'create' | 'edit';
+const baseUserSchema = z.object({
+  name: z.string().min(3, 'Name must be at least 3 characters'),
+  email: z.email('Invalid email'),
+  role: z.enum(APP_ROLES),
+  status: z.enum(USER_STATUS),
+  theme: z.enum(THEME),
+});
 
-export type UserFormValues = z.infer<ReturnType<typeof createUserFormSchema>>;
+export const createUserSchema = baseUserSchema.extend({
+  password: z.string().min(8, 'Password must be at least 8 characters'),
+});
 
-export function createUserFormSchema(mode: UserFormMode) {
-  return z.object({
-    name: z.string().min(3, { message: 'Name must be at least 2 characters' }),
+export const editUserSchema = baseUserSchema.extend({
+  password: z.preprocess(
+    (v) => (v === '' ? undefined : v),
+    z.string().min(8, 'Password must be at least 8 characters').optional(),
+  ),
+});
 
-    email: z.email({
-      message: 'Invalid email',
-    }),
+export type CreateUserValues = z.infer<typeof createUserSchema>;
+export type UpdateUserValues = z.infer<typeof editUserSchema>;
 
-    password:
-      mode === 'create'
-        ? z.string().min(8, {
-            message: 'Password must be at least 8 characters',
-          })
-        : z
-            .string()
-            .min(8, {
-              message: 'Password must be at least 8 characters',
-            })
-            .optional()
-            .or(z.literal('')),
-
-    role: z.enum(APP_ROLES),
-
-    status: z.enum(USER_STATUS),
-
-    theme: z.enum(THEME),
-  });
-}

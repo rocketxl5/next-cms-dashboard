@@ -5,17 +5,14 @@ type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
   wrapperClassName?: string;
 };
 
-export function Select({
-  className,
-  wrapperClassName,
-  children,
-  ...props
-}: SelectProps) {
-  return (
-    <div className={cn('relative', wrapperClassName)}>
-      <select
-        className={cn(
-          `
+export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
+  ({ className, wrapperClassName, children, ...props }, ref) => {
+    return (
+      <div className={cn('relative', wrapperClassName)}>
+        <select
+          ref={ref} // <-- forward ref for RHF
+          className={cn(
+            `
           appearance-none
           w-full
           rounded-md
@@ -33,14 +30,15 @@ export function Select({
           disabled:opacity-50
           disabled:pointer-events-none
           `,
-          className,
-        )}
-        {...props}
-      >
-        {children}
-      </select>
-      {/* arrow */}
-      <span   className="
+            className,
+          )}
+          {...props}
+        >
+          {children}
+        </select>
+        {/* arrow */}
+        <span
+          className="
           pointer-events-none
           absolute
           right-2
@@ -49,8 +47,11 @@ export function Select({
           text-muted-foreground
         "
         >
-        ▼
-      </span>
-    </div>
-  );
-}
+          ▼
+        </span>
+      </div>
+    );
+  },
+);
+
+Select.displayName = 'Select';

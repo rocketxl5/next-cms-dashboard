@@ -29,7 +29,7 @@ export function DashboardTopBar({
 
       <button
         className="bg-blue-600 mt-2 w-48 text-white px-4 py-2 rounded"
-        onClick={() => router.push('/dashboard/users/new')}
+        onClick={() => router.push('/dashboard/users/create')}
       >
         Create User
       </button>
