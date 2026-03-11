@@ -3,7 +3,7 @@ import { canActOnUser } from '@/lib/permissions/authority';
 import { isSelfAction } from '@/lib/permissions/evaluation';
 import { userActions } from '..';
 import { CurrentDashboardUser } from '@/types/shared';
-import { UserRow } from '@/app/(protected)/dashboard/users/_domain';
+import { UserRow } from '@/app/(protected)/dashboard/users/list/_domain';
 
 export function getUserRowPermissions(
   currentUser: CurrentDashboardUser,
