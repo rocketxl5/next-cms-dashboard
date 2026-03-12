@@ -102,12 +102,6 @@ const SigninForm = ({ onSuccess }: SigninFormProps) => {
       <Button type="submit" size="md" layout="block" variant="default">
         {loading ? 'Signing in...' : 'Sign in'}
       </Button>
-      {/* <button
-        type="submit"
-        disabled={loading}
-        className="w-full rounded bg-white p-2 text-black disabled:opacity-50"
-      ></button> */}
-
       {error && <p className="text-sm text-red-600">{error}</p>}
     </form>
   );

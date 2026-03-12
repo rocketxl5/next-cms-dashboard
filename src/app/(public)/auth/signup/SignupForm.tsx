@@ -26,6 +26,7 @@ import { apiFetch } from '@/lib/api/api-fetch';
 import { withSuspense } from '@/components/hoc/withSuspense';
 import { signupFormSchema } from './schema';
 import { SignupSkeleton } from './SignupSkeleton';
+import { Button } from '@/components/ui';
 
 type SigninFormProps = {
   onSuccess: () => void;
@@ -110,15 +111,9 @@ const SignupForm = ({ onSuccess }: SigninFormProps) => {
         value={form.confirmPassword}
         onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
       />
-
-      <button
-        type="submit"
-        disabled={loading}
-        className="w-full rounded bg-white p-2 text-black disabled:opacity-50"
-      >
+      <Button type="submit" size="md" layout="block" variant="default">
         {loading ? 'Creating account...' : 'Sign up'}
-      </button>
-
+      </Button>
       {error && <p className="text-sm text-red-600">{error}</p>}
     </form>
   );

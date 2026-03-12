@@ -89,7 +89,6 @@ export const buildUsersColumns = (
             can={can}
             selected={isSelected}
             size="sm"
-            variant="default"
             onClick={() => console.log('active')}
           >
             Edit

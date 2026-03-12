@@ -3,10 +3,7 @@ import { buttonTokens } from '../tokens/components/button.tokens';
 
 export const buttonVariants = cva(buttonTokens.base, {
   variants: {
-    variant: {
-      default: buttonTokens.default.base,
-      destructive: buttonTokens.destructive.base,
-    },
+    variant: buttonTokens.variant, // now points to the correct variant object
     size: buttonTokens.size,
     radius: buttonTokens.radius,
     layout: buttonTokens.layout,
