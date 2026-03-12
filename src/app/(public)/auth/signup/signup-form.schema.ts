@@ -15,7 +15,7 @@
  * - UI schemas validate user experience
  */
 
-import {z} from "zod";
+import z from "zod";
 import { signupSchema } from "@/lib/validators";
 
 export const signupFormSchema = signupSchema
@@ -30,4 +30,4 @@ export const signupFormSchema = signupSchema
     }
 )
 
-export type signupFormData = z.infer<typeof signupFormSchema>;
+export type SignupFormData = z.infer<typeof signupFormSchema>;

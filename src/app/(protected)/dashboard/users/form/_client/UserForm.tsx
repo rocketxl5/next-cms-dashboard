@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ZodType } from 'zod';
 
 import { Input, Label, Select } from '@/components/ui';
-import { ErrorMessage } from './ErrorMessage';
+import { ErrorMessage } from '@/components/ui/button/auth/ErrorMessage';
 import { InputField } from '@/types/form';
 
 type FormField<T> = {
@@ -49,9 +49,7 @@ export function UserForm<T extends FieldValues>({
         return (
           <div key={fieldName}>
             <ErrorMessage message={errors[field.name]?.message as string} />
-            <Label htmlFor={String(field.name)} required={field.required}>
-              {field.label}
-            </Label>
+            <Label htmlFor={String(field.name)}>{field.label}</Label>
             {field.type === 'select' && field.options ? (
               <Select {...register(fieldName)}>
                 {field.options.map((option) => (

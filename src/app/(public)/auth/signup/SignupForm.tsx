@@ -1,122 +1,81 @@
-'use client'
+'use client';
 
-/**
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-* SignupForm Component
-* ---
-*
-* Client-side form for user registration.
-*
-* Behavior:
-* 1. Collects name, email, password, and confirmPassword from user input.
-* 2. Validates input against `signupFormSchema`.
-* 3. Submits payload (excluding confirmPassword) to `/api/auth/signup` via `apiFetch`.
-* 4. Handles loading state, validation errors, and API errors.
-* 5. Calls `onSuccess` callback on successful registration.
-*
-* Props:
-* onSuccess: Callback invoked after successful signup.
-*
-* Wrapped with `withSuspense` HOC to display `SignupSkeleton` during lazy loading.
-*
-*/
-
-import { useState } from 'react';
 import { apiFetch } from '@/lib/api/api-fetch';
-import { withSuspense } from '@/components/hoc/withSuspense';
-import { signupFormSchema } from './schema';
-import { SignupSkeleton } from './SignupSkeleton';
-import { Button } from '@/components/ui';
+import { signupFormSchema, SignupFormData } from './signup-form.schema';
+
+import { Button, Input } from '@/components/ui';
+import { ErrorMessage } from '@/components/ui/button/auth/ErrorMessage';
 
 type SigninFormProps = {
-  onSuccess: () => void;
+  onSuccess?: () => void;
 };
 
-const SignupForm = ({ onSuccess }: SigninFormProps) => {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+export function SignupForm({ onSuccess }: SigninFormProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<SignupFormData>({
+    resolver: zodResolver(signupFormSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    },
   });
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError(null);
-
-    const parsed = signupFormSchema.safeParse(form);
-
-    if (!parsed.success) {
-      setError(parsed.error.issues[0].message);
-      return;
-    }
-
-    setLoading(true);
-    // remove confirmPassword from payload
-    const { confirmPassword, ...payload } = parsed.data;
+  async function onSubmit(data: SignupFormData) {
+    const { confirmPassword, ...payload } = data;
 
     try {
-      // apiFetch throws on non-OK responses
       await apiFetch('/api/auth/signup', {
         method: 'POST',
         body: payload,
       });
 
       onSuccess?.();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      setError(error.message ?? 'Something went wrong');
-
-      console.error('SIGNIN ERROR:', error);
-    } finally {
-      setLoading(false);
+    } catch (error) {
+      console.error('SIGNUP ERROR: ', error);
     }
   }
 
   return (
     <form
-      onSubmit={handleSubmit}
-      className="mx-auto mt-20 max-w-sm space-y-4 rounded border p-6"
+      onSubmit={handleSubmit(onSubmit)}
+      className="mx-auto mt-20 max-w-sm space-y-6 rounded border p-6"
     >
       <h1 className="text-xl font-semibold">Sign up</h1>
-
-      <input
-        className="w-full rounded border p-2"
-        placeholder="Name"
-        value={form.name}
-        onChange={(e) => setForm({ ...form, name: e.target.value })}
-      />
-
-      <input
-        className="w-full rounded border p-2"
-        placeholder="Email"
-        value={form.email}
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-      />
-
-      <input
-        className="w-full rounded border p-2"
-        type="password"
-        placeholder="Password"
-        value={form.password}
-        onChange={(e) => setForm({ ...form, password: e.target.value })}
-      />
-
-      <input
-        className="w-full rounded border p-2"
-        type="password"
-        placeholder="Confirm Password"
-        value={form.confirmPassword}
-        onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
-      />
+      <div>
+        <ErrorMessage message={errors.name?.message} />
+        <Input placeholder="Name" {...register('name')} />
+      </div>
+      <div>
+        <ErrorMessage message={errors.email?.message} />
+        <Input type="email" placeholder="Email" {...register('email')} />
+      </div>
+      <div>
+        <ErrorMessage message={errors.password?.message} />
+        <Input
+          type="password"
+          placeholder="Password"
+          {...register('password')}
+        />
+      </div>
+      <div>
+        <ErrorMessage message={errors.confirmPassword?.message} />
+        <Input
+          type="password"
+          placeholder="Confirm password"
+          {...register('confirmPassword')}
+        />
+      </div>
       <Button type="submit" size="md" layout="block" variant="default">
-        {loading ? 'Creating account...' : 'Sign up'}
+        {isSubmitting ? 'Creating account...' : 'Sign up'}
       </Button>
-      {error && <p className="text-sm text-red-600">{error}</p>}
     </form>
   );
-};
-
-export default withSuspense(SignupForm, SignupSkeleton)
+}

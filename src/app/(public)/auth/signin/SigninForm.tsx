@@ -1,67 +1,41 @@
 'use client';
 
-/**
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-* SigninForm Component
-* ---
-*
-* Client-side form for user authentication.
-*
-* Behavior:
-* 1. Collects email and password from user input.
-* 2. Validates input against `signinSchema`.
-* 3. Calls `/api/auth/signin` via `apiFetch`.
-* 4. Handles loading state, validation errors, and API errors.
-* 5. Calls `onSuccess` callback with authenticated user data on success.
-*
-* Props:
-* onSuccess: Callback invoked with `User` object after successful signin.
-*
-* Wrapped with `withSuspense` HOC to display `SigninSkeleton` during lazy loading.
-*/
-
-import { useState } from 'react';
-import { withSuspense } from '@/components/hoc/withSuspense';
-import { Button, Input } from '@/components/ui';
-import { SigninSkeleton } from './SiginSkeleton';
 import { apiFetch } from '@/lib/api/api-fetch';
-import { signinSchema } from '@/lib/validators';
+import { signinFormSchema, SigninFormData } from './signin-form.schema';
+
+import { Button, Input } from '@/components/ui';
+import { ErrorMessage } from '@/components/ui/button/auth/ErrorMessage';
 import { SessionUser } from '@/types/shared';
 
 type SigninFormProps = {
-  onSuccess: (user: SessionUser) => void;
+  onSuccess?: (user: SessionUser) => void;
 };
 
-const SigninForm = ({ onSuccess }: SigninFormProps) => {
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
+export function SigninForm({ onSuccess }: SigninFormProps) {
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm<SigninFormData>({
+    resolver: zodResolver(signinFormSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   });
 
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError(null);
-
-    const parsed = signinSchema.safeParse(form);
-
-    if (!parsed.success) {
-      setError(parsed.error.issues[0].message);
-      return;
-    }
-
-    setLoading(true);
-
+  async function onSubmit(data: SigninFormData) {
     try {
-      // apiFetch throws on non-OK responses
-      const data = await apiFetch('/api/auth/signin', {
+      const result = await apiFetch('/api/auth/signin', {
         method: 'POST',
-        body: parsed.data,
+        body: data,
       });
 
-      const user = data.user;
+      const user = result.user;
 
       if (!user) {
         throw new Error('Signin succeeded but no user payload was returned');
@@ -70,41 +44,37 @@ const SigninForm = ({ onSuccess }: SigninFormProps) => {
       onSuccess?.(user);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      setError(error.message ?? 'Invalid credentials');
+      setError('root', {
+        message: error.message ?? 'Invalid credentials',
+      });
 
       console.error('SIGNIN ERROR:', error);
-    } finally {
-      setLoading(false);
     }
   }
 
   return (
     <form
-      onSubmit={handleSubmit}
-      className="mx-auto mt-20 max-w-sm space-y-4 rounded border p-6"
+      onSubmit={handleSubmit(onSubmit)}
+      className="mx-auto mt-20 max-w-sm space-y-6 rounded border p-6"
     >
       <h1 className="text-xl font-semibold">Sign in</h1>
 
-      <input
-        className="w-full rounded border p-2"
-        placeholder="Email"
-        value={form.email}
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-      />
+      <div>
+        <ErrorMessage message={errors.email?.message} />
+        <Input placeholder="Email" {...register('email')} />
+      </div>
+      <div>
+        <ErrorMessage message={errors.password?.message} />
+        <Input
+          type="password"
+          placeholder="Password"
+          {...register('password')}
+        />
+      </div>
 
-      <input
-        className="w-full rounded border p-2"
-        type="password"
-        placeholder="Password"
-        value={form.password}
-        onChange={(e) => setForm({ ...form, password: e.target.value })}
-      />
       <Button type="submit" size="md" layout="block" variant="default">
-        {loading ? 'Signing in...' : 'Sign in'}
+        {isSubmitting ? 'Signing in...' : 'Sign in'}
       </Button>
-      {error && <p className="text-sm text-red-600">{error}</p>}
     </form>
   );
-};
-
-export default withSuspense(SigninForm, SigninSkeleton);
+}
