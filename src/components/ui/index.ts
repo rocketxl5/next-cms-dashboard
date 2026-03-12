@@ -4,4 +4,4 @@ export * from './Header';
 export * from './Input';
 export * from './Label';
 export * from './Select';
-export * as button from './button';
+export * from './button';

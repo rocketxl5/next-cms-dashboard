@@ -1,5 +1,5 @@
 import { color, size } from '../primitives';
-import { text } from '../adapters';
+import { textAdapter } from '../adapters';
 
 export const linkTokens = {
   default: {
@@ -12,9 +12,9 @@ export const linkTokens = {
     base: `rounded-md transition-colors`,
   },
   size: {
-    sm: `${size.height.sm} px-3 ${text.sm}`,
-    md: `${size.height.md} px-3 ${text.base}`,
-    lg: `${size.height.lg} px-3 ${text.lg}`,
+    sm: `${size.height.sm} px-3 ${textAdapter.sm}`,
+    md: `${size.height.md} px-3 ${textAdapter.base}`,
+    lg: `${size.height.lg} px-3 ${textAdapter.lg}`,
   },
   layout: {
     fullWidth: 'w-full justify-start',

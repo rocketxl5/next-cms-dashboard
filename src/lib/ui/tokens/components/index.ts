@@ -1,1 +1,3 @@
-export * from './button-tokens';
+export * from './button.tokens';
+export * from './icon.tokens';
+export * from './link.tokens';

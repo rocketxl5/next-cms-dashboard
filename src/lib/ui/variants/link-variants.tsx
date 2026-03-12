@@ -150,7 +150,7 @@
  */
 
 import { cva, type VariantProps } from 'class-variance-authority';
-import { linkTokens } from '../tokens/components/link-tokens';
+import { linkTokens } from '../tokens/components';
 
 export const linkVariants = cva(
   'font-medium transition-colors inline-flex items-center',

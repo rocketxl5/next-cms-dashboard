@@ -21,10 +21,11 @@
 */
 
 import { useState } from 'react';
+import { withSuspense } from '@/components/hoc/withSuspense';
+import { Button, Input } from '@/components/ui';
+import { SigninSkeleton } from './SiginSkeleton';
 import { apiFetch } from '@/lib/api/api-fetch';
 import { signinSchema } from '@/lib/validators';
-import { withSuspense } from '@/components/hoc/withSuspense';
-import { SigninSkeleton } from './SiginSkeleton';
 import { SessionUser } from '@/types/shared';
 
 type SigninFormProps = {
@@ -98,14 +99,14 @@ const SigninForm = ({ onSuccess }: SigninFormProps) => {
         value={form.password}
         onChange={(e) => setForm({ ...form, password: e.target.value })}
       />
-
-      <button
+      <Button type="submit" size="md" layout="block" variant="default">
+        {loading ? 'Signing in...' : 'Sign in'}
+      </Button>
+      {/* <button
         type="submit"
         disabled={loading}
         className="w-full rounded bg-white p-2 text-black disabled:opacity-50"
-      >
-        {loading ? 'Signing in...' : 'Sign in'}
-      </button>
+      ></button> */}
 
       {error && <p className="text-sm text-red-600">{error}</p>}
     </form>
