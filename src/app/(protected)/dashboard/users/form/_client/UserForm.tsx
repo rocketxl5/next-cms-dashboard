@@ -70,6 +70,7 @@ export function UserForm<T extends FieldValues>({
           </div>
         );
       })}
+      <button type="submit">Submit</button>
     </form>
   );
 }
