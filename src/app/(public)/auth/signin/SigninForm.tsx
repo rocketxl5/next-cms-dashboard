@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { apiFetch } from '@/lib/api/api-fetch';
 import { signinFormSchema, SigninFormData } from './signin-form.schema';
+import { submitForm } from '@/lib/form/submit-form';
 
 import { Button, Input } from '@/components/ui';
 import { ErrorMessage } from '@/components/ui/button/auth/ErrorMessage';
@@ -18,7 +19,7 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
   const {
     register,
     handleSubmit,
-    setError,
+    // setError,
     formState: { errors, isSubmitting },
   } = useForm<SigninFormData>({
     resolver: zodResolver(signinFormSchema),
@@ -29,27 +30,18 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
   });
 
   async function onSubmit(data: SigninFormData) {
-    try {
-      const result = await apiFetch('/api/auth/signin', {
-        method: 'POST',
-        body: data,
-      });
+    await submitForm({
+      data,
+      action: async () => {
+        const result = await apiFetch('/api/auth/signin', {
+          method: 'POST',
+          body: data,
+        });
 
-      const user = result.user;
-
-      if (!user) {
-        throw new Error('Signin succeeded but no user payload was returned');
-      }
-
-      onSuccess?.(user);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      setError('root', {
-        message: error.message ?? 'Invalid credentials',
-      });
-
-      console.error('SIGNIN ERROR:', error);
-    }
+        return result.user;
+      },
+      onSuccess,
+    });
   }
 
   return (

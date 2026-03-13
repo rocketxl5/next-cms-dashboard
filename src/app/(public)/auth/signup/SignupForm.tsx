@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { apiFetch } from '@/lib/api/api-fetch';
 import { signupFormSchema, SignupFormData } from './signup-form.schema';
+import { submitForm } from '@/lib/form/submit-form';
 
 import { Button, Input } from '@/components/ui';
 import { ErrorMessage } from '@/components/ui/button/auth/ErrorMessage';
@@ -17,6 +18,7 @@ export function SignupForm({ onSuccess }: SigninFormProps) {
   const {
     register,
     handleSubmit,
+    // setError,
     formState: { errors, isSubmitting },
   } = useForm<SignupFormData>({
     resolver: zodResolver(signupFormSchema),
@@ -29,18 +31,21 @@ export function SignupForm({ onSuccess }: SigninFormProps) {
   });
 
   async function onSubmit(data: SignupFormData) {
+    // Exclude confirmPassword from payload
     const { confirmPassword, ...payload } = data;
 
-    try {
-      await apiFetch('/api/auth/signup', {
-        method: 'POST',
-        body: payload,
-      });
+    await submitForm({
+      data,
+      action: async () => {
+        const result = await apiFetch('/api/auth/signup', {
+          method: 'POST',
+          body: payload,
+        });
 
-      onSuccess?.();
-    } catch (error) {
-      console.error('SIGNUP ERROR: ', error);
-    }
+        return result.user;
+      },
+      onSuccess,
+    });
   }
 
   return (
