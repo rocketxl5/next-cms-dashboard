@@ -1,6 +1,7 @@
 import { UserStatus } from '@/types/enums';
 import { Select } from '@/components/ui';
 import { StatusSelectProps } from '@/types/form';
+import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 export function StatusSelect({
   value,
@@ -17,7 +18,7 @@ export function StatusSelect({
     >
       {options.map((status) => (
         <option key={status} value={status}>
-          {status}
+          {normalizeDisplayString(status)}
         </option>
       ))}
     </Select>

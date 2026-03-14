@@ -2,6 +2,7 @@ import { classNames } from '@/lib/utils/classNames';
 import { color } from '@/lib/ui/tokens/primitives';
 import { UserStatus } from '@/types/enums';
 import { MAP_USER_STATUS } from '@/types/shared';
+import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 interface StatusBadgeProps {
   status: UserStatus;
@@ -12,12 +13,12 @@ export function StatusBadge({ status }: StatusBadgeProps) {
   return (
     <span
       className={classNames(
-        'inline-flex rounded-full px-2 py-0.5 text-xs font-medium',
+        'inline-flex rounded-full px-2 py-0.5 text-sm font-medium',
         statusToken.background,
         statusToken.foreground,
       )}
     >
-      {status}
+      {normalizeDisplayString(status)}
     </span>
   );
 }

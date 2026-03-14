@@ -1,14 +1,8 @@
-import {
-  DashboardActionButton,
-  RoleSelect,
-} from '@/app/(protected)/dashboard/components';
-import {
-  RoleBadge,
-  StatusBadge,
-} from '../components';
-import { Checkbox } from '@/components/ui';
-import { Link } from '@/components/ui';
+import { RoleSelect } from '@/app/(protected)/dashboard/components';
+import { RoleBadge, StatusBadge } from '../components';
+import { Checkbox, Link } from '@/components/ui';
 import { UserRow, UsersColumn } from '../../_domain';
+
 import {
   getUserRowPermissions,
   userActions,

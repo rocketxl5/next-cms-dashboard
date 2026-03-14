@@ -1,6 +1,7 @@
-import { AppRole } from '@/types/enums';
 import { Select } from '@/components/ui';
+import { AppRole } from '@/types/enums';
 import { RoleSelectProps } from '@/types/form';
+import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 export function RoleSelect({
   value,
@@ -17,7 +18,7 @@ export function RoleSelect({
     >
       {options.map((role) => (
         <option key={role} value={role}>
-          {role}
+          {normalizeDisplayString(role)}
         </option>
       ))}
     </Select>
