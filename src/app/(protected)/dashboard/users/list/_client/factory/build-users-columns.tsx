@@ -86,8 +86,8 @@ export const buildUsersColumns = (
 
       return (
         <Link
-          href={`/dashboard/users/edit/${user.id}`}
-          variant="button"
+          href={!isSelected ? `/dashboard/users/edit/${user.id}` : '#'}
+          variant={!isSelected ? 'button' : 'muted'}
           size="sm"
           radius="sm"
         >
