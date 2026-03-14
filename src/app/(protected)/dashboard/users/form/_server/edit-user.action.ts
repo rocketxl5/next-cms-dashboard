@@ -13,6 +13,9 @@ export async function editUserAction(id: string, values: UpdateUserValues) {
 
   const data = parsed.data;
 
+  const password =
+    data.password && data.password !== '' ? data.password : undefined;
+
   const { name, email, role, status, theme } = data;
 
   const updateData: Prisma.UserUpdateInput = {
@@ -23,8 +26,8 @@ export async function editUserAction(id: string, values: UpdateUserValues) {
     theme: mapCssThemeToDatabase(theme),
   };
 
-  if (data.password) {
-    updateData.password = await hash(data.password, 10);
+  if (password) {
+    updateData.password = await hash(password, 10);
   }
 
   await prisma.user.update({

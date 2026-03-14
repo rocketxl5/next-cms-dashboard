@@ -6,12 +6,18 @@ export function normalizeString(value: unknown): string {
     return value.trim();
 }
 
+export function normalizeDisplayString(value: unknown): string {
+  const str = normalizeString(value);
+
+  return str
+    .split('_')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+}
+
 export function normalizeCapitalize(value: unknown): string {
-  return normalizeString(value)
-    .charAt(0)
-    .toLocaleUpperCase()
-    .substring(1)
-    .toLocaleLowerCase();
+  const str = normalizeString(value);
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
 export function normalizeLowerCase(value: unknown): string {

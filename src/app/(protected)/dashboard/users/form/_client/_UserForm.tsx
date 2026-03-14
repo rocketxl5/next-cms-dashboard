@@ -1,19 +1,31 @@
 'use client';
 
-import { FieldValues, Path, UseFormReturn } from 'react-hook-form';
-import { Button, Input, Label, Select } from '@/components/ui';
+import { useForm, FieldValues, DefaultValues, Path } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { ZodType } from 'zod';
+
+import { Input, Label, Select } from '@/components/ui';
 import { ErrorMessage } from '@/components/ui/button/auth/ErrorMessage';
-import { normalizeDisplayString } from '@/lib/utils/normalizers';
-import { FormField } from '@/types/form';
+
+type FormField<T> = {
+  name: keyof T;
+  label: string;
+  type?: 'text' | 'email' | 'password' | 'select'; // new "select" type
+  required?: boolean;
+  options?: { value: string }[]; // only used if type === 'select'
+};
 
 interface UserFormProps<T extends FieldValues> {
-  form: UseFormReturn<T>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  schema: ZodType<T, any>; // T = output type, any for input
+  defaultValues?: DefaultValues<T>;
   onSubmit: (values: T) => Promise<void>;
-  fields: FormField[];
+  fields: FormField<T>[];
 }
 
 export function UserForm<T extends FieldValues>({
-  form,
+  schema,
+  defaultValues,
   onSubmit,
   fields,
 }: UserFormProps<T>) {
@@ -21,7 +33,12 @@ export function UserForm<T extends FieldValues>({
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = form;
+    // setValue,
+    // watch,
+  } = useForm<T>({
+    resolver: zodResolver(schema),
+    defaultValues,
+  });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
@@ -35,7 +52,7 @@ export function UserForm<T extends FieldValues>({
               <Select {...register(fieldName)}>
                 {field.options.map((option) => (
                   <option key={option.value} value={option.value}>
-                    {normalizeDisplayString(option.value)}
+                    {option.value}
                   </option>
                 ))}
               </Select>
@@ -49,9 +66,7 @@ export function UserForm<T extends FieldValues>({
           </div>
         );
       })}
-      <Button type="submit" variant="success">
-        {isSubmitting ? 'Submitting...' : 'Submit'}
-      </Button>
+      <button type="submit">{isSubmitting ? 'Submitting...' : 'Submit'}</button>
     </form>
   );
 }

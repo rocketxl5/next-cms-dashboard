@@ -1,8 +1,19 @@
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-export type InputField = {
-  name: 'name' | 'email' | 'password';
+export type FieldName =
+  | 'name'
+  | 'email'
+  | 'password'
+  | 'role'
+  | 'status'
+  | 'theme';
+
+export type FieldType = 'text' | 'email' | 'password' | 'select';
+
+export type FormField = {
+  name: FieldName;
   label: string;
-  type?: string;
+  type?: FieldType;
   required?: boolean;
+  options?: { value: string }[];
 };

@@ -1,17 +1,13 @@
 import prisma from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 
-import { UserForm } from '../../form/_client/UserForm';
-import {
-  editUserSchema,
-  UpdateUserValues,
-} from '../../form/_domain/user-form.schema';
+import { UpdateUserValues } from '../../form/_domain/user-form.schema';
 
-import { editUserAction } from '../../form/_server/edit-user.action';
+import { EditUserFormWrapper } from '../../form/_client/EditUserFormWrapper';
 
 import { APP_ROLES, USER_STATUS, THEME } from '@/types/enums';
-
 import { mapDatabaseThemeToCss } from '@/lib/theme';
+import { FormField } from '@/types/form';
 
 export default async function EditUserPage({
   params,
@@ -35,36 +31,35 @@ export default async function EditUserPage({
     password: '',
   };
 
+  const fields: FormField[] = [
+    { name: 'name', label: 'Name' },
+    { name: 'email', label: 'Email', type: 'email' },
+    { name: 'password', label: 'Password', type: 'password' },
+    {
+      name: 'role',
+      label: 'Role',
+      type: 'select',
+      options: APP_ROLES.map((r) => ({ value: r })),
+    },
+    {
+      name: 'status',
+      label: 'Status',
+      type: 'select',
+      options: USER_STATUS.map((s) => ({ value: s })),
+    },
+    {
+      name: 'theme',
+      label: 'Theme',
+      type: 'select',
+      options: THEME.map((t) => ({ value: t })),
+    },
+  ];
+
   return (
-    <UserForm<UpdateUserValues>
-      schema={editUserSchema}
+    <EditUserFormWrapper
+      id={id}
       defaultValues={defaultValues}
-       onSubmit={async (values) => {
-    await editUserAction(user.id, values);
-  }}
-      fields={[
-        { name: 'name', label: 'Name' },
-        { name: 'email', label: 'Email', type: 'email' },
-        { name: 'password', label: 'Password', type: 'password' },
-        {
-          name: 'role',
-          label: 'Role',
-          type: 'select',
-          options: APP_ROLES.map((r) => ({ value: r })),
-        },
-        {
-          name: 'status',
-          label: 'Status',
-          type: 'select',
-          options: USER_STATUS.map((s) => ({ value: s })),
-        },
-        {
-          name: 'theme',
-          label: 'Theme',
-          type: 'select',
-          options: THEME.map((t) => ({ value: t })),
-        },
-      ]}
+      fields={fields}
     />
   );
 }

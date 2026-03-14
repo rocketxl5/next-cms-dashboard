@@ -14,10 +14,12 @@ export const createUserSchema = baseUserSchema.extend({
 });
 
 export const editUserSchema = baseUserSchema.extend({
-  password: z.preprocess(
-    (v) => (v === '' ? undefined : v),
-    z.string().min(8, 'Password must be at least 8 characters').optional(),
-  ),
+  password: z
+    .string()
+    .trim()
+    .min(8, 'Password must be at least 8 characters')
+    .optional()
+    .or(z.literal('')),
 });
 
 export type CreateUserValues = z.infer<typeof createUserSchema>;
