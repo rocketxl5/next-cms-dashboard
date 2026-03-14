@@ -7,6 +7,7 @@ import {
   StatusBadge,
 } from '../components';
 import { Checkbox } from '@/components/ui';
+import { Link } from '@/components/ui';
 import { UserRow, UsersColumn } from '../../_domain';
 import {
   getUserRowPermissions,
@@ -84,16 +85,14 @@ export const buildUsersColumns = (
       const isSelected = selectedUserIds.has(user.id);
 
       return (
-        <div className="flex gap-4">
-          <DashboardActionButton
-            can={can}
-            selected={isSelected}
-            size="sm"
-            onClick={() => console.log('active')}
-          >
-            Edit
-          </DashboardActionButton>
-        </div>
+        <Link
+          href={`/dashboard/users/edit/${user.id}`}
+          variant="button"
+          size="sm"
+          radius="sm"
+        >
+          Edit
+        </Link>
       );
     },
   },

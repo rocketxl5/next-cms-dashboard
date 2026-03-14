@@ -1,9 +1,9 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { ControlDropdownButton } from './button/ControlDropdownButton';
 import { BulkUserAction } from '../users/list/_domain';
 import { useUserSelection } from '@/providers/UserSelectionProvider';
+import { Link } from '@/components/ui';
 
 type DashboardTopBarProps = {
   allowedBulkActions: BulkUserAction[];
@@ -15,7 +15,7 @@ export function DashboardTopBar({
   selectedCount,
 }: DashboardTopBarProps) {
   const { selectedUserIds } = useUserSelection();
-  const router = useRouter();
+
   return (
     <div className="flex items-center justify-between mb-4">
       <div className="text-sm text-gray-600">
@@ -26,13 +26,14 @@ export function DashboardTopBar({
         allowedBulkActions={allowedBulkActions}
         hasSelection={selectedCount > 0}
       />
-
-      <button
-        className="bg-blue-600 mt-2 w-48 text-white px-4 py-2 rounded"
-        onClick={() => router.push('/dashboard/users/create')}
+      <Link
+        href="/dashboard/users/create"
+        variant="button"
+        size="lg"
+        radius="sm"
       >
         Create User
-      </button>
+      </Link>
     </div>
   );
 }

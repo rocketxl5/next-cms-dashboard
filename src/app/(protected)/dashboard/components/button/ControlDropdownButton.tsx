@@ -1,3 +1,5 @@
+import { Button } from '@/components/ui';
+
 import { BulkUserAction, BulkUserActionKey } from '../../users/list/_domain';
 import { handleBulkAction } from '@/lib/domain';
 import { useUserSelection } from '@/providers';
@@ -20,17 +22,15 @@ export function ControlDropdownButton({
 
   return (
     <div className="relative">
-      <button
-        disabled={!hasSelection}
+      <Button
+        variant="muted"
+        size="lg"
+        radius="sm"
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        className={`px-3 py-2 rounded border ${
-          hasSelection
-            ? 'bg-blue-600 text-white'
-            : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-        }`}
+        disabled={!hasSelection}
       >
         Select Action
-      </button>
+      </Button>
 
       {isDropdownOpen && hasSelection && (
         <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow md z-10">

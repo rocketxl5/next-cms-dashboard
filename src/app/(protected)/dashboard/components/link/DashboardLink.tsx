@@ -58,7 +58,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { Link } from '@/components/ui/link/Link';
+import { Link } from '@/components/ui';
 import { isRouteActive } from '@/lib/utils';
 
 interface DashboardLinkProps {

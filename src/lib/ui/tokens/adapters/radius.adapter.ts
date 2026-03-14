@@ -3,4 +3,5 @@ export const radiusAdapter = {
   md: 'rounded-md',
   lg: 'rounded-lg',
   full: 'rounded-full',
+  none: 'rounded-none',
 } as const;

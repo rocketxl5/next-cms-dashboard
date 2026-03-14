@@ -13,6 +13,7 @@ export function Link({
   variant,
   size,
   layout,
+  radius,
   active,
   className,
   children,
@@ -21,7 +22,10 @@ export function Link({
   return (
     <NextLink
       href={href}
-      className={cn(linkVariants({ variant, size, layout, active }), className)}
+      className={cn(
+        linkVariants({ variant, size, layout, radius, active }),
+        className,
+      )}
       {...props}
     >
       {children}

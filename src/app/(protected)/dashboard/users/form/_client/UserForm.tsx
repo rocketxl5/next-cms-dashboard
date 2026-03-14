@@ -6,6 +6,7 @@ import { ZodType } from 'zod';
 
 import { Input, Label, Select } from '@/components/ui';
 import { ErrorMessage } from '@/components/ui/button/auth/ErrorMessage';
+
 import { InputField } from '@/types/form';
 
 type FormField<T> = {
@@ -13,8 +14,7 @@ type FormField<T> = {
   label: string;
   type?: 'text' | 'email' | 'password' | 'select'; // new "select" type
   required?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  options?: { label: string; value: any }[]; // only used if type === 'select'
+  options?: { value: string }[]; // only used if type === 'select'
 };
 
 interface UserFormProps<T extends FieldValues> {
@@ -53,7 +53,7 @@ export function UserForm<T extends FieldValues>({
             {field.type === 'select' && field.options ? (
               <Select {...register(fieldName)}>
                 {field.options.map((option) => (
-                  <option key={option.label} value={option.value}>
+                  <option key={option.value} value={option.value}>
                     {option.value}
                   </option>
                 ))}
@@ -68,7 +68,7 @@ export function UserForm<T extends FieldValues>({
           </div>
         );
       })}
-      <button type="submit">Submit</button>
+      <button type="submit">{isSubmitting ? 'Submitting...' : 'Submit'}</button>
     </form>
   );
 }

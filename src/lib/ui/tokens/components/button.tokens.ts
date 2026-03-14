@@ -11,7 +11,7 @@ export const buttonTokens = {
     warning: `${color.warning.background} text-white`,
     info: `${color.info.background} text-white`,
     link: `${color.link.default} ${color.link.subtle}`,
-    muted: `${color.muted.background} ${color.muted.foreground}`,
+    muted: `${color.muted.background} ${color.muted.foreground} border`,
   },
 
   layout: {
@@ -24,6 +24,7 @@ export const buttonTokens = {
     md: radiusAdapter.md,
     lg: radiusAdapter.lg,
     full: radiusAdapter.full,
+    none: radiusAdapter.none,
   },
 
   size: {

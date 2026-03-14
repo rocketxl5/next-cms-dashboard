@@ -5,6 +5,9 @@ import {
   createUserSchema,
   CreateUserValues,
 } from '../form/_domain/user-form.schema';
+
+import { APP_ROLES, USER_STATUS } from '@/types/enums';
+
 import { createUserAction } from '../form/_server/create-user.action';
 
 export default function CreateUserPage() {
@@ -30,28 +33,19 @@ export default function CreateUserPage() {
           required: true,
         },
         {
-      name: 'role',
-      label: 'Role',
-      type: 'select',
-      options: [
-        { label: 'User', value: 'USER' },
-        { label: 'Editor', value: 'EDITOR' },
-        { label: 'Admin', value: 'ADMIN' },
-        { label: 'Super Admin', value: 'SUPER_ADMIN' },
-      ],
-      required: true,
-    },
-    {
-      name: 'status',
-      label: 'Status',
-      type: 'select',
-      options: [
-        { label: 'Active', value: 'ACTIVE' },
-        { label: 'Pending', value: 'PENDING' },
-        { label: 'Suspended', value: 'SUSPENDED' },
-      ],
-      required: true,
-    },
+          name: 'role',
+          label: 'Role',
+          type: 'select',
+          options: APP_ROLES.map((r) => ({ value: r })),
+          required: true,
+        },
+        {
+          name: 'status',
+          label: 'Status',
+          type: 'select',
+          options: USER_STATUS.map((s) => ({ value: s })),
+          required: true,
+        },
       ]}
     />
   );

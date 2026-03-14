@@ -6,6 +6,14 @@ export function normalizeString(value: unknown): string {
     return value.trim();
 }
 
+export function normalizeCapitalize(value: unknown): string {
+  return normalizeString(value)
+    .charAt(0)
+    .toLocaleUpperCase()
+    .substring(1)
+    .toLocaleLowerCase();
+}
+
 export function normalizeLowerCase(value: unknown): string {
     return normalizeString(value).toLocaleLowerCase();
 }
