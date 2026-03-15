@@ -20,7 +20,6 @@ export function Label({
       htmlFor={htmlFor}
       className={cn(
         'block text-sm font-medium mb-1',
-        'text-gray-900 dark:text-gray-100',
         disabled && 'opacity-50 cursor-not-allowed',
         className,
       )}
