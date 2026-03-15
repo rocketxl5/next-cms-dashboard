@@ -2,43 +2,57 @@
 
 import debounce from 'debounce';
 import { useEffect, useMemo } from 'react';
-import {useRouter, useSearchParams} from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
-import { SearchField } from '@/components/ui/SearchField';
+import { SearchField } from '@/components/ui';
+import { SearchSelect } from '../../components/select/SearchSelect';
+import { USERS_PARAMS } from '@/types/shared';
 
 export function UsersSearch() {
-    const router = useRouter()
-    const searchParams = useSearchParams();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-    const search = searchParams.get('search') ?? '';
+  const search = searchParams.get('search') ?? '';
+  const type = searchParams.get('type') ?? 'email'; // default to email
 
-    const updateSearch = useMemo(
-        () => 
-        debounce((value: string) => {
-            const params = new URLSearchParams(searchParams);
+  const searchParamsString = searchParams.toString();
 
-            if(value) {
-                params.set('search', value);
-            } else {
-                params.delete('search');
-            }
+  const updateSearch = useMemo(
+    () =>
+      debounce((value: string, searchType: string) => {
+        const params = new URLSearchParams(searchParamsString);
 
-            router.replace(`/dashboard/users?${params.toString()}`);
-        }, 400)
-    , [router, searchParams]);
+        params.set('type', searchType);
 
-    useEffect(() => {
-        return () => {
-            updateSearch.clear();
+        if (value) {
+          params.set('search', value);
+        } else {
+          params.delete('search');
         }
-    }, [updateSearch])
 
-    return (
-        <SearchField 
-            value={search}
-            placeholder='Search users...'
-            onChange={updateSearch}
-        />
-    )
+        router.replace(`?${params.toString()}`);
+      }, 300),
+    [router, searchParamsString],
+  );
 
+  useEffect(() => {
+    return () => {
+      updateSearch.clear();
+    };
+  }, [updateSearch]);
+
+  return (
+    <div className="flex gap-2">
+      <SearchSelect
+        value={type}
+        options={USERS_PARAMS}
+        handleChange={(newType) => updateSearch(search, newType)}
+      />
+      <SearchField
+        value={search}
+        placeholder={`Search users by ${type}...`}
+        onChange={(newValue) => updateSearch(newValue, type)}
+      />
+    </div>
+  );
 }

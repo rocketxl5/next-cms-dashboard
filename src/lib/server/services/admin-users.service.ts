@@ -1,7 +1,9 @@
 // lib/server/admin/admin-users.service.ts
 import prisma from '@/lib/prisma';
 import { Prisma } from '@prisma/client';
+
 import { DatabaseDashboardUser } from '@/types/db/database-dashboard-user';
+import { SearchUsersParams } from '@/types/shared';
 import { UserStatus } from '@/types/enums';
 import { AppRole } from '@/types/enums';
 
@@ -16,23 +18,58 @@ export async function getUser(
       name: true,
       email: true,
       role: true,
-      theme: true,
       status: true,
+      theme: true,
       createdAt: true,
       updatedAt: true,
     },
   });
 }
 
-export async function getUsers(): Promise<DatabaseDashboardUser[]> {
+export async function getUsers(
+  params?: SearchUsersParams,
+): Promise<DatabaseDashboardUser[]> {
+  const { search, type = 'email' } = params ?? {};
+
+  let where: Prisma.UserWhereInput | undefined;
+
+  if (search)
+    switch (type) {
+      case 'name':
+        where = {
+          name: { contains: search, mode: 'insensitive' },
+        };
+        break;
+      case 'email':
+        where = {
+          email: { contains: search, mode: 'insensitive' },
+        };
+        break;
+      case 'role':
+        where = {
+          role: search.toUpperCase() as AppRole,
+        };
+        break;
+      case 'status':
+        where = {
+          status: search.toUpperCase() as UserStatus,
+        };
+        break;
+      default:
+        where = {
+          email: { contains: search, mode: 'insensitive' },
+        };
+    }
+
   return prisma.user.findMany({
+    where,
     select: {
       id: true,
       name: true,
       email: true,
       role: true,
-      theme: true,
       status: true,
+      theme: true,
       createdAt: true,
       updatedAt: true,
     },
