@@ -29,37 +29,19 @@ export async function getUser(
 export async function getUsers(
   params?: SearchUsersParams,
 ): Promise<DatabaseDashboardUser[]> {
-  const { search, type = 'email' } = params ?? {};
+  const { search, type = 'email', role, status } = params ?? {};
 
-  let where: Prisma.UserWhereInput | undefined;
+  const where: Prisma.UserWhereInput = {};
 
-  if (search)
-    switch (type) {
-      case 'name':
-        where = {
-          name: { contains: search, mode: 'insensitive' },
-        };
-        break;
-      case 'email':
-        where = {
-          email: { contains: search, mode: 'insensitive' },
-        };
-        break;
-      case 'role':
-        where = {
-          role: search.toUpperCase() as AppRole,
-        };
-        break;
-      case 'status':
-        where = {
-          status: search.toUpperCase() as UserStatus,
-        };
-        break;
-      default:
-        where = {
-          email: { contains: search, mode: 'insensitive' },
-        };
-    }
+  // Text input search
+  if (search) {
+    if (type === 'name') where.name = { contains: search, mode: 'insensitive' };
+    if (type === 'email')
+      where.email = { contains: search, mode: 'insensitive' };
+  }
+  // Role & Status select filter
+  if (role) where.role = role;
+  if (status) where.status = status;
 
   return prisma.user.findMany({
     where,

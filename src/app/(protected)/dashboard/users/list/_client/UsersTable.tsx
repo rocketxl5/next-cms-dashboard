@@ -27,6 +27,7 @@ export function UsersTable({ users, currentUser }: UsersTableProps) {
     toggleUserSelection,
     handleUserRoleUpdate,
   );
+
   if (!users.length) return <div className="p4">No users found</div>;
 
   return (
