@@ -1,36 +1,53 @@
 'use client';
 
-import { Select } from '@/components/ui';
+import { Label, Select } from '@/components/ui';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
-import { UsersParams } from '@/types/shared';
 
-interface SearchSelectProps {
+interface SearchSelectProps<T extends string> {
+  label?: string;
   name?: string;
-  value: string;
-  options: readonly string[];
-  handleChange: (value: UsersParams) => void;
+  value: T | '';
+  options: readonly T[];
+  handleChange: (value: T) => void;
   disabled?: boolean;
+  placeholder?: string;
 }
 
-export function SearchSelect({
+export function SearchSelect<T extends string>({
+  label = '',
   name,
   value,
   options,
   handleChange,
   disabled = false,
-}: SearchSelectProps) {
+  placeholder = '',
+}: SearchSelectProps<T>) {
+  //   const handleSelectChange = (value: string) => {
+  //  const match = options.find((option) => option === value);
+
+  //  if (match) {
+  //    handleChange(match);
+  //  }
+  // };
   return (
-    <Select
-      name={name}
-      value={value}
-      disabled={disabled}
-      onChange={(e) => handleChange(e.target.value as UsersParams)}
-    >
-      {options.map((option) => (
-        <option key={option} value={option}>
-          {normalizeDisplayString(option)}
+    <div>
+      {label && <Label htmlFor={label}>{label}</Label>}
+
+      <Select
+        name={name}
+        value={value || ''}
+        disabled={disabled}
+        onChange={(e) => handleChange(e.target.value as T)}
+      >
+        <option value="" disabled className="text-white" hidden>
+          {placeholder ?? 'Select'}
         </option>
-      ))}
-    </Select>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {normalizeDisplayString(option)}
+          </option>
+        ))}
+      </Select>
+    </div>
   );
 }

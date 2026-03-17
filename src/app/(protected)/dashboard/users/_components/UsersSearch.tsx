@@ -10,29 +10,27 @@ import {
   UserSearchField,
   USER_SEARCH_FIELDS,
 } from '@/types/filters/users.filters';
+import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
 
 export function UsersSearch() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const urlSearch = searchParams.get('search') ?? '';
-  const urlType = searchParams.get('type') ?? 'email'; // default to email
-
   // Local state only for instant typing (not synced via effect)
-  const [search, setSearch] = useState(urlSearch);
-  const [type, setType] = useState(urlType);
-
-  //   const searchParamsString = searchParams.toString();
+  const [search, setSearch] = useState(searchParams.get('search') ?? '');
+  const [type, setType] = useState<UserSearchField>('email');
+  const [role, setRole] = useState<AppRole | ''>('');
+  const [status, setStatus] = useState<UserStatus | ''>('');
 
   const updateUrl = useMemo(
     () =>
-      debounce((value: string, searchType: string) => {
+      debounce((updates: Record<string, string | undefined>) => {
         const params = new URLSearchParams(window.location.search);
 
-        params.set('type', searchType);
-
-        if (value) params.set('search', value);
-        else params.delete('search');
+        Object.entries(updates).forEach(([key, value]) => {
+          if (value) params.set(key, value);
+          else params.delete(key);
+        });
 
         router.replace(`?${params.toString()}`);
       }, 300),
@@ -49,12 +47,22 @@ export function UsersSearch() {
   // Handlers
   const handleSearchChange = (value: string) => {
     setSearch(value); // instant typing
-    updateUrl(value, type); // debounced URL
+    updateUrl({ search: value, type }); // debounced URL
   };
 
-  const handleTypeChange = (newType: UserSearchField) => {
-    setType(newType); // instant select
-    updateUrl(search, newType); // debounced URL
+  const handleTypeChange = (value: UserSearchField) => {
+    setType(value); // instant select
+    updateUrl({ type: value }); // debounced URL
+  };
+
+  const handleRoleChange = (value: AppRole) => {
+    setRole(value);
+    updateUrl({ role: value });
+  };
+
+  const handleStatusChange = (value: UserStatus) => {
+    setStatus(value);
+    updateUrl({ status: value });
   };
 
   return (
@@ -63,6 +71,19 @@ export function UsersSearch() {
         value={type}
         options={USER_SEARCH_FIELDS}
         handleChange={(value: UserSearchField) => handleTypeChange(value)}
+      />
+      <SearchSelect
+        // label="Role"
+        value={role as AppRole}
+        options={APP_ROLES}
+        handleChange={(value: AppRole) => handleRoleChange(value)}
+        placeholder="Role"
+      />
+      <SearchSelect
+        value={status as UserStatus}
+        options={USER_STATUS}
+        handleChange={(value: UserStatus) => handleStatusChange(value)}
+        placeholder="Status"
       />
       <SearchField
         value={search}
