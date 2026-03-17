@@ -1,4 +1,4 @@
-import { RoleSelect } from '@/app/(protected)/dashboard/components';
+import { SearchSelect } from '@/app/(protected)/dashboard/components';
 import { RoleBadge, StatusBadge } from '../components';
 import { Checkbox, Link } from '@/components/ui';
 import { UserRow, UsersColumn } from '../../_domain';
@@ -54,7 +54,7 @@ export const buildUsersColumns = (
       );
 
       return (
-        <RoleSelect
+        <SearchSelect
           value={user.role}
           options={options}
           handleChange={(role) => handleUserRoleUpdate(user.id, role)}
