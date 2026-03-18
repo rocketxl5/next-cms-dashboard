@@ -7,3 +7,4 @@ export * from './Link';
 export * from './SearchField';
 export * from './Select';
 export * from './button';
+export * from './layout';

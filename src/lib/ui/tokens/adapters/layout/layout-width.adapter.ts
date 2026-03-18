@@ -1,4 +1,4 @@
-export const width = {
+export const elementWidth = {
   full: 'w-full',
   auto: 'w-auto',
   fit: 'w-fit',

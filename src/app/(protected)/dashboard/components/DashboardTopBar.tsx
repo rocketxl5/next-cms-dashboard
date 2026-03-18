@@ -30,10 +30,6 @@ export function DashboardTopBar({
           allowedBulkActions={allowedBulkActions}
           hasSelection={selectedCount > 0}
         />
-
-        <Link href="/dashboard/users/create" variant="button" radius="sm">
-          Create User
-        </Link>
       </div>
     </div>
   );

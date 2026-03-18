@@ -5,8 +5,10 @@ export const flexAlign = {
 } as const;
 
 export const flexJustify = {
-  start: 'justify-start',
+  around: 'justify-around',
   between: 'justify-between',
+  evenly: 'justify-evenly',
+  start: 'justify-start',
   end: 'justify-end',
 } as const;
 

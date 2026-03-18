@@ -4,7 +4,7 @@ import debounce from 'debounce';
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { Button, SearchField } from '@/components/ui';
+import { Box, Button, Input, Link, Stack } from '@/components/ui';
 import { SearchSelect } from '@/app/(protected)/dashboard/components';
 
 import {
@@ -73,32 +73,44 @@ export function UsersSearch() {
   };
 
   return (
-    <div className="flex flex-col gap-2">
-      <SearchSelect
-        value={type}
-        options={USER_SEARCH_FIELDS}
-        handleChange={(value: UserSearchField) => handleTypeChange(value)}
-      />
-      <SearchField
-        value={search}
-        placeholder={`Search by ${type}`}
-        onChange={handleSearchChange}
-      />
-      <SearchSelect
-        value={role as AppRole}
-        options={APP_ROLES}
-        handleChange={(value: AppRole) => handleRoleChange(value)}
-        placeholder="Role"
-      />
-      <SearchSelect
-        value={status as UserStatus}
-        options={USER_STATUS}
-        handleChange={(value: UserStatus) => handleStatusChange(value)}
-        placeholder="Status"
-      />
-      <Button onClick={() => handleReset('/dashboard/users')}>
-        Clear Search
-      </Button>
-    </div>
+    <Box className="flex justify-between">
+      <Stack direction="row" justify="evenly" width="1/2">
+        <Box className="w-sm flex gap-4">
+          <SearchSelect
+            value={type}
+            options={USER_SEARCH_FIELDS}
+            handleChange={(value: UserSearchField) => handleTypeChange(value)}
+          />
+          <Input
+            className="w-xs"
+            value={search}
+            placeholder={`Search by ${type}`}
+            onChange={() => handleSearchChange}
+          />
+        </Box>
+        <Box className="w-sm flex gap-4">
+          <SearchSelect
+            value={role as AppRole}
+            options={APP_ROLES}
+            handleChange={(value: AppRole) => handleRoleChange(value)}
+            placeholder="Role"
+          />
+          <SearchSelect
+            value={status as UserStatus}
+            options={USER_STATUS}
+            handleChange={(value: UserStatus) => handleStatusChange(value)}
+            placeholder="Status"
+          />
+          <Button onClick={() => handleReset('/dashboard/users')} size={'md'}>
+            Clear Search
+          </Button>
+        </Box>
+      </Stack>
+      <Box>
+        <Link href="/dashboard/users/create" variant="button" radius="sm">
+          Create User
+        </Link>
+      </Box>
+    </Box>
   );
 }
