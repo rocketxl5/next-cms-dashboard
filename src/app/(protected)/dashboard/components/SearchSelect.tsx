@@ -30,24 +30,21 @@ export function SearchSelect<T extends string>({
   //  }
   // };
   return (
-    <div>
+    <>
       {label && <Label htmlFor={label}>{label}</Label>}
-
       <Select
         name={name}
         value={value || ''}
         disabled={disabled}
         onChange={(e) => handleChange(e.target.value as T)}
       >
-        <option value="" disabled className="text-white" hidden>
-          {placeholder ?? 'Select'}
-        </option>
+        <option value="">{placeholder ?? 'Select'}</option>
         {options.map((option) => (
           <option key={option} value={option}>
             {normalizeDisplayString(option)}
           </option>
         ))}
       </Select>
-    </div>
+    </>
   );
 }

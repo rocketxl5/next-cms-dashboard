@@ -4,7 +4,7 @@ import debounce from 'debounce';
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { SearchField } from '@/components/ui';
+import { Button, SearchField } from '@/components/ui';
 import { SearchSelect } from '@/app/(protected)/dashboard/components';
 
 import {
@@ -58,25 +58,33 @@ export function UsersSearch() {
     updateUrl({ type: value }); // debounced URL
   };
 
-  const handleRoleChange = (value: AppRole) => {
+  const handleRoleChange = (value: AppRole | '') => {
     setRole(value);
-    updateUrl({ role: value });
+    updateUrl({ role: value || undefined });
   };
 
-  const handleStatusChange = (value: UserStatus) => {
+  const handleStatusChange = (value: UserStatus | '') => {
     setStatus(value);
-    updateUrl({ status: value });
+    updateUrl({ status: value || undefined });
+  };
+
+  const handleReset = (path: string) => {
+    router.replace(path);
   };
 
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-col gap-2">
       <SearchSelect
         value={type}
         options={USER_SEARCH_FIELDS}
         handleChange={(value: UserSearchField) => handleTypeChange(value)}
       />
+      <SearchField
+        value={search}
+        placeholder={`Search by ${type}`}
+        onChange={handleSearchChange}
+      />
       <SearchSelect
-        // label="Role"
         value={role as AppRole}
         options={APP_ROLES}
         handleChange={(value: AppRole) => handleRoleChange(value)}
@@ -88,11 +96,9 @@ export function UsersSearch() {
         handleChange={(value: UserStatus) => handleStatusChange(value)}
         placeholder="Status"
       />
-      <SearchField
-        value={search}
-        placeholder={`Search by ${type}`}
-        onChange={handleSearchChange}
-      />
+      <Button onClick={() => handleReset('/dashboard/users')}>
+        Clear Search
+      </Button>
     </div>
   );
 }

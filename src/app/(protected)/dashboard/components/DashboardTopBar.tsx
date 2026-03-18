@@ -1,12 +1,11 @@
 'use client';
 
-import { Link } from '@/components/ui';
+import { Button, Link } from '@/components/ui';
 import { UsersSearch } from '../users/_components/UsersSearch';
 import { ControlDropdownButton } from './button/ControlDropdownButton';
 
 import { BulkUserAction } from '../users/list/_domain';
 import { useUserSelection } from '@/providers/UserSelectionProvider';
-import { UserRow } from '../users/list/_domain';
 
 type DashboardTopBarProps = {
   allowedBulkActions: BulkUserAction[];
@@ -32,12 +31,7 @@ export function DashboardTopBar({
           hasSelection={selectedCount > 0}
         />
 
-        <Link
-          href="/dashboard/users/create"
-          variant="button"
-          size="lg"
-          radius="sm"
-        >
+        <Link href="/dashboard/users/create" variant="button" radius="sm">
           Create User
         </Link>
       </div>

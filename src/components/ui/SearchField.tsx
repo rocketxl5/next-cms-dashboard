@@ -8,7 +8,11 @@ type SearchFieldProps = {
   onChange: (value: string) => void;
 };
 
-export function SearchField({ value, placeholder, onChange }: SearchFieldProps) {
+export function SearchField({
+  value,
+  placeholder,
+  onChange,
+}: SearchFieldProps) {
   return (
     <Input
       type="search"

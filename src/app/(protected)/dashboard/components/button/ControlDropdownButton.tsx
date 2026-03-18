@@ -24,7 +24,6 @@ export function ControlDropdownButton({
     <div className="relative">
       <Button
         variant="muted"
-        size="lg"
         radius="sm"
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         disabled={!hasSelection}
