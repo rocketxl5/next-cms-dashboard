@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Link } from '@/components/ui';
+import { Link } from '@/components/ui';
 import { UsersSearch } from '../users/_components/UsersSearch';
 import { ControlDropdownButton } from './button/ControlDropdownButton';
 
