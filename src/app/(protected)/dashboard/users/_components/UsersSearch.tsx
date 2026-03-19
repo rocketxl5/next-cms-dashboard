@@ -110,7 +110,11 @@ export function UsersSearch() {
             handleChange={(value: UserStatus) => handleStatusChange(value)}
             placeholder="Status"
           />
-          <Button onClick={() => handleReset('/dashboard/users')} size={'md'}>
+          <Button
+            onClick={() => handleReset('/dashboard/users')}
+            size={'md'}
+            variant="muted"
+          >
             Clear Search
           </Button>
         </Box>

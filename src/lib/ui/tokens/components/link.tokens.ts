@@ -5,13 +5,13 @@ export const linkTokens = {
   base: 'inline-flex items-center transition-colors',
   variant: {
     default: `${color.muted.foreground} hover:${color.foreground}`,
-    primary: `${color.primary.foreground} hover:opacity-80`,
     subtle: `${color.muted.foreground} hover:${color.foreground}`,
     // navigation
     nav: `hover:${color.foreground}`,
 
     // button-like
-    button: `${color.primary.background} text-white hover:opacity-[.95]`,
+    primary: `${color.primary.background} text-white hover:opacity-90`,
+    success: `${color.success.background} text-white hover:opacity-90`,
     muted: `${color.muted.background} ${color.muted.foreground}`,
   },
 

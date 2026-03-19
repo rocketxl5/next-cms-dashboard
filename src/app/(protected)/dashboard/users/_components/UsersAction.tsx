@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
 
 import { Box, Link } from '@/components/ui';
 import { Select } from '@/components/ui';
@@ -22,7 +21,7 @@ export function UsersAction({
   const { isLoading, setIsLoading, selectedUserIds, clearSelection } =
     useUserSelection();
   //   const router = useRouter();
-  const [action, setAction] = useState(''); 
+  const [action, setAction] = useState('');
 
   const handleChange = async (actionKey: BulkUserActionKey) => {
     try {
@@ -39,10 +38,6 @@ export function UsersAction({
 
   return (
     <Box className="flex w-sm gap-4">
-      {/* <SearchSelect /> */}
-      <Link href="/dashboard/users/create" variant="button" radius="sm">
-        Create User
-      </Link>
       <Select
         value={!isLoading ? '' : action}
         disabled={!hasSelection}

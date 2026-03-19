@@ -30,6 +30,9 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useTheme } from '@/providers';
+
+import { Button } from '../Button';
+
 import { signOut } from '@/lib/shared';
 
 export function SignoutBtn() {
@@ -41,7 +44,7 @@ export function SignoutBtn() {
     setLoading(true);
 
     try {
-      await signOut()
+      await signOut();
       setDefaultTheme();
       router.refresh(); // re-evaluate layouts
       router.push('/auth/signin');
@@ -51,12 +54,8 @@ export function SignoutBtn() {
   }
 
   return (
-    <button
-      onClick={handleSignOut}
-      disabled={loading}
-      className="rounded border px-4 py-2 mx-2"
-    >
+    <Button onClick={handleSignOut} disabled={loading} variant="muted">
       {loading ? 'Signing out...' : 'Sign Out'}
-    </button>
+    </Button>
   );
 }
