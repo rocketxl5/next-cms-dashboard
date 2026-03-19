@@ -16,10 +16,11 @@ import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
 export function UsersSearch() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const DEFAULT_TYPE: UserSearchField = 'email';
 
   // Local state only for instant typing (not synced via effect)
   const [search, setSearch] = useState(searchParams.get('search') ?? '');
-  const [type, setType] = useState<UserSearchField>('email');
+  const [type, setType] = useState<UserSearchField>(DEFAULT_TYPE);
   const [role, setRole] = useState<AppRole | ''>('');
   const [status, setStatus] = useState<UserStatus | ''>('');
 
@@ -27,8 +28,8 @@ export function UsersSearch() {
     () =>
       debounce((updates: Record<string, string | undefined>) => {
         const params = new URLSearchParams(window.location.search);
-        console.log('updates', updates);
-        console.log('params', `${params.toString()}`);
+        // console.log('updates', updates);
+        // console.log('params', `${params.toString()}`);
 
         Object.entries(updates).forEach(([key, value]) => {
           if (value) params.set(key, value);
@@ -69,6 +70,14 @@ export function UsersSearch() {
   };
 
   const handleReset = (path: string) => {
+    // 1. Clear local state
+    setSearch('');
+    setType(DEFAULT_TYPE);
+    setRole('');
+    setStatus('');
+    // 2. Cancel any pending debounce
+    updateUrl.clear();
+    // 3. Reset URL cleanly
     router.replace(path);
   };
 
