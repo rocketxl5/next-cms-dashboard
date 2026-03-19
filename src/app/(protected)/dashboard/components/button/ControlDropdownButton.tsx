@@ -17,7 +17,6 @@ export function ControlDropdownButton({
 
   const handleClick = (actionKey: BulkUserActionKey) => {
     handleBulkAction(actionKey, selectedUserIds, clearSelection);
-    setIsDropdownOpen(false);
   };
 
   return (

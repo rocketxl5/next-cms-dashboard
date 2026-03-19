@@ -4,7 +4,7 @@ import debounce from 'debounce';
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { Box, Button, Input, Link, Stack } from '@/components/ui';
+import { Box, Button, Input, Stack } from '@/components/ui';
 import { SearchSelect } from '@/app/(protected)/dashboard/components';
 
 import {
@@ -73,9 +73,9 @@ export function UsersSearch() {
   };
 
   return (
-    <Box className="flex justify-between">
-      <Stack direction="row" justify="evenly" width="1/2">
-        <Box className="w-sm flex gap-4">
+    <Box className="flex justify-between" width="2/3">
+      <Stack direction="row" justify="evenly" width="full">
+        <Box className="flex gap-4">
           <SearchSelect
             value={type}
             options={USER_SEARCH_FIELDS}
@@ -85,7 +85,7 @@ export function UsersSearch() {
             className="w-xs"
             value={search}
             placeholder={`Search by ${type}`}
-            onChange={() => handleSearchChange}
+            onChange={(e) => handleSearchChange(e.target.value)}
           />
         </Box>
         <Box className="w-sm flex gap-4">
@@ -106,11 +106,6 @@ export function UsersSearch() {
           </Button>
         </Box>
       </Stack>
-      <Box>
-        <Link href="/dashboard/users/create" variant="button" radius="sm">
-          Create User
-        </Link>
-      </Box>
     </Box>
   );
 }

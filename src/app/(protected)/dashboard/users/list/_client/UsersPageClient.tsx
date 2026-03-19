@@ -1,7 +1,7 @@
 'use client';
 
 import { UsersTable } from './UsersTable';
-import { DashboardTopBar } from '../../../components';
+import { DashboardSearchBar } from '@/app/(protected)/dashboard/components';
 import { useUserSelection } from '@/providers';
 import { CurrentDashboardUser } from '@/types/shared';
 import { UserRow } from '../_domain';
@@ -12,10 +12,7 @@ type UsersPageClientProps = {
   currentUser: CurrentDashboardUser;
 };
 
-export function UsersPageClient({
-  users,
-  currentUser,
-}: UsersPageClientProps) {
+export function UsersPageClient({ users, currentUser }: UsersPageClientProps) {
   const { selectedUserIds } = useUserSelection();
   const selectedCount = selectedUserIds.size;
   const selectedUsers = getSelectedUsers({ selectedUserIds, users });
@@ -25,7 +22,7 @@ export function UsersPageClient({
   });
   return (
     <>
-      <DashboardTopBar
+      <DashboardSearchBar
         allowedBulkActions={allowedBulkActions}
         selectedCount={selectedCount}
       />
