@@ -25,7 +25,8 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           pr-8
           text-sm
           focus:outline-none
-          focus:ring-2
+          focus:ring-inset
+          focus:ring-1
           focus:ring-ring
           disabled:opacity-50
           disabled:pointer-events-none

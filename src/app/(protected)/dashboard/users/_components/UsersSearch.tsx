@@ -24,6 +24,8 @@ export function UsersSearch() {
   const [role, setRole] = useState<AppRole | ''>('');
   const [status, setStatus] = useState<UserStatus | ''>('');
 
+  const isSearchActive = search.trim() !== '' || role !== '' || status !== '';
+
   const updateUrl = useMemo(
     () =>
       debounce((updates: Record<string, string | undefined>) => {
@@ -97,6 +99,7 @@ export function UsersSearch() {
         </Box>
         <Box className="w-sm flex gap-4">
           <SearchSelect
+            className={role && 'ring-1 ring-inset ring-ring'}
             value={role as AppRole}
             options={APP_ROLES}
             handleChange={(value: AppRole) => handleRoleChange(value)}
@@ -112,6 +115,7 @@ export function UsersSearch() {
             onClick={() => handleReset('/dashboard/users')}
             size={'md'}
             variant="muted"
+            disabled={!isSearchActive}
           >
             Clear Search
           </Button>

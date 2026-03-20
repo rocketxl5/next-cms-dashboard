@@ -1,24 +1,23 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { InputProps } from '@/types/form';
+import { inputVariants, type InputVariants } from '@/lib/ui/variants';
+
+type InputProps = React.InputHTMLAttributes<HTMLInputElement> & InputVariants;
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type = 'text', ...props }, ref) => {
+  (
+    { className, type = 'text', size, border, layout, ...props }: InputProps,
+    ref,
+  ) => {
     return (
       <input
         ref={ref}
         type={type}
-        className={cn(
-          'w-full rounded-md border px-3 py-2 text-sm',
-          'bg-muted text-foreground border-muted-foreground',
-          'focus:outline-none focus:ring-1 focus:ring-primary',
-          'disabled:opacity-50 disabled:cursor-not-allowed',
-          className,
-        )}
+        className={cn(inputVariants({ size, border, layout }), className)}
         {...props}
       />
     );
   },
 );
 
-Input.displayName = "Input";
+Input.displayName = 'Input';

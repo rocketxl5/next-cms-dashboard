@@ -4,6 +4,7 @@ import { Label, Select } from '@/components/ui';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 interface SearchSelectProps<T extends string> {
+  className?: string;
   label?: string;
   name?: string;
   value: T | '';
@@ -14,6 +15,7 @@ interface SearchSelectProps<T extends string> {
 }
 
 export function SearchSelect<T extends string>({
+  className,
   label = '',
   name,
   value,
@@ -33,6 +35,7 @@ export function SearchSelect<T extends string>({
     <>
       {label && <Label htmlFor={label}>{label}</Label>}
       <Select
+        className={className}
         name={name}
         value={value || ''}
         disabled={disabled}

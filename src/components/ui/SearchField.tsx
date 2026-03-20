@@ -2,7 +2,7 @@
 
 import { Input } from './Input';
 
-type SearchFieldProps = {
+interface SearchFieldProps {
   value?: string;
   placeholder?: string;
   onChange: (value: string) => void;

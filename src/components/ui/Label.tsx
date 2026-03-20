@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-type LabelProps = {
+interface LabelProps {
   htmlFor?: string;
   children: React.ReactNode;
   required?: boolean;
