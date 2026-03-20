@@ -4,6 +4,7 @@ import { linkTokens } from '../tokens/components';
 export const linkVariants = cva(linkTokens.base, {
   variants: {
     variant: linkTokens.variant,
+    border: linkTokens.border,
     size: linkTokens.size,
     layout: linkTokens.layout,
     radius: linkTokens.radius,

@@ -28,8 +28,6 @@ export function UsersSearch() {
     () =>
       debounce((updates: Record<string, string | undefined>) => {
         const params = new URLSearchParams(window.location.search);
-        // console.log('updates', updates);
-        // console.log('params', `${params.toString()}`);
 
         Object.entries(updates).forEach(([key, value]) => {
           if (value) params.set(key, value);

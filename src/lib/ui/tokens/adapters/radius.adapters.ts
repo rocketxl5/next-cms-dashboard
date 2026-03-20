@@ -1,4 +1,4 @@
-export const radiusAdapter = {
+export const radiusAdapters = {
   sm: 'rounded-sm',
   md: 'rounded-md',
   lg: 'rounded-lg',

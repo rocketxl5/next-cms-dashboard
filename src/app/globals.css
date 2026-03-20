@@ -6,7 +6,7 @@
   /* General */
   --background: 0 0% 100%;
   --foreground: 222 47% 11%;
-  
+
   /* Button colors */
   --primary: 221 83% 53%;
   --primary-foreground: 210 40% 98%;
@@ -19,14 +19,14 @@
   --muted-foreground: 215 16% 47%;
 
   /* Feedback colors */
-  --success: 145 63% 45%;          /* green for background */
+  --success: 145 63% 45%; /* green for background */
   --success-foreground: 145 55% 15%; /* darker green for text */
 
-  --warning: 45 100% 50%;          /* yellow/orange background */
-  --warning-foreground: 45 90% 15%;  /* dark yellow/orange text */
+  --warning: 45 100% 50%; /* yellow/orange background */
+  --warning-foreground: 45 90% 15%; /* dark yellow/orange text */
 
-  --info: 210 90% 60%;             /* bright blue background */
-  --info-foreground: 210 60% 15%;   /* darker blue text */
+  --info: 210 90% 60%; /* bright blue background */
+  --info-foreground: 210 60% 15%; /* darker blue text */
 
   /* Role badge colors */
   --role-super-admin-bg: 0 84% 90%; /* light red */
@@ -47,6 +47,10 @@
 
   --status-suspended-bg: 45 100% 90%; /* light yellow (10% opacity style) */
   --status-suspended-fg: 45 95% 37%; /* yellow text */
+
+  --border: 214 32% 91%; /* default */
+  --border-subtle: 210 20% 94%; /* lighter than border */
+  --border-strong: 215 16% 70%; /* darker for emphasis */
 }
 
 /* Dark theme */
@@ -62,8 +66,11 @@
 
   --muted: 223 47% 11%;
   --muted-foreground: 215 20% 65%;
-}
 
+  --border: 217 33% 17%;
+  --border-subtle: 217 25% 22%;
+  --border-strong: 215 20% 65%;
+}
 
 /* Remove browser default */
 select {
@@ -82,7 +89,6 @@ option {
   color: black;
 }
 
-
 .dark select {
   background-color: hsl(222, 47%, 11%);
   color: hsl(210, 40%, 98%);
@@ -92,8 +98,6 @@ option {
   background-color: hsl(222, 47%, 11%);
   color: hsl(210, 40%, 98%);
 }
-
-
 
 /* Base body styles */
 body {

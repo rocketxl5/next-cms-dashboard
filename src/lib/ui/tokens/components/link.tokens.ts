@@ -1,5 +1,5 @@
 import { color, size } from '../primitives';
-import { textAdapter, radiusAdapter } from '../adapters';
+import { borderAdapters, textAdapters, radiusAdapters } from '../adapters';
 
 export const linkTokens = {
   base: 'inline-flex items-center transition-colors',
@@ -15,22 +15,29 @@ export const linkTokens = {
     muted: `${color.muted.background} ${color.muted.foreground}`,
   },
 
+  border: {
+    none: borderAdapters.width.none,
+    default: `${borderAdapters.width.hairline} ${borderAdapters.color.default}`,
+    subtle: `${borderAdapters.width.hairline} ${borderAdapters.color.strong}`,
+    strong: `${borderAdapters.width.thin} ${borderAdapters.color.strong}`,
+  },
+
   layout: {
     inline: 'w-auto',
     block: 'w-full',
   },
 
   radius: {
-    sm: radiusAdapter.sm,
-    md: radiusAdapter.md,
-    lg: radiusAdapter.lg,
-    full: radiusAdapter.full,
-    none: radiusAdapter.none,
+    sm: radiusAdapters.sm,
+    md: radiusAdapters.md,
+    lg: radiusAdapters.lg,
+    full: radiusAdapters.full,
+    none: radiusAdapters.none,
   },
 
   size: {
-    sm: `${textAdapter.sm} ${size.height.sm} ${size.padding.sm}`,
-    md: `${textAdapter.sm} ${size.height.md} ${size.padding.md}`,
-    lg: `${textAdapter.lg} ${size.height.lg} ${size.padding.lg}`,
+    sm: `${textAdapters.sm} ${size.height.sm} ${size.padding.sm}`,
+    md: `${textAdapters.sm} ${size.height.md} ${size.padding.md}`,
+    lg: `${textAdapters.lg} ${size.height.lg} ${size.padding.lg}`,
   },
 } as const;

@@ -89,4 +89,28 @@
   .text-status-suspended {
     color: hsl(var(--status-suspended-fg));
   }
+
+  /* Border colors */
+
+  .border-border {
+    border-color: hsl(var(--border));
+  }
+  .border-subtle {
+    border-color: hsl(var(--border-subtle));
+  }
+  .border-strong {
+    border-color: hsl(var(--border-strong));
+  }
+  .border-foreground {
+    border-color: hsl(var(--foreground));
+  }
+  .border-primary {
+    border-color: hsl(var(--primary));
+  }
+  .border-success {
+    border-color: hsl(var(--success));
+  }
+  .border-destructive {
+    border-color: hsl(var(--destructive));
+  }
 }
