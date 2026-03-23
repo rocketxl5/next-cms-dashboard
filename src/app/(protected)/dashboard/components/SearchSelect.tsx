@@ -8,6 +8,7 @@ interface SearchSelectProps<T extends string> {
   label?: string;
   name?: string;
   value: T | '';
+  size?: string | undefined;
   options: readonly T[];
   handleChange: (value: T) => void;
   disabled?: boolean;

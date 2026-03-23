@@ -5,6 +5,6 @@ export * from './Input';
 export * from './Label';
 export * from './Link';
 export * from './SearchField';
-export * from './Select';
+export * from './Select_';
 export * from './button';
 export * from './layout';

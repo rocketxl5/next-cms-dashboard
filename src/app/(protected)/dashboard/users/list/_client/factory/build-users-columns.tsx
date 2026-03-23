@@ -54,11 +54,13 @@ export const buildUsersColumns = (
       );
 
       return (
-        <SearchSelect
-          value={user.role}
-          options={options}
-          handleChange={(role) => handleUserRoleUpdate(user.id, role)}
-        />
+        <div className="flex">
+          <SearchSelect
+            value={user.role}
+            options={options}
+            handleChange={(role) => handleUserRoleUpdate(user.id, role)}
+          />
+        </div>
       );
     },
   },

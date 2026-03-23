@@ -3,41 +3,44 @@
 
   /* Muted */
   .bg-muted {
-    background-color: hsl(var(--muted));
+    background-color: var(--color-muted);
   }
   .text-muted-foreground {
-    color: hsl(var(--muted-foreground));
+    color: var(--color-muted-foreground);
+  }
+
+  .color-primary {
+    color: var(--color-primary);
   }
 
   /* Button */
   .bg-primary {
-    background-color: hsl(var(--primary));
+    background-color: var(--color-primary);
   }
   .text-primary-foreground {
-    color: hsl(var(--primary-foreground));
+    color: var(--color-primary-foreground);
   }
   .bg-destructive {
-    background-color: hsl(var(--destructive));
+    background-color: var(--color-destructive);
   }
   .text-destructive-foreground {
-    color: hsl(var(--destructive-foreground));
+    color: var(--color-destructive-foreground);
   }
 
   /* Feedback colors */
   .text-success-foreground {
-    color: hsl(var(--success-foreground));
+    color: var(--color-success-foreground);
   }
   .bg-success {
-    background-color: hsl(var(--success));
+    background-color: var(--color-success);
   }
 
   .text-warning-foreground {
     color: hsl(var(--warning-foreground));
   }
   .bg-warning {
-    background-color: hsl(var(--warning));
+    background-color: var(--color-warning);
   }
-
   .text-info-foreground {
     color: hsl(var(--info-foreground));
   }
@@ -91,26 +94,25 @@
   }
 
   /* Border colors */
-
   .border-border {
-    border-color: hsl(var(--border));
+    border-color: var(--color-border);
   }
   .border-subtle {
-    border-color: hsl(var(--border-subtle));
+    border-color: var(--color-border-subtle);
   }
   .border-strong {
-    border-color: hsl(var(--border-strong));
+    border-color: var(--color-border-strong);
   }
   .border-foreground {
-    border-color: hsl(var(--foreground));
+    border-color: var(--color-foreground);
   }
   .border-primary {
-    border-color: hsl(var(--primary));
+    border-color: var(--color-primary);
   }
   .border-success {
-    border-color: hsl(var(--success));
+    border-color: var(--color-success);
   }
   .border-destructive {
-    border-color: hsl(var(--destructive));
+    border-color: var(--color-destructive);
   }
 }

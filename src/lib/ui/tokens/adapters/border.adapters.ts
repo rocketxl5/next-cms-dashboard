@@ -8,6 +8,7 @@ const width = {
 const color = {
   default: 'border-border',
   subtle: 'border-subtle',
+  muted: 'border-muted',
   strong: 'border-strong',
   primary: 'border-primary',
   success: 'border-success',

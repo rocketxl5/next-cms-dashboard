@@ -82,24 +82,25 @@ export function UsersSearch() {
   };
 
   return (
-    <Box className="flex justify-between" width="2/3">
-      <Stack direction="row" justify="evenly" width="full">
-        <Box className="flex gap-4">
-          <SearchSelect
-            value={type}
-            options={USER_SEARCH_FIELDS}
-            handleChange={(value: UserSearchField) => handleTypeChange(value)}
-          />
+    <Box className="flex justify-between" width="1/2">
+      <Stack direction="row" justify="between" width="full">
+        <Box className="flex rounded-md border  border-gray-100 focus-wihtin:ring-1 focus-within:ring-ring  focus-within:border-gray-900">
           <Input
-            className="w-xs"
+            className="w-2xs border-0 rounded-r-none focus:ring-0"
             value={search}
             placeholder={`Search by ${type}`}
             onChange={(e) => handleSearchChange(e.target.value)}
           />
-        </Box>
-        <Box className="w-sm flex gap-4">
+          <div className="w-px h-6 bg-border" />
           <SearchSelect
-            className={role && 'ring-1 ring-inset ring-ring'}
+            className="border-0 rounded-l-none -ml-px focus:ring-0"
+            value={type}
+            options={USER_SEARCH_FIELDS}
+            handleChange={(value: UserSearchField) => handleTypeChange(value)}
+          />
+        </Box>
+        <Box className="flex gap-4 justify-evenly">
+          <SearchSelect
             value={role as AppRole}
             options={APP_ROLES}
             handleChange={(value: AppRole) => handleRoleChange(value)}

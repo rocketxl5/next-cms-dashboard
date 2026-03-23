@@ -1,5 +1,5 @@
 import { size } from '../primitives';
-import { borderAdapters } from '../adapters';
+import { borderAdapters, layoutAdapters } from '../adapters';
 
 export const inputTokens = {
   base: `
@@ -16,10 +16,10 @@ export const inputTokens = {
 
   variant: {
     default: '',
-    subtle: 'bg-muted border-muted',
-    ghost: 'border-transparent bg-transparent',
-    error: 'border-red-500 focus:ring-red-500',
-    success: 'border-green-500 focus:ring-green-500',
+    subtle: `${borderAdapters.color.muted} bg-muted border-muted`,
+    ghost: `border-transparent bg-transparent`,
+    error: `${borderAdapters.color.destructive} focus:ring-red-500`,
+    success: `${borderAdapters.color.success} focus:ring-green-500`,
   },
 
   border: {
@@ -36,10 +36,10 @@ export const inputTokens = {
   },
 
   layout: {
-    block: 'w-full', // default form usage
-    inline: 'w-auto', // fits content / inline UI
-    fit: 'w-fit', // shrinks to content strictly
-    grow: 'flex-1 min-w-0', // fills available space in flex layouts
+    block: layoutAdapters.elementWidth.full, // default form usage
+    inline: layoutAdapters.elementWidth.auto, // fits content / inline UI
+    fit: layoutAdapters.elementWidth.fit, // shrinks to content strictly
+    grow: layoutAdapters.elementWidth.grow, // fills available space in flex layouts
     fixed: '', // no width applied (fully controlled externally)
   },
 
