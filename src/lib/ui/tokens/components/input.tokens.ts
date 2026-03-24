@@ -1,15 +1,14 @@
 import { size } from '../primitives';
 import { borderAdapters, layoutAdapters } from '../adapters';
+import { focusTokens } from './focus.tokens';
 
 export const inputTokens = {
   base: `
     rounded-md
     text-sm
     text-foreground
-    focus:outline-none
-    focus:ring-inset
-    focus:ring-1
-    focus:ring-ring
+    border
+    ${focusTokens.base}
     disabled:opacity-50
     disabled:cursor-not-allowed
   `,
@@ -18,13 +17,15 @@ export const inputTokens = {
     default: '',
     subtle: `${borderAdapters.color.muted} bg-muted border-muted`,
     ghost: `border-transparent bg-transparent`,
-    error: `${borderAdapters.color.destructive} focus:ring-red-500`,
-    success: `${borderAdapters.color.success} focus:ring-green-500`,
+    error: `${borderAdapters.color.destructive} focus:ring-[hsl(var(--destructive))]`,
+    success: `${borderAdapters.color.success} focus:ring-[hsl(var(--success))]`,
   },
 
   border: {
     none: borderAdapters.width.none,
-    default: `${borderAdapters.width.hairline} ${borderAdapters.color.default}`,
+    default: `${borderAdapters.width.hairline} ${borderAdapters.color.default}   focus:border-[hsl(var(--border-focus))]
+  focus:ring-1
+  focus:ring-[hsl(var(--border-focus))]`,
     subtle: `${borderAdapters.width.hairline} ${borderAdapters.color.strong}`,
     strong: `${borderAdapters.width.thin} ${borderAdapters.color.strong}`,
   },
@@ -41,11 +42,5 @@ export const inputTokens = {
     fit: layoutAdapters.elementWidth.fit, // shrinks to content strictly
     grow: layoutAdapters.elementWidth.grow, // fills available space in flex layouts
     fixed: '', // no width applied (fully controlled externally)
-  },
-
-  defaultVariants: {
-    size: 'md',
-    border: 'default',
-    layout: 'block',
   },
 } as const;

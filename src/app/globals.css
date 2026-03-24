@@ -52,8 +52,12 @@
   --border-subtle: 210 20% 94%; /* lighter than border */
   --border-strong: 215 16% 70%; /* darker for emphasis */
 
+  /* Focus system */
+  --border-focus: 221 83% 53%; /* primary *
+
+
   /* Colors */
-  --color-primary: hsl(var(--primary));
+  --color-primary: rgb(36, 99, 235);
   --color-primary-foreground: hsl(var(--primary-foreground));
   --color-success: hsl(var(--success));
   --color-success-foreground: hsl(var(--success-foreground));
@@ -71,6 +75,8 @@
   --color-border: hsl(var(--border));
   --corlor-border-subtle: hsl(var(--border-subtle));
   --corlor-border-strong: hsl(var(--border-strong));
+  --corlor-border-focus: hsl(var(--border-focus)); /* primary */
+  
 }
 
 /* Dark theme */

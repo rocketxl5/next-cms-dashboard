@@ -8,6 +8,7 @@ export const selectVariants = cva(selectTokens.base, {
     border: selectTokens.border,
     layout: selectTokens.layout,
     radius: selectTokens.radius,
+    focus: selectTokens.focus,
 
     active: {
       true: '',
@@ -21,8 +22,9 @@ export const selectVariants = cva(selectTokens.base, {
     layout: 'inline',
     border: 'default',
     radius: 'md',
+    focus: true,
     active: false,
-  }
+  },
 });
 
 export type SelectVariants = VariantProps<typeof selectVariants>;

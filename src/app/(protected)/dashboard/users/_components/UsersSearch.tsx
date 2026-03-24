@@ -3,8 +3,9 @@
 import debounce from 'debounce';
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { cn } from '@/lib/utils';
 
-import { Box, Button, Input, Stack } from '@/components/ui';
+import { Box, Button, Input, Select, Stack } from '@/components/ui';
 import { SearchSelect } from '@/app/(protected)/dashboard/components';
 
 import {
@@ -12,6 +13,7 @@ import {
   USER_SEARCH_FIELDS,
 } from '@/types/filters/users.filters';
 import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
+import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 export function UsersSearch() {
   const router = useRouter();
@@ -84,20 +86,59 @@ export function UsersSearch() {
   return (
     <Box className="flex justify-between" width="1/2">
       <Stack direction="row" justify="between" width="full">
-        <Box className="flex rounded-md border  border-gray-100 focus-wihtin:ring-1 focus-within:ring-ring  focus-within:border-gray-900">
+        <Box
+          className={cn(
+            'flex rounded-md',
+            'border border-[hsl(var(--border))]',
+            'focus-within:border-[hsl(var(--border-focus))]',
+            'focus-within:ring-1',
+            'focus-within:ring-[hsl(var(--border-focus))]',
+            'focus-within:ring-inset',
+          )}
+        >
           <Input
-            className="w-2xs border-0 rounded-r-none focus:ring-0"
+            className="
+              w-2xs 
+              rounded-r-none 
+              border-0
+              focus:ring-0 
+              focus:border-transparent 
+              focus:outline-none
+            "
             value={search}
             placeholder={`Search by ${type}`}
             onChange={(e) => handleSearchChange(e.target.value)}
           />
-          <div className="w-px h-6 bg-border" />
-          <SearchSelect
-            className="border-0 rounded-l-none -ml-px focus:ring-0"
-            value={type}
-            options={USER_SEARCH_FIELDS}
-            handleChange={(value: UserSearchField) => handleTypeChange(value)}
+          <div
+            className="
+            w-px 
+            h-6 
+            bg-border
+          "
           />
+          <Select
+            className="
+              appearance-none
+              border-0 
+              rounded-l-none 
+              bg-transparent!
+              focus:ring-0 
+              focus:border-transparent 
+              focus:outline-none
+            "
+            focus={false}
+            value={type}
+            border="none"
+            onChange={(e) =>
+              handleTypeChange(e.target.value as UserSearchField)
+            }
+          >
+            {USER_SEARCH_FIELDS.map((option) => (
+              <option key={option} value={option}>
+                {normalizeDisplayString(option)}
+              </option>
+            ))}
+          </Select>
         </Box>
         <Box className="flex gap-4 justify-evenly">
           <SearchSelect

@@ -1,52 +1,54 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
+import {
+  selectVariants,
+  SelectVariants,
+} from '@/lib/ui/variants/select.variants';
 
-type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
-  wrapperClassName?: string;
-};
+type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> &
+  SelectVariants & {
+    wrapperClassName?: string;
+  };
 
 export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  ({ className, wrapperClassName, children, ...props }, ref) => {
+  (
+    {
+      className,
+      wrapperClassName,
+      size,
+      border,
+      layout,
+      children,
+      radius,
+      variant,
+      focus,
+      ...props
+    },
+    ref,
+  ) => {
     return (
       <div className={cn('relative', wrapperClassName)}>
         <select
-          ref={ref} // <-- forward ref for RHF
+          ref={ref}
           className={cn(
-            `
-          appearance-none
-          w-full
-          rounded-md
-          border
-          border-border
-          bg-background
-          text-foreground
-          px-3
-          py-2
-          pr-8
-          text-sm
-          focus:outline-none
-          focus:ring-inset
-          focus:ring-1
-          focus:ring-ring
-          disabled:opacity-50
-          disabled:pointer-events-none
-          `,
+            selectVariants({ size, border, layout, radius, variant, focus }),
             className,
           )}
           {...props}
         >
           {children}
         </select>
+
         {/* arrow */}
         <span
-          className="
-          pointer-events-none
-          absolute
-          right-2
-          top-1/2
-          -translate-y-1/2
-          text-muted-foreground
-        "
+          className={cn(
+            'pointer-events-none absolute top-1/2 -translate-y-1/2 text-muted-foreground',
+            {
+              sm: 'right-2 text-xs',
+              md: 'right-2.5 text-sm',
+              lg: 'right-3 text-base',
+            }[size ?? 'md'],
+          )}
         >
           ▼
         </span>

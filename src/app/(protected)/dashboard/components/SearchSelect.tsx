@@ -7,6 +7,7 @@ interface SearchSelectProps<T extends string> {
   className?: string;
   label?: string;
   name?: string;
+  border?: string;
   value: T | '';
   size?: string | undefined;
   options: readonly T[];
@@ -19,6 +20,7 @@ export function SearchSelect<T extends string>({
   className,
   label = '',
   name,
+  border,
   value,
   options,
   handleChange,

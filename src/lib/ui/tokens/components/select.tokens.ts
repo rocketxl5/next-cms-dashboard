@@ -7,20 +7,16 @@ export const selectTokens = {
     rounded-md
     text-sm
     text-foreground
-    bg-background
     focus:outline-none
-    focus:ring-inset
-    focus:ring-1
-    focus:ring-ring
     disabled:opacity-50
     disabled:pointer-events-none
   `,
 
   variant: {
     default: 'focus:ring-primary',
-    subtle: `${color.muted.background} focus:ring-muted`,
-    error: `${color.destructive.background} focus:ring-red-500`,
-    success: `${color.success.background} focus:ring-green-500`,
+    subtle: `${color.muted.background}`,
+    error: `${color.destructive.background} focus:ring-[hsl(var(--destructive))]`,
+    success: `${color.success.background} focus:ring-[hsl(var(--success))]`,
   },
 
   size: {
@@ -50,5 +46,10 @@ export const selectTokens = {
     lg: radiusAdapters.lg,
     full: radiusAdapters.full,
     none: radiusAdapters.none,
+  },
+
+  focus: {
+    true: 'focus:ring-1 focus:ring-ring',
+    false: '',
   },
 };

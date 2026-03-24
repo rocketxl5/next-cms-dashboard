@@ -115,4 +115,7 @@
   .border-destructive {
     border-color: var(--color-destructive);
   }
+  .border-focus {
+    border-color: var(--corlor-border-focus)
+  }
 }
