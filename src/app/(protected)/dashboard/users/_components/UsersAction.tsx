@@ -34,8 +34,6 @@ export function UsersAction({
     }
   };
 
-  console.log(hasSelection);
-
   return (
     <Box className="flex w-sm gap-4">
       <Select
