@@ -1,4 +1,5 @@
 import { size } from '../primitives';
+import { cn } from '@/lib/utils';
 import { borderAdapters, layoutAdapters } from '../adapters';
 import { focusTokens } from './focus.tokens';
 
@@ -23,9 +24,13 @@ export const inputTokens = {
 
   border: {
     none: borderAdapters.width.none,
-    default: `${borderAdapters.width.hairline} ${borderAdapters.color.default}   focus:border-[hsl(var(--border-focus))]
-  focus:ring-1
-  focus:ring-[hsl(var(--border-focus))]`,
+    default: cn(
+      borderAdapters.width.hairline,
+      borderAdapters.color.default,
+      'focus:border-[hsl(var(--border-focus))]',
+      'focus:ring-1',
+      'focus:ring-[hsl(var(--border-focus))]',
+    ),
     subtle: `${borderAdapters.width.hairline} ${borderAdapters.color.strong}`,
     strong: `${borderAdapters.width.thin} ${borderAdapters.color.strong}`,
   },
