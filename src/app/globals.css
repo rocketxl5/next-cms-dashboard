@@ -73,8 +73,8 @@
 
   /* Border colors */
   --color-border: hsl(var(--border));
-  --corlor-border-subtle: hsl(var(--border-subtle));
-  --corlor-border-strong: hsl(var(--border-strong));
+  --color-border-subtle: hsl(var(--border-subtle));
+  --color-border-strong: hsl(var(--border-strong));
   
 }
 
