@@ -6,7 +6,7 @@ const width = {
 } as const;
 
 const color = {
-  default: 'border-border',
+  default: 'border-base',
   subtle: 'border-subtle',
   muted: 'border-muted',
   strong: 'border-strong',

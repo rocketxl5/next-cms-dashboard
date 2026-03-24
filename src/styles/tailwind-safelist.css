@@ -36,16 +36,16 @@
   }
 
   .text-warning-foreground {
-    color: hsl(var(--warning-foreground));
+    color: var(--color-warning-foreground);
   }
   .bg-warning {
     background-color: var(--color-warning);
   }
   .text-info-foreground {
-    color: hsl(var(--info-foreground));
+    color: var(--color-info-foreground);
   }
   .bg-info {
-    background-color: hsl(var(--info));
+    background-color: var(--color-info);
   }
 
   /* Role badge colors */
@@ -94,7 +94,7 @@
   }
 
   /* Border colors */
-  .border-border {
+  .border-base {
     border-color: var(--color-border);
   }
   .border-subtle {
