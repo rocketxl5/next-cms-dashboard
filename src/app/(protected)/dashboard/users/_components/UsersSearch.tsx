@@ -97,35 +97,29 @@ export function UsersSearch() {
           )}
         >
           <Input
-            className="
-              w-2xs 
-              rounded-r-none 
-              border-0
-              focus:ring-0 
-              focus:border-transparent 
-              focus:outline-none
-            "
+            className={cn(
+              'w-2xs ',
+              'rounded-r-none',
+              'border-0',
+              'focus:ring-0',
+              'focus:border-transparent',
+              'focus:outline-none',
+            )}
             value={search}
             placeholder={`Search by ${type}`}
             onChange={(e) => handleSearchChange(e.target.value)}
           />
-          <div
-            className="
-            w-px 
-            h-6 
-            bg-border
-          "
-          />
+          <div className="w-px h-6 bg-border" />
           <Select
-            className="
-              appearance-none
-              border-0 
-              rounded-l-none 
-              bg-transparent!
-              focus:ring-0 
-              focus:border-transparent 
-              focus:outline-none
-            "
+            className={cn(
+              'appearance-none',
+              'border-0',
+              'rounded-l-none',
+              'bg-transparent!',
+              'focus:ring-0',
+              'focus:border-transparent',
+              'focus:outline-none',
+            )}
             focus={false}
             value={type}
             border="none"

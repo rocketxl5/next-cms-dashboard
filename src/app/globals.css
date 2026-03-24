@@ -75,7 +75,6 @@
   --color-border: hsl(var(--border));
   --corlor-border-subtle: hsl(var(--border-subtle));
   --corlor-border-strong: hsl(var(--border-strong));
-  --corlor-border-focus: hsl(var(--border-focus)); /* primary */
   
 }
 
