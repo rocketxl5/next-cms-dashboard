@@ -1,13 +1,12 @@
 'use client';
 
 import { Label, Select } from '@/components/ui';
+import { SelectBorder } from '@/types/ui';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
-
-type Border = 'none' | 'default' | 'subtle' | 'strong';
 
 interface SearchSelectProps<T extends string> {
   className?: string;
-  border?: Border;
+  border?: SelectBorder;
   focus?: boolean;
   label?: string;
   name?: string;

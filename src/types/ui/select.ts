@@ -4,3 +4,5 @@ export interface SelectFieldProps<T> {
   options: T[];
   disabled?: boolean;
 }
+
+export type SelectBorder = 'none' | 'default' | 'subtle' | 'strong';
