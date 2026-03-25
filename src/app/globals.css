@@ -57,8 +57,7 @@
 
 
   /* Colors */
-  --color-primary: rgb(36, 99, 235);
-  --color-primary-foreground: hsl(var(--primary-foreground));
+  /* --color-primary-foreground: hsl(var(--primary-foreground));
   --color-success: hsl(var(--success));
   --color-success-foreground: hsl(var(--success-foreground));
   --color-warning: hsl(var(--warning));
@@ -69,12 +68,12 @@
   --color-info-foreground: hsl(var(--info-foreground));
   --color-muted: hsl(var(--muted));
   --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-foreground: hsl(var(--foreground));
+  --color-foreground: hsl(var(--foreground)); */
 
   /* Border colors */
-  --color-border: hsl(var(--border));
+  /* --color-border: hsl(var(--border));
   --color-border-subtle: hsl(var(--border-subtle));
-  --color-border-strong: hsl(var(--border-strong));
+  --color-border-strong: hsl(var(--border-strong)); */
   
 }
 

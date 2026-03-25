@@ -1,6 +1,6 @@
 import Providers from './providers';
 import { getTheme } from '@/lib/server';
-import './global.css';
+import './globals.css';
 
 type RootLayoutProps = {
   children: React.ReactNode;
