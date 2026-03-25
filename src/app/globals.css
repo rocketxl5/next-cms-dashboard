@@ -86,12 +86,6 @@ select:hover {
   cursor: pointer;
 }
 
-/* Fix option colors (for dark mode) */
-option {
-  background-color: white;
-  color: black;
-}
-
 .dark select {
   background-color: hsl(222, 47%, 11%);
   color: hsl(210, 40%, 98%);

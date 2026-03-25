@@ -1,5 +1,5 @@
-import { size } from '../primitives';
 import { cn } from '@/lib/utils';
+import { size } from '../primitives';
 import { borderAdapters, layoutAdapters } from '../adapters';
 import { focusTokens } from './focus.tokens';
 

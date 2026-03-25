@@ -37,6 +37,8 @@ export function UsersAction({
   return (
     <Box className="flex w-sm gap-4">
       <Select
+        focus={false}
+        variant="subtle"
         value={!isLoading ? '' : action}
         disabled={!hasSelection}
         onChange={(e) => handleChange(e.target.value as BulkUserActionKey)}

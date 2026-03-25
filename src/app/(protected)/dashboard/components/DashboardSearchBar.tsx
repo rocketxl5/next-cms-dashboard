@@ -21,7 +21,7 @@ export function DashboardSearchBar({
         hasSelection={selectedCount > 0}
       />
       <UsersSearch />
-      <Link href="/dashboard/users/create" variant="subtle" border="subtle">
+      <Link href="/dashboard/users/create" variant="default" border="subtle">
         Create User
       </Link>
     </Box>

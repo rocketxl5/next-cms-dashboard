@@ -1,19 +1,21 @@
+import { cn } from '@/lib/utils';
 import { color, size } from '../primitives';
 import { borderAdapters, layoutAdapters, radiusAdapters } from '../adapters';
+import { focusTokens } from './focus.tokens';
 
 export const selectTokens = {
   base: `
-    appearance-none
     rounded-md
     text-sm
     text-foreground
-    focus:outline-none
+    border
+    ${focusTokens.base}
     disabled:opacity-50
     disabled:pointer-events-none
   `,
 
   variant: {
-    default: 'focus:ring-primary',
+    default: '',
     subtle: `${color.muted.background}`,
     error: `${color.destructive.background} focus:ring-[hsl(var(--destructive))]`,
     success: `${color.success.background} focus:ring-[hsl(var(--success))]`,
@@ -27,17 +29,23 @@ export const selectTokens = {
 
   border: {
     none: '',
-    default: `${borderAdapters.width.hairline} ${borderAdapters.color.default}`,
+    default: cn(
+      borderAdapters.width.hairline,
+      borderAdapters.color.default,
+      'focus:border-[hsl(var(--border-focus))]',
+      'focus:ring-1',
+      'focus:ring-[hsl(var(--border-focus))]',
+    ),
     subtle: `${borderAdapters.width.hairline} ${borderAdapters.color.muted}`,
     strong: `${borderAdapters.width.hairline} ${borderAdapters.color.strong}`,
   },
 
   layout: {
-    block: `${layoutAdapters.elementWidth.full}`,
-    inline: `${layoutAdapters.elementWidth.auto}`,
-    fit: `${layoutAdapters.elementWidth.fit}`,
-    grow: `${layoutAdapters.elementWidth.grow}`,
-    fixed: ``,
+    block: layoutAdapters.elementWidth.full,
+    inline: layoutAdapters.elementWidth.auto,
+    fit: layoutAdapters.elementWidth.fit,
+    grow: layoutAdapters.elementWidth.grow,
+    fixed: '',
   },
 
   radius: {
@@ -52,4 +60,4 @@ export const selectTokens = {
     true: 'focus:ring-1 focus:ring-ring',
     false: '',
   },
-};
+} as const;

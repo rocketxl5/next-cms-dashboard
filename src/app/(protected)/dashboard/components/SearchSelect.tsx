@@ -3,13 +3,15 @@
 import { Label, Select } from '@/components/ui';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
+type Border = 'none' | 'default' | 'subtle' | 'strong';
+
 interface SearchSelectProps<T extends string> {
   className?: string;
+  border?: Border;
+  focus?: boolean;
   label?: string;
   name?: string;
-  border?: string;
   value: T | '';
-  size?: string | undefined;
   options: readonly T[];
   handleChange: (value: T) => void;
   disabled?: boolean;
@@ -21,6 +23,7 @@ export function SearchSelect<T extends string>({
   label = '',
   name,
   border,
+  focus,
   value,
   options,
   handleChange,
@@ -39,12 +42,14 @@ export function SearchSelect<T extends string>({
       {label && <Label htmlFor={label}>{label}</Label>}
       <Select
         className={className}
+        border={border}
+        focus={focus}
         name={name}
         value={value || ''}
         disabled={disabled}
         onChange={(e) => handleChange(e.target.value as T)}
       >
-        <option value="">{placeholder ?? 'Select'}</option>
+        {placeholder ? <option value="">{placeholder}</option> : ''}
         {options.map((option) => (
           <option key={option} value={option}>
             {normalizeDisplayString(option)}

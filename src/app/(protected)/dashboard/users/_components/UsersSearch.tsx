@@ -109,8 +109,8 @@ export function UsersSearch() {
             placeholder={`Search by ${type}`}
             onChange={(e) => handleSearchChange(e.target.value)}
           />
-          <div className="w-px h-6 bg-border" />
-          <Select
+          {/* <div className="w-px h-6 bg-border" /> */}
+          <SearchSelect
             className={cn(
               'appearance-none',
               'border-0',
@@ -123,25 +123,20 @@ export function UsersSearch() {
             focus={false}
             value={type}
             border="none"
-            onChange={(e) =>
-              handleTypeChange(e.target.value as UserSearchField)
-            }
-          >
-            {USER_SEARCH_FIELDS.map((option) => (
-              <option key={option} value={option}>
-                {normalizeDisplayString(option)}
-              </option>
-            ))}
-          </Select>
+            options={USER_SEARCH_FIELDS}
+            handleChange={(value: UserSearchField) => handleTypeChange(value)}
+          />
         </Box>
         <Box className="flex gap-4 justify-evenly">
           <SearchSelect
+            focus={false}
             value={role as AppRole}
             options={APP_ROLES}
             handleChange={(value: AppRole) => handleRoleChange(value)}
             placeholder="Role"
           />
           <SearchSelect
+            focus={false}
             value={status as UserStatus}
             options={USER_STATUS}
             handleChange={(value: UserStatus) => handleStatusChange(value)}
@@ -150,7 +145,7 @@ export function UsersSearch() {
           <Button
             onClick={() => handleReset('/dashboard/users')}
             size={'md'}
-            variant="muted"
+            variant="default"
             disabled={!isSearchActive}
           >
             Clear Search
