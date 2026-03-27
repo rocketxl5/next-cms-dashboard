@@ -1,6 +1,7 @@
 export const surface = {
-  base: 'var(--color-background)',
-  raised: 'var(--color-background)',
-  overlay: 'var(--color-background)',
+  base: 'hsl(var(--background))',
+  overlay: 'hsl(var(--background-overlay))',
+  muted: 'hsl(var(--background-muted))',
+  raised: 'hsl(var(--background-raised))',
   border: 'hsl(var(--border))',
 } as const;

@@ -43,6 +43,20 @@
     background-color: hsl(var(--info));
   }
 
+  /* Text intent colors */
+  .text-success {
+    color: hsl(var(--success));
+  }
+  .text-destructive {
+    color: hsl(var(--destructive));
+  }
+  .text-warning {
+    color: hsl(var(--warning));
+  }
+  .text-primary {
+    color: hsl(var(--primary));
+  }
+
   /* Role badge colors */
   .bg-role-super-admin {
     background-color: hsl(var(--role-super-admin-bg));
@@ -71,7 +85,6 @@
   .text-role-user {
     color: hsl(var(--role-user-fg));
   }
-
 
   /* Status badge colors */
 
@@ -110,5 +123,11 @@
   }
   .border-destructive {
     border-color: hsl(var(--destructive));
+  }
+  .boder-warning {
+    border-color: hsl(var(--warning));
+  }
+  .border-muted {
+    border-color: hsl(var(--muted));
   }
 }

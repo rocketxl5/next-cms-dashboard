@@ -5,11 +5,11 @@ export const buttonTokens = {
   base: 'inline-flex items-center justify-center font-medium transition-colors hover:opacity-[.95] disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
 
   variant: {
-    default: `${color.primary.background} text-white`,
-    destructive: `${color.destructive.background} text-white`,
-    success: `${color.success.background} text-white`,
-    warning: `${color.warning.background} text-white`,
-    info: `${color.info.background} text-white`,
+    default: `${color.primary.background} ${color.primary.foreground}`,
+    destructive: `${color.destructive.background} ${color.destructive.foreground}`,
+    success: `${color.success.background} ${color.success.foreground}`,
+    warning: `${color.warning.background} ${color.warning.foreground}`,
+    info: `${color.info.background} ${color.info.foreground}`,
     link: `${color.link.default} ${color.link.subtle}`,
     muted: `${color.muted.background} ${color.muted.foreground} border`,
   },

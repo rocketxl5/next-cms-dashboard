@@ -12,6 +12,7 @@ const color = {
   strong: 'border-strong',
   primary: 'border-primary',
   success: 'border-success',
+  warning: 'border-warning',
   destructive: 'border-destructive',
 } as const;
 

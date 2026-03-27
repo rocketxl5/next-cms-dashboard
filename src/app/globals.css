@@ -3,30 +3,37 @@
 
 /* Base theme (light) */
 :root {
-  /* General */
+  /* Base */
   --background: 0 0% 100%;
   --foreground: 222 47% 11%;
 
+  /* Surface */
+  --background-raised: 210 40% 98%; /* Card */
+  --background-overlay: 210 40% 98%; /* Modal */
+
+  --background-muted: 210 40% 96%;
+
   /* Button colors */
   --primary: 221 83% 53%;
-  --primary-foreground: 210 40% 98%;
+  --primary-foreground: 221 60% 96%;
 
+  /* Destructive */
   --destructive: 0 84% 60%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive-foreground: 0 60% 96%;
 
-  /* Muted */
+  /* Muted (unchanged) */
   --muted: 210 40% 96%;
   --muted-foreground: 215 16% 47%;
 
   /* Feedback colors */
-  --success: 145 63% 45%; /* green for background */
-  --success-foreground: 145 55% 15%; /* darker green for text */
+  --success: 145 63% 45%;
+  --success-foreground: 145 50% 92%;
 
-  --warning: 45 100% 50%; /* yellow/orange background */
-  --warning-foreground: 45 90% 15%; /* dark yellow/orange text */
+  --warning: 45 100% 50%;
+  --warning-foreground: 45 90% 92%;
 
-  --info: 210 90% 60%; /* bright blue background */
-  --info-foreground: 210 60% 15%; /* darker blue text */
+  --info: 210 90% 60%;
+  --info-foreground: 210 60% 94%;
 
   /* Role badge colors */
   --role-super-admin-bg: 0 84% 90%; /* light red */
@@ -58,8 +65,15 @@
 
 /* Dark theme */
 .dark {
+  /* Base */
   --background: 222 47% 11%;
   --foreground: 210 40% 98%;
+
+  /* Surface */
+  --background-raised: 222 47% 14%;
+  --background-overlay: 222 47% 18%;
+
+  --border: 217 33% 25%;
 
   --primary: 217 91% 60%;
   --primary-foreground: 222 47% 11%;

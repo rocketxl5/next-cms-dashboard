@@ -10,8 +10,8 @@ export const linkTokens = {
     nav: `hover:${color.foreground}`,
 
     // button-like
-    primary: `${color.primary.background} text-white hover:opacity-90`,
-    success: `${color.success.background} text-white hover:opacity-90`,
+    primary: `${color.primary.background} ${color.primary.foreground} hover:opacity-90`,
+    success: `${color.success.background} ${color.success.foreground} hover:opacity-90`,
     muted: `${color.muted.background} ${color.muted.foreground}`,
   },
 

@@ -144,8 +144,6 @@ export function UsersSearch() {
           />
           <Button
             onClick={() => handleReset('/dashboard/users')}
-            size={'md'}
-            variant="default"
             disabled={!isSearchActive}
           >
             Clear Search
