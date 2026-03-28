@@ -1,7 +1,8 @@
 import { toastTokens } from '@/lib/ui/tokens/components/toast.tokens';
 
-// export type ToastIntent = 'success' | 'error' | 'warning' | 'info';
 export type ToastIntent = keyof typeof toastTokens.intent;
+
+export type ToastEmphasis = keyof typeof toastTokens.emphasis;
 
 export type ToastAction = {
   label: string;
@@ -10,10 +11,11 @@ export type ToastAction = {
 
 export type Toast = {
   id: number;
-  intent?: ToastIntent;
   title?: string;
   message: string;
   duration: number;
   persistent?: boolean;
   action?: ToastAction;
+  emphasis?: ToastEmphasis;
+  intent?: ToastIntent;
 };
