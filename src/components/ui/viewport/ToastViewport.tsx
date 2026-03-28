@@ -1,4 +1,5 @@
 import { ToastItem } from "../ToastItem";
+import { Toast } from '@/types/ui';
 import { useToast } from "@/providers";
 
 export function ToastViewport() {
