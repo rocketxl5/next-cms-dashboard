@@ -7,6 +7,8 @@ import { UserForm } from './UserForm';
 
 import { editUserSchema, UpdateUserValues } from '../_domain/user-form.schema';
 import { editUserAction } from '../_server/edit-user.action';
+import { useToast } from '@/providers';
+
 import { FormField } from '@/types/form';
 
 interface EditUserProps {
@@ -24,10 +26,25 @@ export function EditUserFormWrapper({
     resolver: zodResolver(editUserSchema),
     defaultValues,
   });
+  const { addToast } = useToast();
 
-const onSubmit = async (values: UpdateUserValues) => {
-  await editUserAction(id, values);
-};
+  const onSubmit = async (values: UpdateUserValues) => {
+    try {
+      await editUserAction(id, values);
+
+      addToast({
+        title: 'User updated',
+        message: 'Changes saved successfully',
+        intent: 'success',
+      });
+    } catch (error) {
+      addToast({
+        title: 'Update failed',
+        message: 'Something went wrong',
+        intent: 'destructive',
+      });
+    }
+  };
 
   return (
     <UserForm<UpdateUserValues>

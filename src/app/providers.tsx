@@ -2,7 +2,11 @@
 
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ThemeProvider } from '@/providers/ThemeProvider';
+import {
+  ThemeProvider,
+  ToastProvider,
+  UserSelectionProvider,
+} from '@/providers';
 import { Theme } from '@/types/enums/theme';
 
 /**
@@ -48,7 +52,11 @@ export default function Providers({
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider initialTheme={initialTheme}>{children}</ThemeProvider>
+      <ThemeProvider initialTheme={initialTheme}>
+        <UserSelectionProvider>
+          <ToastProvider>{children}</ToastProvider>
+        </UserSelectionProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

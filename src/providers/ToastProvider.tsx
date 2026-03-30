@@ -7,40 +7,37 @@ import {
   useCallback,
   ReactNode,
 } from 'react';
-import { Toast } from '@/types/ui';
-
-type ToastContextValue = {
-  toasts: Toast[];
-  addToast: (toast: Omit<Toast, 'id'>) => void;
-  removeToast: (toastId: number) => void;
-};
-
-let id = 0;
+import { Toast, ToastContextValue, AddToastInput } from '@/types/ui';
 
 const ToastContext = createContext<ToastContextValue | null>(null);
 
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
-  const generateId = () => id++;
+  const generateId = () => crypto.randomUUID();
 
-  const removeToast = useCallback((toastId: number) => {
+  const removeToast = useCallback((toastId: string) => {
     setToasts((prev) => prev.filter((t) => t.id !== toastId));
   }, []);
 
   const addToast = useCallback(
-    (toast: Omit<Toast, 'id'>) => {
+    ({ intent, emphasis, duration, ...rest }: AddToastInput) => {
+      const id = generateId();
+
       const newToast: Toast = {
-        id: generateId(),
-        ...toast,
+        id,
+        ...rest,
+        intent: intent ?? 'info',
+        emphasis: emphasis ?? 'subtle',
+        duration: duration ?? 3000,
       };
 
       setToasts((prev) => [newToast, ...prev]);
 
-      if (!toast.persistent) {
+      if (!newToast.persistent) {
         setTimeout(() => {
           removeToast(newToast.id);
-        }, toast.duration ?? 3000);
+        }, newToast.duration);
       }
     },
     [removeToast],

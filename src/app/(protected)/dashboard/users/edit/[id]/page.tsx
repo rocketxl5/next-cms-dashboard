@@ -2,11 +2,12 @@ import prisma from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 
 import { UpdateUserValues } from '../../form/_domain/user-form.schema';
-
 import { EditUserFormWrapper } from '../../form/_client/EditUserFormWrapper';
 
-import { APP_ROLES, USER_STATUS, THEME } from '@/types/enums';
+import { useToast } from '@/providers';
 import { mapDatabaseThemeToCss } from '@/lib/theme';
+
+import { APP_ROLES, USER_STATUS, THEME } from '@/types/enums';
 import { FormField } from '@/types/form';
 
 export default async function EditUserPage({

@@ -6,7 +6,7 @@ import { X } from 'lucide-react';
 
 type ItemProps = {
   toast: Toast;
-  onClose: (id: number) => void;
+  onClose: (id: string) => void;
 };
 
 export function ToastItem({ toast, onClose }: ItemProps) {
