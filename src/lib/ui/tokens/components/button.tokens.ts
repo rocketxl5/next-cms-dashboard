@@ -1,5 +1,5 @@
-import { color, size } from '@/lib/ui/tokens/primitives';
-import { textAdapters, radiusAdapters } from '@/lib/ui/tokens/adapters';
+import { color, size } from '../primitives';
+import { textAdapters, radiusAdapters } from '../adapters';
 
 export const buttonTokens = {
   base: 'inline-flex items-center justify-center font-medium transition-colors hover:opacity-[.95] disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',

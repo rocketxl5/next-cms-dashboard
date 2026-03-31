@@ -7,12 +7,12 @@ import {
   useCallback,
   ReactNode,
 } from 'react';
-import { Toast, ToastContextValue, AddToastInput } from '@/types/ui';
+import { ToastItem, ToastContextValue, AddToastInput } from '@/types/ui';
 
 const ToastContext = createContext<ToastContextValue | null>(null);
 
 export function ToastProvider({ children }: { children: ReactNode }) {
-  const [toasts, setToasts] = useState<Toast[]>([]);
+  const [toasts, setToasts] = useState<ToastItem[]>([]);
 
   const generateId = () => crypto.randomUUID();
 
@@ -21,13 +21,13 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const addToast = useCallback(
-    ({ intent, emphasis, duration, ...rest }: AddToastInput) => {
+    ({ variant, emphasis, duration, ...rest }: AddToastInput) => {
       const id = generateId();
 
-      const newToast: Toast = {
+      const newToast: ToastItem = {
         id,
         ...rest,
-        intent: intent ?? 'info',
+        variant: variant ?? 'default',
         emphasis: emphasis ?? 'subtle',
         duration: duration ?? 3000,
       };
@@ -57,5 +57,24 @@ export function useToast() {
     throw new Error('useToast must be used within ToastProvider');
   }
 
-  return context;
+  const { addToast } = context;
+
+  return {
+    ...context,
+
+    success: (input: Omit<AddToastInput, 'variant'>) =>
+      addToast({ ...input, variant: 'success' }),
+
+    destructive: (input: Omit<AddToastInput, 'variant'>) =>
+      addToast({ ...input, variant: 'destructive' }),
+
+    info: (input: Omit<AddToastInput, 'variant'>) =>
+      addToast({ ...input, variant: 'info' }),
+
+    warning: (input: Omit<AddToastInput, 'variant'>) =>
+      addToast({ ...input, variant: 'warning' }),
+
+    default: (input: Omit<AddToastInput, 'variant'>) =>
+      addToast({ ...input, variant: 'default' }),
+  };
 }

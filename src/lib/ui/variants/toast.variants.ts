@@ -4,50 +4,13 @@ import { surfaceAdapters } from '../tokens';
 
 export const toastVariants = cva(toastTokens.base, {
   variants: {
-    intent: toastTokens.intent,
+    variant: toastTokens.variant,
     emphasis: toastTokens.emphasis,
   },
 
-  compoundVariants: [
-    {
-      intent: 'success',
-      emphasis: 'solid',
-      class: surfaceAdapters.solid.success,
-    },
-    {
-      intent: 'success',
-      emphasis: 'subtle',
-      class: surfaceAdapters.subtle.success,
-    },
-
-    {
-      intent: 'destructive',
-      emphasis: 'subtle',
-      class: surfaceAdapters.subtle.destructive,
-    },
-
-    {
-      intent: 'info',
-      emphasis: 'subtle',
-      class: surfaceAdapters.subtle.info,
-    },
-
-    {
-      intent: 'default',
-      emphasis: 'subtle',
-      class: surfaceAdapters.subtle.default,
-    },
-
-    {
-      intent: 'muted',
-      emphasis: 'subtle',
-      class: surfaceAdapters.subtle.muted,
-    },
-  ],
-
   defaultVariants: {
-    intent: 'info',
-    emphasis: 'subtle',
+    variant: 'info',
+    emphasis: 'solid',
   },
 });
 

@@ -35,13 +35,15 @@ export function EditUserFormWrapper({
       addToast({
         title: 'User updated',
         message: 'Changes saved successfully',
-        intent: 'success',
+        variant: 'default',
+        duration: 3000,
       });
     } catch (error) {
       addToast({
         title: 'Update failed',
         message: 'Something went wrong',
-        intent: 'destructive',
+        variant: 'destructive',
+        duration: 3000,
       });
     }
   };

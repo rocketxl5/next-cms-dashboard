@@ -6,5 +6,7 @@ export * from './Label';
 export * from './Link';
 export * from './SearchField';
 export * from './Select';
+export * from './Toast';
 export * from './button';
 export * from './layout';
+export * from './viewport';

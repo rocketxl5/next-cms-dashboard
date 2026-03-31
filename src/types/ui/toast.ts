@@ -1,16 +1,16 @@
-import { toastTokens } from '@/lib/ui/tokens/components/toast.tokens';
-
-export type ToastIntent = keyof typeof toastTokens.intent;
+import { toastTokens } from '@/lib/ui/tokens';
 
 export type ToastEmphasis = keyof typeof toastTokens.emphasis;
+
+export type TaostVariant = keyof typeof toastTokens.variant;
 
 export type AddToastInput = {
   message: string;
   title?: string;
-} & Partial<Omit<Toast, 'id' | 'message' | 'title'>>;
+} & Partial<Omit<ToastItem, 'id' | 'message' | 'title'>>;
 
 export type ToastContextValue = {
-  toasts: Toast[];
+  toasts: ToastItem[];
   addToast: (toast: AddToastInput) => void;
   removeToast: (toastId: string) => void;
 };
@@ -20,13 +20,13 @@ export type ToastAction = {
   onClick: () => void;
 };
 
-export type Toast = {
+export type ToastItem = {
   id: string;
   title?: string;
   message: string;
   duration: number;
   persistent?: boolean;
   action?: ToastAction;
-  emphasis?: ToastEmphasis;
-  intent?: ToastIntent;
+  variant: TaostVariant;
+  emphasis: ToastEmphasis;
 };

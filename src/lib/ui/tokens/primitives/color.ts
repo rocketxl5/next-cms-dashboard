@@ -43,6 +43,17 @@ export const color = {
     foreground: 'text-muted-foreground',
   },
 
+  // ghost: {
+  //   base: 'bg-transparent border-transparent',
+
+  //   primary: 'text-primary hover:bg-muted/50',
+  //   destructive: 'text-destructive hover:bg-muted/50',
+  //   success: 'text-success hover:bg-muted/50',
+  //   warning: 'text-warning hover:bg-muted/50',
+  //   info: 'text-info hover:bg-muted/50',
+  //   muted: 'text-muted-foreground hover:bg-muted/50',
+  // },
+
   // Role badges
   role: {
     SUPER_ADMIN: {
