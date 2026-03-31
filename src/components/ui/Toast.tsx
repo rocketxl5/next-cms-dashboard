@@ -32,7 +32,8 @@ export function Toast({ toast, onClose }: ToastProps) {
         }),
         'transition-all duration-200',
         'opacity-0 -translate-y-2 animate-[toast-in_200ms_ease-out_forwards]',
-        isLeaving && 'opacity-0 translate-y-2 animate-[toast-out_200ms_ease-out_forwards]',
+        isLeaving &&
+          'opacity-0 translate-y-2 animate-[toast-out_200ms_ease-out_forwards]',
       )}
     >
       <div className="flex items-start gap-3">
@@ -48,7 +49,6 @@ export function Toast({ toast, onClose }: ToastProps) {
           {toast.action && (
             <Button
               size="sm"
-              //   variant="link"
               className="no-underline hover:no-underline hover:bg-muted/50 px-2"
               onClick={toast.action.onClick}
             >
@@ -58,7 +58,6 @@ export function Toast({ toast, onClose }: ToastProps) {
 
           <Button
             size="sm"
-            // variant="muted"
             className="bg-transparent border-none hover:bg-muted/50 p-1 h-auto"
             onClick={handleClose}
           >
@@ -66,19 +65,6 @@ export function Toast({ toast, onClose }: ToastProps) {
           </Button>
         </div>
       </div>
-
-      {/* Progress bar */}
-      {/* {!toast.persistent && (
-        <div
-          className="absolute bottom-0 left-0 h-0.5 bg-current/30"
-          style={{
-            width: '100%',
-            animation: `toast-progress ${
-              toast.duration || 3000
-            }ms linear forwards`,
-          }}
-        ></div>
-      )} */}
     </div>
   );
 }
