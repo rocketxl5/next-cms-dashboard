@@ -1,9 +1,13 @@
 'use client';
 
 import { FieldValues, Path, UseFormReturn } from 'react-hook-form';
-import { Button, Input, Label, Select } from '@/components/ui';
+
 import { ErrorMessage } from '@/components/ui/button/auth/ErrorMessage';
+import { Button, Input, Label, Select } from '@/components/ui';
+import { Spinner } from '@/components/ui/Spinner';
+
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
+
 import { FormField } from '@/types/form';
 
 interface UserFormProps<T extends FieldValues> {
@@ -22,6 +26,8 @@ export function UserForm<T extends FieldValues>({
     handleSubmit,
     formState: { errors, isSubmitting },
   } = form;
+
+  console.log(isSubmitting);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
@@ -49,8 +55,15 @@ export function UserForm<T extends FieldValues>({
           </div>
         );
       })}
-      <Button type="submit" variant="success">
-        {isSubmitting ? 'Submitting...' : 'Submit'}
+      <Button type="submit" variant="success" disabled={isSubmitting}>
+        {isSubmitting ? (
+          <>
+            <Spinner size="sm" className="mr-2" />
+            Submitting...
+          </>
+        ) : (
+          'Submit'
+        )}
       </Button>
     </form>
   );

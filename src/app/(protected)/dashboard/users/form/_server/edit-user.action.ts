@@ -1,6 +1,6 @@
 'use server';
 
-import { Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client/edge';
 import prisma from '@/lib/prisma';
 import { editUserSchema, UpdateUserValues } from '../_domain/user-form.schema';
 import { hash } from 'bcryptjs';
