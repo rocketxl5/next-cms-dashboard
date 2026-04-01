@@ -19,7 +19,7 @@ export function useAsyncFormSubmit<T extends FieldValues>(
   options?: UseAsyncFormSubmitOptions,
 ) {
   const [loading, setLoading] = useState(false);
-  const { addToast, success, destructive } = useToast();
+  const { success, destructive } = useToast();
 
   const onSubmit = form.handleSubmit(async (values) => {
     if (!form.formState.isDirty) return;
