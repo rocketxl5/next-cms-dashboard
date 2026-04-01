@@ -27,6 +27,7 @@ export function EditUserFormWrapper({
     resolver: zodResolver(editUserSchema),
     defaultValues,
   });
+
   const { onSubmit, loading } = useAsyncFormSubmit(
     form,
     async (values: UpdateUserValues) => {
