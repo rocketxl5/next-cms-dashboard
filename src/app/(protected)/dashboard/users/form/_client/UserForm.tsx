@@ -12,25 +12,24 @@ import { FormField } from '@/types/form';
 
 interface UserFormProps<T extends FieldValues> {
   form: UseFormReturn<T>;
-  onSubmit: (values: T) => Promise<void>;
   fields: FormField[];
+  onSubmit: React.SubmitEventHandler<HTMLFormElement>;
+  loading: boolean;
 }
 
 export function UserForm<T extends FieldValues>({
   form,
-  onSubmit,
   fields,
+  onSubmit,
+  loading,
 }: UserFormProps<T>) {
   const {
     register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isDirty },
   } = form;
 
-  console.log(isSubmitting);
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+    <form onSubmit={onSubmit} className="flex flex-col gap-4">
       {fields.map((field) => {
         const fieldName = field.name as Path<T>;
         return (
@@ -55,11 +54,10 @@ export function UserForm<T extends FieldValues>({
           </div>
         );
       })}
-      <Button type="submit" variant="success" disabled={isSubmitting}>
-        {isSubmitting ? (
+      <Button type="submit" variant="success" disabled={loading || !isDirty}>
+        {loading ? (
           <>
             <Spinner size="sm" className="mr-2" />
-            Submitting...
           </>
         ) : (
           'Submit'
