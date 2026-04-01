@@ -22,40 +22,30 @@ export function useAsyncFormSubmit<T extends FieldValues>(
   const { addToast, success, destructive } = useToast();
 
   const onSubmit = form.handleSubmit(async (values) => {
+    if (!form.formState.isDirty) return;
+
     const start = new Date().valueOf();
     setLoading(true);
 
     try {
       await submitFn(values);
 
+      form.reset(values);
+
       if (options?.successToast) {
-        // Prefer semantic helper if no variant override
-        if (options.successToast.variant) {
-          addToast(options.successToast);
-        } else {
-          success(options.successToast);
-        }
+        success(options.successToast);
       }
     } catch (error) {
       if (options?.errorToast) {
-        if (options.errorToast.variant) {
-          addToast(options.errorToast);
-        } else {
-          destructive(options.errorToast);
-        }
-      } else {
-        console.error(error);
+        destructive(options.errorToast);
       }
     } finally {
       // ensure loading is visible for at least X ms
       const min = options?.minDuration ?? 300;
       const elapsed = new Date().valueOf() - start;
+      const remaining = Math.max(0, min - elapsed);
 
-      if (elapsed < min) {
-        await new Promise((r) => setTimeout(r, min - elapsed));
-      }
-
-      setLoading(false);
+      setTimeout(() => setLoading(false), remaining);
     }
   });
 

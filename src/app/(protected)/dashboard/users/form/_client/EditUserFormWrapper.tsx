@@ -8,7 +8,7 @@ import { UserForm } from './UserForm';
 import { editUserSchema, UpdateUserValues } from '../_domain/user-form.schema';
 import { editUserAction } from '../_server/edit-user.action';
 
-import { useToast } from '@/providers';
+import { useAsyncFormSubmit } from '@/hooks/useAsyncFormSubmit';
 
 import { FormField } from '@/types/form';
 
@@ -27,33 +27,29 @@ export function EditUserFormWrapper({
     resolver: zodResolver(editUserSchema),
     defaultValues,
   });
-  const { addToast } = useToast();
-
-  const onSubmit = async (values: UpdateUserValues) => {
-    try {
+  const { onSubmit, loading } = useAsyncFormSubmit(
+    form,
+    async (values: UpdateUserValues) => {
       await editUserAction(id, values);
-
-      addToast({
+    },
+    {
+      successToast: {
         title: 'User updated',
         message: 'Changes saved successfully',
-        variant: 'default',
-        duration: 3000,
-      });
-    } catch (error) {
-      addToast({
+      },
+      errorToast: {
         title: 'Update failed',
         message: 'Something went wrong',
-        variant: 'destructive',
-        duration: 3000,
-      });
-    }
-  };
+      },
+    },
+  );
 
   return (
     <UserForm<UpdateUserValues>
       form={form}
-      onSubmit={onSubmit}
       fields={fields}
+      loading={loading}
+      onSubmit={onSubmit}
     />
   );
 }
