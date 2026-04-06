@@ -1,40 +1,108 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
+import { useLoading } from '@/providers/LoadingProvider';
+
+type LoadMoreResult<T> = {
+  items: T[];
+  hasMore?: boolean;
+};
 
 type UsePaginatedListProps<T> = {
   items: T[];
   pageSize: number;
+
+  // optional async loader (enables server mode)
+  onLoadMore?: (params: {
+    offset: number;
+    limit: number;
+  }) => Promise<LoadMoreResult<T>>;
+
+  loadingKey?: string;
 };
 
 export function usePaginatedList<T>({
   items,
   pageSize,
+  onLoadMore,
+  loadingKey = 'pagination',
 }: UsePaginatedListProps<T>) {
-  const [itemsCount, setItemsCount] = useState(pageSize);
+  const { isLoading, start, stop } = useLoading();
 
-  const clampedCount = Math.min(itemsCount, items.length);
+  // 🔹 unified state (client + server)
+  const [internalItems, setInternalItems] = useState<T[]>(items);
+  const [visibleCount, setVisibleCount] = useState(pageSize);
+  const [serverHasMore, setServerHasMore] = useState(true);
+
+  const isServerMode = !!onLoadMore;
+
+  // 🔹 source of truth
+  const sourceItems = isServerMode ? internalItems : items;
+
+  const clampedCount = Math.min(visibleCount, sourceItems.length);
 
   const visibleItems = useMemo(() => {
-    return items.slice(0, clampedCount);
-  }, [items, clampedCount]);
+    return sourceItems.slice(0, clampedCount);
+  }, [sourceItems, clampedCount]);
 
-  const hasMore = clampedCount < items.length;
+  const hasMore = isServerMode
+    ? serverHasMore
+    : clampedCount < sourceItems.length;
 
-  const loadMore = () => {
-    setItemsCount((prev) => prev + pageSize);
-  };
+  const loadMore = useCallback(async () => {
+    // CLIENT MODE
+    if (!isServerMode) {
+      setVisibleCount((prev) => prev + pageSize);
+      return;
+    }
 
-  const reset = () => {
-    setItemsCount(pageSize);
-  };
+    // SERVER MODE
+    start(loadingKey);
+
+    try {
+      const result = await onLoadMore({
+        offset: internalItems.length,
+        limit: pageSize,
+      });
+
+      setInternalItems((prev) => [...prev, ...result.items]);
+
+      if (result.hasMore !== undefined) {
+        setServerHasMore(result.hasMore);
+      } else {
+        // fallback if backend doesn't send it
+        if (result.items.length < pageSize) {
+          setServerHasMore(false);
+        }
+      }
+
+      setVisibleCount((prev) => prev + pageSize);
+    } finally {
+      stop(loadingKey);
+    }
+  }, [
+    isServerMode,
+    onLoadMore,
+    internalItems.length,
+    pageSize,
+    loadingKey,
+    start,
+    stop,
+  ]);
+
+  const reset = useCallback(() => {
+    setVisibleCount(pageSize);
+    setInternalItems(items);
+    setServerHasMore(true);
+  }, [items, pageSize]);
 
   return {
     visibleItems,
-    hasMore,
     loadMore,
-    reset,
+    hasMore,
+    isLoading: isLoading(loadingKey),
     total: items.length,
     count: clampedCount,
+    reset,
   };
 }
