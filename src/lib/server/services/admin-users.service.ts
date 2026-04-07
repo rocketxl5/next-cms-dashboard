@@ -2,8 +2,10 @@
 import prisma from '@/lib/prisma';
 import { Prisma } from '@prisma/client';
 
+import { buildUserWhere } from '@/lib/shared/build-user-where';
+
 import { DatabaseDashboardUser } from '@/types/db/database-dashboard-user';
-import { SearchUsersParams } from '@/types/shared';
+import { GetUsersParams } from '@/types/shared';
 import { UserStatus } from '@/types/enums';
 import { AppRole } from '@/types/enums';
 
@@ -26,39 +28,41 @@ export async function getUser(
   });
 }
 
-export async function getUsers(
-  params?: SearchUsersParams,
-): Promise<DatabaseDashboardUser[]> {
-  const { search, type = 'email', role, status } = params ?? {};
+export async function getUsers({
+  filters,
+  limit,
+  offset,
+}: GetUsersParams): Promise<{
+  users: DatabaseDashboardUser[];
+  hasMore: boolean;
+  total: number;
+}> {
+  const where = buildUserWhere(filters);
 
-  const where: Prisma.UserWhereInput = {};
+  const [users, total] = await Promise.all([
+    prisma.user.findMany({
+      where,
+      take: limit,
+      skip: offset,
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        status: true,
+        theme: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+      orderBy: { createdAt: 'desc' },
+    }),
+    prisma.user.count({ where }),
+  ]);
 
-  // Text input search
-  if (search) {
-    if (type === 'name') where.name = { contains: search, mode: 'insensitive' };
-    if (type === 'email')
-      where.email = { contains: search, mode: 'insensitive' };
-  }
-  // Role & Status select filter
-  if (role) where.role = role;
-  if (status) where.status = status;
+  const hasMore = offset + users.length < total;
 
-  return prisma.user.findMany({
-    where,
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      role: true,
-      status: true,
-      theme: true,
-      createdAt: true,
-      updatedAt: true,
-    },
-    orderBy: { createdAt: 'desc' },
-  });
+  return { users, total, hasMore };
 }
-
 export async function getUsersRole(userIds: string[]) {
   return prisma.user.findMany({
     where: { id: { in: userIds } },

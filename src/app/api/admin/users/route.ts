@@ -1,10 +1,13 @@
-import { NextResponse } from 'next/server';
-import bcrypt from 'bcryptjs';
-import prisma from '@/lib/prisma';
+import { NextRequest, NextResponse } from 'next/server';
 import { Role } from '@prisma/client';
-import { UserStatus } from '@/types/enums';
+import bcrypt from 'bcryptjs';
+
+import prisma from '@/lib/prisma';
 import { withRole } from '@/lib/server/with-role';
 import { getUsers } from '@/lib/server/services/admin-users.service';
+import { parseUsersSearchParams } from '@/app/(protected)/dashboard/users/_lib/parse-users-search-params';
+
+import { UserStatus } from '@/types/enums';
 
 // --------------------
 // Local types for payloads
@@ -26,19 +29,40 @@ type UserUpdatePayload = {
 // --------------------
 // GET — List all users
 // --------------------
-export const GET = withRole(['ADMIN', 'SUPER_ADMIN'], async () => {
-  try {
-    const users = await getUsers();
+export const GET = withRole(
+  ['ADMIN', 'SUPER_ADMIN'],
+  async (req: NextRequest) => {
+    try {
+      const url = new URL(req.url);
+      const searchParams = url.searchParams;
 
-    return NextResponse.json(users, { status: 200 });
-  } catch (error) {
-    console.error('❌ Error fetching users:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch users' },
-      { status: 500 },
-    );
-  }
-});
+      // pagination params
+      const offset = Number(searchParams.get('offset') ?? 0);
+      const limit = Number(searchParams.get('limit') ?? 25);
+
+      // filters (reuse existing parser)
+      const filters = parseUsersSearchParams(searchParams);
+
+      const { users, hasMore } = await getUsers({ filters, limit, offset });
+
+      // return NextResponse.json(users, { status: 200 });
+      return NextResponse.json(
+        {
+          itmes: users,
+          hasMore,
+        },
+        { status: 200 },
+      );
+    } catch (error) {
+      console.error('❌ Error fetching users:', error);
+
+      return NextResponse.json(
+        { error: 'Failed to fetch users' },
+        { status: 500 },
+      );
+    }
+  },
+);
 
 // --------------------
 // POST — Create a new user
