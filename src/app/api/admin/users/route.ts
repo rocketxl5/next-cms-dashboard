@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Role } from '@prisma/client';
-import bcrypt from 'bcryptjs';
 
+import bcrypt from 'bcryptjs';
 import prisma from '@/lib/prisma';
+
 import { withRole } from '@/lib/server/with-role';
 import { getUsers } from '@/lib/server/services/admin-users.service';
 import { parseUsersSearchParams } from '@/app/(protected)/dashboard/users/_lib/parse-users-search-params';
@@ -43,12 +44,12 @@ export const GET = withRole(
       // filters (reuse existing parser)
       const filters = parseUsersSearchParams(searchParams);
 
-      const { users, hasMore } = await getUsers({ filters, limit, offset });
+      const { items, hasMore } = await getUsers({ filters, limit, offset });
 
       // return NextResponse.json(users, { status: 200 });
       return NextResponse.json(
         {
-          itmes: users,
+          items,
           hasMore,
         },
         { status: 200 },
