@@ -2,17 +2,24 @@
 
 import { UsersTable } from './UsersTable';
 import { DashboardSearchBar } from '@/app/(protected)/dashboard/components';
-import { useUserSelection } from '@/providers';
-import { CurrentDashboardUser } from '@/types/shared';
 import { UserRow } from '../_domain';
+
+import { useUserSelection } from '@/providers';
 import { getAllowedBulkActions, getSelectedUsers } from '@/lib/domain';
+
+import { CurrentDashboardUser, PaginationState } from '@/types/shared';
 
 type UsersPageClientProps = {
   users: UserRow[];
   currentUser: CurrentDashboardUser;
+  pagination: PaginationState;
 };
 
-export function UsersPageClient({ users, currentUser }: UsersPageClientProps) {
+export function UsersPageClient({
+  users,
+  currentUser,
+  pagination,
+}: UsersPageClientProps) {
   const { selectedUserIds } = useUserSelection();
   const selectedCount = selectedUserIds.size;
   const selectedUsers = getSelectedUsers({ selectedUserIds, users });
@@ -26,7 +33,11 @@ export function UsersPageClient({ users, currentUser }: UsersPageClientProps) {
         allowedBulkActions={allowedBulkActions}
         selectedCount={selectedCount}
       />
-      <UsersTable users={users} currentUser={currentUser} />
+      <UsersTable
+        users={users}
+        currentUser={currentUser}
+        pagination={pagination}
+      />
     </>
   );
 }

@@ -5,7 +5,7 @@ import { Prisma } from '@prisma/client';
 import { buildUserWhere } from '@/lib/shared/build-user-where';
 
 import { DatabaseDashboardUser } from '@/types/db/database-dashboard-user';
-import { GetUsersParams } from '@/types/shared';
+import { GetUsersParams, PaginatedResult } from '@/types/shared';
 import { UserStatus } from '@/types/enums';
 import { AppRole } from '@/types/enums';
 
@@ -32,14 +32,10 @@ export async function getUsers({
   filters,
   limit,
   offset,
-}: GetUsersParams): Promise<{
-  users: DatabaseDashboardUser[];
-  hasMore: boolean;
-  total: number;
-}> {
+}: GetUsersParams): Promise<PaginatedResult<DatabaseDashboardUser>> {
   const where = buildUserWhere(filters);
 
-  const [users, total] = await Promise.all([
+  const [items, total] = await Promise.all([
     prisma.user.findMany({
       where,
       take: limit,
@@ -59,10 +55,11 @@ export async function getUsers({
     prisma.user.count({ where }),
   ]);
 
-  const hasMore = offset + users.length < total;
+  const hasMore = offset + items.length < total;
 
-  return { users, total, hasMore };
+  return { items, total, hasMore };
 }
+
 export async function getUsersRole(userIds: string[]) {
   return prisma.user.findMany({
     where: { id: { in: userIds } },

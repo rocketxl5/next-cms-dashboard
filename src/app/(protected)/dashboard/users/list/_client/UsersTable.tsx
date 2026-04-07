@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { UserRow } from '../_domain';
 import { useUserSelection } from '@/providers';
-import { CurrentDashboardUser } from '@/types/shared';
+import { CurrentDashboardUser, PaginationState } from '@/types/shared';
 import { buildUsersColumns } from './factory/build-users-columns';
 import { AppRole } from '@/types/enums';
 import { updateUserRoleAction } from '@/lib/domain/users/actions/single';
@@ -11,9 +11,14 @@ import { updateUserRoleAction } from '@/lib/domain/users/actions/single';
 type UsersTableProps = {
   users: UserRow[];
   currentUser: CurrentDashboardUser;
+  pagination: PaginationState;
 };
 
-export function UsersTable({ users, currentUser }: UsersTableProps) {
+export function UsersTable({
+  users,
+  currentUser,
+  pagination,
+}: UsersTableProps) {
   const { selectedUserIds, toggleUserSelection } = useUserSelection();
   const router = useRouter();
 

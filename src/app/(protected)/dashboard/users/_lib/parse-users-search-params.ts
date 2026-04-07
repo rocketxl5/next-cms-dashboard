@@ -1,10 +1,6 @@
-import {
-  UserSearchField,
-  USER_SEARCH_FIELDS,
-} from '@/types/filters/users.filters';
+import { UserSearchField, USER_SEARCH_FIELDS } from '@/types/shared';
 import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
 import { SearchUsersParams } from '@/types/shared';
-import { UndoIcon } from 'lucide-react';
 
 type ParamsProps = SearchUsersParams | URLSearchParams;
 
