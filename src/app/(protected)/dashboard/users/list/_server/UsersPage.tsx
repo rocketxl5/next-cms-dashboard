@@ -1,4 +1,3 @@
-// import { use } from 'react';
 import { UsersPageClient } from '../_client/UsersPageClient';
 import { UserRow } from '../_domain';
 import { UserSelectionProvider } from '@/providers/UserSelectionProvider';
@@ -20,7 +19,11 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
 
   const parsed = parseUsersSearchParams(params);
 
-  const users = await getUsers(parsed);
+  const { users } = await getUsers({
+    filters: parsed,
+    limit: 25,
+    offset: 0,
+  });
 
   const rows: UserRow[] = users
     .map(prismaToDashboardUser)

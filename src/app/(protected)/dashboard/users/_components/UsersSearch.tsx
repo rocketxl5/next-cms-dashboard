@@ -13,7 +13,7 @@ import {
   USER_SEARCH_FIELDS,
 } from '@/types/filters/users.filters';
 import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
-import { normalizeDisplayString } from '@/lib/utils/normalizers';
+// import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 export function UsersSearch() {
   const router = useRouter();
