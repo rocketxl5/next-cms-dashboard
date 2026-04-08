@@ -44,13 +44,13 @@ export const GET = withRole(
       // filters (reuse existing parser)
       const filters = parseUsersSearchParams(searchParams);
 
-      const { items, hasMore } = await getUsers({ filters, limit, offset });
+      const { items, pagination } = await getUsers({ filters, limit, offset });
 
       // return NextResponse.json(users, { status: 200 });
       return NextResponse.json(
         {
           items,
-          hasMore,
+          pagination,
         },
         { status: 200 },
       );
