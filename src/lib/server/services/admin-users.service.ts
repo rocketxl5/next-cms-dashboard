@@ -30,10 +30,12 @@ export async function getUser(
 
 export async function getUsers({
   filters,
+  page,
   limit,
-  offset,
 }: GetUsersParams): Promise<PaginatedResult<DatabaseDashboardUser>> {
   const where = buildUserWhere(filters);
+
+  const offset = (page - 1) * limit;
 
   const [items, total] = await Promise.all([
     prisma.user.findMany({
@@ -55,9 +57,10 @@ export async function getUsers({
     prisma.user.count({ where }),
   ]);
 
-  const hasMore = offset + items.length < total;
+  const hasNext = offset + items.length < total;
+  const hasPrevious = offset > 0;
 
-  return { items, pagination: { total, hasMore } };
+  return { items, pagination: { total, hasNext, hasPrevious } };
 }
 
 export async function getUsersRole(userIds: string[]) {

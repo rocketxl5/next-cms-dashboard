@@ -9,7 +9,7 @@ type Props<T> = {
   pageSize: number;
 };
 
-export function useClientPagination<T>({ items, pageSize }: Props<T>) {
+export function useClientLaodMore<T>({ items, pageSize }: Props<T>) {
   const [visibleCount, setVisibleCount] = useState(pageSize);
 
   const clampedCount = clampVisibleCount(visibleCount, items.length);

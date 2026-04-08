@@ -8,6 +8,7 @@ import { withRole } from '@/lib/server/with-role';
 import { getUsers } from '@/lib/server/services/admin-users.service';
 import { parseUsersSearchParams } from '@/app/(protected)/dashboard/users/_lib/parse-users-search-params';
 
+import { SearchUsersParams } from '@/types/shared';
 import { UserStatus } from '@/types/enums';
 
 // --------------------
@@ -38,13 +39,13 @@ export const GET = withRole(
       const searchParams = url.searchParams;
 
       // pagination params
-      const offset = Number(searchParams.get('offset') ?? 0);
+      const page = Number(searchParams.get('page') ?? 1);
       const limit = Number(searchParams.get('limit') ?? 25);
 
       // filters (reuse existing parser)
-      const filters = parseUsersSearchParams(searchParams);
+      const filters: SearchUsersParams = parseUsersSearchParams(searchParams);
 
-      const { items, pagination } = await getUsers({ filters, limit, offset });
+      const { items, pagination } = await getUsers({ filters, page, limit });
 
       // return NextResponse.json(users, { status: 200 });
       return NextResponse.json(
