@@ -1,6 +1,6 @@
-import { UserSearchField, USER_SEARCH_FIELDS } from '@/types/shared';
+import { UserSearchField, USER_SEARCH_FIELDS } from '@/types/shared/pagination';
 import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
-import { SearchUsersParams } from '@/types/shared';
+import { SearchUsersParams } from '@/types/shared/pagination';
 
 type ParamsProps = SearchUsersParams | URLSearchParams;
 

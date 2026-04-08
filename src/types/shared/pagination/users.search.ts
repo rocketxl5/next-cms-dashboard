@@ -1,7 +1,7 @@
 import { AppRole } from '../../enums/role';
 import { UserStatus } from '../../enums/status';
 import { UserSearchField } from './filters/users.filters';
-import { QueryParams } from './pagination';
+import { QueryParams } from './pagination.client';
 
 export type SearchUsersParams = {
   search?: string;

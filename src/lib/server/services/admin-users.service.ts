@@ -5,7 +5,7 @@ import { Prisma } from '@prisma/client';
 import { buildUserWhere } from '@/lib/shared/build-user-where';
 
 import { DatabaseDashboardUser } from '@/types/db/database-dashboard-user';
-import { GetUsersParams, PaginatedResult } from '@/types/shared';
+import { GetUsersParams, PaginatedResult } from '@/types/shared/pagination';
 import { UserStatus } from '@/types/enums';
 import { AppRole } from '@/types/enums';
 
@@ -57,7 +57,7 @@ export async function getUsers({
 
   const hasMore = offset + items.length < total;
 
-  return { items, total, hasMore };
+  return { items, pagination: { total, hasMore } };
 }
 
 export async function getUsersRole(userIds: string[]) {
