@@ -1,12 +1,15 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+
 import { UserRow } from '../_domain';
+
 import { useUserSelection } from '@/providers';
-import { CurrentDashboardUser, PaginationState } from '@/types/shared';
 import { buildUsersColumns } from './factory/build-users-columns';
-import { AppRole } from '@/types/enums';
 import { updateUserRoleAction } from '@/lib/domain/users/actions/single';
+
+import { CurrentDashboardUser, PaginationState } from '@/types/shared';
+import { AppRole } from '@/types/enums';
 
 type UsersTableProps = {
   users: UserRow[];
@@ -34,6 +37,8 @@ export function UsersTable({
   );
 
   if (!users.length) return <div className="p4">No users found</div>;
+
+  console.log(pagination);
 
   return (
     <table className="w-full border-collapse">

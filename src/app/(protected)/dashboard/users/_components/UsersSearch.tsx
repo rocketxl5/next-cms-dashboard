@@ -11,7 +11,7 @@ import { SearchSelect } from '@/app/(protected)/dashboard/components';
 import {
   UserSearchField,
   USER_SEARCH_FIELDS,
-} from '@/types/shared/search/filters/users.filters';
+} from '@/types/shared/pagination/filters/users.filters';
 import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
 // import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
