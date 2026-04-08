@@ -1,2 +1,2 @@
-export * from './useClientPagination';
-export * from './useServerPagination';
+export * from './useClientLoadMore';
+export * from './useServerLoadMore';

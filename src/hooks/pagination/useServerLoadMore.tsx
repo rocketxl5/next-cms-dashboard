@@ -20,7 +20,7 @@ type Props<T> = {
   loadingKey: string;
 };
 
-export function useServerPagination<T>({
+export function useServerLoadMore<T>({
   initialData,
   pageSize,
   onLoadMore,

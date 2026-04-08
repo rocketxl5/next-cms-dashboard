@@ -8,27 +8,27 @@ import { prismaToDashboardUser } from './map/user-row-map';
 import { getUsers } from '@/lib/server/services/admin-users.service';
 import { requireDashboardUser } from '@/lib/server';
 import { parseUsersSearchParams } from '../../_lib/parse-users-search-params';
+
 import { SearchUsersParams } from '@/types/shared';
 
 type UsersPageProps = {
-  searchParams?: SearchUsersParams | Promise<SearchUsersParams | undefined>;
+  searchParams?: Record<string, string | string[] | undefined>;
 };
 
 export default async function UsersPage({ searchParams }: UsersPageProps) {
   // Unwrap async searchParams for server component
-  const params = await searchParams;
 
   const dashboardUser = await requireDashboardUser();
 
-  const parsed = parseUsersSearchParams(params);
+  const filters: SearchUsersParams = parseUsersSearchParams(searchParams);
 
-  const limit = 5;
-  const offset = 0;
+  const page = Number(searchParams?.page ?? 1);
+  const limit = Number(searchParams?.limit ?? 5);
 
   const { items, pagination } = await getUsers({
-    filters: parsed,
+    filters,
+    page,
     limit,
-    offset,
   });
 
   const rows: UserRow[] = items
@@ -42,7 +42,7 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
         currentUser={dashboardUser}
         pagination={{
           meta: pagination,
-          query: { limit, offset },
+          query: { page, limit },
         }}
       />
     </UserSelectionProvider>

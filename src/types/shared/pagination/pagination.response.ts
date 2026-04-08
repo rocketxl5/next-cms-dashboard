@@ -2,7 +2,8 @@
 
 export type PaginationMeta = {
   total: number;
-  hasMore: boolean;
+  hasNext: boolean;
+  hasPrevious: boolean;
 };
 
 export type PaginatedResult<T> = {
