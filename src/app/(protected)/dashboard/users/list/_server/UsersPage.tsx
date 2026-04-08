@@ -8,7 +8,8 @@ import { prismaToDashboardUser } from './map/user-row-map';
 import { getUsers } from '@/lib/server/services/admin-users.service';
 import { requireDashboardUser } from '@/lib/server';
 import { parseUsersSearchParams } from '../../_lib/parse-users-search-params';
-import { SearchUsersParams } from '@/types/shared/pagination';
+import { SearchUsersParams } from '@/types/shared';
+
 type UsersPageProps = {
   searchParams?: SearchUsersParams | Promise<SearchUsersParams | undefined>;
 };
@@ -40,11 +41,8 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
         users={rows}
         currentUser={dashboardUser}
         pagination={{
-          // facts about data set
-          ...pagination,
-          // data set querying params
-          limit,
-          offset,
+          meta: pagination,
+          query: { limit, offset },
         }}
       />
     </UserSelectionProvider>
