@@ -1,8 +1,8 @@
-import { SearchUsersParams } from '@/types/shared';
+import { RawSearchUsersParams } from '@/types/shared';
 import UsersPage from './list/_server/UsersPage';
 
 type PageProps = {
-  searchParams?: SearchUsersParams;
+  searchParams?: RawSearchUsersParams;
 };
 
 export default function DashboardUsersPage({ searchParams }: PageProps) {
