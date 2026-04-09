@@ -6,9 +6,7 @@ import prisma from '@/lib/prisma';
 
 import { withRole } from '@/lib/server/with-role';
 import { getUsers } from '@/lib/server/services/admin-users.service';
-import { parseUsersSearchParams } from '@/app/(protected)/dashboard/users/_lib/parse-users-search-params';
-
-import { SearchUsersParams } from '@/types/shared';
+import { parseUsersQuery } from '@/app/(protected)/dashboard/users/_lib/parse-users-query';
 import { UserStatus } from '@/types/enums';
 
 // --------------------
@@ -38,14 +36,13 @@ export const GET = withRole(
       const url = new URL(req.url);
       const searchParams = url.searchParams;
 
-      // pagination params
-      const page = Number(searchParams.get('page') ?? 1);
-      const limit = Number(searchParams.get('limit') ?? 25);
+      const { query, filters } = parseUsersQuery(searchParams);
 
-      // filters (reuse existing parser)
-      const filters: SearchUsersParams = parseUsersSearchParams(searchParams);
-
-      const { items, pagination } = await getUsers({ filters, page, limit });
+      const { items, pagination } = await getUsers({
+        filters,
+        page: query.page,
+        limit: query.limit,
+      });
 
       // return NextResponse.json(users, { status: 200 });
       return NextResponse.json(

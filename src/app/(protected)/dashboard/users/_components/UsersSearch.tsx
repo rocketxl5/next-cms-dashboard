@@ -5,28 +5,37 @@ import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
-import { Box, Button, Input, Select, Stack } from '@/components/ui';
+import { Box, Button, Input, Stack } from '@/components/ui';
 import { SearchSelect } from '@/app/(protected)/dashboard/components';
 
 import {
   UserSearchField,
   USER_SEARCH_FIELDS,
 } from '@/types/shared/pagination/filters/users.filters';
+import { parseUsersQuery } from '../_lib/parse-users-query';
 import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
 // import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 export function UsersSearch() {
   const router = useRouter();
+  // searchParams: Source of truth
   const searchParams = useSearchParams();
   const DEFAULT_TYPE: UserSearchField = 'email';
 
-  // Local state only for instant typing (not synced via effect)
-  const [search, setSearch] = useState(searchParams.get('search') ?? '');
-  const [type, setType] = useState<UserSearchField>(DEFAULT_TYPE);
-  const [role, setRole] = useState<AppRole | ''>('');
-  const [status, setStatus] = useState<UserStatus | ''>('');
+  const { filters } = parseUsersQuery(searchParams);
 
-  const isSearchActive = search.trim() !== '' || role !== '' || status !== '';
+  const { search, type, role, status } = filters;
+
+  const isSearchActive = search?.trim() !== '' || !!role || !!status;
+
+  const [searchInput, setSearchInput] = useState(search);
+
+  useEffect(() => {
+    // react 19 allowed
+    // not a derived full state
+    // syncing controlled buffer
+    setSearchInput(search);
+  }, [search]);
 
   const updateUrl = useMemo(
     () =>
@@ -34,8 +43,11 @@ export function UsersSearch() {
         const params = new URLSearchParams(window.location.search);
 
         Object.entries(updates).forEach(([key, value]) => {
-          if (value) params.set(key, value);
-          else params.delete(key);
+          if (value !== undefined && value !== '') {
+            params.set(key, value);
+          } else {
+            params.delete(key);
+          }
         });
 
         router.replace(`?${params.toString()}`);
@@ -52,35 +64,28 @@ export function UsersSearch() {
 
   // Handlers
   const handleSearchChange = (value: string) => {
-    setSearch(value); // instant typing
+    setSearchInput(value); // instant typing
     updateUrl({ search: value, type }); // debounced URL
   };
 
   const handleTypeChange = (value: UserSearchField) => {
-    setType(value); // instant select
     updateUrl({ type: value }); // debounced URL
   };
 
   const handleRoleChange = (value: AppRole | '') => {
-    setRole(value);
     updateUrl({ role: value || undefined });
   };
 
   const handleStatusChange = (value: UserStatus | '') => {
-    setStatus(value);
     updateUrl({ status: value || undefined });
   };
 
   const handleReset = (path: string) => {
-    // 1. Clear local state
-    setSearch('');
-    setType(DEFAULT_TYPE);
-    setRole('');
-    setStatus('');
-    // 2. Cancel any pending debounce
+    // cancel any pending debounce
     updateUrl.clear();
-    // 3. Reset URL cleanly
-    router.replace(path);
+    // reset URL cleanly
+    // router.replace(path);
+    router.replace(`${path}?type=${DEFAULT_TYPE}`);
   };
 
   return (
@@ -105,7 +110,7 @@ export function UsersSearch() {
               'focus:border-transparent',
               'focus:outline-none',
             )}
-            value={search}
+            value={searchInput}
             placeholder={`Search by ${type}`}
             onChange={(e) => handleSearchChange(e.target.value)}
           />
@@ -130,14 +135,14 @@ export function UsersSearch() {
         <Box className="flex gap-4 justify-evenly">
           <SearchSelect
             focus={false}
-            value={role as AppRole}
+            value={role ?? ''}
             options={APP_ROLES}
             handleChange={(value: AppRole) => handleRoleChange(value)}
             placeholder="Role"
           />
           <SearchSelect
             focus={false}
-            value={status as UserStatus}
+            value={status ?? ''}
             options={USER_STATUS}
             handleChange={(value: UserStatus) => handleStatusChange(value)}
             placeholder="Status"

@@ -1,9 +1,9 @@
 import { Prisma } from '@prisma/client';
 
-import { SearchUsersParams } from '@/types/shared';
+import { ParsedSearchUsersParams } from '@/types/shared';
 
 export function buildUserWhere(
-  filters?: SearchUsersParams,
+  filters?: ParsedSearchUsersParams,
 ): Prisma.UserWhereInput {
   if (!filters) return {};
 
