@@ -1,7 +1,11 @@
-import { AppRole } from '../../enums/role';
-import { UserStatus } from '../../enums/status';
-import { UserSearchField } from './filters/users.filters';
-import { QueryParams } from './pagination.query';
+import { QueryParams } from '../../pagination';
+
+import { AppRole } from '@/types/enums/role';
+import { UserStatus } from '@/types/enums/status';
+
+export const USER_SEARCH_FIELDS = ['name', 'email'] as const;
+
+export type UserSearchField = (typeof USER_SEARCH_FIELDS)[number];
 
 export type RawSearchUsersParams = {
   search?: string;
