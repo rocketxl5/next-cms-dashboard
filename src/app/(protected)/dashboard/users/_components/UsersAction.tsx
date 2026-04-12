@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 
-import { Box, Link } from '@/components/ui';
+import { Box } from '@/components/ui';
 import { Select } from '@/components/ui';
 
 import { useUserSelection } from '@/providers';
+
 import { handleBulkAction } from '@/lib/domain';
 import { BulkUserAction, BulkUserActionKey } from '../list/_domain';
 

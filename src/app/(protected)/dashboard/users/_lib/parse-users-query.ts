@@ -1,62 +1,65 @@
 // name | email
-import { UserSearchField, USER_SEARCH_FIELDS } from "@/types/shared";
-import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from "@/types/enums";
-
-import { ParsedSearchUsersParams, PaginationQuery } from "@/types/shared";
+import {
+  UserSearchField,
+  USER_SEARCH_FIELDS,
+  ParsedSearchUsersParams,
+} from '@/types/shared/search';
+import { PaginationQuery } from '@/types/shared/pagination';
+import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
 
 export type UsersQuery = {
-    query: PaginationQuery;
-    filters: ParsedSearchUsersParams;
+  query: PaginationQuery;
+  filters: ParsedSearchUsersParams;
 };
 
-type Params = | URLSearchParams | Record<string, string | string[] | undefined>;
+type Params = URLSearchParams | Record<string, string | string[] | undefined>;
 
-export function parseUsersQuery(params?: Params): UsersQuery {
-    // console.log('params', params);
-    
-    const get = (key: string): string | undefined => {
-        if(!params) return;
+export function parseUsersQuery(params: URLSearchParams): UsersQuery {
+  // console.log('params', params);
 
-        if(params instanceof URLSearchParams) {
-            return params.get(key) ?? undefined;
-        }
+  const get = (key: string): string | undefined => {
+    if (!params) return;
 
-        const value = params[key];
-        if(typeof value === 'string') return value;
-        if(Array.isArray(value)) return value[0];
-        return undefined;
+    if (params instanceof URLSearchParams) {
+      return params.get(key) ?? undefined;
     }
 
-    // pagination
-    const page = Math.max(1, Number(get('page') ?? 1));
-    const limit = Math.max(1, Number(get('limit') ?? 5));
+    const value = params[key];
+    if (typeof value === 'string') return value;
+    if (Array.isArray(value)) return value[0];
+    return undefined;
+  };
 
-    // filters
-    const search = get('search');
-    const type = get('type');
-    const role = get('role');
-    const status = get('status');
+  // pagination
+  const page = Math.max(1, Number(get('page') ?? 1));
+  const limit = Math.max(1, Number(get('limit') ?? 5));
 
-    return {
-        query: {page, limit}, 
+  // filters
+  const search = get('search') ?? undefined;
+  const type = get('type') ?? undefined;
+  const role = get('role') ?? undefined;
+  const status = get('status') ?? undefined;
 
-        filters: {
-            search: search ?? '',
+  return {
+    query: { page, limit },
 
-            type: 
-                type && USER_SEARCH_FIELDS.includes(type as UserSearchField)
-                ? (type as UserSearchField)
-                : 'email',
+    filters: {
+      search: search ?? '',
 
-            role: 
-                role && APP_ROLES.includes(role as AppRole)
-                ? (role as AppRole)
-                : undefined,
+      type:
+        type && USER_SEARCH_FIELDS.includes(type as UserSearchField)
+          ? (type as UserSearchField)
+          : 'email',
 
-            status: 
-                status && USER_STATUS.includes(status as UserStatus)
-                ? (status as UserStatus)
-                : undefined,
-        },
-    };
+      role:
+        role && APP_ROLES.includes(role as AppRole)
+          ? (role as AppRole)
+          : undefined,
+
+      status:
+        status && USER_STATUS.includes(status as UserStatus)
+          ? (status as UserStatus)
+          : undefined,
+    },
+  };
 }

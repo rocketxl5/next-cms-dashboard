@@ -8,8 +8,9 @@ import { useUserSelection } from '@/providers';
 import { buildUsersColumns } from './factory/build-users-columns';
 import { updateUserRoleAction } from '@/lib/domain/users/actions/single';
 
-import { CurrentDashboardUser, PaginationState } from '@/types/shared';
 import { AppRole } from '@/types/enums';
+import { CurrentDashboardUser } from '@/types/shared';
+import { PaginationState } from '@/types/shared/pagination';
 
 type UsersTableProps = {
   users: UserRow[];

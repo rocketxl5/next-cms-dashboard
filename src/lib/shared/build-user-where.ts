@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client';
 
-import { ParsedSearchUsersParams } from '@/types/shared';
+import { ParsedSearchUsersParams } from '@/types/shared/search';
 
 export function buildUserWhere(
   filters?: ParsedSearchUsersParams,

@@ -7,7 +7,8 @@ import { UserRow } from '../_domain';
 import { useUserSelection } from '@/providers';
 import { getAllowedBulkActions, getSelectedUsers } from '@/lib/domain';
 
-import { CurrentDashboardUser, PaginationState } from '@/types/shared';
+import { CurrentDashboardUser } from '@/types/shared';
+import { PaginationState } from '@/types/shared/pagination';
 
 type UsersPageClientProps = {
   users: UserRow[];
