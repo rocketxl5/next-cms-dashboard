@@ -1,4 +1,3 @@
-// lib/server/admin/admin-users.service.ts
 import prisma from '@/lib/prisma';
 import { Prisma } from '@prisma/client';
 

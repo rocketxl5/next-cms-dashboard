@@ -1,5 +1,4 @@
 'use client';
-console.log('🔥 PAGE RENDER');
 
 import debounce from 'debounce';
 import { useState, useEffect, useMemo } from 'react';
