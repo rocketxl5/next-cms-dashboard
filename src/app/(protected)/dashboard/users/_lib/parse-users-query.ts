@@ -12,8 +12,6 @@ export type UsersQuery = {
   filters: ParsedSearchUsersParams;
 };
 
-type Params = URLSearchParams | Record<string, string | string[] | undefined>;
-
 export function parseUsersQuery(params: URLSearchParams): UsersQuery {
   // console.log('params', params);
 

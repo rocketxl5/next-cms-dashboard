@@ -8,12 +8,12 @@ import { useUserSelection } from '@/providers';
 import { getAllowedBulkActions, getSelectedUsers } from '@/lib/domain';
 
 import { CurrentDashboardUser } from '@/types/shared';
-import { PaginationState } from '@/types/shared/pagination';
+import { PaginationMeta } from '@/types/shared/pagination';
 
 type UsersPageClientProps = {
   users: UserRow[];
   currentUser: CurrentDashboardUser;
-  pagination: PaginationState;
+  pagination: PaginationMeta;
 };
 
 export function UsersPageClient({

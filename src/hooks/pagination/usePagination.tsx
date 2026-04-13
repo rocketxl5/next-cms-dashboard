@@ -11,14 +11,9 @@ export function usePagination(meta?: PaginationMeta) {
   const searchParams = useSearchParams();
 
   const page = Number(searchParams.get('page') ?? 1);
-  const limit = Number(searchParams.get('limit') ?? 25);
+  const limit = Number(searchParams.get('limit') ?? 5);
 
   function setPage(nextPage: number) {
-    // const params = new URLSearchParams(searchParams.toString());
-
-    // params.set('page', String(nextPage));
-    // params.set('limit', String(limit));
-
     const query = updateQueryParams(searchParams, {
       page: String(nextPage),
       limit: String(limit),
@@ -38,10 +33,6 @@ export function usePagination(meta?: PaginationMeta) {
   }
 
   function setLimit(newLimit: number) {
-    // const params = new URLSearchParams(searchParams.toString());
-
-    // params.set('limit', String(newLimit));
-    // params.set('page', '1'); // reset pagination
     const query = updateQueryParams(searchParams, {
       page: '1',
       limit: String(newLimit),

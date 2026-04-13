@@ -7,15 +7,16 @@ import { UserRow } from '../_domain';
 import { useUserSelection } from '@/providers';
 import { buildUsersColumns } from './factory/build-users-columns';
 import { updateUserRoleAction } from '@/lib/domain/users/actions/single';
+import { usePagination } from '@/hooks/pagination/usePagination';
 
 import { AppRole } from '@/types/enums';
 import { CurrentDashboardUser } from '@/types/shared';
-import { PaginationState } from '@/types/shared/pagination';
+import { PaginationMeta } from '@/types/shared';
 
 type UsersTableProps = {
   users: UserRow[];
   currentUser: CurrentDashboardUser;
-  pagination: PaginationState;
+  pagination: PaginationMeta;
 };
 
 export function UsersTable({
@@ -24,6 +25,8 @@ export function UsersTable({
   pagination,
 }: UsersTableProps) {
   const { selectedUserIds, toggleUserSelection } = useUserSelection();
+  const { hasNext, hasPrevious } = pagination;
+  const { nextPage, prevPage } = usePagination(pagination);
   const router = useRouter();
 
   async function handleUserRoleUpdate(userId: string, role: AppRole) {
@@ -39,30 +42,38 @@ export function UsersTable({
 
   if (!users.length) return <div className="p4">No users found</div>;
 
-  console.log(pagination);
-
   return (
-    <table className="w-full border-collapse">
-      <thead>
-        <tr>
-          {columns.map((column) => (
-            <th key={column.key} className="text-left px-4 py-2">
-              {column.header}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {users.map((user) => (
-          <tr key={user.id} className="border-t">
+    <div>
+      <table className="w-full border-collapse">
+        <thead>
+          <tr>
             {columns.map((column) => (
-              <td key={column.key} className="px-4 py-2">
-                {column.render(user, currentUser)}
-              </td>
+              <th key={column.key} className="text-left px-4 py-2">
+                {column.header}
+              </th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {users.map((user) => (
+            <tr key={user.id} className="border-t">
+              {columns.map((column) => (
+                <td key={column.key} className="px-4 py-2">
+                  {column.render(user, currentUser)}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className="flex justify-between items-center mt-4">
+        <button onClick={prevPage} disabled={!hasPrevious}>
+          Previous
+        </button>
+        <button onClick={nextPage} disabled={!hasNext}>
+          Next
+        </button>
+      </div>
+    </div>
   );
 }

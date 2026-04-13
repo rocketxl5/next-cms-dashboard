@@ -16,18 +16,13 @@ type PageProps = {
 };
 
 export default async function DashboardUsersPage({ searchParams }: PageProps) {
-  // console.log('🔥 RAW searchParams:', searchParams);
-
   const dashboardUser = await requireDashboardUser();
 
   const resolvedSearchParams = await searchParams;
+
   const params = normalizeSearchParams(resolvedSearchParams);
 
-  // console.log('🔥 params:', params.toString());
-
   const { query, filters } = parseUsersQuery(params);
-
-  // console.log('🔥 filters:', filters);
 
   const { items, pagination } = await getUsers({
     filters,
@@ -44,10 +39,7 @@ export default async function DashboardUsersPage({ searchParams }: PageProps) {
       <UsersPageClient
         users={rows}
         currentUser={dashboardUser}
-        pagination={{
-          meta: pagination,
-          query,
-        }}
+        pagination={pagination}
       />
     </UserSelectionProvider>
   );
