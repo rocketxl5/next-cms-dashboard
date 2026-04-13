@@ -1,7 +1,7 @@
 import { UsersPageClient } from './list/_client/UsersPageClient';
 import { UserSelectionProvider } from '@/providers/UserSelectionProvider';
 
-import { prismaToDashboardUser } from './list/_server/map/user-row-map';
+import { prismaToDashboardUser } from './list/_map/user-row-map';
 
 import { getUsers } from '@/lib/server/services/admin-users.service';
 import { normalizeSearchParams } from '@/lib/utils/normalizers';

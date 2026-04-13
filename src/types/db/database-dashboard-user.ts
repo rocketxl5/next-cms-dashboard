@@ -29,8 +29,8 @@ export type DatabaseDashboardUser = {
   name: string | null;
   email: string;
   role: Role;
-  theme: string;
   status: Status;
+  theme: string;
   createdAt: Date;
   updatedAt: Date;
 };
