@@ -3,11 +3,11 @@
 import { useRouter } from 'next/navigation';
 
 import { UserRow } from '../_domain';
+import { Pagination } from '@/components/ui/Pagination';
 
 import { useUserSelection } from '@/providers';
 import { buildUsersColumns } from './factory/build-users-columns';
 import { updateUserRoleAction } from '@/lib/domain/users/actions/single';
-import { usePagination } from '@/hooks/pagination/usePagination';
 
 import { AppRole } from '@/types/enums';
 import { CurrentDashboardUser } from '@/types/shared';
@@ -25,8 +25,6 @@ export function UsersTable({
   pagination,
 }: UsersTableProps) {
   const { selectedUserIds, toggleUserSelection } = useUserSelection();
-  const { hasNext, hasPrevious } = pagination;
-  const { nextPage, prevPage } = usePagination(pagination);
   const router = useRouter();
 
   async function handleUserRoleUpdate(userId: string, role: AppRole) {
@@ -66,14 +64,7 @@ export function UsersTable({
           ))}
         </tbody>
       </table>
-      <div className="flex justify-between items-center mt-4">
-        <button onClick={prevPage} disabled={!hasPrevious}>
-          Previous
-        </button>
-        <button onClick={nextPage} disabled={!hasNext}>
-          Next
-        </button>
-      </div>
+      <Pagination pagination={pagination} />
     </div>
   );
 }

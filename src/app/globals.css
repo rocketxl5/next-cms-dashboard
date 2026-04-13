@@ -23,7 +23,8 @@
 
   /* Muted (unchanged) */
   --muted: 210 40% 96%;
-  --muted-foreground: 215 16% 47%;
+  /* --muted-foreground: 215 16% 47%; */
+  --muted-foreground: 215 16% 18%;
 
   /* Feedback colors */
   --success: 145 63% 45%;
