@@ -12,6 +12,7 @@ import { updateUserRoleAction } from '@/lib/domain/users/actions/single';
 import { AppRole } from '@/types/enums';
 import { CurrentDashboardUser } from '@/types/shared';
 import { PaginationMeta } from '@/types/shared';
+import { UsersTableContext } from '../_domain/users-table-context';
 
 type UsersTableProps = {
   users: UserRow[];
@@ -32,11 +33,14 @@ export function UsersTable({
     router.refresh();
   }
 
-  const columns = buildUsersColumns(
+  const tableContext: UsersTableContext = {
+    currentUser,
     selectedUserIds,
     toggleUserSelection,
     handleUserRoleUpdate,
-  );
+  };
+
+  const columns = buildUsersColumns();
 
   if (!users.length) return <div className="p4">No users found</div>;
 
@@ -57,7 +61,7 @@ export function UsersTable({
             <tr key={user.id} className="border-t">
               {columns.map((column) => (
                 <td key={column.key} className="px-4 py-2">
-                  {column.render(user, currentUser)}
+                  {column.render(user, tableContext)}
                 </td>
               ))}
             </tr>

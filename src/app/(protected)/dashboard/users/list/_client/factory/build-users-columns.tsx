@@ -1,7 +1,9 @@
 import { SearchSelect } from '@/app/(protected)/dashboard/components';
 import { RoleBadge, StatusBadge } from '../components';
 import { Checkbox, Link } from '@/components/ui';
-import { UserRow, UsersColumn } from '../../_domain';
+import { UserRow } from '../../_domain';
+import { UsersTableContext } from '../../_domain/users-table-context';
+import { TableColumn } from '@/types/ui/table-column';
 
 import {
   getUserRowPermissions,
@@ -9,24 +11,23 @@ import {
 } from '@/lib/permissions/resources';
 import { APP_ROLES, AppRole } from '@/types/enums';
 
-export const buildUsersColumns = (
-  selectedUserIds: Set<string>,
-  toggleUserSelection: (id: string) => void,
-  handleUserRoleUpdate: (userId: string, role: AppRole) => void,
-): UsersColumn<UserRow>[] => [
+export const buildUsersColumns = (): TableColumn<
+  UserRow,
+  UsersTableContext
+>[] => [
   {
     key: 'checkbox',
     header: '',
-    render: (user, currentUser) => {
-      const permissions = getUserRowPermissions(currentUser, user);
+    render: (user, ctx) => {
+      const permissions = getUserRowPermissions(ctx.currentUser, user);
 
       if (!permissions.canAct) return null;
 
       return (
         <Checkbox
           id={`select-${user.id}`}
-          checked={selectedUserIds.has(user.id)}
-          onChange={() => toggleUserSelection(user.id)}
+          checked={ctx.selectedUserIds.has(user.id)}
+          onChange={() => ctx.toggleUserSelection(user.id)}
         />
       );
     },
@@ -44,13 +45,15 @@ export const buildUsersColumns = (
   {
     key: 'role',
     header: 'Role',
-    render: (user, currentUser) => {
-      const permissions = getUserRowPermissions(currentUser, user);
+    render: (user, ctx) => {
+      const permissions = getUserRowPermissions(ctx.currentUser, user);
 
       if (!permissions.canUpdateRole) return <RoleBadge role={user.role} />;
 
       const options: AppRole[] = APP_ROLES.filter((role) =>
-        userActions.canUpdateUserRole(currentUser.role, { targetRole: role }),
+        userActions.canUpdateUserRole(ctx.currentUser.role, {
+          targetRole: role,
+        }),
       );
 
       return (
@@ -58,7 +61,7 @@ export const buildUsersColumns = (
           <SearchSelect
             value={user.role}
             options={options}
-            handleChange={(role) => handleUserRoleUpdate(user.id, role)}
+            handleChange={(role) => ctx.handleUserRoleUpdate(user.id, role)}
           />
         </div>
       );
@@ -72,13 +75,13 @@ export const buildUsersColumns = (
   {
     key: 'actions',
     header: 'Actions',
-    render: (user, currentUser) => {
-      const permissions = getUserRowPermissions(currentUser, user);
+    render: (user, ctx) => {
+      const permissions = getUserRowPermissions(ctx.currentUser, user);
       const can = permissions.canEdit;
 
       if (!can) return null;
 
-      const isSelected = selectedUserIds.has(user.id);
+      const isSelected = ctx.selectedUserIds.has(user.id);
 
       return (
         <Link
