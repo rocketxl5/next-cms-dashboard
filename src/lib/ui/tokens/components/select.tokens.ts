@@ -1,10 +1,16 @@
 import { cn } from '@/lib/utils';
 import { color, size } from '../primitives';
-import { borderAdapters, layoutAdapters, radiusAdapters } from '../adapters';
+import {
+  borderAdapters,
+  layoutAdapters,
+  radiusAdapters,
+  selectAdapters,
+} from '../adapters';
 import { focusTokens } from './focus.tokens';
 
 export const selectTokens = {
   base: `
+    appearance-none
     rounded-md
     text-sm
     text-foreground
@@ -21,10 +27,10 @@ export const selectTokens = {
     success: `${color.success.background} focus:ring-[hsl(var(--success))]`,
   },
 
-  size: {
-    sm: `${size.height.sm} ${size.padding.sm} pr-4`,
-    md: `${size.height.md} ${size.padding.md} pr-8`,
-    lg: `${size.height.lg} ${size.padding.lg} pr-8`,
+  uiSize: {
+    sm: `${size.height.sm} ${size.padding.sm} ${selectAdapters.sm.paddingRight}`,
+    md: `${size.height.md} ${size.padding.md} ${selectAdapters.md.paddingRight}`,
+    lg: `${size.height.lg} ${size.padding.lg} ${selectAdapters.lg.paddingRight}`,
   },
 
   border: {

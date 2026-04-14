@@ -3,8 +3,9 @@
 import { FieldValues, Path, UseFormReturn } from 'react-hook-form';
 
 import { ErrorMessage } from '@/components/ui/button/auth/ErrorMessage';
-import { Button, Input, Label, Select } from '@/components/ui';
+import { Box, Button, Input, Label, Select } from '@/components/ui';
 import { Spinner } from '@/components/ui/Spinner';
+import { Grid } from '@/components/ui';
 
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
@@ -29,40 +30,51 @@ export function UserForm<T extends FieldValues>({
   } = form;
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-4">
-      {fields.map((field) => {
-        const fieldName = field.name as Path<T>;
-        return (
-          <div key={fieldName}>
-            <ErrorMessage message={errors[field.name]?.message as string} />
-            <Label htmlFor={String(field.name)}>{field.label}</Label>
-            {field.type === 'select' && field.options ? (
-              <Select {...register(fieldName)}>
-                {field.options.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {normalizeDisplayString(option.value)}
-                  </option>
-                ))}
-              </Select>
+    <Box width="1/2" className="mx-auto">
+      <form onSubmit={onSubmit}>
+        <Grid>
+          {fields.map((field) => {
+            const fieldName = field.name as Path<T>;
+            return (
+              <div key={fieldName}>
+                <ErrorMessage message={errors[field.name]?.message as string} />
+                <Label htmlFor={String(field.name)}>{field.label}</Label>
+                {field.type === 'select' && field.options ? (
+                  <Select {...register(fieldName)}>
+                    {field.options.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {normalizeDisplayString(option.value)}
+                      </option>
+                    ))}
+                  </Select>
+                ) : (
+                  <Input
+                    id={fieldName}
+                    type={field.type ?? 'text'}
+                    {...register(fieldName)}
+                  />
+                )}
+              </div>
+            );
+          })}
+        </Grid>
+        <Box className="mt-8">
+          <Button
+            type="submit"
+            variant="success"
+            layout="block"
+            disabled={loading || !isDirty}
+          >
+            {loading ? (
+              <>
+                <Spinner size="sm" className="mr-2" />
+              </>
             ) : (
-              <Input
-                id={fieldName}
-                type={field.type ?? 'text'}
-                {...register(fieldName)}
-              />
+              'Submit'
             )}
-          </div>
-        );
-      })}
-      <Button type="submit" variant="success" disabled={loading || !isDirty}>
-        {loading ? (
-          <>
-            <Spinner size="sm" className="mr-2" />
-          </>
-        ) : (
-          'Submit'
-        )}
-      </Button>
-    </form>
+          </Button>
+        </Box>
+      </form>
+    </Box>
   );
 }

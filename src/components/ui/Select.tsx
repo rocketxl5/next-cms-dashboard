@@ -1,9 +1,13 @@
 import React from 'react';
+
+import { ChevronDown } from 'lucide-react';
+
 import { cn } from '@/lib/utils';
 import {
   selectVariants,
   SelectVariants,
 } from '@/lib/ui/variants/select.variants';
+import { selectAdapters } from '@/lib/ui/tokens';
 
 type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> &
   SelectVariants & {
@@ -15,7 +19,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     {
       className,
       wrapperClassName,
-      size,
+      uiSize,
       border,
       layout,
       children,
@@ -31,27 +35,20 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         <select
           ref={ref}
           className={cn(
-            selectVariants({ size, border, layout, radius, variant, focus }),
+            selectVariants({ uiSize, border, layout, radius, variant, focus }),
             className,
           )}
           {...props}
         >
           {children}
         </select>
-
         {/* arrow */}
-        <span
+        <ChevronDown
           className={cn(
             'pointer-events-none absolute top-1/2 -translate-y-1/2 text-muted-foreground',
-            {
-              sm: 'right-2 text-xs',
-              md: 'right-2.5 text-sm',
-              lg: 'right-3 text-base',
-            }[size ?? 'md'],
+            selectAdapters[uiSize ?? 'sm'].icon,
           )}
-        >
-          ▼
-        </span>
+        />
       </div>
     );
   },
