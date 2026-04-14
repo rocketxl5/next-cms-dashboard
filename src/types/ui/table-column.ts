@@ -1,4 +1,4 @@
-import { ColumnVariants } from '@/lib/ui/variants/column.variants';
+import { CellVariants } from '@/lib/ui/variants';
 import { TableContext } from './table-context';
 
 export type TableColumn<Row, Context = TableContext<Row>> = {
@@ -8,8 +8,8 @@ export type TableColumn<Row, Context = TableContext<Row>> = {
   render: (row: Row, context: Context) => React.ReactNode;
 
   // styling (CVA layer)
-  variant?: ColumnVariants['variant'];
-  size?: ColumnVariants['size'];
+  variant?: CellVariants['variant'];
+  size?: CellVariants['size'];
 
   // layout layer
   align?: 'left' | 'center' | 'right';

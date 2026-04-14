@@ -1,6 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import { toastTokens } from '../tokens/components/toast.tokens';
-import { surfaceAdapters } from '../tokens';
 
 export const toastVariants = cva(toastTokens.base, {
   variants: {

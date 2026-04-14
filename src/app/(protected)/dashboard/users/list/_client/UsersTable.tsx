@@ -2,17 +2,19 @@
 
 import { useRouter } from 'next/navigation';
 
-import { UserRow } from '../_domain';
 import { Pagination } from '@/components/ui/Pagination';
 
 import { useUserSelection } from '@/providers';
 import { buildUsersColumns } from './factory/build-users-columns';
+
+import { cn } from '@/lib/utils';
 import { updateUserRoleAction } from '@/lib/domain/users/actions/single';
+import { cellTokens, tableTokens } from '@/lib/ui/tokens';
 
 import { AppRole } from '@/types/enums';
-import { CurrentDashboardUser } from '@/types/shared';
-import { PaginationMeta } from '@/types/shared';
-import { UsersTableContext } from '../_domain/users-table-context';
+import { CurrentDashboardUser, PaginationMeta } from '@/types/shared';
+import { UserRow, UsersTableContext } from '../_domain';
+import { cellVariants } from '@/lib/ui/variants';
 
 type UsersTableProps = {
   users: UserRow[];
@@ -42,15 +44,32 @@ export function UsersTable({
 
   const columns = buildUsersColumns();
 
+  const resolvedColumns = columns.map((col) => ({
+    ...col,
+    className: cellVariants({
+      variant: col.variant,
+      size: col.size,
+    }),
+  }));
+
   if (!users.length) return <div className="p4">No users found</div>;
 
   return (
     <div>
-      <table className="w-full border-collapse">
+      <table className={tableTokens.base.table}>
         <thead>
-          <tr>
+          <tr className={tableTokens.base.headerRow}>
             {columns.map((column) => (
-              <th key={column.key} className="text-left px-4 py-2">
+              <th
+                key={column.key}
+                className={cn(
+                  cellTokens.base.header,
+                  cellVariants({
+                    variant: column.variant,
+                    size: column.size,
+                  }),
+                )}
+              >
                 {column.header}
               </th>
             ))}
@@ -58,9 +77,12 @@ export function UsersTable({
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr key={user.id} className="border-t">
-              {columns.map((column) => (
-                <td key={column.key} className="px-4 py-2">
+            <tr key={user.id} className={tableTokens.base.row}>
+              {resolvedColumns.map((column) => (
+                <td
+                  key={column.key}
+                  className={cn(cellTokens.base.cell, column.className)}
+                >
                   {column.render(user, tableContext)}
                 </td>
               ))}

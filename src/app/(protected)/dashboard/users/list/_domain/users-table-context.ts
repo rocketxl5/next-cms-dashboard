@@ -1,5 +1,5 @@
 import { AppRole } from '@/types/enums';
-import { TableContext } from '@/types/ui/table-context';
+import { TableContext } from '@/types/ui';
 import { UserRow } from './user-row';
 import { CurrentDashboardUser } from '@/types/shared';
 
