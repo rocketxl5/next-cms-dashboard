@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
-import { columnTokens } from '../tokens';
+import { cellTokens } from '../tokens';
 
-export const columnVariants = cva(columnTokens.base.cell, {
+export const cellVariants = cva(cellTokens.base.cell, {
   variants: {
     variant: {
       text: 'truncate',
@@ -25,4 +25,4 @@ export const columnVariants = cva(columnTokens.base.cell, {
   },
 });
 
-export type ColumnVariants = VariantProps<typeof columnVariants>;
+export type CellVariants = VariantProps<typeof cellVariants>;

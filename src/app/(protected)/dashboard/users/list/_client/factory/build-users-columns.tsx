@@ -3,7 +3,7 @@ import { RoleBadge, StatusBadge } from '../components';
 import { Checkbox, Link } from '@/components/ui';
 import { UserRow } from '../../_domain';
 import { UsersTableContext } from '../../_domain/users-table-context';
-import { TableColumn } from '@/types/ui/table-column';
+import { TableColumn } from '@/types/ui';
 
 import {
   getUserRowPermissions,
