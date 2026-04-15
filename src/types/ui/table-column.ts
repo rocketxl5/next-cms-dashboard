@@ -12,15 +12,20 @@ export type TableColumn<Row, Context = TableContext<Row>> = {
   size?: CellVariants['size'];
 
   // layout layer
-  align?: 'left' | 'center' | 'right';
-  headerAlign?: 'left' | 'center' | 'right';
-
-  width?: 'auto' | 'sm' | 'md' | 'lg';
-  minWidth?: string;
-  maxWidth?: string;
-  grow?: boolean;
+  align?: CellVariants['align'];
+  width?: CellVariants['width'];
+  grow?: CellVariants['grow'];
+  overflow?: CellVariants['overflow'];
 
   // future system hooks
-  sortable?: boolean;
-  filterable?: boolean;
+  sortable?: {
+    key?: keyof Row; // optional override
+    compare?: (a: Row, b: Row) => number;
+  };
+
+  filterable?: {
+    type?: 'text' | 'select' | 'custom';
+    value?: (row: Row) => unknown;
+    options?: { label: string; value: string }[];
+  };
 };

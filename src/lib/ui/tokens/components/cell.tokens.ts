@@ -6,6 +6,12 @@ export const cellTokens = {
     header: 'px-4 py-2 text-left',
   },
 
+  size: {
+    sm: 'px-2 py-1 text-sm',
+    md: 'px-4 py-2 text-sm',
+    lg: 'px-4 py-3 text-base',
+  },
+
   width: {
     auto: '',
     sm: 'w-[80px]',
@@ -16,7 +22,6 @@ export const cellTokens = {
 
   grow: {
     true: 'w-full',
-    false: '',
   },
 
   overflow: {
