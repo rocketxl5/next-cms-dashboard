@@ -14,6 +14,7 @@ export const cellTokens = {
 
   width: {
     auto: '',
+    xs: 'w-[40px]',
     sm: 'w-[80px]',
     md: 'w-[160px]',
     lg: 'w-[240px]',

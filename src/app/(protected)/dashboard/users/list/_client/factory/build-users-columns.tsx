@@ -1,6 +1,10 @@
 import { SearchSelect } from '@/app/(protected)/dashboard/components';
 import { RoleBadge, StatusBadge } from '../components';
-import { Checkbox, Link } from '@/components/ui';
+import { Button, Checkbox, Link } from '@/components/ui';
+import { SquarePen, Trash } from 'lucide-react';
+
+import { formatDateTime } from '@/lib/utils/date-time';
+
 import { UserRow } from '../../_domain';
 import { UsersTableContext } from '../../_domain/users-table-context';
 import { TableColumn } from '@/types/ui';
@@ -18,6 +22,9 @@ export const buildUsersColumns = (): TableColumn<
   {
     key: 'checkbox',
     header: '',
+    variant: 'checkbox',
+    width: 'sm',
+    align: 'center',
     render: (user, ctx) => {
       const permissions = getUserRowPermissions(ctx.currentUser, user);
 
@@ -35,16 +42,22 @@ export const buildUsersColumns = (): TableColumn<
   {
     key: 'name',
     header: 'Name',
+    width: 'md',
+    grow: false,
+    overflow: 'truncate',
     render: (user) => user.name,
   },
   {
     key: 'email',
     header: 'Email',
+    width: 'lg',
+    overflow: 'truncate',
     render: (user) => user.email,
   },
   {
     key: 'role',
     header: 'Role',
+    align: 'center',
     render: (user, ctx) => {
       const permissions = getUserRowPermissions(ctx.currentUser, user);
 
@@ -57,7 +70,7 @@ export const buildUsersColumns = (): TableColumn<
       );
 
       return (
-        <div className="flex">
+        <div className="flex justify-center">
           <SearchSelect
             value={user.role}
             options={options}
@@ -70,28 +83,51 @@ export const buildUsersColumns = (): TableColumn<
   {
     key: 'status',
     header: 'Status',
+    width: 'lg',
+    align: 'center',
     render: (user) => <StatusBadge status={user.status} />,
+  },
+  {
+    key: 'created',
+    header: 'Created',
+    width: 'md',
+    align: 'center',
+    render: (user) => formatDateTime(user.createdAt),
+  },
+  {
+    key: 'updated',
+    header: 'Updated',
+    width: 'md',
+    align: 'center',
+    render: (user) => formatDateTime(user.updatedAt),
   },
   {
     key: 'actions',
     header: 'Actions',
+    width: 'md',
+    align: 'center',
     render: (user, ctx) => {
       const permissions = getUserRowPermissions(ctx.currentUser, user);
-      const can = permissions.canEdit;
+      const canEdit = permissions.canEdit;
 
-      if (!can) return null;
+      if (!canEdit) return null;
 
       const isSelected = ctx.selectedUserIds.has(user.id);
 
       return (
-        <Link
-          href={!isSelected ? `/dashboard/users/edit/${user.id}` : '#'}
-          variant={!isSelected ? 'success' : 'muted'}
-          size="sm"
-          radius="sm"
-        >
-          Edit
-        </Link>
+        <div className="w-full flex justify-center gap-4">
+          <Link
+            href={!isSelected ? `/dashboard/users/edit/${user.id}` : '#'}
+            variant={!isSelected ? 'success' : 'muted'}
+            size="iconSm"
+            radius="md"
+          >
+            <SquarePen size={20} />
+          </Link>
+          <Button variant="destructive" size="iconSm">
+            <Trash size={20} />
+          </Button>
+        </div>
       );
     },
   },

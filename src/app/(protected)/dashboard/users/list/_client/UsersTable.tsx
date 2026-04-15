@@ -49,6 +49,10 @@ export function UsersTable({
     className: cellVariants({
       variant: col.variant,
       size: col.size,
+      width: col.width,
+      grow: col.grow,
+      overflow: col.overflow,
+      align: col.align,
     }),
   }));
 
@@ -59,16 +63,10 @@ export function UsersTable({
       <table className={tableTokens.base.table}>
         <thead>
           <tr className={tableTokens.base.headerRow}>
-            {columns.map((column) => (
+            {resolvedColumns.map((column) => (
               <th
                 key={column.key}
-                className={cn(
-                  cellTokens.base.header,
-                  cellVariants({
-                    variant: column.variant,
-                    size: column.size,
-                  }),
-                )}
+                className={cn(cellTokens.base.header, column.className)}
               >
                 {column.header}
               </th>
