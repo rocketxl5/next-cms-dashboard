@@ -21,6 +21,7 @@ export const cellVariants = cva(cellTokens.base.cell, {
   defaultVariants: {
     variant: 'text',
     size: 'md',
+    width: 'md',
     overflow: 'truncate',
   },
 });

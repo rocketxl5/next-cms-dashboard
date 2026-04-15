@@ -39,5 +39,9 @@ export const linkTokens = {
     sm: `${textAdapters.sm} ${size.height.sm} ${size.padding.sm}`,
     md: `${textAdapters.sm} ${size.height.md} ${size.padding.md}`,
     lg: `${textAdapters.lg} ${size.height.lg} ${size.padding.lg}`,
+
+    iconSm: `${size.height.sm} aspect-square flex items-center justify-center`,
+    iconMd: `${size.height.md} aspect-square flex items-center justify-center`,
+    iconLg: `${size.height.lg} aspect-square flex items-center justify-center`,
   },
 } as const;

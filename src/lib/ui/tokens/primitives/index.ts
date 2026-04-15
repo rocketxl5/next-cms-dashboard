@@ -1,3 +1,4 @@
+export * from './align';
 export * from './border';
 export * from './color';
 export * from './motion';
