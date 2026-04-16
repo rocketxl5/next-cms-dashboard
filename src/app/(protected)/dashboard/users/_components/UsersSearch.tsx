@@ -99,7 +99,9 @@ export function UsersSearch() {
       <Stack direction="row" justify="between" width="full">
         <Box
           className={cn(
-            'flex rounded-md',
+            'flex items-stretch', // important
+            'h-10', // or your token: size.height.md
+            'rounded-md',
             'border border-[hsl(var(--border))]',
             'focus-within:border-[hsl(var(--border-focus))]',
             'focus-within:ring-1',
@@ -109,6 +111,7 @@ export function UsersSearch() {
         >
           <Input
             className={cn(
+              'h-full',
               'w-2xs ',
               'rounded-r-none',
               'border-0',
@@ -122,6 +125,7 @@ export function UsersSearch() {
           />
           <Select
             className={cn(
+              'h-full',
               'appearance-none',
               'border-0',
               'rounded-l-none',
