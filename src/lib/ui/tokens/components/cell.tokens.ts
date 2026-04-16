@@ -3,7 +3,7 @@ import { size } from "../primitives";
 export const cellTokens = {
   base: {
     cell: 'px-4 py-2 align-middle',
-    header: 'px-4 py-2 text-left',
+    header: 'px-4 py-1 text-left',
   },
 
   size: {
