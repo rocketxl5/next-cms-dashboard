@@ -4,7 +4,10 @@ import { selectTokens } from '../tokens/components';
 export const selectVariants = cva(selectTokens.base, {
   variants: {
     variant: selectTokens.variant,
-    uiSize: selectTokens.uiSize,
+    height: selectTokens.height,
+    padding: selectTokens.padding,
+    paddingX: selectTokens.paddingX,
+    paddingY: selectTokens.paddingY,
     border: selectTokens.border,
     layout: selectTokens.layout,
     radius: selectTokens.radius,
@@ -18,7 +21,8 @@ export const selectVariants = cva(selectTokens.base, {
 
   defaultVariants: {
     variant: 'default',
-    uiSize: 'md',
+    height: 'md',
+    padding: 'lg',
     layout: 'block',
     border: 'default',
     radius: 'md',

@@ -19,7 +19,8 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     {
       className,
       wrapperClassName,
-      uiSize,
+      padding,
+      height,
       border,
       layout,
       children,
@@ -35,7 +36,15 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         <select
           ref={ref}
           className={cn(
-            selectVariants({ uiSize, border, layout, radius, variant, focus }),
+            selectVariants({
+              padding,
+              height,
+              border,
+              layout,
+              radius,
+              variant,
+              focus,
+            }),
             className,
           )}
           {...props}
@@ -46,7 +55,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         <ChevronDown
           className={cn(
             'pointer-events-none absolute top-1/2 -translate-y-1/2 text-muted-foreground',
-            selectAdapters[uiSize ?? 'sm'].icon,
+            selectAdapters[padding ?? 'md'].icon,
           )}
         />
       </div>

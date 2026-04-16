@@ -27,10 +27,28 @@ export const selectTokens = {
     success: `${color.success.background} focus:ring-[hsl(var(--success))]`,
   },
 
-  uiSize: {
-    sm: `${size.height.sm} ${size.padding.sm} ${selectAdapters.sm.paddingRight}`,
-    md: `${size.height.md} ${size.padding.md} ${selectAdapters.md.paddingRight}`,
-    lg: `${size.height.lg} ${size.padding.lg} ${selectAdapters.lg.paddingRight}`,
+  height: {
+    sm: `${size.height.sm}`,
+    md: `${size.height.md}`,
+    lg: `${size.height.lg}`,
+  },
+
+  padding: {
+    sm: selectAdapters.sm.padding,
+    md: selectAdapters.md.padding,
+    lg: selectAdapters.lg.padding,
+  },
+
+  paddingX: {
+    sm: `${size.paddingX.sm}`,
+    md: `${size.paddingX.md}`,
+    lg: `${size.paddingX.lg}`,
+  },
+
+  paddingY: {
+    sm: `${size.paddingY.sm}`,
+    md: `${size.paddingY.md}`,
+    lg: `${size.paddingY.lg}`,
   },
 
   border: {
