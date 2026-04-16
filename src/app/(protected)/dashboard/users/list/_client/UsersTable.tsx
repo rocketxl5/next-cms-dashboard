@@ -75,7 +75,7 @@ export function UsersTable({
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr key={user.id} className={tableTokens.base.row}>
+            <tr key={user.id} className={` ${tableTokens.base.row}`}>
               {resolvedColumns.map((column) => (
                 <td
                   key={column.key}

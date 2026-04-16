@@ -1,9 +1,9 @@
-import { SearchSelect } from '@/app/(protected)/dashboard/components';
 import { RoleBadge, StatusBadge } from '../components';
-import { Button, Checkbox, Link } from '@/components/ui';
+import { Button, Checkbox, Link, Select } from '@/components/ui';
 import { SquarePen, Trash } from 'lucide-react';
 
 import { formatDateTime } from '@/lib/utils/date-time';
+import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 import { UserRow } from '../../_domain';
 import { UsersTableContext } from '../../_domain/users-table-context';
@@ -71,11 +71,18 @@ export const buildUsersColumns = (): TableColumn<
 
       return (
         <div className="flex justify-center">
-          <SearchSelect
+          <Select
             value={user.role}
-            options={options}
-            handleChange={(role) => ctx.handleUserRoleUpdate(user.id, role)}
-          />
+            onChange={(e) =>
+              ctx.handleUserRoleUpdate(user.id, e.target.value as AppRole)
+            }
+          >
+            {options.map((option) => (
+              <option key={option} value={option}>
+                {normalizeDisplayString(option)}
+              </option>
+            ))}
+          </Select>
         </div>
       );
     },

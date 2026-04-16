@@ -5,11 +5,11 @@ import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
-import { Box, Button, Input, Stack } from '@/components/ui';
-import { SearchSelect } from '@/app/(protected)/dashboard/components';
+import { Box, Button, Input, Select, Stack } from '@/components/ui';
 
 import { parseUsersQuery } from '../_lib/parse-users-query';
 import { updateQueryParams } from '@/lib/url/update-query-params';
+import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 import { UserSearchField, USER_SEARCH_FIELDS } from '@/types/shared/search';
 import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
@@ -120,8 +120,7 @@ export function UsersSearch() {
             placeholder={`Search by ${type}`}
             onChange={(e) => handleSearchChange(e.target.value)}
           />
-          {/* <div className="w-px h-6 bg-border" /> */}
-          <SearchSelect
+          <Select
             className={cn(
               'appearance-none',
               'border-0',
@@ -131,28 +130,46 @@ export function UsersSearch() {
               'focus:border-transparent',
               'focus:outline-none',
             )}
+            border="none"
             focus={false}
             value={type}
-            border="none"
-            options={USER_SEARCH_FIELDS}
-            handleChange={(value: UserSearchField) => handleTypeChange(value)}
-          />
+            onChange={(e) =>
+              handleTypeChange(e.target.value as UserSearchField)
+            }
+          >
+            <option value="">Role</option>
+            {USER_SEARCH_FIELDS.map((field) => (
+              <option key={field} value={field}>
+                {normalizeDisplayString(field)}
+              </option>
+            ))}
+          </Select>
         </Box>
         <Box className="flex gap-4 justify-evenly">
-          <SearchSelect
+          <Select
             focus={false}
             value={role ?? ''}
-            options={APP_ROLES}
-            handleChange={(value: AppRole) => handleRoleChange(value)}
-            placeholder="Role"
-          />
-          <SearchSelect
+            onChange={(e) => handleRoleChange(e.target.value as AppRole)}
+          >
+            <option value="">Role</option>
+            {APP_ROLES.map((role) => (
+              <option key={role} value={role}>
+                {normalizeDisplayString(role)}
+              </option>
+            ))}
+          </Select>
+          <Select
             focus={false}
             value={status ?? ''}
-            options={USER_STATUS}
-            handleChange={(value: UserStatus) => handleStatusChange(value)}
-            placeholder="Status"
-          />
+            onChange={(e) => handleStatusChange(e.target.value as UserStatus)}
+          >
+            <option value="">Status</option>
+            {USER_STATUS.map((status) => (
+              <option key={status} value={status}>
+                {normalizeDisplayString(status)}
+              </option>
+            ))}
+          </Select>
           <Button
             onClick={() => handleReset('/dashboard/users')}
             disabled={!isSearchActive}
