@@ -117,7 +117,7 @@ export function UsersSearch() {
               'focus:outline-none',
             )}
             value={searchInput}
-            placeholder={`Search by ${type}`}
+            placeholder={`Search by ${normalizeDisplayString(type)}`}
             onChange={(e) => handleSearchChange(e.target.value)}
           />
           <Select
@@ -129,6 +129,7 @@ export function UsersSearch() {
               'focus:ring-0',
               'focus:border-transparent',
               'focus:outline-none',
+              'pr-12',
             )}
             border="none"
             focus={false}
@@ -137,7 +138,6 @@ export function UsersSearch() {
               handleTypeChange(e.target.value as UserSearchField)
             }
           >
-            <option value="">Role</option>
             {USER_SEARCH_FIELDS.map((field) => (
               <option key={field} value={field}>
                 {normalizeDisplayString(field)}
