@@ -36,7 +36,7 @@ export function UsersAction({
   };
 
   return (
-    <Box className="flex w-sm gap-4">
+    <Box className="flex gap-4">
       <Select
         focus={false}
         variant="subtle"

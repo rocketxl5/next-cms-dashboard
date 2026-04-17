@@ -4,6 +4,7 @@ import {
   USER_SEARCH_FIELDS,
   ParsedSearchUsersParams,
 } from '@/types/shared/search';
+import { toISODate } from '@/lib/utils';
 import { PaginationQuery } from '@/types/shared/pagination';
 import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
 
@@ -37,6 +38,8 @@ export function parseUsersQuery(params: URLSearchParams): UsersQuery {
   const type = get('type') ?? undefined;
   const role = get('role') ?? undefined;
   const status = get('status') ?? undefined;
+  const createdFrom = get('createdFrom') ?? undefined;
+  const createdTo = get('createdTo') ?? undefined;
 
   return {
     query: { page, limit },
@@ -58,6 +61,9 @@ export function parseUsersQuery(params: URLSearchParams): UsersQuery {
         status && USER_STATUS.includes(status as UserStatus)
           ? (status as UserStatus)
           : undefined,
+
+      createdFrom: toISODate(createdFrom, 'start'),
+      createdTo: toISODate(createdTo, 'end'),
     },
   };
 }

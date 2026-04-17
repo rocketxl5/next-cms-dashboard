@@ -1,6 +1,9 @@
 import { layoutAdapters } from '@/lib/ui/tokens';
 
 type WidthKey = keyof typeof layoutAdapters.elementWidth;
+// type FlexAlignKey = keyof typeof layoutAdapters.flexAdapters.align;
+// type FlexJustifyKey = keyof typeof layoutAdapters.flexAdapters.justify;
+// type FlexDirectionKey = keyof typeof layoutAdapters.flexAdapters.direction;
 
 type BoxProps = {
   children: React.ReactNode;
@@ -19,7 +22,7 @@ export function Box({
     <div
       className={[
         width ? layoutAdapters.elementWidth[width] : '',
-        grow ? 'flex-1 min-w-0' : '',
+        grow ? layoutAdapters.elementWidth.grow : '',
         className,
       ].join(' ')}
     >

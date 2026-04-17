@@ -19,6 +19,9 @@ export type ParsedSearchUsersParams = {
   type: UserSearchField;
   role?: AppRole;
   status?: UserStatus;
+
+  createdFrom?: string;
+  createdTo?: string;
 };
 
 export type GetUsersParams = QueryParams<ParsedSearchUsersParams>;
