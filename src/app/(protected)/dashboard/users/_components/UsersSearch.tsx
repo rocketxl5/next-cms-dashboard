@@ -23,7 +23,7 @@ export function UsersSearch() {
 
   const { filters } = parseUsersQuery(searchParams);
 
-  const { search, type, role, status } = filters;
+  const { search, type, role, status, createdFrom, createdTo } = filters;
 
   const isSearchActive = search?.trim() !== '' || !!role || !!status;
 
@@ -56,6 +56,12 @@ export function UsersSearch() {
       debouncedSearch.clear();
     };
   }, [debouncedSearch]);
+
+  // helper
+  const formatDateForInput = (iso?: string) => {
+    if (!iso) return '';
+    return iso.split('T')[0];
+  };
 
   // Handlers
   const handleSearchChange = (value: string) => {
@@ -90,98 +96,126 @@ export function UsersSearch() {
     router.replace(`?${query}`);
   };
 
+  const handleDateChange = (
+    key: 'createdFrom' | 'createdTo',
+    value: string,
+  ) => {
+    const query = updateQueryParams(searchParams, {
+      [key]: value || undefined,
+      page: '1',
+    });
+
+    router.replace(`?${query}`);
+  };
+
   const handleReset = (path: string) => {
     router.replace(`${path}?type=${DEFAULT_TYPE}`);
   };
 
   return (
-    <Box className="flex justify-between" width="1/2">
-      <Stack direction="row" justify="between" width="full">
-        <Box
-          className={cn(
-            'flex items-stretch', // important
-            'h-10', // or your token: size.height.md
-            'rounded-md',
-            'border border-[hsl(var(--border))]',
-            'focus-within:border-[hsl(var(--border-focus))]',
-            'focus-within:ring-1',
-            'focus-within:ring-[hsl(var(--border-focus))]',
-            'focus-within:ring-inset',
-          )}
-        >
-          <Input
+    <>
+      <Box width="fit" grow={false} className="flex gap-4">
+        <Input
+          type="date"
+          layout="fit"
+          value={formatDateForInput(createdFrom)}
+          onChange={(e) => handleDateChange('createdFrom', e.target.value)}
+        />
+        <Input
+          type="date"
+          layout="fit"
+          value={formatDateForInput(createdTo)}
+          onChange={(e) => handleDateChange('createdTo', e.target.value)}
+        />
+      </Box>
+      <Box className="flex justify-between" width="1/2">
+        <Stack direction="row" justify="between" width="full">
+          <Box
             className={cn(
-              'h-full',
-              'w-2xs ',
-              'rounded-r-none',
-              'border-0',
-              'focus:ring-0',
-              'focus:border-transparent',
-              'focus:outline-none',
+              'flex items-stretch', // important
+              'h-10', // or your token: size.height.md
+              'rounded-md',
+              'border border-[hsl(var(--border))]',
+              'focus-within:border-[hsl(var(--border-focus))]',
+              'focus-within:ring-1',
+              'focus-within:ring-[hsl(var(--border-focus))]',
+              'focus-within:ring-inset',
             )}
-            value={searchInput}
-            placeholder={`Search by ${normalizeDisplayString(type)}`}
-            onChange={(e) => handleSearchChange(e.target.value)}
-          />
-          <Select
-            className={cn(
-              'h-full',
-              'appearance-none',
-              'border-0',
-              'rounded-l-none',
-              'bg-transparent!',
-              'focus:ring-0',
-              'focus:border-transparent',
-              'focus:outline-none',
-              'pr-12',
-            )}
-            border="none"
-            focus={false}
-            value={type}
-            onChange={(e) =>
-              handleTypeChange(e.target.value as UserSearchField)
-            }
           >
-            {USER_SEARCH_FIELDS.map((field) => (
-              <option key={field} value={field}>
-                {normalizeDisplayString(field)}
-              </option>
-            ))}
-          </Select>
-        </Box>
-        <Box className="flex gap-4 justify-evenly">
-          <Select
-            focus={false}
-            value={role ?? ''}
-            onChange={(e) => handleRoleChange(e.target.value as AppRole)}
-          >
-            <option value="">Role</option>
-            {APP_ROLES.map((role) => (
-              <option key={role} value={role}>
-                {normalizeDisplayString(role)}
-              </option>
-            ))}
-          </Select>
-          <Select
-            focus={false}
-            value={status ?? ''}
-            onChange={(e) => handleStatusChange(e.target.value as UserStatus)}
-          >
-            <option value="">Status</option>
-            {USER_STATUS.map((status) => (
-              <option key={status} value={status}>
-                {normalizeDisplayString(status)}
-              </option>
-            ))}
-          </Select>
-          <Button
-            onClick={() => handleReset('/dashboard/users')}
-            disabled={!isSearchActive}
-          >
-            Clear Search
-          </Button>
-        </Box>
-      </Stack>
-    </Box>
+            <Input
+              className={cn(
+                'h-full',
+                'w-2xs ',
+                'rounded-r-none',
+                'border-0',
+                'focus:ring-0',
+                'focus:border-transparent',
+                'focus:outline-none',
+              )}
+              value={searchInput}
+              placeholder={`Search by ${normalizeDisplayString(type)}`}
+              onChange={(e) => handleSearchChange(e.target.value)}
+            />
+            <Select
+              className={cn(
+                'h-full',
+                'appearance-none',
+                'border-0',
+                'rounded-l-none',
+                'bg-transparent!',
+                'focus:ring-0',
+                'focus:border-transparent',
+                'focus:outline-none',
+                'pr-12',
+              )}
+              border="none"
+              focus={false}
+              value={type}
+              onChange={(e) =>
+                handleTypeChange(e.target.value as UserSearchField)
+              }
+            >
+              {USER_SEARCH_FIELDS.map((field) => (
+                <option key={field} value={field}>
+                  {normalizeDisplayString(field)}
+                </option>
+              ))}
+            </Select>
+          </Box>
+          <Box className="flex gap-4 justify-evenly">
+            <Select
+              focus={false}
+              value={role ?? ''}
+              onChange={(e) => handleRoleChange(e.target.value as AppRole)}
+            >
+              <option value="">Role</option>
+              {APP_ROLES.map((role) => (
+                <option key={role} value={role}>
+                  {normalizeDisplayString(role)}
+                </option>
+              ))}
+            </Select>
+            <Select
+              focus={false}
+              value={status ?? ''}
+              onChange={(e) => handleStatusChange(e.target.value as UserStatus)}
+            >
+              <option value="">Status</option>
+              {USER_STATUS.map((status) => (
+                <option key={status} value={status}>
+                  {normalizeDisplayString(status)}
+                </option>
+              ))}
+            </Select>
+            <Button
+              onClick={() => handleReset('/dashboard/users')}
+              disabled={!isSearchActive}
+            >
+              Clear Search
+            </Button>
+          </Box>
+        </Stack>
+      </Box>
+    </>
   );
 }

@@ -1,4 +1,4 @@
-export function formatDateTime(dateString: string) {
+export function normalizeDateTime(dateString: string) {
   const date = new Date(dateString);
 
   return new Intl.DateTimeFormat('en-CA', {

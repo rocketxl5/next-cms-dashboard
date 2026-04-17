@@ -2,7 +2,7 @@ import { RoleBadge, StatusBadge } from '../components';
 import { Button, Checkbox, Link, Select } from '@/components/ui';
 import { SquarePen, Trash } from 'lucide-react';
 
-import { formatDateTime } from '@/lib/utils/date-time';
+import { normalizeDateTime } from '@/lib/utils/normalizers';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 import { UserRow } from '../../_domain';
@@ -68,6 +68,7 @@ export const buildUsersColumns = (): TableColumn<
           targetRole: role,
         }),
       );
+      console.log('createAt', user.createdAt);
 
       return (
         <div className="flex justify-center">
@@ -101,14 +102,14 @@ export const buildUsersColumns = (): TableColumn<
     header: 'Created',
     width: 'md',
     align: 'center',
-    render: (user) => formatDateTime(user.createdAt),
+    render: (user) => normalizeDateTime(user.createdAt),
   },
   {
     key: 'updated',
     header: 'Updated',
     width: 'md',
     align: 'center',
-    render: (user) => formatDateTime(user.updatedAt),
+    render: (user) => normalizeDateTime(user.updatedAt),
   },
   {
     key: 'actions',
