@@ -15,6 +15,7 @@ export const selectTokens = {
     text-sm
     text-foreground
     border
+    bg-[hsl(var(--background))]
     ${focusTokens.base}
     disabled:opacity-50
     disabled:pointer-events-none

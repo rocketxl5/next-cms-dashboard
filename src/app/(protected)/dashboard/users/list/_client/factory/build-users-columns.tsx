@@ -72,6 +72,8 @@ export const buildUsersColumns = (): TableColumn<
       return (
         <div className="flex justify-center">
           <Select
+            height="sm"
+            focus={false}
             value={user.role}
             onChange={(e) =>
               ctx.handleUserRoleUpdate(user.id, e.target.value as AppRole)
@@ -129,10 +131,10 @@ export const buildUsersColumns = (): TableColumn<
             size="iconSm"
             radius="md"
           >
-            <SquarePen size={20} />
+            <SquarePen size={18} />
           </Link>
           <Button variant="destructive" size="iconSm">
-            <Trash size={20} />
+            <Trash size={18} />
           </Button>
         </div>
       );
