@@ -1,8 +1,10 @@
+import { size } from '../primitives';
+
 export const tableTokens = {
   base: {
-    table: 'w-full table-fixed',
-    row: 'border-t border-gray-200',
-    headerRow: '',
+    table: 'w-full table-fixed border-separate border-spacing-0',
+    row: 'group',
+    headerRow: `${size.height.md}`,
     body: '',
   },
 } as const;

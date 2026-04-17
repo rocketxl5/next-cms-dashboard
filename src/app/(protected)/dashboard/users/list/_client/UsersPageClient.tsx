@@ -1,12 +1,13 @@
 'use client';
 
+import { Box } from '@/components/ui';
 import { UsersTable } from './UsersTable';
 import { DashboardSearchBar } from '@/app/(protected)/dashboard/components';
-import { UserRow } from '../_domain';
 
 import { useUserSelection } from '@/providers';
 import { getAllowedBulkActions, getSelectedUsers } from '@/lib/domain';
 
+import { UserRow } from '../_domain';
 import { CurrentDashboardUser } from '@/types/shared';
 import { PaginationMeta } from '@/types/shared/pagination';
 
@@ -29,7 +30,7 @@ export function UsersPageClient({
     currentUser,
   });
   return (
-    <>
+    <Box className="flex flex-col gap-8">
       <DashboardSearchBar
         allowedBulkActions={allowedBulkActions}
         selectedCount={selectedCount}
@@ -39,6 +40,6 @@ export function UsersPageClient({
         currentUser={currentUser}
         pagination={pagination}
       />
-    </>
+    </Box>
   );
 }
