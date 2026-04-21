@@ -4,7 +4,7 @@ import { FieldValues, Path, UseFormReturn } from 'react-hook-form';
 
 import { ErrorMessage } from '@/components/ui/button/auth/ErrorMessage';
 import { Box, Button, Input, Label, Select } from '@/components/ui';
-import { Spinner } from '@/components/ui/Spinner';
+import { Spinner } from '@/components/ui';
 import { Grid } from '@/components/ui';
 
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
