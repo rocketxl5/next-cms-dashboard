@@ -13,7 +13,6 @@ import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 import { UserSearchField, USER_SEARCH_FIELDS } from '@/types/shared/search';
 import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
-// import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 export function UsersSearch() {
   // searchParams: Source of truth
@@ -58,7 +57,7 @@ export function UsersSearch() {
     };
   }, [debouncedSearch]);
 
-  // helper
+  // Helper
   const formatDateForInput = (iso?: string) => {
     if (!iso) return '';
     return iso.split('T')[0];
