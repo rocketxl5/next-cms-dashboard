@@ -16,16 +16,17 @@ import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
 // import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 export function UsersSearch() {
-  const router = useRouter();
   // searchParams: Source of truth
   const searchParams = useSearchParams();
+  const router = useRouter();
   const DEFAULT_TYPE: UserSearchField = 'email';
 
   const { filters } = parseUsersQuery(searchParams);
 
   const { search, type, role, status, createdFrom, createdTo } = filters;
 
-  const isSearchActive = search?.trim() !== '' || !!role || !!status;
+  const isSearchActive =
+    search?.trim() !== '' || !!role || !!status || !!createdFrom || !!createdTo;
 
   const [searchInput, setSearchInput] = useState(search);
 
@@ -118,12 +119,14 @@ export function UsersSearch() {
         <Input
           type="date"
           layout="fit"
+          placeholder="From"
           value={formatDateForInput(createdFrom)}
           onChange={(e) => handleDateChange('createdFrom', e.target.value)}
         />
         <Input
           type="date"
           layout="fit"
+          placeholder="To"
           value={formatDateForInput(createdTo)}
           onChange={(e) => handleDateChange('createdTo', e.target.value)}
         />

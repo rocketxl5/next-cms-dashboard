@@ -1,7 +1,13 @@
 type DateBoundary = 'start' | 'end';
 
-export function toISODate(date: string | undefined, boundary: DateBoundary = 'start') {
-  const d = new Date(date as string);
+export function toISODate(
+  date: string | undefined,
+  boundary: DateBoundary = 'start',
+) {
+  if (!date) return undefined;
+
+  const [year, month, day] = date.split('-').map(Number);
+  const d = new Date(year, month - 1, day);
 
   if (isNaN(d.getTime())) return undefined;
 

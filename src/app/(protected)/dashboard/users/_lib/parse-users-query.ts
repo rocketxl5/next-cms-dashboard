@@ -1,10 +1,10 @@
-// name | email
+import { toISODate } from '@/lib/utils';
+
 import {
   UserSearchField,
   USER_SEARCH_FIELDS,
   ParsedSearchUsersParams,
 } from '@/types/shared/search';
-import { toISODate } from '@/lib/utils';
 import { PaginationQuery } from '@/types/shared/pagination';
 import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
 
@@ -14,8 +14,6 @@ export type UsersQuery = {
 };
 
 export function parseUsersQuery(params: URLSearchParams): UsersQuery {
-  // console.log('params', params);
-
   const get = (key: string): string | undefined => {
     if (!params) return;
 
