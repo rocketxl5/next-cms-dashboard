@@ -5,13 +5,14 @@ import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
-import { Box, Button, Input, Select, Stack } from '@/components/ui';
+import { Box, Button, DateInput, Input, Select, Stack } from '@/components/ui';
 
 import { parseUsersQuery } from '../_lib/parse-users-query';
 import { updateQueryParams } from '@/lib/url/update-query-params';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 import { UserSearchField, USER_SEARCH_FIELDS } from '@/types/shared/search';
+import { DateKey } from '@/types/shared';
 import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
 
 export function UsersSearch() {
@@ -57,12 +58,6 @@ export function UsersSearch() {
     };
   }, [debouncedSearch]);
 
-  // Helper
-  const formatDateForInput = (iso?: string) => {
-    if (!iso) return '';
-    return iso.split('T')[0];
-  };
-
   // Handlers
   const handleSearchChange = (value: string) => {
     setSearchInput(value); // instant typing
@@ -96,10 +91,7 @@ export function UsersSearch() {
     router.replace(`?${query}`);
   };
 
-  const handleDateChange = (
-    key: 'createdFrom' | 'createdTo',
-    value: string,
-  ) => {
+  const handleDateChange = (key: DateKey, value: string) => {
     const query = updateQueryParams(searchParams, {
       [key]: value || undefined,
       page: '1',
@@ -115,19 +107,17 @@ export function UsersSearch() {
   return (
     <>
       <Box width="fit" grow={false} className="flex gap-4">
-        <Input
-          type="date"
-          layout="fit"
+        <DateInput
           placeholder="From"
-          value={formatDateForInput(createdFrom)}
-          onChange={(e) => handleDateChange('createdFrom', e.target.value)}
+          dateKey="createdFrom"
+          value={createdFrom}
+          onSelect={handleDateChange}
         />
-        <Input
-          type="date"
-          layout="fit"
+        <DateInput
           placeholder="To"
-          value={formatDateForInput(createdTo)}
-          onChange={(e) => handleDateChange('createdTo', e.target.value)}
+          dateKey="createdTo"
+          value={createdTo}
+          onSelect={handleDateChange}
         />
       </Box>
       <Box className="flex justify-between" width="1/2">

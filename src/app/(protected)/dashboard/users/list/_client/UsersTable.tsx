@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import { Pagination } from '@/components/ui/Pagination';
+import { Pagination } from '@/components/ui';
 
 import { useUserSelection } from '@/providers';
 import { buildUsersColumns } from './factory/build-users-columns';
