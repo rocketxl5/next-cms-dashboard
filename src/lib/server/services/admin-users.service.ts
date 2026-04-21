@@ -1,7 +1,7 @@
 import prisma from '@/lib/prisma';
 import { Prisma } from '@prisma/client';
 
-import { buildUserWhere } from '@/lib/shared/build-user-where';
+import { buildUserWhere } from '@/lib/shared';
 
 import { DatabaseDashboardUser } from '@/types/db/database-dashboard-user';
 import { GetUsersParams } from '@/types/shared/search';
