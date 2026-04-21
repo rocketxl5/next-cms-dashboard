@@ -7,7 +7,14 @@ export function buildUserWhere(
 ): Prisma.UserWhereInput {
   if (!filters) return {};
 
-  const { search, type = 'email', role, status } = filters;
+  const {
+    search,
+    type = 'email',
+    role,
+    status,
+    createdFrom,
+    createdTo,
+  } = filters;
 
   const where: Prisma.UserWhereInput = {};
 
@@ -18,13 +25,21 @@ export function buildUserWhere(
     }
 
     if (type === 'email') {
-      where.name = { contains: search, mode: 'insensitive' };
+      where.email = { contains: search, mode: 'insensitive' };
     }
   }
 
   // Select filters
   if (role) where.role = role;
   if (status) where.status = status;
+
+  // Date pickers
+  if (createdFrom && createdTo) {
+    where.createdAt = {
+      gte: createdFrom,
+      lte: createdTo,
+    };
+  }
 
   return where;
 }

@@ -68,7 +68,6 @@ export const buildUsersColumns = (): TableColumn<
           targetRole: role,
         }),
       );
-      console.log('createAt', user.createdAt);
 
       return (
         <div className="flex justify-center">
