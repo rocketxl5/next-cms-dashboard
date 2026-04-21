@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 
 import { DayPicker } from 'react-day-picker';
 import { Calendar } from 'lucide-react';
@@ -35,7 +35,6 @@ export function DateInput({
   };
 
   return (
-    // <div className="relative" ref={ref}>
     <>
       {/* Input */}
       <div
@@ -63,7 +62,6 @@ export function DateInput({
           />
         </div>
       )}
-      {/* // </div> */}
     </>
   );
 }
