@@ -6,7 +6,7 @@ export const cellTokens = {
       align-middle
       px-4 py-2
       border-t border-[hsl(var(--border))]
-      group-even:bg-[hsl(var(--muted))]
+      group-odd:bg-[hsl(var(--muted))]
       transition-colors
     `,
     header: 'px-4 py-1 text-left',
