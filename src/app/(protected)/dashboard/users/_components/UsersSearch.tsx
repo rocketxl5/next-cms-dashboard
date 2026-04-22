@@ -10,6 +10,7 @@ import { Box, Button, DateInput, Input, Select, Stack } from '@/components/ui';
 import { parseUsersQuery } from '../_lib/parse-users-query';
 import { updateQueryParams } from '@/lib/url/update-query-params';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
+import { inputToDate } from '@/lib/date';
 
 import { UserSearchField, USER_SEARCH_FIELDS } from '@/types/shared/search';
 import { DateKey } from '@/types/shared';
@@ -20,6 +21,7 @@ export function UsersSearch() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const DEFAULT_TYPE: UserSearchField = 'email';
+  const today = new Date();
 
   const { filters } = parseUsersQuery(searchParams);
 
@@ -111,12 +113,17 @@ export function UsersSearch() {
           placeholder="From"
           dateKey="createdFrom"
           value={createdFrom}
+          disabled={{ after: today }}
           onSelect={handleDateChange}
         />
         <DateInput
           placeholder="To"
           dateKey="createdTo"
           value={createdTo}
+          disabled={{
+            before: inputToDate(createdFrom),
+            after: today,
+          }}
           onSelect={handleDateChange}
         />
       </Box>

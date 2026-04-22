@@ -1,5 +1,7 @@
 import { Prisma } from '@prisma/client';
 
+import { toISODate } from '../date';
+
 import { ParsedSearchUsersParams } from '@/types/shared/search';
 
 export function buildUserWhere(
@@ -36,8 +38,8 @@ export function buildUserWhere(
   // Date pickers
   if (createdFrom && createdTo) {
     where.createdAt = {
-      gte: createdFrom,
-      lte: createdTo,
+      gte: toISODate(createdFrom, 'start'),
+      lte: toISODate(createdTo, 'end'),
     };
   }
 
