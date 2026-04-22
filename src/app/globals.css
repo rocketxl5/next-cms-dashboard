@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '../styles/tailwind-safelist.css';
+@import 'react-day-picker/dist/style.css';
 
 /* Base theme (light) */
 :root {
