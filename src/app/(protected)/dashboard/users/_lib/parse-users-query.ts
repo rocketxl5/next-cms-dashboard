@@ -1,5 +1,3 @@
-import { toISODate } from '@/lib/date';
-
 import {
   UserSearchField,
   USER_SEARCH_FIELDS,
@@ -60,8 +58,8 @@ export function parseUsersQuery(params: URLSearchParams): UsersQuery {
           ? (status as UserStatus)
           : undefined,
 
-      createdFrom: toISODate(createdFrom, 'start'),
-      createdTo: toISODate(createdTo, 'end'),
+      createdFrom: createdFrom,
+      createdTo: createdTo,
     },
   };
 }

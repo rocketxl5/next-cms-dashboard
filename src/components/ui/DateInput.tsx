@@ -11,14 +11,11 @@ import { dateToInputString, inputToDate, isoToInput } from '@/lib/date';
 
 import { DateInputProps } from '@/types/shared';
 
-import classNames from 'react-day-picker/style.module.css';
-
-console.log(classNames);
-
 export function DateInput({
   placeholder,
   dateKey,
   value,
+  disabled,
   onSelect,
 }: DateInputProps) {
   const [open, setOpen] = useState(false);
@@ -85,6 +82,7 @@ export function DateInput({
             mode="single"
             selected={selectedDate}
             onSelect={handleSelect}
+            disabled={disabled}
             classNames={{
               root: `${defaultClassNames.root} bg-[hsl(var(--background))] p-2 rounded-md border shadow-lg`,
               nav: `${defaultClassNames.nav} absolute inset-0 flex items-center justify-between px-1`,

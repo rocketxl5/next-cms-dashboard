@@ -1,6 +1,4 @@
 export const inputToDate = (value?: string) => {
-    console.log(value);
-    
   if (!value) return undefined;
 
   const [year, month, day] = value.split('-').map(Number);
