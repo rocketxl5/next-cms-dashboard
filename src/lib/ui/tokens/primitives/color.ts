@@ -36,7 +36,8 @@ export const color = {
   },
   link: {
     default: 'text-primary hover:underline', // link style
-    subtle: 'text-muted-foreground hover:text-foreground', // inline subtle link
+    foreground: 'text-foreground hover:text-muted-foreground',
+    muted: 'text-muted-foreground hover:text-foreground', // inline subtle link
   },
   muted: {
     background: 'bg-muted',

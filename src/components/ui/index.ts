@@ -1,5 +1,5 @@
 export * from './Checkbox';
-export * from './DateInput';
+export * from './DateSelector';
 export * from './Footer';
 export * from './Header';
 export * from './Input';

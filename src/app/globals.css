@@ -25,7 +25,7 @@
   /* Muted (unchanged) */
   --muted: 210 40% 96%;
   /* --muted-foreground: 215 16% 47%; */
-  --muted-foreground: 215 16% 18%;
+  --muted-foreground: 215 16% 52%;
 
   /* Feedback colors */
   --success: 145 63% 45%;
@@ -78,7 +78,7 @@
   --border: 217 33% 25%;
 
   --primary: 217 91% 60%;
-  --primary-foreground: 222 47% 11%;
+    --primary-foreground: 221 60% 96%;
 
   --destructive: 0 63% 31%;
   --destructive-foreground: 210 40% 98%;
