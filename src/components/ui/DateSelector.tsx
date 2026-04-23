@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { format } from 'date-fns';
 
 import { Calendar } from 'lucide-react';
@@ -11,14 +10,16 @@ import { dateToInputString, inputToDate, isoToInput } from '@/lib/date';
 
 import { DateInputProps } from '@/types/shared';
 
-export function DateInput({
+export function DateSelector({
   placeholder,
   dateKey,
   value,
   disabled,
   onSelect,
+  isOpen,
+  onToggle,
+  ref,
 }: DateInputProps) {
-  const [open, setOpen] = useState(false);
   const defaultClassNames = getDefaultClassNames();
 
   const selectedDate = value ? inputToDate(isoToInput(value)) : undefined;
@@ -32,59 +33,54 @@ export function DateInput({
     const formatted = dateToInputString(d);
 
     onSelect(dateKey, formatted);
-    setOpen(false);
+    onToggle();
   };
 
   return (
-    <>
-      {/* Input */}
+    <div className='relative'   ref={ref}>
       <div
         className={cn(
+          'h-full', 
           'flex',
           'items-center',
           'cursor-pointer',
           'relative',
           'rounded-md',
           'border border-[hsl(var(--border))]',
-          'focus-within:border-[hsl(var(--border-focus))]',
-          'focus-within:ring-1',
-          'focus-within:ring-[hsl(var(--border-focus))]',
-          'focus-within:ring-inset',
+          isOpen && [
+            'border-[hsl(var(--border-focus))]',
+            'ring-1',
+            'ring-[hsl(var(--border-focus))]',
+            'ring-inset',
+          ],
         )}
         // className="relative my-auto cursor-pointer py-1 pl-2 border rounded-md border-[hsl(var(--border))]"
-        onClick={() => setOpen((o) => !o)}
+        onClick={onToggle}
       >
-        <input
-          type="text"
-          readOnly
-          value={selectedDate ? format(selectedDate, 'MMM dd, yyyy') : ''}
-          placeholder={placeholder}
-          //   className="input pr-8 cursor-pointer text-sm border-0"
+        <div
           className={cn(
-            'w-full',
-            'h-full',
-            'bg-transparent',
+            'min-w-38',
             'text-sm',
-            'pl-2',
-            'pr-8', // leave space for icon
-            'outline-none',
+            'pr-12', // space for icon
+            'pl-4',
             'border-0',
           )}
-        />
-
-        <Calendar className="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        >
+          {selectedDate ? format(selectedDate, 'MMM dd, yyyy') : <span className='text-[hsl(var(--muted-foreground))]'>{placeholder}</span>}
+        </div>
+        <Calendar className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground" />
       </div>
 
       {/* Calendar popover */}
-      {open && (
-        <div className="absolute z-50 mt-8">
+      {isOpen && (
+        <div className="absolute z-50 mt-4">
           <DayPicker
             mode="single"
             selected={selectedDate}
             onSelect={handleSelect}
             disabled={disabled}
             classNames={{
-              root: `${defaultClassNames.root} bg-[hsl(var(--background))] p-2 rounded-md border shadow-lg`,
+              root: `${defaultClassNames.root} bg-[hsl(var(--background))] p-2 rounded-md border border-[hsl(var(--background-muted))] shadow-lg`,
               nav: `${defaultClassNames.nav} absolute inset-0 flex items-center justify-between px-1`,
               caption_label: `${defaultClassNames.caption_label} mx-auto font-md`,
               button_previous: `
@@ -96,12 +92,12 @@ export function DateInput({
                 h-8 w-8 p-0 flex items-center justify-center rounded-md
             `,
               chevron: `${defaultClassNames.chevron}`,
-              selected: `border-none bg-[hsl(var(--foreground))] text-[hsl(var(--background))]`,
+              selected: `border-none bg-[hsl(var(--primary))] text-[hsl(var(--background))]`,
               today: `${defaultClassNames.today} border-none`,
             }}
           />
         </div>
       )}
-    </>
+    </div>
   );
 }

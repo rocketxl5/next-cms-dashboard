@@ -10,4 +10,7 @@ export type DateInputProps = {
   value?: string;
   disabled?: Parameters<typeof DayPicker>[0]['disabled'];
   onSelect: (key: DateKey, value: string) => void;
+  isOpen: boolean;
+  onToggle: () => void;
+  ref: (node: HTMLElement | null) => void;
 };

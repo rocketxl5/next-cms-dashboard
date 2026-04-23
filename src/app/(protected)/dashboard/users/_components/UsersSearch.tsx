@@ -5,15 +5,24 @@ import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
-import { Box, Button, DateInput, Input, Select, Stack } from '@/components/ui';
+import {
+  Box,
+  Button,
+  DateSelector,
+  Input,
+  Select,
+  Stack,
+} from '@/components/ui';
 
+import { useSharedToggle } from '@/hooks/useSharedToggle';
+
+import { inputToDate } from '@/lib/date';
 import { parseUsersQuery } from '../_lib/parse-users-query';
 import { updateQueryParams } from '@/lib/url/update-query-params';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
-import { inputToDate } from '@/lib/date';
 
-import { UserSearchField, USER_SEARCH_FIELDS } from '@/types/shared/search';
 import { DateKey } from '@/types/shared';
+import { UserSearchField, USER_SEARCH_FIELDS } from '@/types/shared/search';
 import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
 
 export function UsersSearch() {
@@ -29,6 +38,10 @@ export function UsersSearch() {
 
   const isSearchActive =
     search?.trim() !== '' || !!role || !!status || !!createdFrom || !!createdTo;
+
+  const { toggle, isOpen, register } = useSharedToggle<'from' | 'to'>();
+  const from = register('from');
+  const to = register('to');
 
   const [searchInput, setSearchInput] = useState(search);
 
@@ -109,14 +122,17 @@ export function UsersSearch() {
   return (
     <>
       <Box width="fit" grow={false} className="flex gap-4">
-        <DateInput
+        <DateSelector
           placeholder="From"
           dateKey="createdFrom"
           value={createdFrom}
           disabled={{ after: today }}
           onSelect={handleDateChange}
+          // isOpen={isOpen('from')}
+          // onToggle={() => toggle('from')}
+          {...from}
         />
-        <DateInput
+        <DateSelector
           placeholder="To"
           dateKey="createdTo"
           value={createdTo}
@@ -125,6 +141,9 @@ export function UsersSearch() {
             after: today,
           }}
           onSelect={handleDateChange}
+          // isOpen={isOpen('to')}
+          // onToggle={() => toggle('to')}
+          {...to}
         />
       </Box>
       <Box className="flex justify-between" width="1/2">

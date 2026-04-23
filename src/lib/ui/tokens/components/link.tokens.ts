@@ -12,7 +12,8 @@ export const linkTokens = {
     // button-like
     primary: `${color.primary.background} ${color.primary.foreground} hover:opacity-90`,
     success: `${color.success.background} ${color.success.foreground} hover:opacity-90`,
-    muted: `${color.muted.background} ${color.muted.foreground}`,
+    muted: `${color.background} ${color.link.muted}`,
+    foreground: `${color.muted.background} ${color.link.foreground}`,
   },
 
   border: {

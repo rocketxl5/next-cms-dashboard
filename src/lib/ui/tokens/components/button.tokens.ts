@@ -10,8 +10,8 @@ export const buttonTokens = {
     success: `${color.success.background} ${color.success.foreground}`,
     warning: `${color.warning.background} ${color.warning.foreground}`,
     info: `${color.info.background} ${color.info.foreground}`,
-    link: `${color.link.default} ${color.link.subtle}`,
-    muted: `${color.muted.background} ${color.muted.foreground} border`,
+    link: `${color.link.default} ${color.link.foreground}`,
+    muted: `${color.muted.background} ${color.foreground} border`,
   },
 
   layout: {
