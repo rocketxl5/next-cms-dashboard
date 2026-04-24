@@ -36,6 +36,8 @@ export function parseUsersQuery(params: URLSearchParams): UsersQuery {
   const status = get('status') ?? undefined;
   const createdFrom = get('createdFrom') ?? undefined;
   const createdTo = get('createdTo') ?? undefined;
+  const updatedFrom = get('updatedFrom') ?? undefined;
+  const updatedTo = get('updatedTo') ?? undefined;
 
   return {
     query: { page, limit },
@@ -60,6 +62,9 @@ export function parseUsersQuery(params: URLSearchParams): UsersQuery {
 
       createdFrom: createdFrom,
       createdTo: createdTo,
+
+      updatedFrom: updatedFrom,
+      updatedTo: updatedTo,
     },
   };
 }

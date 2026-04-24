@@ -16,6 +16,8 @@ export function buildUserWhere(
     status,
     createdFrom,
     createdTo,
+    updatedFrom,
+    updatedTo,
   } = filters;
 
   const where: Prisma.UserWhereInput = {};
@@ -40,6 +42,13 @@ export function buildUserWhere(
     where.createdAt = {
       gte: toISODate(createdFrom, 'start'),
       lte: toISODate(createdTo, 'end'),
+    };
+  }
+
+  if (updatedFrom && updatedTo) {
+    where.updatedAt = {
+      gte: toISODate(updatedFrom, 'start'),
+      lte: toISODate(updatedTo, 'end'),
     };
   }
 

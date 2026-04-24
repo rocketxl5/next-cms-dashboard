@@ -5,18 +5,8 @@ import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
-import {
-  Box,
-  Button,
-  DateSelector,
-  Input,
-  Select,
-  Stack,
-} from '@/components/ui';
+import { SearchDate, Box, Button, Input, Select, Stack } from '@/components/ui';
 
-import { useSharedToggle } from '@/hooks/useSharedToggle';
-
-import { inputToDate } from '@/lib/date';
 import { parseUsersQuery } from '../_lib/parse-users-query';
 import { updateQueryParams } from '@/lib/url/update-query-params';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
@@ -34,14 +24,19 @@ export function UsersSearch() {
 
   const { filters } = parseUsersQuery(searchParams);
 
-  const { search, type, role, status, createdFrom, createdTo } = filters;
+  const {
+    search,
+    type,
+    role,
+    status,
+    createdFrom,
+    createdTo,
+    updatedFrom,
+    updatedTo,
+  } = filters;
 
   const isSearchActive =
     search?.trim() !== '' || !!role || !!status || !!createdFrom || !!createdTo;
-
-  const { toggle, isOpen, register } = useSharedToggle<'from' | 'to'>();
-  const from = register('from');
-  const to = register('to');
 
   const [searchInput, setSearchInput] = useState(search);
 
@@ -121,31 +116,20 @@ export function UsersSearch() {
 
   return (
     <>
-      <Box width="fit" grow={false} className="flex gap-4">
-        <DateSelector
-          placeholder="From"
-          dateKey="createdFrom"
-          value={createdFrom}
-          disabled={{ after: today }}
-          onSelect={handleDateChange}
-          // isOpen={isOpen('from')}
-          // onToggle={() => toggle('from')}
-          {...from}
-        />
-        <DateSelector
-          placeholder="To"
-          dateKey="createdTo"
-          value={createdTo}
-          disabled={{
-            before: inputToDate(createdFrom),
-            after: today,
-          }}
-          onSelect={handleDateChange}
-          // isOpen={isOpen('to')}
-          // onToggle={() => toggle('to')}
-          {...to}
-        />
-      </Box>
+      <SearchDate
+        label="Created"
+        from={{ dateKey: 'createdFrom', value: createdFrom }}
+        to={{ dateKey: 'createdTo', value: createdTo }}
+        maxDate={today}
+        onSelect={handleDateChange}
+      />
+      <SearchDate
+        label="Updated"
+        from={{ dateKey: 'updatedFrom', value: updatedFrom }}
+        to={{ dateKey: 'updatedTo', value: updatedTo }}
+        maxDate={today}
+        onSelect={handleDateChange}
+      />
       <Box className="flex justify-between" width="1/2">
         <Stack direction="row" justify="between" width="full">
           <Box

@@ -37,10 +37,10 @@ export function DateSelector({
   };
 
   return (
-    <div className='relative'   ref={ref}>
+    <div className="relative" ref={ref}>
       <div
         className={cn(
-          'h-full', 
+          'h-full',
           'flex',
           'items-center',
           'cursor-pointer',
@@ -66,7 +66,13 @@ export function DateSelector({
             'border-0',
           )}
         >
-          {selectedDate ? format(selectedDate, 'MMM dd, yyyy') : <span className='text-[hsl(var(--muted-foreground))]'>{placeholder}</span>}
+          {selectedDate ? (
+            format(selectedDate, 'MMM dd, yyyy')
+          ) : (
+            <span className="text-[hsl(var(--muted-foreground))]">
+              {placeholder}
+            </span>
+          )}
         </div>
         <Calendar className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground" />
       </div>
