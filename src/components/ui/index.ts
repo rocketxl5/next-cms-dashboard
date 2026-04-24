@@ -6,6 +6,7 @@ export * from './Input';
 export * from './Label';
 export * from './Link';
 export * from './Pagination';
+export * from './SearchDate';
 export * from './SearchField';
 export * from './Select';
 export * from './Spinner';
