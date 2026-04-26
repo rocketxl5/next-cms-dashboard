@@ -1,8 +1,8 @@
 'use client';
 
 import { Box } from '@/components/ui';
+import { UsersToolbar } from '../../_components';
 import { UsersTable } from './UsersTable';
-import { DashboardSearchBar } from '@/app/(protected)/dashboard/components';
 
 import { useUserSelection } from '@/providers';
 import { getAllowedBulkActions, getSelectedUsers } from '@/lib/domain';
@@ -31,7 +31,7 @@ export function UsersPageClient({
   });
   return (
     <Box className="flex flex-col gap-8">
-      <DashboardSearchBar
+      <UsersToolbar
         allowedBulkActions={allowedBulkActions}
         selectedCount={selectedCount}
       />
