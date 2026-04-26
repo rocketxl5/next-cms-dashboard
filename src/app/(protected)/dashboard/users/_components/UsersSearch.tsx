@@ -3,47 +3,26 @@
 import debounce from 'debounce';
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+
+import { Input, Select, Box } from '@/components/ui';
+
 import { cn } from '@/lib/utils';
-
-import { SearchDate, Box, Button, Input, Select, Stack } from '@/components/ui';
-
 import { parseUsersQuery } from '../_lib/parse-users-query';
 import { updateQueryParams } from '@/lib/url/update-query-params';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
-import { DateKey } from '@/types/shared';
 import { UserSearchField, USER_SEARCH_FIELDS } from '@/types/shared/search';
-import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
 
 export function UsersSearch() {
-  // searchParams: Source of truth
   const searchParams = useSearchParams();
   const router = useRouter();
-  const DEFAULT_TYPE: UserSearchField = 'email';
-  const today = new Date();
 
   const { filters } = parseUsersQuery(searchParams);
-
-  const {
-    search,
-    type,
-    role,
-    status,
-    createdFrom,
-    createdTo,
-    updatedFrom,
-    updatedTo,
-  } = filters;
-
-  const isSearchActive =
-    search?.trim() !== '' || !!role || !!status || !!createdFrom || !!createdTo;
+  const { search, type } = filters;
 
   const [searchInput, setSearchInput] = useState(search);
 
   useEffect(() => {
-    // react 19 allowed
-    // not a derived full state
-    // syncing controlled buffer
     setSearchInput(search);
   }, [search]);
 
@@ -68,10 +47,9 @@ export function UsersSearch() {
     };
   }, [debouncedSearch]);
 
-  // Handlers
   const handleSearchChange = (value: string) => {
-    setSearchInput(value); // instant typing
-    debouncedSearch(value); // debounced URL
+    setSearchInput(value);
+    debouncedSearch(value);
   };
 
   const handleTypeChange = (value: UserSearchField) => {
@@ -83,141 +61,44 @@ export function UsersSearch() {
     router.replace(`?${query}`);
   };
 
-  const handleRoleChange = (value: AppRole | '') => {
-    const query = updateQueryParams(searchParams, {
-      role: value || undefined,
-      page: '1',
-    });
-
-    router.replace(`?${query}`);
-  };
-
-  const handleStatusChange = (value: UserStatus | '') => {
-    const query = updateQueryParams(searchParams, {
-      status: value || undefined,
-      page: '1',
-    });
-
-    router.replace(`?${query}`);
-  };
-
-  const handleDateChange = (key: DateKey, value: string) => {
-    const query = updateQueryParams(searchParams, {
-      [key]: value || undefined,
-      page: '1',
-    });
-
-    router.replace(`?${query}`);
-  };
-
-  const handleReset = (path: string) => {
-    router.replace(`${path}?type=${DEFAULT_TYPE}`);
-  };
-
   return (
-    <>
-      <SearchDate
-        label="Created"
-        from={{ dateKey: 'createdFrom', value: createdFrom }}
-        to={{ dateKey: 'createdTo', value: createdTo }}
-        maxDate={today}
-        onSelect={handleDateChange}
+    <Box
+      className={cn(
+        'flex items-stretch h-10 rounded-md',
+        'border border-[hsl(var(--border))]',
+        'focus-within:border-[hsl(var(--border-focus))]',
+        'focus-within:ring-1 focus-within:ring-[hsl(var(--border-focus))]',
+        'focus-within:ring-inset',
+      )}
+    >
+      <Input
+        className={cn(
+          'h-full w-2xs',
+          'rounded-r-none border-0',
+          'focus:ring-0 focus:outline-none',
+        )}
+        value={searchInput}
+        placeholder={`Search by ${normalizeDisplayString(type)}`}
+        onChange={(e) => handleSearchChange(e.target.value)}
       />
-      <SearchDate
-        label="Updated"
-        from={{ dateKey: 'updatedFrom', value: updatedFrom }}
-        to={{ dateKey: 'updatedTo', value: updatedTo }}
-        maxDate={today}
-        onSelect={handleDateChange}
-      />
-      <Box className="flex justify-between" width="1/2">
-        <Stack direction="row" justify="between" width="full">
-          <Box
-            className={cn(
-              'flex items-stretch', // important
-              'h-10', // or your token: size.height.md
-              'rounded-md',
-              'border border-[hsl(var(--border))]',
-              'focus-within:border-[hsl(var(--border-focus))]',
-              'focus-within:ring-1',
-              'focus-within:ring-[hsl(var(--border-focus))]',
-              'focus-within:ring-inset',
-            )}
-          >
-            <Input
-              className={cn(
-                'h-full',
-                'w-2xs ',
-                'rounded-r-none',
-                'border-0',
-                'focus:ring-0',
-                'focus:border-transparent',
-                'focus:outline-none',
-              )}
-              value={searchInput}
-              placeholder={`Search by ${normalizeDisplayString(type)}`}
-              onChange={(e) => handleSearchChange(e.target.value)}
-            />
-            <Select
-              className={cn(
-                'h-full',
-                'appearance-none',
-                'border-0',
-                'rounded-l-none',
-                'bg-transparent!',
-                'focus:ring-0',
-                'focus:border-transparent',
-                'focus:outline-none',
-                'pr-12',
-              )}
-              border="none"
-              focus={false}
-              value={type}
-              onChange={(e) =>
-                handleTypeChange(e.target.value as UserSearchField)
-              }
-            >
-              {USER_SEARCH_FIELDS.map((field) => (
-                <option key={field} value={field}>
-                  {normalizeDisplayString(field)}
-                </option>
-              ))}
-            </Select>
-          </Box>
-          <Box className="flex gap-4 justify-evenly">
-            <Select
-              focus={false}
-              value={role ?? ''}
-              onChange={(e) => handleRoleChange(e.target.value as AppRole)}
-            >
-              <option value="">Role</option>
-              {APP_ROLES.map((role) => (
-                <option key={role} value={role}>
-                  {normalizeDisplayString(role)}
-                </option>
-              ))}
-            </Select>
-            <Select
-              focus={false}
-              value={status ?? ''}
-              onChange={(e) => handleStatusChange(e.target.value as UserStatus)}
-            >
-              <option value="">Status</option>
-              {USER_STATUS.map((status) => (
-                <option key={status} value={status}>
-                  {normalizeDisplayString(status)}
-                </option>
-              ))}
-            </Select>
-            <Button
-              onClick={() => handleReset('/dashboard/users')}
-              disabled={!isSearchActive}
-            >
-              Clear Search
-            </Button>
-          </Box>
-        </Stack>
-      </Box>
-    </>
+
+      <Select
+        className={cn(
+          'h-full appearance-none border-0',
+          'rounded-l-none bg-transparent!',
+          'focus:ring-0 focus:outline-none pr-12',
+        )}
+        border="none"
+        focus={false}
+        value={type}
+        onChange={(e) => handleTypeChange(e.target.value as UserSearchField)}
+      >
+        {USER_SEARCH_FIELDS.map((field) => (
+          <option key={field} value={field}>
+            {normalizeDisplayString(field)}
+          </option>
+        ))}
+      </Select>
+    </Box>
   );
 }

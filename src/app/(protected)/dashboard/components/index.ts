@@ -1,4 +1,3 @@
-export * from './DashboardHeader';
-export * from './DashboardMain';
-export * from './DashboardSideBar';
-export * from './DashboardSearchBar';
+export { DashboardHeader } from './DashboardHeader';
+export { DashboardMain } from './DashboardMain';
+export { DashboardSideBar } from './DashboardSideBar';
