@@ -8,13 +8,13 @@ import { useUserSelection } from '@/providers';
 import { buildUsersColumns } from './factory/build-users-columns';
 
 import { cn } from '@/lib/utils';
+import { cellVariants } from '@/lib/ui/variants';
 import { updateUserRoleAction } from '@/lib/domain/users/actions/single';
 import { cellTokens, tableTokens } from '@/lib/ui/tokens';
 
 import { AppRole } from '@/types/enums';
 import { CurrentDashboardUser, PaginationMeta } from '@/types/shared';
 import { UserRow, UsersTableContext } from '../_domain';
-import { cellVariants } from '@/lib/ui/variants';
 
 type UsersTableProps = {
   users: UserRow[];
@@ -27,7 +27,13 @@ export function UsersTable({
   currentUser,
   pagination,
 }: UsersTableProps) {
-  const { selectedUserIds, toggleUserSelection } = useUserSelection();
+  const {
+    selectedUserIds,
+    toggleUserSelection,
+    toggleAllUsers,
+    isAllSelected,
+    isIndeterminate,
+  } = useUserSelection();
   const router = useRouter();
 
   async function handleUserRoleUpdate(userId: string, role: AppRole) {
@@ -37,8 +43,15 @@ export function UsersTable({
 
   const tableContext: UsersTableContext = {
     currentUser,
+
+    // 🔹 selection (from provider)
     selectedUserIds,
     toggleUserSelection,
+    toggleAllUsers,
+    isAllSelected,
+    isIndeterminate,
+
+    // 🔹 domain
     handleUserRoleUpdate,
   };
 
@@ -68,7 +81,9 @@ export function UsersTable({
                 key={column.key}
                 className={cn(cellTokens.base.header, column.className)}
               >
-                {column.header}
+                {typeof column.header === 'function'
+                  ? column.header(tableContext)
+                  : column.header}
               </th>
             ))}
           </tr>

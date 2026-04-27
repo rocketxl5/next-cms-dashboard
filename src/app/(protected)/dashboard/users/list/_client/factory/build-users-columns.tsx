@@ -1,6 +1,6 @@
 import { RoleBadge, StatusBadge } from '../components';
 import { Button, Checkbox, Link, Select } from '@/components/ui';
-import { SquarePen, Trash } from 'lucide-react';
+import { AlignCenter, SquarePen, Trash } from 'lucide-react';
 
 import { normalizeDateTime } from '@/lib/utils/normalizers';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
@@ -21,7 +21,15 @@ export const buildUsersColumns = (): TableColumn<
 >[] => [
   {
     key: 'checkbox',
-    header: '',
+    header: (ctx: UsersTableContext) => {
+      return (
+        <Checkbox
+          checked={ctx.isAllSelected}
+          indeterminate={ctx.isIndeterminate}
+          onChange={ctx.toggleAllUsers}
+        />
+      );
+    },
     variant: 'checkbox',
     width: 'sm',
     align: 'center',
