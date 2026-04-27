@@ -1,4 +1,4 @@
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 
 import { Box, Button, Select, SearchDate } from '@/components/ui';
 
@@ -36,13 +36,15 @@ export function UsersFilters() {
     !!updatedFrom ||
     !!updatedTo;
 
+  const pathname = usePathname();
+
   const update = (params: Record<string, string | undefined>) => {
     const query = updateQueryParams(searchParams, {
       ...params,
       page: '1',
     });
 
-    router.replace(`${query}`);
+    router.replace(`${pathname}?${query}`);
   };
 
   const handleRoleChange = (value: AppRole | '') => {
@@ -104,10 +106,7 @@ export function UsersFilters() {
         ))}
       </Select>
 
-      <Button 
-        onClick={handleReset}
-        disabled={!isActive}
-      >
+      <Button onClick={handleReset} disabled={!isActive}>
         Clear
       </Button>
     </Box>
