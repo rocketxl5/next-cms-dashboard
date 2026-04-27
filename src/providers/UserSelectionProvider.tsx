@@ -5,24 +5,35 @@ import {
   useContext,
   useState,
   useCallback,
+  useMemo,
   ReactNode,
 } from 'react';
 
-type UserSelectionContextValue = {
-  selectedUserIds: Set<string>;
-  toggleUserSelection: (id: string) => void;
-  isSelected: (id: string) => void;
+import { UserSelectionState } from '@/app/(protected)/dashboard/users/list/_domain';
+import { id } from 'date-fns/locale';
+
+type UserSelectionContextValue = UserSelectionState & {
   clearSelection: () => void;
 
   isLoading: boolean;
   setIsLoading: (loading: boolean) => void;
+
+  toggleAllUsers: () => void;
+  isAllSelected: boolean;
+  isIndeterminate: boolean;
 };
 
 const UserSelectionContext = createContext<UserSelectionContextValue | null>(
   null,
 );
 
-export function UserSelectionProvider({ children }: { children: ReactNode }) {
+export function UserSelectionProvider({
+  children,
+  visibleUserIds,
+}: {
+  children: ReactNode;
+  visibleUserIds: string[];
+}) {
   const [selectedUserIds, setSelectedUserIds] = useState<Set<string>>(
     new Set(),
   );
@@ -44,20 +55,54 @@ export function UserSelectionProvider({ children }: { children: ReactNode }) {
     setSelectedUserIds(new Set());
   }, []);
 
-  const isSelected = useCallback(
-    (id: string) => selectedUserIds.has(id),
-    [selectedUserIds],
-  );
+  // toggle all (based on visible rows)
+  const toggleAllUsers = useCallback(() => {
+    setSelectedUserIds((prev) => {
+      const next = new Set(prev);
+
+      const allSelected =
+        visibleUserIds.length > 0 && visibleUserIds.every((id) => next.has(id));
+
+      if (allSelected) {
+        // unselect visible
+        visibleUserIds.forEach((id) => next.delete(id));
+      } else {
+        // select visible
+        visibleUserIds.forEach((id) => next.add(id));
+      }
+
+      return next;
+    });
+  }, [visibleUserIds]);
+
+  // derived state
+  const isAllSelected = useMemo(() => {
+    if (visibleUserIds.length === 0) return false;
+
+    return visibleUserIds.every((id) => selectedUserIds.has(id));
+  }, [visibleUserIds, selectedUserIds]);
+
+  const isIndeterminate = useMemo(() => {
+    if (visibleUserIds.length === 0) return false;
+
+    const someSelected = visibleUserIds.some((id) => selectedUserIds.has(id));
+
+    return someSelected && !isAllSelected;
+  }, [visibleUserIds, selectedUserIds, isAllSelected]);
 
   return (
     <UserSelectionContext.Provider
       value={{
         selectedUserIds,
-        isSelected,
-        isLoading,
-        clearSelection,
         toggleUserSelection,
+        clearSelection,
+
+        isLoading,
         setIsLoading,
+
+        toggleAllUsers,
+        isAllSelected,
+        isIndeterminate,
       }}
     >
       {children}

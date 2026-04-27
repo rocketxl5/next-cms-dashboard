@@ -1,13 +1,27 @@
+'use client';
+
+import React, { useEffect, useRef } from 'react';
+
 interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string; // optional
+  indeterminate?: boolean;
 }
 
 export const Checkbox: React.FC<CheckboxProps> = ({
   label,
   checked,
+  indeterminate = false,
   id,
   ...props
 }) => {
+  const ref = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.indeterminate = indeterminate;
+    }
+  }, [indeterminate]);
+
   return (
     <label
       htmlFor={id}

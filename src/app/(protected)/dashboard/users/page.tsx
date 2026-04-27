@@ -32,10 +32,13 @@ export default async function DashboardUsersPage({ searchParams }: PageProps) {
 
   const rows: UserRow[] = items
     .map(prismaToDashboardUser)
+    // filtering out nulls
     .filter((u): u is UserRow => u !== null);
 
+  const visibleRowIds = rows.map((u) => u.id);
+
   return (
-    <UserSelectionProvider>
+    <UserSelectionProvider visibleUserIds={visibleRowIds}>
       <UsersPageClient
         users={rows}
         currentUser={dashboardUser}

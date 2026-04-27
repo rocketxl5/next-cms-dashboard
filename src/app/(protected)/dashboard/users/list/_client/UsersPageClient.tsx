@@ -23,8 +23,11 @@ export function UsersPageClient({
   pagination,
 }: UsersPageClientProps) {
   const { selectedUserIds } = useUserSelection();
-  const selectedCount = selectedUserIds.size;
+
   const selectedUsers = getSelectedUsers({ selectedUserIds, users });
+
+  const hasSelection = selectedUserIds.size > 0;
+
   const allowedBulkActions = getAllowedBulkActions({
     selectedUsers,
     currentUser,
@@ -33,8 +36,9 @@ export function UsersPageClient({
     <Box className="flex flex-col gap-8">
       <UsersToolbar
         allowedBulkActions={allowedBulkActions}
-        selectedCount={selectedCount}
+        hasSelection={hasSelection}
       />
+
       <UsersTable
         users={users}
         currentUser={currentUser}

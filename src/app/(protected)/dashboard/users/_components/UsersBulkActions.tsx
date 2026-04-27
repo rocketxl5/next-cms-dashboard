@@ -12,12 +12,12 @@ import { BulkUserAction, BulkUserActionKey } from '../list/_domain';
 
 type UsersActionProps = {
   allowedBulkActions: BulkUserAction[];
-  selectedCount: number;
+  hasSelection: boolean;
 };
 
 export function UsersBulkActions({
   allowedBulkActions,
-  selectedCount,
+  hasSelection,
 }: UsersActionProps) {
   const { isLoading, setIsLoading, selectedUserIds, clearSelection } =
     useUserSelection();
@@ -36,16 +36,11 @@ export function UsersBulkActions({
 
   return (
     <Box className="flex gap-4">
-      {selectedCount && (
-        <span className="text-sm text-muted-foreground">
-          {selectedCount} selected
-        </span>
-      )}
       <Select
         focus={false}
         variant="subtle"
         value={!isLoading ? '' : action}
-        disabled={!selectedCount}
+        disabled={!hasSelection}
         onChange={(e) => handleChange(e.target.value as BulkUserActionKey)}
       >
         <option value="" disabled>

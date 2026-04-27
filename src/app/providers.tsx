@@ -3,11 +3,7 @@
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import {
-  ThemeProvider,
-  ToastProvider,
-  UserSelectionProvider,
-} from '@/providers';
+import { ThemeProvider, ToastProvider } from '@/providers';
 
 import { ToastViewport } from '@/components/ui/viewport/ToastViewport';
 
@@ -57,12 +53,10 @@ export default function Providers({
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider initialTheme={initialTheme}>
-        <UserSelectionProvider>
-          <ToastProvider>
-            {children}
-            <ToastViewport />
-          </ToastProvider>
-        </UserSelectionProvider>
+        <ToastProvider>
+          {children}
+          <ToastViewport />
+        </ToastProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );
