@@ -33,7 +33,7 @@ export function UsersPageClient({
     currentUser,
   });
   return (
-    <Box className="flex flex-col gap-8">
+    <Box layout="col" gap="lg">
       <UsersToolbar
         allowedBulkActions={allowedBulkActions}
         hasSelection={hasSelection}

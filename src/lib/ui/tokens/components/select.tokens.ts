@@ -28,11 +28,7 @@ export const selectTokens = {
     success: `${color.success.background} focus:ring-[hsl(var(--success))]`,
   },
 
-  height: {
-    sm: `${size.height.sm}`,
-    md: `${size.height.md}`,
-    lg: `${size.height.lg}`,
-  },
+  height: size.height,
 
   padding: {
     sm: selectAdapters.sm.padding,

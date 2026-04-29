@@ -1,5 +1,5 @@
 import { RoleBadge, StatusBadge } from '../components';
-import { Button, Checkbox, Link, Select } from '@/components/ui';
+import { Box, Button, Checkbox, Link, Select } from '@/components/ui';
 import { AlignCenter, SquarePen, Trash } from 'lucide-react';
 
 import { normalizeDateTime } from '@/lib/utils/normalizers';
@@ -134,14 +134,20 @@ export const buildUsersColumns = (): TableColumn<
       return (
         <div className="w-full flex justify-center gap-4">
           <Link
+            width="square"
+            height="sm"
+            padding="none"
             href={!isSelected ? `/dashboard/users/edit/${user.id}` : '#'}
             variant={!isSelected ? 'success' : 'muted'}
-            size="iconSm"
-            radius="md"
           >
             <SquarePen size={18} />
           </Link>
-          <Button variant="destructive" size="iconSm">
+          <Button
+            variant="destructive"
+            height="sm"
+            width="square"
+            layout="inline"
+          >
             <Trash size={18} />
           </Button>
         </div>

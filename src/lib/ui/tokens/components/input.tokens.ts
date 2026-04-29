@@ -35,11 +35,9 @@ export const inputTokens = {
     strong: `${borderAdapters.width.thin} ${borderAdapters.color.strong}`,
   },
 
-  size: {
-    sm: `${size.height.sm} ${size.padding.sm}`,
-    md: `${size.height.md} ${size.padding.md}`,
-    lg: `${size.height.lg} ${size.padding.lg}`,
-  },
+  height: size.height,
+
+  padding: size.padding,
 
   layout: {
     block: layoutAdapters.elementWidth.full, // default form usage

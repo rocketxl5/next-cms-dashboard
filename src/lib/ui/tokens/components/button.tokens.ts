@@ -2,7 +2,7 @@ import { color, size } from '../primitives';
 import { textAdapters, radiusAdapters } from '../adapters';
 
 export const buttonTokens = {
-  base: 'inline-flex items-center justify-center font-medium transition-colors hover:opacity-[.95] disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
+  base: 'inline-flex items-center justify-center transition-colors hover:opacity-[.95] disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
 
   variant: {
     default: `${color.primary.background} ${color.primary.foreground}`,
@@ -27,13 +27,15 @@ export const buttonTokens = {
     none: radiusAdapters.none,
   },
 
-  size: {
-    sm: `${textAdapters.sm} ${size.height.sm} ${size.padding.sm}`,
-    md: `${textAdapters.sm} ${size.height.md} ${size.padding.md}`,
-    lg: `${textAdapters.lg} ${size.height.lg} ${size.padding.lg}`,
-
-    iconSm: `${size.height.sm} aspect-square flex items-center justify-center`,
-    iconMd: `${size.height.md} aspect-square flex items-center justify-center`,
-    iconLg: `${size.height.lg} aspect-square flex items-center justify-center`,
+  textSize: {
+    sm: textAdapters.sm,
+    md: textAdapters.base,
+    lg: textAdapters.lg,
   },
+
+  height: size.height,
+
+  paddingX: size.paddingX,
+
+  width: size.width,
 } as const;

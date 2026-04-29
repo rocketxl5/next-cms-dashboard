@@ -37,14 +37,15 @@ export function DateSelector({
   };
 
   return (
-    <div className="relative" ref={ref}>
+    <div className="" ref={ref}>
       <div
         className={cn(
+          'relative',
           'h-full',
           'flex',
           'items-center',
+          'h-8',
           'cursor-pointer',
-          'relative',
           'rounded-md',
           'border border-[hsl(var(--border))]',
           isOpen && [
@@ -60,16 +61,21 @@ export function DateSelector({
         <div
           className={cn(
             'min-w-38',
+            'flex',
+            'items-center',
             'text-sm',
             'pr-12', // space for icon
             'pl-4',
+
+            'leading-none',
+            'align-middle',
             'border-0',
           )}
         >
           {selectedDate ? (
             format(selectedDate, 'MMM dd, yyyy')
           ) : (
-            <span className="text-[hsl(var(--muted-foreground))]">
+            <span className="text-[hsl(var(--muted-foreground))] align-middle">
               {placeholder}
             </span>
           )}

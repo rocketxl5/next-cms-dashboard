@@ -1,5 +1,6 @@
 export const size = {
   padding: {
+    none: '0',
     sm: 'px-2 py-1',
     md: 'px-4 py-2',
     lg: 'px-6 py-3',
@@ -15,14 +16,21 @@ export const size = {
     lg: 'py-3',
   },
   gap: {
-    sm: 'gap-1',
-    md: 'gap-2',
-    lg: 'gap-3',
+    sm: 'gap-2',
+    md: 'gap-4',
+    lg: 'gap-6',
   },
   height: {
+    auto: 'auto',
     sm: 'h-8',
     md: 'h-10',
     lg: 'h-12',
+  },
+  width: {
+    auto: 'w-auto',
+    full: 'w-full',
+    fit: 'w-fit',
+    square: 'aspect-square p-0 flex items-center justify-center',
   },
   interactive: {
     sm: 'min-h-8',
