@@ -1,9 +1,7 @@
-import { layoutAdapters } from '@/lib/ui/tokens';
+import { grid, sizeAdapters } from '@/lib/ui/tokens/adapters/layout';
 
-const { spaceGap, gridColumns } = layoutAdapters;
-
-type GridColumnKey = keyof typeof gridColumns;
-type GapKey = keyof typeof spaceGap;
+type GridColumnKey = keyof typeof grid.columns;
+type GapKey = keyof typeof sizeAdapters.gap;
 
 type GridProps = {
   children: React.ReactNode;
@@ -19,7 +17,14 @@ export function Grid({
   className,
 }: GridProps) {
   return (
-    <div className={['grid', gridColumns[cols], spaceGap[gap], className].join(' ')}>
+    <div
+      className={[
+        'grid',
+        grid.columns[cols],
+        sizeAdapters.gap[gap],
+        className,
+      ].join(' ')}
+    >
       {children}
     </div>
   );

@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import { size } from '../primitives';
-import { borderAdapters, layoutAdapters } from '../adapters';
+import { borderAdapters } from '../adapters';
+import { sizeAdapters } from '@/lib/ui/tokens/adapters/layout';
 import { focusTokens } from './focus.tokens';
 
 export const inputTokens = {
@@ -40,10 +41,10 @@ export const inputTokens = {
   padding: size.padding,
 
   layout: {
-    block: layoutAdapters.elementWidth.full, // default form usage
-    inline: layoutAdapters.elementWidth.auto, // fits content / inline UI
-    fit: layoutAdapters.elementWidth.fit, // shrinks to content strictly
-    grow: layoutAdapters.elementWidth.grow, // fills available space in flex layouts
+    block: sizeAdapters.width.full, // default form usage
+    inline: sizeAdapters.width.auto, // fits content / inline UI
+    fit: sizeAdapters.width.fit, // shrinks to content strictly
+    grow: sizeAdapters.width.grow, // fills available space in flex layouts
     fixed: '', // no width applied (fully controlled externally)
   },
 } as const;

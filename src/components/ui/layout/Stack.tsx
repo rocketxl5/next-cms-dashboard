@@ -1,12 +1,10 @@
-import { layoutAdapters } from '@/lib/ui/tokens';
+import { flex, sizeAdapters } from '@/lib/ui/tokens/adapters/layout';
 
-const { elementWidth, flexAlign, flexDirection, flexJustify, spaceGap } = layoutAdapters;
-
-type AlignKey = keyof typeof flexAlign;
-type JustifyKey = keyof typeof flexJustify;
-type DirectionKey = keyof typeof flexDirection;
-type GapKey = keyof typeof spaceGap;
-type WidthKey = keyof typeof elementWidth;
+type AlignKey = keyof typeof flex.align;
+type JustifyKey = keyof typeof flex.justify;
+type DirectionKey = keyof typeof flex.direction;
+type GapKey = keyof typeof sizeAdapters.gap;
+type WidthKey = keyof typeof sizeAdapters.width;
 
 type StackProps = {
   children: React.ReactNode;
@@ -34,11 +32,11 @@ export function Stack({
       className={[
         'flex',
 
-        flexDirection[direction],
-        align ? flexAlign[align] : '',
-        gap ? spaceGap[gap] : '',
-        justify ? flexJustify[justify] : '',
-        width ? elementWidth[width] : '',
+        flex.direction[direction],
+        align ? flex.align[align] : '',
+        gap ? sizeAdapters.gap[gap] : '',
+        justify ? flex.justify[justify] : '',
+        width ? sizeAdapters.width[width] : '',
         wrap ? 'flex-wrap' : '',
 
         className,

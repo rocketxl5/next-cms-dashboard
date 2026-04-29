@@ -1,11 +1,7 @@
 import { cn } from '@/lib/utils';
 import { color, size } from '../primitives';
-import {
-  borderAdapters,
-  layoutAdapters,
-  radiusAdapters,
-  selectAdapters,
-} from '../adapters';
+import { borderAdapters, radiusAdapters, selectAdapters } from '../adapters';
+import { sizeAdapters } from '@/lib/ui/tokens/adapters/layout';
 import { focusTokens } from './focus.tokens';
 
 export const selectTokens = {
@@ -62,10 +58,10 @@ export const selectTokens = {
   },
 
   layout: {
-    block: layoutAdapters.elementWidth.full,
-    inline: layoutAdapters.elementWidth.auto,
-    fit: layoutAdapters.elementWidth.fit,
-    grow: layoutAdapters.elementWidth.grow,
+    block: sizeAdapters.width.full,
+    inline: sizeAdapters.width.auto,
+    fit: sizeAdapters.width.fit,
+    grow: sizeAdapters.width.grow,
     fixed: '',
   },
 
