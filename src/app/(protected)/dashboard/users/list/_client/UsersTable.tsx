@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import { Pagination } from '@/components/ui';
+import { Box, Pagination } from '@/components/ui';
 
 import { useUserSelection } from '@/providers';
 import { buildUsersColumns } from './factory/build-users-columns';
@@ -72,7 +72,7 @@ export function UsersTable({
   if (!users.length) return <div className="p4">No users found</div>;
 
   return (
-    <div>
+    <Box layout="col" gap="lg">
       <table className={tableTokens.base.table}>
         <thead>
           <tr className={tableTokens.base.headerRow}>
@@ -104,6 +104,6 @@ export function UsersTable({
         </tbody>
       </table>
       <Pagination pagination={pagination} />
-    </div>
+    </Box>
   );
 }

@@ -30,7 +30,7 @@ export function UserForm<T extends FieldValues>({
   } = form;
 
   return (
-    <Box width="1/2" className="mx-auto">
+    <Box width="fit" layout="col" gap="lg" className="mx-auto">
       <form onSubmit={onSubmit}>
         <Grid>
           {fields.map((field) => {
@@ -58,23 +58,21 @@ export function UserForm<T extends FieldValues>({
             );
           })}
         </Grid>
-        <Box className="mt-8">
-          <Button
-            type="submit"
-            variant="success"
-            layout="block"
-            disabled={loading || !isDirty}
-          >
-            {loading ? (
-              <>
-                <Spinner size="sm" className="mr-2" />
-              </>
-            ) : (
-              'Submit'
-            )}
-          </Button>
-        </Box>
       </form>
+      <Button
+        type="submit"
+        variant="success"
+        layout="block"
+        disabled={loading || !isDirty}
+      >
+        {loading ? (
+          <>
+            <Spinner size="sm" className="mr-2" />
+          </>
+        ) : (
+          'Submit'
+        )}
+      </Button>
     </Box>
   );
 }
