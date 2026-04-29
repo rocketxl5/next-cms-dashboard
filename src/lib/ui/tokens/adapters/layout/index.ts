@@ -1,4 +1,3 @@
-export * from './layout-flex.adapters';
-export * from './layout-grid-columns.adapters';
-export * from './layout-spacing.adapters';
-export * from './layout-width.adapters';
+export * as flex from './layout-flex.adapters';
+export * as grid from './layout-grid-columns.adapters';
+export * as sizeAdapters from './layout-size.adapters';

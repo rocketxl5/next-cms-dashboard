@@ -1,4 +1,10 @@
-export const elementWidth = {
+export const gap = {
+  sm: 'gap-2',
+  md: 'gap-4',
+  lg: 'gap-6',
+} as const;
+
+export const width = {
   full: 'w-full',
   auto: 'w-auto',
   fit: 'w-fit',

@@ -1,6 +1,6 @@
 import { radiusAdapters } from '../adapters';
 import { borderAdapters } from '../adapters';
-import * as flex from '../adapters/layout';
+import { flex } from '../adapters/layout';
 import { size, surface } from '../primitives';
 
 export const boxTokens = {
