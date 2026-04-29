@@ -48,7 +48,8 @@ export function Toast({ toast, onClose }: ToastProps) {
         <div className="flex items-center gap-2">
           {toast.action && (
             <Button
-              size="sm"
+              height="sm"
+              width="square"
               className="no-underline hover:no-underline hover:bg-muted/50 px-2"
               onClick={toast.action.onClick}
             >
@@ -57,7 +58,8 @@ export function Toast({ toast, onClose }: ToastProps) {
           )}
 
           <Button
-            size="sm"
+            height="sm"
+            width="square"
             className="bg-transparent border-none hover:bg-muted/50 p-1 h-auto"
             onClick={handleClose}
           >
