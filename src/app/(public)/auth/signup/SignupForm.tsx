@@ -78,7 +78,7 @@ export function SignupForm({ onSuccess }: SigninFormProps) {
           {...register('confirmPassword')}
         />
       </div>
-      <Button type="submit" size="md" layout="block" variant="default">
+      <Button type="submit" layout="block" variant="default">
         {isSubmitting ? 'Creating account...' : 'Sign up'}
       </Button>
     </form>
