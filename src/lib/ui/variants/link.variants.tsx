@@ -4,9 +4,13 @@ import { linkTokens } from '../tokens/components';
 export const linkVariants = cva(linkTokens.base, {
   variants: {
     variant: linkTokens.variant,
-    border: linkTokens.border,
-    size: linkTokens.size,
     layout: linkTokens.layout,
+    height: linkTokens.height,
+    width: linkTokens.width,
+    padding: linkTokens.padding,
+    paddingX: linkTokens.paddingX,
+    textSize: linkTokens.textSize,
+    border: linkTokens.border,
     radius: linkTokens.radius,
 
     active: {
@@ -17,11 +21,14 @@ export const linkVariants = cva(linkTokens.base, {
 
   defaultVariants: {
     variant: 'default',
-    size: 'md',
     layout: 'inline',
+    active: false,
+    height: 'md',
+    width: 'auto',
+    padding: 'md',
+    textSize: 'base',
     border: 'default',
     radius: 'md',
-    active: false,
   },
 
   compoundVariants: [

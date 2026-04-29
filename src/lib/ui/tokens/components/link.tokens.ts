@@ -28,21 +28,10 @@ export const linkTokens = {
     block: 'w-full',
   },
 
-  radius: {
-    sm: radiusAdapters.sm,
-    md: radiusAdapters.md,
-    lg: radiusAdapters.lg,
-    full: radiusAdapters.full,
-    none: radiusAdapters.none,
-  },
-
-  size: {
-    sm: `${textAdapters.sm} ${size.height.sm} ${size.padding.sm}`,
-    md: `${textAdapters.sm} ${size.height.md} ${size.padding.md}`,
-    lg: `${textAdapters.lg} ${size.height.lg} ${size.padding.lg}`,
-
-    iconSm: `${size.height.sm} aspect-square flex items-center justify-center`,
-    iconMd: `${size.height.md} aspect-square flex items-center justify-center`,
-    iconLg: `${size.height.lg} aspect-square flex items-center justify-center`,
-  },
+  height: size.height,
+  width: size.width,
+  padding: size.padding,
+  paddingX: size.paddingX,
+  radius: radiusAdapters,
+  textSize: textAdapters,
 } as const;

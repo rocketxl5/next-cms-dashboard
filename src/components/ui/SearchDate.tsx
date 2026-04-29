@@ -22,9 +22,9 @@ export function SearchDate({
   const toProps = toggle.register('to');
 
   return (
-    <Box width="fit" grow={false} className="flex flex-col gap-2">
+    <Box width="fit" gap="lg">
       <span className="text-xs text-muted-foreground">{label}</span>
-      <Box className="flex gap-4">
+      <Box gap="md">
         <DateSelector
           placeholder="From"
           dateKey={from.dateKey}

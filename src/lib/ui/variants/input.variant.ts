@@ -4,13 +4,16 @@ import { inputTokens } from '../tokens/components/input.tokens';
 export const inputVariants = cva(inputTokens.base, {
   variants: {
     variant: inputTokens.variant,
-    border: inputTokens.border,
-    size: inputTokens.size,
     layout: inputTokens.layout,
+    height: inputTokens.height,
+    padding: inputTokens.padding,
+    border: inputTokens.border,
   },
 
   defaultVariants: {
-    size: 'md',
+    variant: 'default',
+    height: 'md',
+    padding: 'md',
     layout: 'block',
     border: 'default',
   },

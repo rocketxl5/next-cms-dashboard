@@ -1,3 +1,4 @@
+export * from './box.variants';
 export * from './button.variants';
 export * from './cell.variants';
 export * from './input.variant';

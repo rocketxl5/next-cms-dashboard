@@ -1,10 +1,11 @@
-export const flexAlign = {
+export const align = {
   start: 'items-start',
   center: 'items-center',
   end: 'items-end',
 } as const;
 
-export const flexJustify = {
+export const justify = {
+  center: 'justify-center',
   around: 'justify-around',
   between: 'justify-between',
   evenly: 'justify-evenly',
@@ -12,7 +13,7 @@ export const flexJustify = {
   end: 'justify-end',
 } as const;
 
-export const flexDirection = {
+export const direction = {
   row: 'flex-row',
   col: 'flex-col',
 } as const;

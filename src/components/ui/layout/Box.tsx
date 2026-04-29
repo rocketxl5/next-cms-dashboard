@@ -1,32 +1,43 @@
-import { layoutAdapters } from '@/lib/ui/tokens';
+import * as React from 'react';
+import { boxVariants, type BoxVariants } from '@/lib/ui/variants';
+import { cn } from '@/lib/utils';
 
-type WidthKey = keyof typeof layoutAdapters.elementWidth;
-// type FlexAlignKey = keyof typeof layoutAdapters.flexAdapters.align;
-// type FlexJustifyKey = keyof typeof layoutAdapters.flexAdapters.justify;
-// type FlexDirectionKey = keyof typeof layoutAdapters.flexAdapters.direction;
+export interface BoxProps
+  extends React.HTMLAttributes<HTMLDivElement>, BoxVariants {}
 
-type BoxProps = {
-  children: React.ReactNode;
-  className?: string;
-  width?: WidthKey;
-  grow?: boolean;
-};
+export function Box({ className, ...props }: BoxProps) {
+  const {
+    layout,
+    surface,
+    border,
+    radius,
+    padding,
+    paddingX,
+    paddingY,
+    gap,
+    width,
+    height,
+    ...rest
+  } = props;
 
-export function Box({
-  children,
-  width,
-  grow = false,
-  className = '',
-}: BoxProps) {
   return (
     <div
-      className={[
-        width ? layoutAdapters.elementWidth[width] : '',
-        grow ? layoutAdapters.elementWidth.grow : '',
+      className={cn(
+        boxVariants({
+          layout,
+          surface,
+          border,
+          radius,
+          padding,
+          paddingX,
+          paddingY,
+          gap,
+          width,
+          height,
+        }),
         className,
-      ].join(' ')}
-    >
-      {children}
-    </div>
+      )}
+      {...rest}
+    />
   );
 }

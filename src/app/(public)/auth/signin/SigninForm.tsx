@@ -64,7 +64,7 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
         />
       </div>
 
-      <Button type="submit" size="md" layout="block" variant="default">
+      <Button type="submit" variant="default" textSize="sm">
         {isSubmitting ? 'Signing in...' : 'Sign in'}
       </Button>
     </form>

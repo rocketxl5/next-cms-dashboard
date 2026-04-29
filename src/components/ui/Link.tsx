@@ -12,11 +12,14 @@ interface LinkProps extends Omit<NextLinkProps, 'className'>, LinkVariants {
 export function Link({
   href,
   variant,
-  border,
-  size,
   layout,
-  radius,
   active,
+  height,
+  width,
+  padding,
+  textSize,
+  border,
+  radius,
   className,
   children,
   ...props
@@ -25,7 +28,17 @@ export function Link({
     <NextLink
       href={href}
       className={cn(
-        linkVariants({ variant, border, size, layout, radius, active }),
+        linkVariants({
+          variant,
+          layout,
+          height,
+          width,
+          padding,
+          textSize,
+          active,
+          border,
+          radius,
+        }),
         className,
       )}
       {...props}

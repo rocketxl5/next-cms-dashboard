@@ -64,7 +64,8 @@ export function UsersFilters() {
   };
 
   return (
-    <Box className="flex items-center gap-4 flex-wrap">
+    <Box layout="row" gap="lg">
+      {/* <Box className="flex items-center gap-4 flex-wrap"> */}
       <SearchDate
         label="Created"
         from={{ dateKey: 'createdFrom', value: createdFrom }}
@@ -81,6 +82,7 @@ export function UsersFilters() {
       />
 
       <Select
+        height="sm"
         focus={false}
         value={role ?? ''}
         onChange={(e) => handleRoleChange(e.target.value as AppRole)}
@@ -94,6 +96,7 @@ export function UsersFilters() {
       </Select>
 
       <Select
+        height="sm"
         focus={false}
         value={status ?? ''}
         onChange={(e) => handleStatusChange(e.target.value as UserStatus)}
@@ -106,8 +109,14 @@ export function UsersFilters() {
         ))}
       </Select>
 
-      <Button onClick={handleReset} disabled={!isActive}>
-        Clear
+      <Button
+        height="sm"
+        textSize="sm"
+        width="auto"
+        onClick={handleReset}
+        disabled={!isActive}
+      >
+        Clear Search
       </Button>
     </Box>
   );

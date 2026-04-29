@@ -35,24 +35,23 @@ export function UsersBulkActions({
   };
 
   return (
-    <Box className="flex gap-4">
-      <Select
-        focus={false}
-        variant="subtle"
-        value={!isLoading ? '' : action}
-        disabled={!hasSelection}
-        onChange={(e) => handleChange(e.target.value as BulkUserActionKey)}
-      >
-        <option value="" disabled>
-          Action
-        </option>
-        {allowedBulkActions.length > 0 &&
-          allowedBulkActions.map((action) => (
-            <option key={action.key} value={action.key}>
-              {action.label}
-            </option>
-          ))}
-      </Select>
-    </Box>
+    <Select
+      height="sm"
+      focus={false}
+      variant="subtle"
+      value={!isLoading ? '' : action}
+      disabled={!hasSelection}
+      onChange={(e) => handleChange(e.target.value as BulkUserActionKey)}
+    >
+      <option value="" disabled>
+        Action
+      </option>
+      {allowedBulkActions.length > 0 &&
+        allowedBulkActions.map((action) => (
+          <option key={action.key} value={action.key}>
+            {action.label}
+          </option>
+        ))}
+    </Select>
   );
 }

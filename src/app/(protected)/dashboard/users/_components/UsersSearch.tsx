@@ -63,8 +63,9 @@ export function UsersSearch() {
 
   return (
     <Box
+      height="sm"
       className={cn(
-        'flex items-stretch h-10 rounded-md',
+        'flex items-stretch rounded-md',
         'border border-[hsl(var(--border))]',
         'focus-within:border-[hsl(var(--border-focus))]',
         'focus-within:ring-1 focus-within:ring-[hsl(var(--border-focus))]',
@@ -72,8 +73,9 @@ export function UsersSearch() {
       )}
     >
       <Input
+        height="auto"
         className={cn(
-          'h-full w-2xs',
+          'w-sm',
           'rounded-r-none border-0',
           'focus:ring-0 focus:outline-none',
         )}
