@@ -78,7 +78,7 @@ export const buildUsersColumns = (): TableColumn<
       );
 
       return (
-        <div className="flex justify-center">
+        <Box layout='center'>
           <Select
             height="sm"
             focus={false}
@@ -93,7 +93,7 @@ export const buildUsersColumns = (): TableColumn<
               </option>
             ))}
           </Select>
-        </div>
+        </Box>
       );
     },
   },
@@ -132,7 +132,7 @@ export const buildUsersColumns = (): TableColumn<
       const isSelected = ctx.selectedUserIds.has(user.id);
 
       return (
-        <div className="w-full flex justify-center gap-4">
+        <Box layout="center" gap="md">
           <Link
             width="square"
             height="sm"
@@ -150,7 +150,7 @@ export const buildUsersColumns = (): TableColumn<
           >
             <Trash size={18} />
           </Button>
-        </div>
+        </Box>
       );
     },
   },

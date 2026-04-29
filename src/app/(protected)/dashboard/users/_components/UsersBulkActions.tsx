@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 
-import { Box } from '@/components/ui';
 import { Select } from '@/components/ui';
 
 import { useUserSelection } from '@/providers';

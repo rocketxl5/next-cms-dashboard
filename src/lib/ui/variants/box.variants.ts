@@ -21,6 +21,8 @@ export const boxVariants = cva(boxTokens.base, {
     layout: 'row',
     surface: 'none',
     border: 'none',
+    padding: 'none',
+    gap: 'sm',
     radius: 'none',
     width: 'auto',
     height: 'auto',

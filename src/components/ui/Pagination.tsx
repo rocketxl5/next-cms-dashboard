@@ -14,7 +14,7 @@ export function Pagination({ pagination }: PaginationProps) {
   const { hasNext, hasPrevious } = pagination;
 
   return (
-    <Box className="flex justify-center gap-4 mt-8">
+    <Box layout="center" width="full">
       <Button
         variant="link"
         width="auto"
