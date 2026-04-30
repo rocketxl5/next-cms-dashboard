@@ -1,6 +1,9 @@
-import { radiusAdapters } from '../adapters';
-import { borderAdapters } from '../adapters';
-import { flex } from '../adapters/layout';
+import {
+  borderAdapters,
+  radiusAdapters,
+  sizeAdapters,
+  flex,
+} from '../adapters';
 import { size, surface } from '../primitives';
 
 export const boxTokens = {
@@ -75,22 +78,11 @@ export const boxTokens = {
     ].join(' '),
   },
 
-  radius: {
-    sm: radiusAdapters.sm,
-    md: radiusAdapters.md,
-    lg: radiusAdapters.lg,
-    full: radiusAdapters.full,
-    none: radiusAdapters.none,
-  },
-
-  // 🔥 Directly reuse shared size scale
   padding: size.padding,
-  paddingX: size.paddingX,
   paddingY: size.paddingY,
-  gap: size.gap,
-
   height: size.height,
-  interactive: size.interactive,
-
   width: size.width,
+  gap: sizeAdapters.gap,
+  radius: radiusAdapters,
+  interactive: size.interactive,
 } as const;

@@ -9,7 +9,6 @@ export const boxVariants = cva(boxTokens.base, {
     radius: boxTokens.radius,
 
     padding: boxTokens.padding,
-    paddingX: boxTokens.paddingX,
     paddingY: boxTokens.paddingY,
     gap: boxTokens.gap,
 

@@ -1,5 +1,5 @@
 import { color, size } from '../primitives';
-import { textAdapters, radiusAdapters } from '../adapters';
+import { textAdapters, radiusAdapters, sizeAdapters } from '../adapters';
 
 export const buttonTokens = {
   base: 'inline-flex items-center justify-center transition-colors hover:opacity-[.95] disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
@@ -19,23 +19,10 @@ export const buttonTokens = {
     block: 'w-full',
   },
 
-  radius: {
-    sm: radiusAdapters.sm,
-    md: radiusAdapters.md,
-    lg: radiusAdapters.lg,
-    full: radiusAdapters.full,
-    none: radiusAdapters.none,
-  },
-
-  textSize: {
-    sm: textAdapters.sm,
-    md: textAdapters.base,
-    lg: textAdapters.lg,
-  },
-
-  height: size.height,
-
   paddingX: size.paddingX,
-
-  width: size.width,
+  paddingY: size.paddingX,
+  height: size.height,
+  width: sizeAdapters.width,
+  radius: radiusAdapters,
+  textSize: textAdapters,
 } as const;

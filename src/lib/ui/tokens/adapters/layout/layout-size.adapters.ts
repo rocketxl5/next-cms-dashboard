@@ -9,6 +9,7 @@ export const width = {
   auto: 'w-auto',
   fit: 'w-fit',
   grow: 'flex-1 min-w-0',
+  square: 'aspect-square p-0 flex items-center justify-center',
 
   // optional (safe here, not in components)
   '1/4': 'w-1/4',
