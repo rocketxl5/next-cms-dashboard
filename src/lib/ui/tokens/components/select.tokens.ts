@@ -50,11 +50,20 @@ export const selectTokens = {
   },
 
   layout: {
-    sizeAdapters,
+    block: sizeAdapters.width.full,
+    inline: sizeAdapters.width.auto,
+    fit: sizeAdapters.width.fit,
+    grow: sizeAdapters.width.grow,
     fixed: '',
   },
 
-  radius: radiusAdapters,
+  radius: {
+    sm: radiusAdapters.sm,
+    md: radiusAdapters.md,
+    lg: radiusAdapters.lg,
+    full: radiusAdapters.full,
+    none: radiusAdapters.none,
+  },
 
   focus: {
     true: 'focus:ring-1 focus:ring-ring',
