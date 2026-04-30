@@ -6,11 +6,13 @@ export const size = {
     lg: 'px-6 py-3',
   },
   paddingX: {
+    none: '0',
     sm: 'px-2',
     md: 'px-4',
     lg: 'px-6',
   },
   paddingY: {
+    none: '0',
     sm: 'py-1',
     md: 'py-2',
     lg: 'py-3',

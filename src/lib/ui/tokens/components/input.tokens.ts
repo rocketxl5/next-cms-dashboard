@@ -37,7 +37,6 @@ export const inputTokens = {
   },
 
   height: size.height,
-
   padding: size.padding,
 
   layout: {
@@ -45,6 +44,5 @@ export const inputTokens = {
     inline: sizeAdapters.width.auto, // fits content / inline UI
     fit: sizeAdapters.width.fit, // shrinks to content strictly
     grow: sizeAdapters.width.grow, // fills available space in flex layouts
-    fixed: '', // no width applied (fully controlled externally)
   },
 } as const;

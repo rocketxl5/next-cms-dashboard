@@ -32,17 +32,9 @@ export const selectTokens = {
     lg: selectAdapters.lg.padding,
   },
 
-  paddingX: {
-    sm: `${size.paddingX.sm}`,
-    md: `${size.paddingX.md}`,
-    lg: `${size.paddingX.lg}`,
-  },
+  paddingX: size.paddingX,
 
-  paddingY: {
-    sm: `${size.paddingY.sm}`,
-    md: `${size.paddingY.md}`,
-    lg: `${size.paddingY.lg}`,
-  },
+  paddingY: size.paddingY,
 
   border: {
     none: '',
@@ -58,20 +50,11 @@ export const selectTokens = {
   },
 
   layout: {
-    block: sizeAdapters.width.full,
-    inline: sizeAdapters.width.auto,
-    fit: sizeAdapters.width.fit,
-    grow: sizeAdapters.width.grow,
+    sizeAdapters,
     fixed: '',
   },
 
-  radius: {
-    sm: radiusAdapters.sm,
-    md: radiusAdapters.md,
-    lg: radiusAdapters.lg,
-    full: radiusAdapters.full,
-    none: radiusAdapters.none,
-  },
+  radius: radiusAdapters,
 
   focus: {
     true: 'focus:ring-1 focus:ring-ring',

@@ -7,6 +7,7 @@ export const buttonVariants = cva(buttonTokens.base, {
     layout: buttonTokens.layout,
     height: buttonTokens.height,
     paddingX: buttonTokens.paddingX,
+    paddingY: buttonTokens.paddingY,
     width: buttonTokens.width,
     textSize: buttonTokens.textSize,
     radius: buttonTokens.radius,
@@ -18,6 +19,7 @@ export const buttonVariants = cva(buttonTokens.base, {
     height: 'md',
     width: 'full',
     paddingX: 'md',
+    paddingY: 'none',
     radius: 'md',
     textSize: 'sm',
   },
@@ -26,7 +28,7 @@ export const buttonVariants = cva(buttonTokens.base, {
     {
       height: 'md',
       paddingX: 'md',
-      textSize: 'md',
+      textSize: 'base',
       class: [
         buttonTokens.height.sm,
         buttonTokens.paddingX.sm,
@@ -36,17 +38,17 @@ export const buttonVariants = cva(buttonTokens.base, {
     {
       height: 'md',
       paddingX: 'md',
-      textSize: 'md',
+      textSize: 'base',
       class: [
         buttonTokens.height.md,
         buttonTokens.paddingX.md,
-        buttonTokens.textSize.md,
+        buttonTokens.textSize.base,
       ].join(' '),
     },
     {
       height: 'md',
       paddingX: 'md',
-      textSize: 'md',
+      textSize: 'base',
       class: [
         buttonTokens.height.lg,
         buttonTokens.paddingX.lg,
