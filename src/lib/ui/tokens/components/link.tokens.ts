@@ -1,10 +1,5 @@
-import { color, size } from '../primitives';
-import {
-  borderAdapters,
-  textAdapters,
-  radiusAdapters,
-  sizeAdapters,
-} from '../adapters';
+import { color, size, typography } from '../primitives';
+import { borderAdapters, radiusAdapters, sizeAdapters } from '../adapters';
 
 export const linkTokens = {
   base: 'inline-flex items-center transition-colors',
@@ -38,5 +33,5 @@ export const linkTokens = {
   padding: size.padding,
   paddingX: size.paddingX,
   radius: radiusAdapters,
-  textSize: textAdapters,
+  textSize: typography.size,
 } as const;

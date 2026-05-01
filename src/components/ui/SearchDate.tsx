@@ -9,13 +9,7 @@ import { inputToDate } from '@/lib/date';
 
 import { DayPickerDisabled, SearchDateProps } from '@/types/shared';
 
-export function SearchDate({
-  label,
-  from,
-  to,
-  onSelect,
-  maxDate,
-}: SearchDateProps) {
+export function SearchDate({ from, to, onSelect, maxDate }: SearchDateProps) {
   const toggle = useSharedToggle<'from' | 'to'>();
 
   const fromProps = toggle.register('from');
@@ -23,7 +17,6 @@ export function SearchDate({
 
   return (
     <Box width="fit" gap="lg">
-      <span className="text-xs text-muted-foreground">{label}</span>
       <Box gap="md">
         <DateSelector
           placeholder="From"

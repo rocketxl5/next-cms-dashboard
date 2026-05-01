@@ -11,14 +11,16 @@ import { selectAdapters } from '@/lib/ui/tokens';
 
 type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> &
   SelectVariants & {
-    wrapperClassName?: string;
+    // wrapperClassName?: string;
+    // id?: string;
   };
 
 export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   (
     {
+      id = '',
       className,
-      wrapperClassName,
+      // wrapperClassName,
       padding,
       height,
       border,
@@ -31,9 +33,12 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     },
     ref,
   ) => {
+    console.log(id);
+
     return (
-      <div className={cn('relative', wrapperClassName)}>
+      <div className="relative">
         <select
+          id={id}
           ref={ref}
           className={cn(
             selectVariants({

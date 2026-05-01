@@ -1,5 +1,7 @@
 export const typography = {
   size: {
+    xxs: '0.625rem',
+    xs: '0.750rem',
     sm: '0.875rem',
     base: '1rem',
     lg: '1.125rem',
@@ -12,6 +14,7 @@ export const typography = {
     normal: 400,
     medium: 500,
     semibold: 600,
+    bold: 800,
   },
   lineHeight: {
     tight: '1.2',

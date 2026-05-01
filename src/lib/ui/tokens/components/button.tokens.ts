@@ -1,5 +1,5 @@
-import { color, size } from '../primitives';
-import { textAdapters, radiusAdapters, sizeAdapters } from '../adapters';
+import { color, size, typography } from '../primitives';
+import { radiusAdapters, sizeAdapters } from '../adapters';
 
 export const buttonTokens = {
   base: 'inline-flex items-center justify-center transition-colors hover:opacity-[.95] disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
@@ -24,5 +24,5 @@ export const buttonTokens = {
   height: size.height,
   width: sizeAdapters.width,
   radius: radiusAdapters,
-  textSize: textAdapters,
+  textSize: typography.size,
 } as const;

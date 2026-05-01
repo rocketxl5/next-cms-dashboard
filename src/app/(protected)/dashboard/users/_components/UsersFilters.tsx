@@ -1,6 +1,6 @@
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 
-import { Box, Button, Select, SearchDate } from '@/components/ui';
+import { Box, Button, FieldGroup, Select, SearchDate } from '@/components/ui';
 
 import { parseUsersQuery } from '../_lib/parse-users-query';
 import { updateQueryParams } from '@/lib/url/update-query-params';
@@ -64,51 +64,59 @@ export function UsersFilters() {
   };
 
   return (
-    <Box layout="row" gap="lg">
-      {/* <Box className="flex items-center gap-4 flex-wrap"> */}
-      <SearchDate
-        label="Created"
-        from={{ dateKey: 'createdFrom', value: createdFrom }}
-        to={{ dateKey: 'createdTo', value: createdTo }}
-        maxDate={today}
-        onSelect={handleDateChange}
-      />
-      <SearchDate
-        label="Updated"
-        from={{ dateKey: 'updatedFrom', value: updatedFrom }}
-        to={{ dateKey: 'updatedTo', value: updatedTo }}
-        maxDate={today}
-        onSelect={handleDateChange}
-      />
-
-      <Select
-        height="sm"
-        focus={false}
-        value={role ?? ''}
-        onChange={(e) => handleRoleChange(e.target.value as AppRole)}
-      >
-        <option value="">Role</option>
-        {APP_ROLES.map((role) => (
-          <option key={role} value={role}>
-            {normalizeDisplayString(role)}
-          </option>
-        ))}
-      </Select>
-
-      <Select
-        height="sm"
-        focus={false}
-        value={status ?? ''}
-        onChange={(e) => handleStatusChange(e.target.value as UserStatus)}
-      >
-        <option value="">Status</option>
-        {USER_STATUS.map((status) => (
-          <option key={status} value={status}>
-            {normalizeDisplayString(status)}
-          </option>
-        ))}
-      </Select>
-
+    <Box layout="row">
+      <FieldGroup htmlFor="created" label="Created">
+        <SearchDate
+          from={{ dateKey: 'createdFrom', value: createdFrom }}
+          to={{ dateKey: 'createdTo', value: createdTo }}
+          maxDate={today}
+          onSelect={handleDateChange}
+        />
+      </FieldGroup>
+      <FieldGroup htmlFor="updated" label="Updated">
+        <SearchDate
+          from={{ dateKey: 'updatedFrom', value: updatedFrom }}
+          to={{ dateKey: 'updatedTo', value: updatedTo }}
+          maxDate={today}
+          onSelect={handleDateChange}
+        />
+      </FieldGroup>
+      <Box>
+        <FieldGroup htmlFor="role" label="Role" labelVariant="strong">
+          <Select
+            id="role"
+            height="sm"
+            focus={false}
+            value={role ?? ''}
+            onChange={(e) => handleRoleChange(e.target.value as AppRole)}
+          >
+            <option value="">All</option>
+            {APP_ROLES.map((role) => (
+              <option key={role} value={role}>
+                {normalizeDisplayString(role)}
+              </option>
+            ))}
+          </Select>
+        </FieldGroup>
+      </Box>
+      <Box>
+        <FieldGroup label="Status" htmlFor="status" labelVariant="strong">
+          <Select
+            id="status"
+            height="sm"
+            focus={false}
+            value={status ?? ''}
+            onChange={(e) => handleStatusChange(e.target.value as UserStatus)}
+          >
+            <option value="">All</option>
+            {USER_STATUS.map((status) => (
+              <option key={status} value={status}>
+                {normalizeDisplayString(status)}
+              </option>
+            ))}
+          </Select>
+        </FieldGroup>
+      </Box>
       <Button
         height="sm"
         textSize="sm"

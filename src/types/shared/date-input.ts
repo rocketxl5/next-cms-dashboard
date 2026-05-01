@@ -19,7 +19,6 @@ export type DateInputProps = {
 };
 
 export type SearchDateProps = {
-  label: DateLabel;
   from: {
     dateKey: DateKey;
     value?: string;
