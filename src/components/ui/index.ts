@@ -1,5 +1,6 @@
 export * from './Checkbox';
 export * from './DateSelector';
+export * from './FieldGroup';
 export * from './Footer';
 export * from './Header';
 export * from './Input';
