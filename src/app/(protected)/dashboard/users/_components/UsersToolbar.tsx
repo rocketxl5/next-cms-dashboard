@@ -28,7 +28,6 @@ export function UsersToolbar({
         </Link>
       </Box>
       <Box gap="lg" className="flex-wrap">
-        {/* <Box className="flex items-center justify-between gap-4 flex-wrap"> */}
         <UsersBulkActions
           allowedBulkActions={allowedBulkActions}
           hasSelection={hasSelection}

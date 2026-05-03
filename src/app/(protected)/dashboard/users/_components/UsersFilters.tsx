@@ -65,7 +65,14 @@ export function UsersFilters() {
 
   return (
     <Box layout="row">
-      <FieldGroup htmlFor="created" label="Created">
+      <FieldGroup
+        className="pt-1"
+        htmlFor="created"
+        label="Created"
+        labelVariant="strong"
+        padding="md"
+        border="muted"
+      >
         <SearchDate
           from={{ dateKey: 'createdFrom', value: createdFrom }}
           to={{ dateKey: 'createdTo', value: createdTo }}
@@ -73,7 +80,7 @@ export function UsersFilters() {
           onSelect={handleDateChange}
         />
       </FieldGroup>
-      <FieldGroup htmlFor="updated" label="Updated">
+      <FieldGroup htmlFor="updated" label="Updated" labelVariant="strong">
         <SearchDate
           from={{ dateKey: 'updatedFrom', value: updatedFrom }}
           to={{ dateKey: 'updatedTo', value: updatedTo }}
