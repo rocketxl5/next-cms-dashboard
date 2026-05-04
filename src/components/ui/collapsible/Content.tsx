@@ -11,15 +11,15 @@ export function Content({children, className}: ContentProps) {
     const {open} = useCollapsible();
 
     return (
-    <div
-      data-state={open ? 'open' : 'closed'}
-      className={cn(
-        'overflow-hidden transition-all duration-200',
-        open ? 'max-h-125 opacity-100 mt-2' : 'max-h-0 opacity-0',
-        className
-      )}
-    >
-      <div>{children}</div>
-    </div>
-  );
+      <div
+        data-state={open ? 'open' : 'closed'}
+        className={cn(
+          'transition-all duration-200',
+          open ? 'opacity-100 mt-1' : 'opacity-0 pointer-events-none',
+          className,
+        )}
+      >
+        <div>{children}</div>
+      </div>
+    );
 }
