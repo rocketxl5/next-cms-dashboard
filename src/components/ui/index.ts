@@ -16,3 +16,4 @@ export * from './button';
 export * from './layout';
 export * from './viewport';
 export * from './toolbar';
+export * as Collapsible from './collapsible';

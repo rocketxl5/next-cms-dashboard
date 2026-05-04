@@ -4,20 +4,31 @@ import debounce from 'debounce';
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { Input, Select, Box } from '@/components/ui';
+import { Input, Select, Box, Button } from '@/components/ui';
 
 import { cn } from '@/lib/utils';
-import { parseUsersQuery } from '../_lib/parse-users-query';
+
 import { updateQueryParams } from '@/lib/url/update-query-params';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 import { UserSearchField, USER_SEARCH_FIELDS } from '@/types/shared/search';
 
-export function UsersSearch() {
+type UsersSearchProps = {
+  filters: Record<string, string | undefined>;
+  onSearchChange: (value: string) => void;
+  onClear: () => void;
+  isActive: boolean;
+};
+
+export function UsersSearch({
+  filters,
+  onSearchChange,
+  onClear,
+  isActive,
+}: UsersSearchProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const { filters } = parseUsersQuery(searchParams);
   const { search, type } = filters;
 
   const [searchInput, setSearchInput] = useState(search);
@@ -47,10 +58,10 @@ export function UsersSearch() {
     };
   }, [debouncedSearch]);
 
-  const handleSearchChange = (value: string) => {
-    setSearchInput(value);
-    debouncedSearch(value);
-  };
+  // const handleSearchChange = (value: string) => {
+  //   setSearchInput(value);
+  //   debouncedSearch(value);
+  // };
 
   const handleTypeChange = (value: UserSearchField) => {
     const query = updateQueryParams(searchParams, {
@@ -62,45 +73,56 @@ export function UsersSearch() {
   };
 
   return (
-    <Box
-      height="sm"
-      className={cn(
-        'flex items-stretch rounded-md',
-        'border border-[hsl(var(--border))]',
-        'focus-within:border-[hsl(var(--border-focus))]',
-        'focus-within:ring-1 focus-within:ring-[hsl(var(--border-focus))]',
-        'focus-within:ring-inset',
-      )}
-    >
-      <Input
-        height="auto"
+    <Box gap="lg">
+      <Box
+        height="sm"
         className={cn(
-          'w-sm',
-          'rounded-r-none border-0',
-          'focus:ring-0 focus:outline-none',
+          'flex items-stretch rounded-md',
+          'border border-[hsl(var(--border))]',
+          'focus-within:border-[hsl(var(--border-focus))]',
+          'focus-within:ring-1 focus-within:ring-[hsl(var(--border-focus))]',
+          'focus-within:ring-inset',
         )}
-        value={searchInput}
-        placeholder={`Search by ${normalizeDisplayString(type)}`}
-        onChange={(e) => handleSearchChange(e.target.value)}
-      />
-
-      <Select
-        className={cn(
-          'h-full appearance-none border-0',
-          'rounded-l-none bg-transparent!',
-          'focus:ring-0 focus:outline-none pr-12',
-        )}
-        border="none"
-        focus={false}
-        value={type}
-        onChange={(e) => handleTypeChange(e.target.value as UserSearchField)}
       >
-        {USER_SEARCH_FIELDS.map((field) => (
-          <option key={field} value={field}>
-            {normalizeDisplayString(field)}
-          </option>
-        ))}
-      </Select>
+        <Input
+          height="auto"
+          className={cn(
+            'w-sm',
+            'rounded-r-none border-0',
+            'focus:ring-0 focus:outline-none',
+          )}
+          value={searchInput}
+          placeholder={`Search by ${normalizeDisplayString(type)}`}
+          onChange={(e) => onSearchChange(e.target.value)}
+        />
+
+        <Select
+          className={cn(
+            'h-full appearance-none border-0',
+            'rounded-l-none bg-transparent!',
+            'focus:ring-0 focus:outline-none pr-12',
+          )}
+          border="none"
+          focus={false}
+          value={type}
+          onChange={(e) => handleTypeChange(e.target.value as UserSearchField)}
+        >
+          {USER_SEARCH_FIELDS.map((field) => (
+            <option key={field} value={field}>
+              {normalizeDisplayString(field)}
+            </option>
+          ))}
+        </Select>
+      </Box>
+      <Button
+        height="sm"
+        textSize="sm"
+        width="auto"
+        onClick={onClear}
+        disabled={!isActive}
+      >
+        Clear Search
+      </Button>
     </Box>
   );
 }

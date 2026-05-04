@@ -11,7 +11,7 @@ import {
 } from '../_domain/user-form.schema';
 import { createUserAction } from '../_server/create-user.action';
 
-import { useAsyncFormSubmit } from '@/hooks/useAsyncFormSubmit';
+import { useAsyncFormSubmit } from '@/hooks';
 
 import { FormField } from '@/types/form';
 
