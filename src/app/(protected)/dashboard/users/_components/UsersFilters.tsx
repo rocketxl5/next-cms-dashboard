@@ -13,7 +13,6 @@ import { parseUsersQuery } from '../_lib/parse-users-query';
 import { updateQueryParams } from '@/lib/url/update-query-params';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
-import { DateKey } from '@/types/shared';
 import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
 
 type UsersFiltersProps = {
@@ -32,31 +31,10 @@ export function UsersFilters({
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  // const { filters } = parseUsersQuery(searchParams);
-
   const { role, status, createdFrom, createdTo, updatedFrom, updatedTo } =
     filters;
 
   const today = new Date();
-
-  // const isActive =
-  //   search?.trim() !== '' ||
-  //   !!role ||
-  //   !!status ||
-  //   !!createdFrom ||
-  //   !!createdTo ||
-  //   !!updatedFrom ||
-  //   !!updatedTo;
-
-  // const activeCount = [
-  //   search,
-  //   role,
-  //   status,
-  //   createdFrom,
-  //   createdTo,
-  //   updatedFrom,
-  //   updatedTo,
-  // ].filter(Boolean).length;
 
   const pathname = usePathname();
 
@@ -77,19 +55,13 @@ export function UsersFilters({
     update({ status: value || undefined });
   };
 
-  const handleDateChange = (key: DateKey, value: string) => {
-    update({ [key]: value || undefined });
-  };
-
-  // const handleReset = () => {
-  //   router.replace(`/dashboard/users?type=email`);
-  // };
-
   return (
     <Collapsible.Root defaultOpen={isActive}>
       {/* Trigger */}
       <Collapsible.Trigger asChild>
         <Button
+          layout="inline"
+          width="auto"
           height="sm"
           textSize="sm"
           variant={isActive ? 'muted' : 'default'}
@@ -160,15 +132,6 @@ export function UsersFilters({
               </Select>
             </FieldGroup>
           </Box>
-          {/* <Button
-            height="sm"
-            textSize="sm"
-            width="auto"
-            onClick={handleReset}
-            disabled={!isActive}
-          >
-            Clear Search
-          </Button> */}
         </Box>
       </Collapsible.Content>
     </Collapsible.Root>

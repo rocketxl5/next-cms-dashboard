@@ -2,7 +2,7 @@
 
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
-import { Box, Link, Toolbar } from '@/components/ui';
+import { Box, Link } from '@/components/ui';
 import { UsersSearch, UsersFilters, UsersBulkActions } from './';
 
 import { BulkUserAction } from '../list/_domain';

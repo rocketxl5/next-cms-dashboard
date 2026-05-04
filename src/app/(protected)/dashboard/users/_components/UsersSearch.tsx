@@ -58,11 +58,6 @@ export function UsersSearch({
     };
   }, [debouncedSearch]);
 
-  // const handleSearchChange = (value: string) => {
-  //   setSearchInput(value);
-  //   debouncedSearch(value);
-  // };
-
   const handleTypeChange = (value: UserSearchField) => {
     const query = updateQueryParams(searchParams, {
       type: value,
