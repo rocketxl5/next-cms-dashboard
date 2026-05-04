@@ -1,6 +1,13 @@
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 
-import { Box, Button, FieldGroup, Select, SearchDate } from '@/components/ui';
+import {
+  Box,
+  Button,
+  Collapsible,
+  FieldGroup,
+  Select,
+  SearchDate,
+} from '@/components/ui';
 
 import { parseUsersQuery } from '../_lib/parse-users-query';
 import { updateQueryParams } from '@/lib/url/update-query-params';
@@ -9,32 +16,47 @@ import { normalizeDisplayString } from '@/lib/utils/normalizers';
 import { DateKey } from '@/types/shared';
 import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
 
-export function UsersFilters() {
+type UsersFiltersProps = {
+  filters: ReturnType<typeof parseUsersQuery>['filters'];
+  onUpdate: (params: Record<string, string | undefined>) => void;
+  isActive: boolean;
+  activeCount: number;
+};
+
+export function UsersFilters({
+  filters,
+  onUpdate,
+  isActive,
+  activeCount,
+}: UsersFiltersProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const { filters } = parseUsersQuery(searchParams);
+  // const { filters } = parseUsersQuery(searchParams);
 
-  const {
-    role,
-    status,
-    createdFrom,
-    createdTo,
-    updatedFrom,
-    updatedTo,
-    search,
-  } = filters;
+  const { role, status, createdFrom, createdTo, updatedFrom, updatedTo } =
+    filters;
 
   const today = new Date();
 
-  const isActive =
-    search?.trim() !== '' ||
-    !!role ||
-    !!status ||
-    !!createdFrom ||
-    !!createdTo ||
-    !!updatedFrom ||
-    !!updatedTo;
+  // const isActive =
+  //   search?.trim() !== '' ||
+  //   !!role ||
+  //   !!status ||
+  //   !!createdFrom ||
+  //   !!createdTo ||
+  //   !!updatedFrom ||
+  //   !!updatedTo;
+
+  // const activeCount = [
+  //   search,
+  //   role,
+  //   status,
+  //   createdFrom,
+  //   createdTo,
+  //   updatedFrom,
+  //   updatedTo,
+  // ].filter(Boolean).length;
 
   const pathname = usePathname();
 
@@ -59,73 +81,96 @@ export function UsersFilters() {
     update({ [key]: value || undefined });
   };
 
-  const handleReset = () => {
-    router.replace(`/dashboard/users?type=email`);
-  };
+  // const handleReset = () => {
+  //   router.replace(`/dashboard/users?type=email`);
+  // };
 
   return (
-    <Box layout="row">
-      <FieldGroup htmlFor="created" label="Created">
-        <SearchDate
-          from={{ dateKey: 'createdFrom', value: createdFrom }}
-          to={{ dateKey: 'createdTo', value: createdTo }}
-          maxDate={today}
-          onSelect={handleDateChange}
-        />
-      </FieldGroup>
-      <FieldGroup htmlFor="updated" label="Updated">
-        <SearchDate
-          from={{ dateKey: 'updatedFrom', value: updatedFrom }}
-          to={{ dateKey: 'updatedTo', value: updatedTo }}
-          maxDate={today}
-          onSelect={handleDateChange}
-        />
-      </FieldGroup>
-      <Box>
-        <FieldGroup htmlFor="role" label="Role" labelVariant="strong">
-          <Select
-            id="role"
-            height="sm"
-            focus={false}
-            value={role ?? ''}
-            onChange={(e) => handleRoleChange(e.target.value as AppRole)}
+    <Collapsible.Root defaultOpen={isActive}>
+      {/* Trigger */}
+      <Collapsible.Trigger asChild>
+        <Button
+          height="sm"
+          textSize="sm"
+          variant={isActive ? 'muted' : 'default'}
+        >
+          Filters {isActive && `(${activeCount})`}
+        </Button>
+      </Collapsible.Trigger>
+      <Collapsible.Content>
+        <Box layout="row">
+          <FieldGroup
+            className="pt-1"
+            htmlFor="created"
+            label="Created"
+            labelVariant="strong"
+            padding="md"
+            border="muted"
           >
-            <option value="">All</option>
-            {APP_ROLES.map((role) => (
-              <option key={role} value={role}>
-                {normalizeDisplayString(role)}
-              </option>
-            ))}
-          </Select>
-        </FieldGroup>
-      </Box>
-      <Box>
-        <FieldGroup label="Status" htmlFor="status" labelVariant="strong">
-          <Select
-            id="status"
+            <SearchDate
+              from={{ dateKey: 'createdFrom', value: createdFrom }}
+              to={{ dateKey: 'createdTo', value: createdTo }}
+              maxDate={today}
+              onSelect={(key, value) => onUpdate({ [key]: value || undefined })}
+            />
+          </FieldGroup>
+          <FieldGroup htmlFor="updated" label="Updated" labelVariant="strong">
+            <SearchDate
+              from={{ dateKey: 'updatedFrom', value: updatedFrom }}
+              to={{ dateKey: 'updatedTo', value: updatedTo }}
+              maxDate={today}
+              onSelect={(key, value) => onUpdate({ [key]: value || undefined })}
+            />
+          </FieldGroup>
+          <Box>
+            <FieldGroup htmlFor="role" label="Role" labelVariant="strong">
+              <Select
+                id="role"
+                height="sm"
+                focus={false}
+                value={role ?? ''}
+                onChange={(e) => handleRoleChange(e.target.value as AppRole)}
+              >
+                <option value="">All</option>
+                {APP_ROLES.map((role) => (
+                  <option key={role} value={role}>
+                    {normalizeDisplayString(role)}
+                  </option>
+                ))}
+              </Select>
+            </FieldGroup>
+          </Box>
+          <Box>
+            <FieldGroup label="Status" htmlFor="status" labelVariant="strong">
+              <Select
+                id="status"
+                height="sm"
+                focus={false}
+                value={status ?? ''}
+                onChange={(e) =>
+                  handleStatusChange(e.target.value as UserStatus)
+                }
+              >
+                <option value="">All</option>
+                {USER_STATUS.map((status) => (
+                  <option key={status} value={status}>
+                    {normalizeDisplayString(status)}
+                  </option>
+                ))}
+              </Select>
+            </FieldGroup>
+          </Box>
+          {/* <Button
             height="sm"
-            focus={false}
-            value={status ?? ''}
-            onChange={(e) => handleStatusChange(e.target.value as UserStatus)}
+            textSize="sm"
+            width="auto"
+            onClick={handleReset}
+            disabled={!isActive}
           >
-            <option value="">All</option>
-            {USER_STATUS.map((status) => (
-              <option key={status} value={status}>
-                {normalizeDisplayString(status)}
-              </option>
-            ))}
-          </Select>
-        </FieldGroup>
-      </Box>
-      <Button
-        height="sm"
-        textSize="sm"
-        width="auto"
-        onClick={handleReset}
-        disabled={!isActive}
-      >
-        Clear Search
-      </Button>
-    </Box>
+            Clear Search
+          </Button> */}
+        </Box>
+      </Collapsible.Content>
+    </Collapsible.Root>
   );
 }

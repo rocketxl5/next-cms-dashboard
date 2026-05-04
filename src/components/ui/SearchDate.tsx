@@ -3,7 +3,7 @@
 import { Box } from './layout';
 import { DateSelector } from './DateSelector';
 
-import { useSharedToggle } from '@/hooks/useSharedToggle';
+import { useSharedToggle } from '@/hooks';
 
 import { inputToDate } from '@/lib/date';
 

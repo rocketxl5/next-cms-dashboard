@@ -14,6 +14,11 @@ export const buttonTokens = {
     muted: `${color.muted.background} ${color.foreground} border`,
   },
 
+  state: {
+    open: 'data-[state=open]:opacity-100 data-[state=open]:ring-1 data-[state=open]:ring-[hsl(var(--border-strong))]',
+    closed: '', // optional, often not needed
+  },
+
   layout: {
     inline: 'w-auto',
     block: 'w-full',
