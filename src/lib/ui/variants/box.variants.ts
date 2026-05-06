@@ -4,6 +4,7 @@ import { boxTokens } from '../tokens/components/box.tokens';
 export const boxVariants = cva(boxTokens.base, {
   variants: {
     layout: boxTokens.layout,
+    position: boxTokens.position,
     surface: boxTokens.surface,
     border: boxTokens.border,
     radius: boxTokens.radius,
@@ -18,6 +19,7 @@ export const boxVariants = cva(boxTokens.base, {
 
   defaultVariants: {
     layout: 'row',
+    position: 'static',
     surface: 'none',
     border: 'none',
     padding: 'none',

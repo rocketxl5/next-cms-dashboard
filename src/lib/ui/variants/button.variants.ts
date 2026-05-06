@@ -16,7 +16,7 @@ export const buttonVariants = cva(buttonTokens.base, {
   defaultVariants: {
     variant: 'default',
     layout: 'block',
-    height: 'md',
+    height: 'sm',
     width: 'full',
     paddingX: 'md',
     paddingY: 'none',

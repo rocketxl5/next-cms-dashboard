@@ -1,12 +1,13 @@
-import { cloneElement, isValidElement, ReactElement, ReactNode } from "react";
+import { cloneElement, isValidElement, ReactElement, ReactNode } from 'react';
 
-import { Button } from "../button";
+import { Button } from '../button';
 
-import { useCollapsible } from "@/hooks";
+import { useCollapsible } from '@/providers/hooks';
+import { composeEventHandlers } from '@/lib/utils';
 
 type TriggerProps = {
-    children: ReactNode;
-    asChild?: boolean;
+  children: ReactNode;
+  asChild?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export function Trigger({
@@ -17,20 +18,25 @@ export function Trigger({
 }: TriggerProps) {
   const { open, toggle } = useCollapsible();
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    toggle();
-    onClick?.(e);
-  };
+  const handleClick = composeEventHandlers(onClick, () => toggle());
 
   if (asChild && isValidElement(children)) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return cloneElement(children as ReactElement<any>, {
-      onClick: handleClick,
+    const child = children as ReactElement<any>;
+
+    return cloneElement(child, {
       'data-state': open ? 'open' : 'closed',
+      onClick: composeEventHandlers(child.props?.onClick, handleClick),
     });
   }
 
   return (
-    <Button {...props} data-state={open ? 'open' : 'closed'} onClick={handleClick}>{children}</Button>
-  )
+    <Button
+      {...props}
+      data-state={open ? 'open' : 'closed'}
+      onClick={composeEventHandlers(onClick, () => toggle())}
+    >
+      {children}
+    </Button>
+  );
 }
