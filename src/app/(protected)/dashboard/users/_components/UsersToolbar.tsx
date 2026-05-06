@@ -84,21 +84,21 @@ export function UsersToolbar({
           onClear={handleReset}
           isActive={isActive}
         />
-        <Link
+        <UsersFilters
+          filters={filters}
+          onUpdate={update}
+          activeCount={activeCount}
+          isActive={isActive}
+        />
+        {/* <Link
           height="sm"
           textSize="sm"
           href="/dashboard/users/create"
           variant="foreground"
         >
           Create User
-        </Link>
+        </Link> */}
       </Box>
-      <UsersFilters
-        filters={filters}
-        onUpdate={update}
-        activeCount={activeCount}
-        isActive={isActive}
-      />
     </Box>
   );
 }

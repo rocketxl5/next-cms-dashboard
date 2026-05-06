@@ -1,6 +1,6 @@
 import { useContext } from "react"
 
-import { CollapsibleContext } from "@/providers"
+import { CollapsibleContext } from "../contexts/CollapsibleContex";
 
 export function useCollapsible() {
     const context = useContext(CollapsibleContext);

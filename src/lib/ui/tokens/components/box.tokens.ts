@@ -1,5 +1,6 @@
 import {
   borderAdapters,
+  positionAdapters,
   radiusAdapters,
   sizeAdapters,
   flex,
@@ -7,8 +8,7 @@ import {
 import { size, surface } from '../primitives';
 
 export const boxTokens = {
-  base: 'relative',
-
+  base: '',
   layout: {
     flex: 'flex',
     inlineFlex: 'inline-flex',
@@ -77,12 +77,12 @@ export const boxTokens = {
       borderAdapters.color.muted,
     ].join(' '),
   },
-
   padding: size.padding,
   paddingY: size.paddingY,
   height: size.height,
   width: size.width,
   gap: sizeAdapters.gap,
   radius: radiusAdapters,
+  position: positionAdapters,
   interactive: size.interactive,
 } as const;

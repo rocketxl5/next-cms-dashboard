@@ -3,10 +3,12 @@
 import { useState } from 'react';
 
 import { Select } from '@/components/ui';
+import { Layers } from 'lucide-react';
 
 import { useUserSelection } from '@/providers';
 
 import { handleBulkAction } from '@/lib/domain';
+
 import { BulkUserAction, BulkUserActionKey } from '../list/_domain';
 
 type UsersActionProps = {
@@ -34,6 +36,16 @@ export function UsersBulkActions({
   };
 
   return (
+    // <Dropdown.Root>
+    //  <Dropdown.Trigger>
+    //    <span className="flex items-center gap-2">
+    //         <Layers size={20} />
+    //       </span>
+    //  </Dropdown.Trigger>
+    //  <Dropdown.Content align="start">
+
+    //  </Dropdown.Content>
+    // </Dropdown.Root>
     <Select
       height="sm"
       focus={false}
@@ -43,7 +55,7 @@ export function UsersBulkActions({
       onChange={(e) => handleChange(e.target.value as BulkUserActionKey)}
     >
       <option value="" disabled>
-        Action
+        <Layers size={16} />
       </option>
       {allowedBulkActions.length > 0 &&
         allowedBulkActions.map((action) => (

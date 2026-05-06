@@ -1,32 +1,8 @@
 'use client';
 
-import {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  useCallback,
-  isValidElement,
-  cloneElement,
-} from 'react';
+import { useState, ReactNode, useCallback } from 'react';
 
-import { cn } from '@/lib/utils';
-
-/* -------------------------------------------------------------------------------------------------
- * Context
- * -----------------------------------------------------------------------------------------------*/
-
-type CollapsibleContextValue = {
-  open: boolean;
-  setOpen: (value: boolean | ((prev: boolean) => boolean)) => void;
-  toggle: () => void;
-};
-
-export const CollapsibleContext = createContext<CollapsibleContextValue | null>(null);
-
-/* -------------------------------------------------------------------------------------------------
- * Provider
- * -----------------------------------------------------------------------------------------------*/
+import { CollapsibleContext } from './contexts/CollapsibleContex';
 
 export type CollapsibleProviderProps = {
   children: ReactNode;

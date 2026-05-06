@@ -1,13 +1,7 @@
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 
-import {
-  Box,
-  Button,
-  Collapsible,
-  FieldGroup,
-  Select,
-  SearchDate,
-} from '@/components/ui';
+import { Box, Dropdown, FieldGroup, Select, SearchDate } from '@/components/ui';
+import { SlidersHorizontal } from 'lucide-react';
 
 import { parseUsersQuery } from '../_lib/parse-users-query';
 import { updateQueryParams } from '@/lib/url/update-query-params';
@@ -22,12 +16,7 @@ type UsersFiltersProps = {
   activeCount: number;
 };
 
-export function UsersFilters({
-  filters,
-  onUpdate,
-  isActive,
-  activeCount,
-}: UsersFiltersProps) {
+export function UsersFilters({ filters, onUpdate }: UsersFiltersProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -56,84 +45,81 @@ export function UsersFilters({
   };
 
   return (
-    <Collapsible.Root defaultOpen={isActive}>
-      {/* Trigger */}
-      <Collapsible.Trigger asChild>
-        <Button
-          layout="inline"
-          width="auto"
-          height="sm"
-          textSize="sm"
-          variant={isActive ? 'muted' : 'default'}
-        >
-          Filters {isActive && `(${activeCount})`}
-        </Button>
-      </Collapsible.Trigger>
-      <Collapsible.Content>
-        <Box layout="row">
-          <FieldGroup
-            className="pt-1"
-            htmlFor="created"
-            label="Created"
-            labelVariant="strong"
-            padding="md"
-            border="muted"
-          >
-            <SearchDate
-              from={{ dateKey: 'createdFrom', value: createdFrom }}
-              to={{ dateKey: 'createdTo', value: createdTo }}
-              maxDate={today}
-              onSelect={(key, value) => onUpdate({ [key]: value || undefined })}
-            />
-          </FieldGroup>
-          <FieldGroup htmlFor="updated" label="Updated" labelVariant="strong">
-            <SearchDate
-              from={{ dateKey: 'updatedFrom', value: updatedFrom }}
-              to={{ dateKey: 'updatedTo', value: updatedTo }}
-              maxDate={today}
-              onSelect={(key, value) => onUpdate({ [key]: value || undefined })}
-            />
-          </FieldGroup>
-          <Box>
-            <FieldGroup htmlFor="role" label="Role" labelVariant="strong">
-              <Select
-                id="role"
-                height="sm"
-                focus={false}
-                value={role ?? ''}
-                onChange={(e) => handleRoleChange(e.target.value as AppRole)}
-              >
-                <option value="">All</option>
-                {APP_ROLES.map((role) => (
-                  <option key={role} value={role}>
-                    {normalizeDisplayString(role)}
-                  </option>
-                ))}
-              </Select>
-            </FieldGroup>
-          </Box>
-          <Box>
-            <FieldGroup label="Status" htmlFor="status" labelVariant="strong">
-              <Select
-                id="status"
-                height="sm"
-                focus={false}
-                value={status ?? ''}
-                onChange={(e) =>
-                  handleStatusChange(e.target.value as UserStatus)
+    <Dropdown.Root>
+      <Box position="relative">
+        <Dropdown.Trigger width="auto" variant="muted">
+          <span className="flex items-center gap-2">
+            <SlidersHorizontal size={20} />
+          </span>
+        </Dropdown.Trigger>
+        <Dropdown.Content align="start">
+          <Box layout="row">
+            <FieldGroup
+              className="pt-1"
+              htmlFor="created"
+              label="Created"
+              labelVariant="strong"
+            >
+              <SearchDate
+                from={{ dateKey: 'createdFrom', value: createdFrom }}
+                to={{ dateKey: 'createdTo', value: createdTo }}
+                maxDate={today}
+                onSelect={(key, value) =>
+                  onUpdate({ [key]: value || undefined })
                 }
-              >
-                <option value="">All</option>
-                {USER_STATUS.map((status) => (
-                  <option key={status} value={status}>
-                    {normalizeDisplayString(status)}
-                  </option>
-                ))}
-              </Select>
+              />
             </FieldGroup>
+            <FieldGroup htmlFor="updated" label="Updated" labelVariant="strong">
+              <SearchDate
+                from={{ dateKey: 'updatedFrom', value: updatedFrom }}
+                to={{ dateKey: 'updatedTo', value: updatedTo }}
+                maxDate={today}
+                onSelect={(key, value) =>
+                  onUpdate({ [key]: value || undefined })
+                }
+              />
+            </FieldGroup>
+            <Box>
+              <FieldGroup htmlFor="role" label="Role" labelVariant="strong">
+                <Select
+                  id="role"
+                  height="sm"
+                  focus={false}
+                  value={role ?? ''}
+                  onChange={(e) => handleRoleChange(e.target.value as AppRole)}
+                >
+                  <option value="">All</option>
+                  {APP_ROLES.map((role) => (
+                    <option key={role} value={role}>
+                      {normalizeDisplayString(role)}
+                    </option>
+                  ))}
+                </Select>
+              </FieldGroup>
+            </Box>
+            <Box>
+              <FieldGroup label="Status" htmlFor="status" labelVariant="strong">
+                <Select
+                  id="status"
+                  height="sm"
+                  focus={false}
+                  value={status ?? ''}
+                  onChange={(e) =>
+                    handleStatusChange(e.target.value as UserStatus)
+                  }
+                >
+                  <option value="">All</option>
+                  {USER_STATUS.map((status) => (
+                    <option key={status} value={status}>
+                      {normalizeDisplayString(status)}
+                    </option>
+                  ))}
+                </Select>
+              </FieldGroup>
+            </Box>
           </Box>
-        </Box>
-      </Collapsible.Content>
-    </Collapsible.Root>
+        </Dropdown.Content>
+      </Box>
+    </Dropdown.Root>
   );
 }

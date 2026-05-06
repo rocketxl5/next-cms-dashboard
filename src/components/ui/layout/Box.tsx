@@ -9,6 +9,7 @@ export function Box({ className, ...props }: BoxProps) {
   const {
     layout,
     surface,
+    position,
     border,
     radius,
     padding,
@@ -25,6 +26,7 @@ export function Box({ className, ...props }: BoxProps) {
         boxVariants({
           layout,
           surface,
+          position,
           border,
           radius,
           padding,

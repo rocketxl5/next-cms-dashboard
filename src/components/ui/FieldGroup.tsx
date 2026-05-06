@@ -8,7 +8,6 @@ import {
 } from '@/lib/ui/variants/label.variants';
 import { sizeAdapters } from '@/lib/ui/tokens/adapters/layout';
 import { type BoxVariants } from '@/lib/ui/variants';
-import { surface } from '@/lib/ui/tokens';
 
 interface FieldGroupProps extends BoxVariants {
   children: ReactNode;
