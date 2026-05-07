@@ -22,11 +22,9 @@ export function UsersPageClient({
   currentUser,
   pagination,
 }: UsersPageClientProps) {
-  const { selectedUserIds } = useUserSelection();
+  const { hasSelection, selectedUserIds } = useUserSelection();
 
   const selectedUsers = getSelectedUsers({ selectedUserIds, users });
-
-  const hasSelection = selectedUserIds.size > 0;
 
   const allowedBulkActions = getAllowedBulkActions({
     selectedUsers,

@@ -33,6 +33,7 @@ export function UsersTable({
     toggleAllUsers,
     isAllSelected,
     isIndeterminate,
+    hasSelection,
   } = useUserSelection();
   const router = useRouter();
 
@@ -50,7 +51,7 @@ export function UsersTable({
     toggleAllUsers,
     isAllSelected,
     isIndeterminate,
-    hasSelection: selectedUserIds.size > 0,
+    hasSelection,
 
     // 🔹 domain
     handleUserRoleUpdate,

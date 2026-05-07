@@ -10,7 +10,6 @@ import {
 } from 'react';
 
 import { UserSelectionState } from '@/app/(protected)/dashboard/users/list/_domain';
-import { id } from 'date-fns/locale';
 
 type UserSelectionContextValue = UserSelectionState & {
   clearSelection: () => void;
@@ -95,6 +94,9 @@ export function UserSelectionProvider({
       value={{
         selectedUserIds,
         toggleUserSelection,
+
+        hasSelection: selectedUserIds.size > 0,
+
         clearSelection,
 
         isLoading,
