@@ -50,6 +50,7 @@ export function UsersTable({
     toggleAllUsers,
     isAllSelected,
     isIndeterminate,
+    hasSelection: selectedUserIds.size > 0,
 
     // 🔹 domain
     handleUserRoleUpdate,
