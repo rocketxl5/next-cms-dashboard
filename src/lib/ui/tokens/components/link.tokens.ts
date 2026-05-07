@@ -6,6 +6,7 @@ export const linkTokens = {
   variant: {
     default: `${color.muted.foreground} hover:${color.foreground}`,
     subtle: `${color.muted.foreground} hover:${color.foreground}`,
+    info: `${color.info.background} ${color.info.foreground}`,
     // navigation
     nav: `hover:${color.foreground}`,
 

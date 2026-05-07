@@ -9,15 +9,20 @@ import { useDropdown } from '@/providers/hooks';
 import { cn } from '@/lib/utils';
 import { composeEventHandlers } from '@/lib/utils';
 
+import { ButtonVariants } from '@/lib/ui/variants';
+
 type ItemProps = {
   children: React.ReactNode;
   className?: string;
+  variant?: string;
   onSelect?: () => void;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+} & React.ButtonHTMLAttributes<HTMLButtonElement> &
+  ButtonVariants;
 
 export function Item({
   children,
-  className,
+  className = '',
+  variant = 'info',
   onSelect,
   onClick,
   ...props
@@ -32,16 +37,9 @@ export function Item({
   return (
     <Button
       onClick={handleClick}
-      className={cn(
-        // layout
-        'flex w-full items-center rounded-md px-3 py-2 text-sm',
-
-        // interaction
-        'transition-colors hover:bg-muted',
-        'focus:outline-none focus:bg-muted',
-
-        className
-      )}
+      height="sm"
+      variant={variant}
+      className={className}
       {...props}
     >
       {children}

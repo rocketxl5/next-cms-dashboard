@@ -16,6 +16,7 @@
   .text-primary-foreground {
     color: hsl(var(--primary-foreground));
   }
+
   .bg-destructive {
     background-color: hsl(var(--destructive));
   }
@@ -23,24 +24,32 @@
     color: hsl(var(--destructive-foreground));
   }
 
-  /* Feedback colors */
+  .bg-success {
+    background-color: hsl(var(--success));
+  }
   .text-success-foreground {
     color: hsl(var(--success-foreground));
   }
-  .bg-success {
-    background-color: hsl(var(--success));
+
+  .bg-warning {
+    background-color: hsl(var(--warning));
   }
   .text-warning-foreground {
     color: hsl(var(--warning-foreground));
   }
-  .bg-warning {
-    background-color: hsl(var(--warning));
+
+  .bg-info {
+    background-color: hsl(var(--info));
   }
   .text-info-foreground {
     color: hsl(var(--info-foreground));
   }
-  .bg-info {
-    background-color: hsl(var(--info));
+
+  .bg-contrast {
+    background-color: hsl(var(--contrast));
+  }
+  .text-contrast-foreground {
+    color: hsl(var(--contrast-foreground));
   }
 
   /* Text intent colors */

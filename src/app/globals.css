@@ -15,6 +15,8 @@
   --background-muted: 210 40% 96%;
 
   /* Button colors */
+
+  /* Primary */
   --primary: 221 83% 53%;
   --primary-foreground: 221 60% 96%;
 
@@ -27,8 +29,12 @@
   /* --muted-foreground: 215 16% 47%; */
   --muted-foreground: 215 16% 52%;
 
+  /* Dark */
+  --contrast: 222 47% 44%;
+  --contrast-foreground: 0 0% 100%;
+
   /* Feedback colors */
-  --success: 145 63% 45%;
+  --success: 145 63% 40%;
   --success-foreground: 145 50% 92%;
 
   --warning: 45 100% 50%;
@@ -78,13 +84,16 @@
   --border: 217 33% 25%;
 
   --primary: 217 91% 60%;
-    --primary-foreground: 221 60% 96%;
+  --primary-foreground: 221 60% 96%;
 
   --destructive: 0 63% 31%;
   --destructive-foreground: 210 40% 98%;
 
   --muted: 223 47% 15%;
   --muted-foreground: 215 20% 65%;
+
+  --contrast: 0 0% 100%;
+  --contrast-foreground: 222 47% 11%;
 
   --border: 217 33% 17%;
   --border-subtle: 217 25% 22%;

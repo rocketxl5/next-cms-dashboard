@@ -2,12 +2,14 @@
 
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
-import { Box, Link } from '@/components/ui';
-import { UsersSearch, UsersFilters, UsersBulkActions } from './';
+import { Box, Button, Link } from '@/components/ui';
+import { UserRoundPlus } from 'lucide-react';
 
 import { BulkUserAction } from '../list/_domain';
 import { parseUsersQuery } from '../_lib/parse-users-query';
 import { updateQueryParams } from '@/lib/url/update-query-params';
+
+import { UsersSearch, UsersFilters, UsersBulkActions } from './';
 
 type UsersToolbarProps = {
   allowedBulkActions: BulkUserAction[];
@@ -70,35 +72,45 @@ export function UsersToolbar({
   };
 
   return (
-    <Box className="flex-wrap" gap="lg">
-      <Box width="full" layout="between" gap="lg">
-        <UsersBulkActions
-          allowedBulkActions={allowedBulkActions}
-          hasSelection={hasSelection}
+    <Box width="full" layout="between" gap="lg">
+      <UsersBulkActions
+        allowedBulkActions={allowedBulkActions}
+        hasSelection={hasSelection}
+      />
+      <Box gap="lg">
+        <UsersFilters
+          filters={filters}
+          onUpdate={update}
+          activeCount={activeCount}
+          isActive={isActive}
+          disabled={hasSelection}
         />
         <UsersSearch
           filters={{ search, type }}
           onSearchChange={(value: string) =>
             update({ search: value || undefined })
           }
-          onClear={handleReset}
-          isActive={isActive}
         />
-        <UsersFilters
-          filters={filters}
-          onUpdate={update}
-          activeCount={activeCount}
-          isActive={isActive}
-        />
-        {/* <Link
+        <Button
           height="sm"
           textSize="sm"
-          href="/dashboard/users/create"
-          variant="foreground"
+          width="auto"
+          variant="contrast"
+          onClick={handleReset}
+          disabled={!isActive}
         >
-          Create User
-        </Link> */}
+          Clear Search
+        </Button>
       </Box>
+      <Link
+        className="px-8"
+        variant="success"
+        height="sm"
+        textSize="sm"
+        href="/dashboard/users/create"
+      >
+        <UserRoundPlus size={22} />
+      </Link>
     </Box>
   );
 }

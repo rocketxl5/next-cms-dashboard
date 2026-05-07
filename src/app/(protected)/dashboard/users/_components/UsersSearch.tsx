@@ -4,7 +4,7 @@ import debounce from 'debounce';
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { Input, Select, Box, Button } from '@/components/ui';
+import { Input, Select, Box } from '@/components/ui';
 
 import { cn } from '@/lib/utils';
 
@@ -16,16 +16,9 @@ import { UserSearchField, USER_SEARCH_FIELDS } from '@/types/shared/search';
 type UsersSearchProps = {
   filters: Record<string, string | undefined>;
   onSearchChange: (value: string) => void;
-  onClear: () => void;
-  isActive: boolean;
 };
 
-export function UsersSearch({
-  filters,
-  onSearchChange,
-  onClear,
-  isActive,
-}: UsersSearchProps) {
+export function UsersSearch({ filters, onSearchChange }: UsersSearchProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -109,15 +102,6 @@ export function UsersSearch({
           ))}
         </Select>
       </Box>
-      <Button
-        height="sm"
-        textSize="sm"
-        width="auto"
-        onClick={onClear}
-        disabled={!isActive}
-      >
-        Clear Search
-      </Button>
     </Box>
   );
 }
