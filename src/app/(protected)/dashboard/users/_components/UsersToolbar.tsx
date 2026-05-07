@@ -71,7 +71,7 @@ export function UsersToolbar({
 
   return (
     <Box className="flex-wrap" gap="lg">
-      <Box width="full" layout="between">
+      <Box width="full" layout="between" gap="lg">
         <UsersBulkActions
           allowedBulkActions={allowedBulkActions}
           hasSelection={hasSelection}

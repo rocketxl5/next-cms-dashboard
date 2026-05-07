@@ -15,10 +15,7 @@ import {
 } from '@/lib/permissions/resources';
 import { APP_ROLES, AppRole } from '@/types/enums';
 
-export const buildUsersColumns = (): TableColumn<
-  UserRow,
-  UsersTableContext
->[] => [
+export const buildUsersColumns = (): TableColumn<UserRow, UsersTableContext>[] => [
   {
     key: 'checkbox',
     header: (ctx: UsersTableContext) => {
@@ -48,19 +45,19 @@ export const buildUsersColumns = (): TableColumn<
     },
   },
   {
+    key: 'email',
+    header: 'Email',
+    width: 'lg',
+    overflow: 'truncate',
+    render: (user) => user.email,
+  },
+  {
     key: 'name',
     header: 'Name',
     width: 'md',
     grow: false,
     overflow: 'truncate',
     render: (user) => user.name,
-  },
-  {
-    key: 'email',
-    header: 'Email',
-    width: 'lg',
-    overflow: 'truncate',
-    render: (user) => user.email,
   },
   {
     key: 'role',
@@ -78,7 +75,7 @@ export const buildUsersColumns = (): TableColumn<
       );
 
       return (
-        <Box layout='center'>
+        <Box layout="center">
           <Select
             height="sm"
             focus={false}
