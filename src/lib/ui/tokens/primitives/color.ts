@@ -43,6 +43,10 @@ export const color = {
     background: 'bg-muted',
     foreground: 'text-muted-foreground',
   },
+  contrast: {
+    background: 'bg-contrast',
+    foreground: 'text-contrast-foreground',
+  },
 
   // ghost: {
   //   base: 'bg-transparent border-transparent',

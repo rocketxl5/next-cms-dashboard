@@ -8,6 +8,7 @@ export const buttonTokens = {
     destructive: `${color.destructive.background} ${color.destructive.foreground}`,
     success: `${color.success.background} ${color.success.foreground}`,
     warning: `${color.warning.background} ${color.warning.foreground}`,
+    contrast: `${color.contrast.background} ${color.contrast.foreground}`,
     info: `${color.info.background} ${color.info.foreground}`,
     link: `${color.link.default} ${color.link.foreground}`,
     muted: `${color.muted.background} ${color.foreground} border`,

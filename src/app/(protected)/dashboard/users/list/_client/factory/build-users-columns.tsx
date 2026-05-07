@@ -1,6 +1,6 @@
 import { RoleBadge, StatusBadge } from '../components';
 import { Box, Button, Checkbox, Link, Select } from '@/components/ui';
-import { AlignCenter, SquarePen, Trash } from 'lucide-react';
+import { SquarePen, Trash } from 'lucide-react';
 
 import { normalizeDateTime } from '@/lib/utils/normalizers';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';

@@ -41,6 +41,7 @@ export function UsersBulkActions({
     <Dropdown.Root>
       <Box position="relative">
         <Dropdown.Trigger
+          variant="contrast"
           disabled={!hasSelection || isLoading}
           aria-label="Bulk actions"
         >
@@ -58,6 +59,14 @@ export function UsersBulkActions({
             {allowedBulkActions.map((action) => (
               <Dropdown.Item
                 key={action.key}
+                className="border-none"
+                variant={
+                  action.label === 'Delete'
+                    ? 'destructive'
+                    : action.label === 'Suspend'
+                      ? 'warning'
+                      : 'success'
+                }
                 onSelect={() => handleSelect(action.key)}
               >
                 {action.label}

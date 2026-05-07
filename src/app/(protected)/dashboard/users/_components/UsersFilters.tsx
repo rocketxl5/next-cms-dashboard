@@ -12,11 +12,18 @@ import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
 type UsersFiltersProps = {
   filters: ReturnType<typeof parseUsersQuery>['filters'];
   onUpdate: (params: Record<string, string | undefined>) => void;
+
   isActive: boolean;
   activeCount: number;
+
+  disabled?: boolean;
 };
 
-export function UsersFilters({ filters, onUpdate }: UsersFiltersProps) {
+export function UsersFilters({
+  filters,
+  onUpdate,
+  disabled,
+}: UsersFiltersProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -47,9 +54,9 @@ export function UsersFilters({ filters, onUpdate }: UsersFiltersProps) {
   return (
     <Dropdown.Root>
       <Box position="relative">
-        <Dropdown.Trigger>
+        <Dropdown.Trigger variant="contrast" disabled={disabled}>
           <span className="flex items-center gap-2">
-            <SlidersHorizontal size={20} />
+            <SlidersHorizontal size={22} />
           </span>
         </Dropdown.Trigger>
         <Dropdown.Content align="start">
