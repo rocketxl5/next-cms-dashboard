@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Select } from '@/components/ui';
+import { Box, Dropdown } from '@/components/ui';
 import { Layers } from 'lucide-react';
 
 import { useUserSelection } from '@/providers';
@@ -22,47 +22,50 @@ export function UsersBulkActions({
 }: UsersActionProps) {
   const { isLoading, setIsLoading, selectedUserIds, clearSelection } =
     useUserSelection();
-  const [action, setAction] = useState('');
 
-  const handleChange = async (actionKey: BulkUserActionKey) => {
+  const [action, setAction] = useState<BulkUserActionKey | ''>('');
+
+  const handleSelect = async (actionKey: BulkUserActionKey) => {
     try {
       setIsLoading(true);
       setAction(actionKey);
+
       await handleBulkAction(actionKey, selectedUserIds, clearSelection);
-      setAction('');
     } finally {
+      setAction('');
       setIsLoading(false);
     }
   };
 
   return (
-    // <Dropdown.Root>
-    //  <Dropdown.Trigger>
-    //    <span className="flex items-center gap-2">
-    //         <Layers size={20} />
-    //       </span>
-    //  </Dropdown.Trigger>
-    //  <Dropdown.Content align="start">
-
-    //  </Dropdown.Content>
-    // </Dropdown.Root>
-    <Select
-      height="sm"
-      focus={false}
-      variant="subtle"
-      value={!isLoading ? '' : action}
-      disabled={!hasSelection}
-      onChange={(e) => handleChange(e.target.value as BulkUserActionKey)}
-    >
-      <option value="" disabled>
-        <Layers size={16} />
-      </option>
-      {allowedBulkActions.length > 0 &&
-        allowedBulkActions.map((action) => (
-          <option key={action.key} value={action.key}>
-            {action.label}
-          </option>
-        ))}
-    </Select>
+    <Dropdown.Root>
+      <Box position="relative">
+        <Dropdown.Trigger
+          disabled={!hasSelection || isLoading}
+          aria-label="Bulk actions"
+        >
+          <span className="flex items-center gap-2">
+            <Layers size={20} />
+            {isLoading && action && (
+              <span className="text-xs">
+                {allowedBulkActions.find((a) => a.key === action)?.label}
+              </span>
+            )}
+          </span>
+        </Dropdown.Trigger>
+        <Dropdown.Content align="start">
+          <Dropdown.Selector>
+            {allowedBulkActions.map((action) => (
+              <Dropdown.Item
+                key={action.key}
+                onSelect={() => handleSelect(action.key)}
+              >
+                {action.label}
+              </Dropdown.Item>
+            ))}
+          </Dropdown.Selector>
+        </Dropdown.Content>
+      </Box>
+    </Dropdown.Root>
   );
 }

@@ -1,5 +1,4 @@
 import { CellVariants } from '@/lib/ui/variants';
-import { TableContext } from './table-context';
 
 export type TableColumn<T, TContext> = {
   key: string;

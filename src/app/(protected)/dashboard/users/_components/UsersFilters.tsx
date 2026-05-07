@@ -47,7 +47,7 @@ export function UsersFilters({ filters, onUpdate }: UsersFiltersProps) {
   return (
     <Dropdown.Root>
       <Box position="relative">
-        <Dropdown.Trigger width="auto" variant="muted">
+        <Dropdown.Trigger>
           <span className="flex items-center gap-2">
             <SlidersHorizontal size={20} />
           </span>
