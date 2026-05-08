@@ -2,10 +2,9 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useAuthSubmit } from '../_hook/useAuthSubmit';
 
-import { apiFetch } from '@/lib/api/api-fetch';
 import { signupFormSchema, SignupFormData } from './signup-form-schema';
-import { submitForm } from '@/lib/form/submit-form';
 
 import { Button, Input } from '@/components/ui';
 import { ErrorMessage } from '@/components/ui/button/auth/ErrorMessage';
@@ -30,23 +29,14 @@ export function SignupForm({ onSuccess }: SigninFormProps) {
     },
   });
 
-  async function onSubmit(data: SignupFormData) {
-    // Exclude confirmPassword from payload
-    const { confirmPassword, ...payload } = data;
-
-    await submitForm({
-      data,
-      action: async () => {
-        const result = await apiFetch('/api/auth/signup', {
-          method: 'POST',
-          body: payload,
-        });
-
-        return result.user;
-      },
-      onSuccess,
-    });
-  }
+  const onSubmit = useAuthSubmit<
+    SignupFormData,
+    Omit<SignupFormData, 'confirmPassword'>
+  >({
+    endpoint: '/api/auth/signup',
+    transform: ({ confirmPassword, ...payload }) => payload,
+    onSuccess,
+  });
 
   return (
     <form
