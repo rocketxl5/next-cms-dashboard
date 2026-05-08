@@ -48,7 +48,7 @@ export function SignoutBtn() {
       await signOut();
       setDefaultTheme();
       router.refresh(); // re-evaluate layouts
-      router.push('/auth/signin');
+      router.push('/signin');
     } finally {
       setLoading(false);
     }

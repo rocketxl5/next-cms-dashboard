@@ -15,19 +15,16 @@
  * - UI schemas validate user experience
  */
 
-import z from "zod";
-import { signupSchema } from "@/lib/validators";
+import z from 'zod';
+import { signupSchema } from '@/lib/validators';
 
 export const signupFormSchema = signupSchema
-.extend({
-    confirmPassword: z.string()
-})
-.refine(
-    (data) => data.password === data.confirmPassword,
-    {
-        message: "Passwords do not match",
-        path: ['confirmPassword']
-    }
-)
+  .extend({
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords do not match',
+    path: ['confirmPassword'],
+  });
 
 export type SignupFormData = z.infer<typeof signupFormSchema>;

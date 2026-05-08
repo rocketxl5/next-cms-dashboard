@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { apiFetch } from '@/lib/api/api-fetch';
-import { signinFormSchema, SigninFormData } from './signin-form.schema';
+import { signinFormSchema, SigninFormData } from './signin-form-schema';
 import { submitForm } from '@/lib/form/submit-form';
 
 import { Button, Input } from '@/components/ui';
