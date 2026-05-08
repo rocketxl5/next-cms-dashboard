@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { getSession } from '@/lib/server';
-import { AppShell, HeaderSlot, MainSlot } from '@/components/layout-primitives';
+import { AppShell, HeaderSlot } from '@/components/layout-primitives';
 import { AccountHeader } from './components/AccountHeader';
 
 type AccountLayoutProps = {
@@ -18,7 +18,7 @@ export default async function AccountLayout({ children }: AccountLayoutProps) {
         <HeaderSlot>
           <AccountHeader />
         </HeaderSlot>
-        <MainSlot>{children}</MainSlot>
+        <main className="flex-1 overflow-y-auto p-6">{children}</main>
       </div>
     </AppShell>
   );

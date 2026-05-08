@@ -59,6 +59,7 @@ export function SignoutBtn() {
       onClick={handleSignOut}
       disabled={loading}
       variant="muted"
+      height="md"
       width="fit"
     >
       {loading ? 'Signing out...' : <PowerOff size={20} />}
