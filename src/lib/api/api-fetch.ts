@@ -29,16 +29,18 @@
  * -------------------------------------------------------
  */
 
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ApiFetchBody = Record<string, any> | string | null;
+type ApiFetchBody = Record<string, unknown> | string | null;
 
 interface ApiFetchInit extends Omit<RequestInit, 'body'> {
-  body?: ApiFetchBody; // Accept plain objects, strings, or null
+  body?: ApiFetchBody;
   headers?: Record<string, string>;
 }
 
-export async function apiFetch(input: RequestInfo, init: ApiFetchInit = {}) {
+export async function apiFetch<TResponse>(
+  input: RequestInfo,
+  init: ApiFetchInit = {},
+): Promise<TResponse> {
   const { body, headers, ...rest } = init;
 
   // If body is object, serialize to JSON otherwise leave as is
@@ -72,6 +74,6 @@ export async function apiFetch(input: RequestInfo, init: ApiFetchInit = {}) {
     return await res.json();
   } catch {
     // If parsing fails (empty or invalid JSON), return null
-    return null;
+    return null as TResponse;
   }
 }

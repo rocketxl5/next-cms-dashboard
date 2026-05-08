@@ -2,10 +2,9 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useAuthSubmit } from '../_hook/useAuthSubmit';
 
-import { apiFetch } from '@/lib/api/api-fetch';
 import { signinFormSchema, SigninFormData } from './signin-form-schema';
-import { submitForm } from '@/lib/form/submit-form';
 
 import { Button, Input } from '@/components/ui';
 import { ErrorMessage } from '@/components/ui/button/auth/ErrorMessage';
@@ -29,20 +28,10 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
     },
   });
 
-  async function onSubmit(data: SigninFormData) {
-    await submitForm({
-      data,
-      action: async () => {
-        const result = await apiFetch('/api/auth/signin', {
-          method: 'POST',
-          body: data,
-        });
-
-        return result.user;
-      },
-      onSuccess,
-    });
-  }
+  const onSubmit = useAuthSubmit<SigninFormData>({
+    endpoint: '/api/auth/signin',
+    onSuccess,
+  });
 
   return (
     <form

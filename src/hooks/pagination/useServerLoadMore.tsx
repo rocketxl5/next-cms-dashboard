@@ -3,7 +3,7 @@
 import { useState, useMemo, useCallback } from 'react';
 
 import { clampVisibleCount } from './clampVisibleCount';
-import { useLoading } from '@/providers/LoadingProvider';
+import { useLoading } from '@/providers/hooks';
 
 type LoadMoreResult<T> = {
   items: T[];
