@@ -59,7 +59,7 @@ export function UsersFilters({
             <SlidersHorizontal size={22} />
           </span>
         </Dropdown.Trigger>
-        <Dropdown.Content align="start">
+        <Dropdown.Content align="start" className="p-3">
           <Box layout="row">
             <FieldGroup
               className="pt-1"

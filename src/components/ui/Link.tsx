@@ -1,13 +1,14 @@
 'use client';
 
-import NextLink, {LinkProps as NextLinkProps} from 'next/link';
+import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import { linkVariants, type LinkVariants } from '@/lib/ui/variants';
 import { cn } from '@/lib/utils/cn';
 
-interface LinkProps extends Omit<NextLinkProps, 'className'>, LinkVariants {
+type LinkProps = React.ComponentProps<typeof NextLink> &
+  LinkVariants & {
     children: React.ReactNode;
     className?: string;
-};
+  };
 
 export function Link({
   href,

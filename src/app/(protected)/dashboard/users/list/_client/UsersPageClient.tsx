@@ -30,6 +30,7 @@ export function UsersPageClient({
     selectedUsers,
     currentUser,
   });
+
   return (
     <Box layout="col" gap="lg">
       <UsersToolbar

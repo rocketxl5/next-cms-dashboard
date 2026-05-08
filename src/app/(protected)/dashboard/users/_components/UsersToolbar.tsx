@@ -3,7 +3,7 @@
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
 import { Box, Button, Link } from '@/components/ui';
-import { UserRoundPlus } from 'lucide-react';
+import { SearchSlash, UserRoundPlus } from 'lucide-react';
 
 import { BulkUserAction } from '../list/_domain';
 import { parseUsersQuery } from '../_lib/parse-users-query';
@@ -99,15 +99,17 @@ export function UsersToolbar({
           onClick={handleReset}
           disabled={!isActive}
         >
-          Clear Search
+          <SearchSlash size={20} />
         </Button>
       </Box>
       <Link
-        className="px-8"
+        className="h-10"
+        width="square"
+        padding="none"
+        radius="full"
         variant="success"
-        height="sm"
-        textSize="sm"
         href="/dashboard/users/create"
+        title="Create User"
       >
         <UserRoundPlus size={22} />
       </Link>

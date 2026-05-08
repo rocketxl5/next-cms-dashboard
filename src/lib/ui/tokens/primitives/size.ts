@@ -30,6 +30,9 @@ export const size = {
   },
   width: {
     auto: 'w-auto',
+    sm: 'h-8',
+    md: 'h-9',
+    lg: 'h-10',
     full: 'w-full',
     fit: 'w-fit',
     square: 'aspect-square p-0 flex items-center justify-center',

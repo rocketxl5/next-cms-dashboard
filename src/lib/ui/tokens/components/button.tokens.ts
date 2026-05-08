@@ -11,7 +11,7 @@ export const buttonTokens = {
     contrast: `${color.contrast.background} ${color.contrast.foreground}`,
     info: `${color.info.background} ${color.info.foreground}`,
     link: `${color.link.default} ${color.link.foreground}`,
-    muted: `${color.muted.background} ${color.foreground} border`,
+    muted: `${color.muted.background} ${color.foreground}`,
   },
 
   state: {

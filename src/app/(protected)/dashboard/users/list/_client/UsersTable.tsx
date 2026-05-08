@@ -73,8 +73,6 @@ export function UsersTable({
 
   if (!users.length) return <div className="p4">No users found</div>;
 
-  const edges = 'px-2 w-12 whitespace-nowrap';
-
   return (
     <Box layout="col" gap="lg">
       <table className={tableTokens.base.table}>
@@ -86,7 +84,7 @@ export function UsersTable({
                 className={cn(
                   cellTokens.base.header,
                   column.className,
-                  i === 0 && edges,
+                  i === 0 && 'w-11 whitespace-nowrap',
                 )}
               >
                 {typeof column.header === 'function'

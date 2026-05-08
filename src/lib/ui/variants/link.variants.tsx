@@ -27,7 +27,7 @@ export const linkVariants = cva(linkTokens.base, {
     width: 'auto',
     padding: 'md',
     textSize: 'base',
-    border: 'default',
+    border: 'none',
     radius: 'md',
   },
 

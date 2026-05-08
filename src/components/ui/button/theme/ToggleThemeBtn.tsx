@@ -1,6 +1,10 @@
 'use client';
 
+import { Button } from '../Button';
+import { Moon, Sun } from 'lucide-react';
+
 import { useTheme } from '@/providers';
+
 import { resolveNextTheme } from '@/lib/theme';
 
 export function ToggleThemeBtn() {
@@ -18,7 +22,7 @@ export function ToggleThemeBtn() {
         body: JSON.stringify({ theme: nextTheme }),
       });
 
-      if(!res.ok) {
+      if (!res.ok) {
         console.error('Server error updating theme', res.status);
       }
     } catch (error) {
@@ -26,9 +30,11 @@ export function ToggleThemeBtn() {
     }
   };
 
+  console.log('theme', theme);
+
   return (
-    <button className="mx-2" onClick={handleClick}>
-      Toggle theme: {theme}
-    </button>
+    <Button className="mx-2" onClick={handleClick} variant="muted" height="md">
+      {theme === 'light' ? <Moon size={24} /> : <Sun size={24} />}
+    </Button>
   );
 }

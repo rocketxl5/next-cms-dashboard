@@ -22,7 +22,7 @@
   */
 
 // Import UI buttons
-import { SignoutBtn, ToggleThemeBtn } from './button';
+import { SignoutBtn, SignInBtn, ToggleThemeBtn } from './button';
 
 // Import types
 import type { AppContext } from '@/types/shared';
@@ -49,13 +49,13 @@ export function Header({ context = 'public' }: HeaderProps) {
 
   return (
     <header className="flex items-center justify-between border-b p-4">
-      {/* Display context-specific title */}{' '}
-      <div className="font-semibold">{HEADER_TITLES[context]}</div>{' '}
-      <div className="flex items-center gap-4">
+      {/* Display context-specific title */}
+      <div className="font-semibold">{HEADER_TITLES[context]}</div>
+      <div className="flex items-center gap-2">
         {/* Theme toggle button */}
         <ToggleThemeBtn />
         {/* Signout button visible only for authenticated users */}
-        {isAuthenticated && <SignoutBtn />}{' '}
+        {isAuthenticated ? <SignoutBtn /> : <SignInBtn />}
       </div>{' '}
     </header>
   );
