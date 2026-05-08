@@ -21,10 +21,9 @@
 * Part of next-cms-template v1.0.0.
   */
 
-// Import UI buttons
 import { SignoutBtn, SignInBtn, ToggleThemeBtn } from './button';
+import { Box } from './layout';
 
-// Import types
 import type { AppContext } from '@/types/shared';
 
 // Define header titles based on context
@@ -40,10 +39,10 @@ type HeaderProps = {
 };
 
 /**
+ * Header component renders top navigation bar.
+ * @param context - Determines header title and buttons to display
+ */
 
-* Header component renders top navigation bar.
-* @param context - Determines header title and buttons to display
-  */
 export function Header({ context = 'public' }: HeaderProps) {
   const isAuthenticated = context !== 'public'; // Determine if user is authenticated
 
@@ -51,12 +50,12 @@ export function Header({ context = 'public' }: HeaderProps) {
     <header className="flex items-center justify-between border-b p-4">
       {/* Display context-specific title */}
       <div className="font-semibold">{HEADER_TITLES[context]}</div>
-      <div className="flex items-center gap-2">
+      <Box>
         {/* Theme toggle button */}
         <ToggleThemeBtn />
         {/* Signout button visible only for authenticated users */}
         {isAuthenticated ? <SignoutBtn /> : <SignInBtn />}
-      </div>{' '}
+      </Box>
     </header>
   );
 }
