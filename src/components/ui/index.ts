@@ -15,6 +15,6 @@ export * from './Toast';
 export * from './button';
 export * from './layout';
 export * from './viewport';
-export * from './toolbar';
+export * as Form from './form';
 export * as Collapsible from './collapsible';
 export * as Dropdown from './dropdown';

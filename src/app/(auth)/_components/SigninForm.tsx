@@ -4,10 +4,9 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuthSubmit } from '../_hook/useAuthSubmit';
 
-import { signinFormSchema, SigninFormData } from './signin-form-schema';
+import { signinFormSchema, SigninFormData } from '../_schema/signin-form-schema';
 
-import { Button, Input } from '@/components/ui';
-import { ErrorMessage } from '@/components/ui/button/auth/ErrorMessage';
+import { Button, Form, Input } from '@/components/ui';
 import { SessionUser } from '@/types/shared';
 
 type SigninFormProps = {
@@ -41,11 +40,11 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
       <h1 className="text-xl font-semibold">Sign in</h1>
 
       <div>
-        <ErrorMessage message={errors.email?.message} />
+        <Form.ErrorMessage message={errors.email?.message} />
         <Input placeholder="Email" {...register('email')} />
       </div>
       <div>
-        <ErrorMessage message={errors.password?.message} />
+        <Form.ErrorMessage message={errors.password?.message} />
         <Input
           type="password"
           placeholder="Password"
