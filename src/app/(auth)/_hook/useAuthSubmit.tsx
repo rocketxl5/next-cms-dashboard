@@ -1,5 +1,5 @@
 import { apiFetch } from '@/lib/api/api-fetch';
-import { submitForm } from '@/lib/form/submit-form';
+import { submitForm } from '@/lib/form';
 
 import { SessionUser } from '@/types/shared';
 
