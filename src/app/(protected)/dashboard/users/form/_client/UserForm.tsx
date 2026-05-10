@@ -2,8 +2,7 @@
 
 import { FieldValues, Path, UseFormReturn } from 'react-hook-form';
 
-import { ErrorMessage } from '@/components/ui/button/auth/ErrorMessage';
-import { Box, Button, Input, Label, Select } from '@/components/ui';
+import { Box, Button, Form, Input, Label, Select } from '@/components/ui';
 import { Spinner } from '@/components/ui';
 import { Grid } from '@/components/ui';
 
@@ -37,7 +36,9 @@ export function UserForm<T extends FieldValues>({
             const fieldName = field.name as Path<T>;
             return (
               <div key={fieldName}>
-                <ErrorMessage message={errors[field.name]?.message as string} />
+                <Form.ErrorMessage
+                  message={errors[field.name]?.message as string}
+                />
                 <Label htmlFor={String(field.name)}>{field.label}</Label>
                 {field.type === 'select' && field.options ? (
                   <Select {...register(fieldName)}>

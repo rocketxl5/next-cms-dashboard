@@ -4,10 +4,9 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuthSubmit } from '../_hook/useAuthSubmit';
 
-import { signupFormSchema, SignupFormData } from './signup-form-schema';
+import { signupFormSchema, SignupFormData } from '../_schema/signup-form-schema';
 
-import { Button, Input } from '@/components/ui';
-import { ErrorMessage } from '@/components/ui/button/auth/ErrorMessage';
+import { Button, Form, Input } from '@/components/ui';
 
 type SigninFormProps = {
   onSuccess?: () => void;
@@ -45,15 +44,15 @@ export function SignupForm({ onSuccess }: SigninFormProps) {
     >
       <h1 className="text-xl font-semibold">Sign up</h1>
       <div>
-        <ErrorMessage message={errors.name?.message} />
+        <Form.ErrorMessage message={errors.name?.message} />
         <Input placeholder="Name" {...register('name')} />
       </div>
       <div>
-        <ErrorMessage message={errors.email?.message} />
+        <Form.ErrorMessage message={errors.email?.message} />
         <Input type="email" placeholder="Email" {...register('email')} />
       </div>
       <div>
-        <ErrorMessage message={errors.password?.message} />
+        <Form.ErrorMessage message={errors.password?.message} />
         <Input
           type="password"
           placeholder="Password"
@@ -61,7 +60,7 @@ export function SignupForm({ onSuccess }: SigninFormProps) {
         />
       </div>
       <div>
-        <ErrorMessage message={errors.confirmPassword?.message} />
+        <Form.ErrorMessage message={errors.confirmPassword?.message} />
         <Input
           type="password"
           placeholder="Confirm password"
