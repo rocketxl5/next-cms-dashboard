@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { UserForm } from './UserForm';
 
-import { editUserSchema, UpdateUserValues } from '../_domain/user-form.schema';
+import { editUserSchema, UpdateUserValues } from '../_schema/user-form.schema';
 import { editUserAction } from '../_server/edit-user.action';
 
 import { useAsyncFormSubmit } from '@/hooks';
