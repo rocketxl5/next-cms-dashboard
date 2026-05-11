@@ -17,7 +17,7 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
   const {
     register,
     handleSubmit,
-    // setError,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<SigninFormData>({
     resolver: zodResolver(signinFormSchema),
@@ -30,6 +30,7 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
   const onSubmit = useAuthSubmit<SigninFormData>({
     endpoint: '/api/auth/signin',
     onSuccess,
+    setError,
   });
 
   return (
@@ -37,6 +38,7 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
       onSubmit={handleSubmit(onSubmit)}
       className="mx-auto mt-20 max-w-sm space-y-6 rounded border p-6"
     >
+      <Form.ErrorMessage message={errors.root?.message} />
       <h1 className="text-xl font-semibold">Sign in</h1>
 
       <div>

@@ -1,62 +1,142 @@
 /**
- * responseHelpers.ts
+ * response-helpers.ts
  * -------------------------------------------------------
- * Centralized HTTP response helpers for API routes.
- * Provides ready-to-use functions for common status codes:
- * - 400 Bad Request
- * - 401 Unauthorized
- * - 403 Forbidden
- * - 404 Not Found
- * - 500 Internal Server Error
+ * Centralized HTTP response helpers for Next.js API routes.
  *
- * Optional integration with auth cookies for 401 responses.
+ * Goals:
+ * - Standardize API error response shapes
+ * - Reduce repeated NextResponse boilerplate
+ * - Keep frontend error handling predictable
+ * - Support auth cookie cleanup for protected routes
+ *
+ * Standard error response format:
+ *
+ * {
+ *   message: string;
+ * }
+ *
+ * Example:
+ *
+ * return unauthorized('Invalid credentials');
+ *
+ * Response:
+ *
+ * {
+ *   "message": "Invalid credentials"
+ * }
  * -------------------------------------------------------
  */
 
 import { NextResponse } from 'next/server';
-import { clearAuthCookies } from './auth'; // adjust path
+
+import { clearAuthCookies } from './auth';
+
+type ErrorResponse = {
+  message: string;
+};
 
 /**
- * Helper to return 401 Unauthorized.
- * Clears auth cookies if route is auth-protected.
+ * Shared helper used internally by all error responses.
  */
-export function unauthorized(message = 'Unauthorized', clearCookies = true) {
-  const res = NextResponse.json({ error: message }, { status: 401 });
-  if (clearCookies) clearAuthCookies(res);
-  return res;
+function errorResponse(
+  message: string,
+  status: number,
+) {
+  return NextResponse.json<ErrorResponse>(
+    { message },
+    { status },
+  );
 }
 
 /**
- * Helper to return 403 Forbidden
+ * 400 Bad Request
+ *
+ * Used for:
+ * - invalid input
+ * - malformed requests
+ * - validation failures
  */
-export function forbidden(message = 'Forbidden') {
-  return NextResponse.json({ error: message }, { status: 403 });
+export function badRequest(
+  message = 'Bad Request',
+) {
+  return errorResponse(message, 400);
 }
 
 /**
- * Helper to return 400 Bad Request
+ * 401 Unauthorized
+ *
+ * Used for:
+ * - invalid credentials
+ * - missing auth
+ * - expired sessions
+ *
+ * Optionally clears auth cookies.
  */
-export function badRequest(message = 'Bad Request') {
-  return NextResponse.json({ error: message }, { status: 400 });
+export function unauthorized(
+  message = 'Unauthorized',
+  clearCookies = true,
+) {
+  const response = errorResponse(message, 401);
+
+  if (clearCookies) {
+    clearAuthCookies(response);
+  }
+
+  return response;
 }
 
 /**
- * Helper to return 404 Not Found
+ * 403 Forbidden
+ *
+ * Used for:
+ * - insufficient permissions
+ * - role restrictions
  */
-export function notFound(message = 'Not Found') {
-  return NextResponse.json({ error: message }, { status: 404 });
+export function forbidden(
+  message = 'Forbidden',
+) {
+  return errorResponse(message, 403);
 }
 
 /**
- * Helper to return 500 Internal Server Error
+ * 404 Not Found
+ *
+ * Used for:
+ * - missing resources
+ * - invalid routes
  */
-export function internalServerError(message = 'Internal Server Error') {
-  return NextResponse.json({ error: message }, { status: 500 });
+export function notFound(
+  message = 'Not Found',
+) {
+  return errorResponse(message, 404);
 }
 
 /**
- * Helper to return 409 Conflict (e.g., resource already exists)
+ * 409 Conflict
+ *
+ * Used for:
+ * - duplicate resources
+ * - conflicting state
+ *
+ * Example:
+ * - email already exists
+ * - username already taken
  */
-export function conflict(message = 'Resource already exists') {
-  return NextResponse.json({ error: message }, { status: 409 });
+export function conflict(
+  message = 'Resource already exists',
+) {
+  return errorResponse(message, 409);
+}
+
+/**
+ * 500 Internal Server Error
+ *
+ * Used for:
+ * - unexpected server failures
+ * - uncaught exceptions
+ */
+export function internalServerError(
+  message = 'Internal Server Error',
+) {
+  return errorResponse(message, 500);
 }

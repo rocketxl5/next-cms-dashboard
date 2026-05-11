@@ -29,7 +29,6 @@
  * -------------------------------------------------------
  */
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ApiFetchBody = Record<string, unknown> | string | null;
 
 interface ApiFetchInit extends Omit<RequestInit, 'body'> {
@@ -63,10 +62,18 @@ export async function apiFetch<TResponse>(
     // Attempt to parse the response as JSON
     // If parsing fails (empty body, invalid JSON), catch the error and return an empty object
     const errorData = await res.json().catch(() => ({}));
+    
+    const message =
+      typeof errorData === 'object' &&
+      errorData !== null &&
+      'message' in errorData &&
+      typeof errorData.message === 'string'
+        ? errorData.message
+        : 'API request failed';
 
     // Throw a new error using the server-provided message if available,
     // otherwise fallback to a default error message
-    throw new Error(errorData?.message ?? 'API request failed');
+    throw new Error(message);
   }
 
   // Response is OK, try to parse JSON

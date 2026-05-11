@@ -106,7 +106,7 @@ export async function POST(req: NextRequest) {
     });
 
     if (!user) {
-      return unauthorized('Wrong credentials');
+      return unauthorized('Invalid email or password');
     }
 
     /**
@@ -116,13 +116,13 @@ export async function POST(req: NextRequest) {
      * - Never reveal which part was incorrect
      */
     if (typeof password !== 'string') {
-      return unauthorized('Wrong credentials');
+      return unauthorized('Invalid email or password');
     }
 
     const isValid = await bcrypt.compare(password, user.password);
 
     if (!isValid) {
-      return unauthorized('Wrong credentials');
+      return unauthorized('Invalid email or password');
     }
 
     /**
