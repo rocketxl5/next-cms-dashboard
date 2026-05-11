@@ -10,7 +10,7 @@ type AccountLayoutProps = {
 export default async function AccountLayout({ children }: AccountLayoutProps) {
   const session = await getSession();
 
-  if (!session) redirect('/auth/signin');
+  if (!session) redirect('/signin');
 
   return (
     <AppShell>

@@ -13,7 +13,7 @@ It enforces:
 
 1. **Authentication** — verifies a valid JWT access token from cookies.
 2. **Authorization** — checks the user’s role for admin-only routes.
-3. **Routing Protection** — redirects users to `/auth/signin` when needed.
+3. **Routing Protection** — redirects users to `/signin` when needed.
 4. **Security** — prevents non-admins from accessing admin pages.
 
 It is your app’s **gatekeeper**.
@@ -33,7 +33,7 @@ The middleware categorizes each request into one of three groups:
 | Zone                | Example Routes                              | Authentication?                              | Authorization?          |
 | ------------------- | ------------------------------------------- | -------------------------------------------- | ----------------------- |
 | **Public**          | `/`, `/about`, `/blog`                      | No                                           | No                      |
-| **Auth Pages**      | `/auth/signin`, `/auth/signup`              | Should not be visited when already logged in | No                      |
+| **Auth Pages**      | `/signin`, `/auth/signup`              | Should not be visited when already logged in | No                      |
 | **Admin Protected** | `/admin`, `/admin/users`, `/admin/settings` | **Yes**                                      | **ADMIN / SUPER_ADMIN** |
 
 This determination is done using simple prefix checks:
@@ -64,7 +64,7 @@ If the token is invalid, expired, or missing:
 
 * Public pages → allowed
 * Auth pages → allowed
-* Admin pages → **redirect to `/auth/signin`**
+* Admin pages → **redirect to `/signin`**
 
 ---
 
@@ -73,7 +73,7 @@ If the token is invalid, expired, or missing:
 If the user is authenticated already, optionally redirect them away:
 
 ```
-/auth/signin  → redirect to /dashboard
+/signin  → redirect to /dashboard
 ```
 
 ---
@@ -98,7 +98,7 @@ If all checks pass → `NextResponse.next()`
 Otherwise → redirect via:
 
 ```ts
-return NextResponse.redirect(new URL("/auth/signin", request.url));
+return NextResponse.redirect(new URL("/signin", request.url));
 ```
 
 ---

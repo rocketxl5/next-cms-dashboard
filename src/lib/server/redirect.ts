@@ -9,11 +9,11 @@ import type { NextRequest } from 'next/server';
  * - You want to redirect them to login but return them to their original page after signin
  *
  * @param req - The incoming Next.js request
- * @returns A NextResponse that performs a redirect to /auth/signin
+ * @returns A NextResponse that performs a redirect to /signin
  */
 export function redirectToSignin(req: NextRequest) {
   // Construct a URL for the signin page relative to the current request
-  const url = new URL('/auth/signin', req.url);
+  const url = new URL('/signin', req.url);
 
   // Store the originally requested path in the query params as "from"
   // This allows post-login redirection back to the original page

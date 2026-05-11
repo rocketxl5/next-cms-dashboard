@@ -1,9 +1,9 @@
 import z from 'zod';
-import { emailSchema, passwordSchema } from '@/lib/validators';
+import { emailSchema, passwordInputSchema } from '@/lib/validators';
 
 export const signinFormSchema = z.object({
   email: emailSchema,
-  password: passwordSchema,
+  password: passwordInputSchema,
 });
 
 export type SigninFormData = z.infer<typeof signinFormSchema>;

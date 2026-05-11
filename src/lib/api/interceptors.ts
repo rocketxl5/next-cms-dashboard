@@ -34,7 +34,7 @@
  *
  * Auth-specific responsibility:
  * - Detect expired/invalid user sessions (HTTP 401).
- * - Redirect unauthenticated users to `/auth/signin`.
+ * - Redirect unauthenticated users to `/signin`.
  * - Preserve original route for post-login redirection.
  *
  * IMPORTANT:
@@ -53,7 +53,7 @@ let isRedirecting = false;
  * - Passes successful responses through unchanged.
  * - On 401 responses in the browser:
  *    - If not already redirecting and not on a public auth page:
- *       - Redirect to `/auth/signin?from=currentPath`.
+ *       - Redirect to `/signin?from=currentPath`.
  *    - Sets `isRedirecting` to avoid loops.
  */
 api.interceptors.response.use(
@@ -66,13 +66,13 @@ api.interceptors.response.use(
 
       // Skip redirect if already on signin/signup
       if (
-        !currentPath.startsWith('/auth/signin') &&
+        !currentPath.startsWith('/signin') &&
         !currentPath.startsWith('/auth/signup')
       ) {
         isRedirecting = true;
 
         // Redirect to signin, preserving original route
-        window.location.href = `/auth/signin?from=${encodeURIComponent(
+        window.location.href = `/signin?from=${encodeURIComponent(
           currentPath
         )}`;
       }
