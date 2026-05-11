@@ -8,7 +8,7 @@ export default function SignupPage() {
   return (
     <SignupForm
       onSuccess={() => {
-        router.replace('/auth/signin');
+        router.replace('/signin');
       }}
     />
   );

@@ -5,7 +5,7 @@ import { RequireRoleOptions } from '@/types/shared/require-role-options';
 
 export async function requireRole({
   roles,
-  unauthenticatedRedirect = '/auth/signin',
+  unauthenticatedRedirect = '/signin',
   forbiddenRedirect = '/',
 }: RequireRoleOptions): Promise<SessionUser> {
   // Get the current user session

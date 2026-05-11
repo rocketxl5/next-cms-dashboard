@@ -14,6 +14,26 @@ export const emailSchema = z
   .toLowerCase()
   .email({ message: 'Invalid email address' });
 
+/**
+ * Base password input validation.
+ *
+ * Used for:
+ * - signin
+ * - auth verification
+ * - generic password submission
+ */
+export const passwordInputSchema = z.string().min(1, {
+  message: 'Password is required',
+});
+
+/**
+ * Strong password policy validation.
+ *
+ * Used for:
+ * - signup
+ * - password reset
+ * - password change
+ */
 export const passwordSchema = z
   .string()
   .min(8, { message: 'Password must be at least 8 characters long' })

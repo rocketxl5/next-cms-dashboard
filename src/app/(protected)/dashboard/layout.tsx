@@ -13,7 +13,7 @@ export default async function DashboardLayout({
 }: DashboardLayoutProps) {
   const session = await getSession();
 
-  if (!session) redirect('/auth/signin');
+  if (!session) redirect('/signin');
 
   return (
     <AppShell>

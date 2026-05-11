@@ -273,7 +273,7 @@ Page (server)
 ### Example
 
 ```tsx
-// app/(public)/auth/signin/page.tsx
+// app/(public)/signin/page.tsx
 export default function Page() {
   return (
     <Suspense fallback={<SigninSkeleton />}>
