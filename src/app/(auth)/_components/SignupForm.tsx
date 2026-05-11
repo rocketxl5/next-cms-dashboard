@@ -6,7 +6,8 @@ import { useAuthSubmit } from '../_hook/useAuthSubmit';
 
 import { signupFormSchema, SignupFormData } from '../_schema/signup-form-schema';
 
-import { Button, Form, Input } from '@/components/ui';
+import { Button, Input } from '@/components/ui';
+import { ErrorMessage } from '@/components/ui/form';
 
 type SigninFormProps = {
   onSuccess?: () => void;
@@ -44,15 +45,15 @@ export function SignupForm({ onSuccess }: SigninFormProps) {
     >
       <h1 className="text-xl font-semibold">Sign up</h1>
       <div>
-        <Form.ErrorMessage message={errors.name?.message} />
+        <ErrorMessage message={errors.name?.message} />
         <Input placeholder="Name" {...register('name')} />
       </div>
       <div>
-        <Form.ErrorMessage message={errors.email?.message} />
+        <ErrorMessage message={errors.email?.message} />
         <Input type="email" placeholder="Email" {...register('email')} />
       </div>
       <div>
-        <Form.ErrorMessage message={errors.password?.message} />
+        <ErrorMessage message={errors.password?.message} />
         <Input
           type="password"
           placeholder="Password"
@@ -60,7 +61,7 @@ export function SignupForm({ onSuccess }: SigninFormProps) {
         />
       </div>
       <div>
-        <Form.ErrorMessage message={errors.confirmPassword?.message} />
+        <ErrorMessage message={errors.confirmPassword?.message} />
         <Input
           type="password"
           placeholder="Confirm password"

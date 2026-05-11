@@ -8,7 +8,7 @@ import { UserForm } from './UserForm';
 import {
   createUserSchema,
   CreateUserValues,
-} from '../_domain/user-form.schema';
+} from '../_schema/user-form.schema';
 import { createUserAction } from '../_server/create-user.action';
 
 import { useAsyncFormSubmit } from '@/hooks';

@@ -1,7 +1,7 @@
 import prisma from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 
-import { UpdateUserValues } from '../../form/_domain/user-form.schema';
+import { UpdateUserValues } from '../../form/_schema/user-form.schema';
 import { EditUserFormWrapper } from '../../form/_client/EditUserFormWrapper';
 
 import { mapDatabaseThemeToCss } from '@/lib/theme';

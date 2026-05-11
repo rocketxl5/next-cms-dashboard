@@ -6,7 +6,8 @@ import { useAuthSubmit } from '../_hook/useAuthSubmit';
 
 import { signinFormSchema, SigninFormData } from '../_schema/signin-form-schema';
 
-import { Button, Form, Input } from '@/components/ui';
+import { Button, Input } from '@/components/ui';
+import { ErrorMessage } from '@/components/ui/form';
 import { SessionUser } from '@/types/shared';
 
 type SigninFormProps = {
@@ -38,15 +39,15 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
       onSubmit={handleSubmit(onSubmit)}
       className="mx-auto mt-20 max-w-sm space-y-6 rounded border p-6"
     >
-      <Form.ErrorMessage message={errors.root?.message} />
+      <ErrorMessage message={errors.root?.message} />
       <h1 className="text-xl font-semibold">Sign in</h1>
 
       <div>
-        <Form.ErrorMessage message={errors.email?.message} />
+        <ErrorMessage message={errors.email?.message} />
         <Input placeholder="Email" {...register('email')} />
       </div>
       <div>
-        <Form.ErrorMessage message={errors.password?.message} />
+        <ErrorMessage message={errors.password?.message} />
         <Input
           type="password"
           placeholder="Password"

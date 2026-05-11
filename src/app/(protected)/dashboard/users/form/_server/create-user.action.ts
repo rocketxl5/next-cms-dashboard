@@ -1,7 +1,7 @@
 'use server';
 
 import prisma from "@/lib/prisma";
-import { createUserSchema } from "../_domain/user-form.schema";
+import { createUserSchema } from '../_schema/user-form.schema';
 import { hash } from "bcryptjs";
 import { mapCssThemeToDatabase } from "@/lib/theme";
 
