@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import { Box } from './layout';
-import { Label } from './Label';
+import { Label } from './form/Label';
 
 import {
   type LabelVariants,

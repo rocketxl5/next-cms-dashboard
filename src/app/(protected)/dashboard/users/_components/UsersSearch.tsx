@@ -4,7 +4,8 @@ import debounce from 'debounce';
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { Input, Select, Box } from '@/components/ui';
+import { Select, Box } from '@/components/ui';
+import { Input } from '@/components/ui/form';
 
 import { cn } from '@/lib/utils';
 
