@@ -17,3 +17,4 @@ export * from './layout';
 export * from './viewport';
 export * as Collapsible from './collapsible';
 export * as Dropdown from './dropdown';
+export * as Form from './form';

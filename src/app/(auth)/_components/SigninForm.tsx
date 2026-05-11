@@ -3,13 +3,16 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Button, Input } from '@/components/ui/';
-import { ErrorMessage } from '@/components/ui/form';
+import { Button, Form, Input } from '@/components/ui/';
 
 import { useAuthSubmit } from '../_hook/useAuthSubmit';
-import { signinFormSchema, SigninFormData } from '../_schema/signin-form-schema';
+import {
+  signinFormSchema,
+  SigninFormData,
+} from '../_schema/signin-form-schema';
 
 import { SessionUser } from '@/types/shared';
+import { FormGroup } from '@/components/ui/form';
 
 type SigninFormProps = {
   onSuccess?: (user: SessionUser) => void;
@@ -36,29 +39,32 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
   });
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="mx-auto mt-20 max-w-sm space-y-6 rounded border p-6"
-    >
-      <ErrorMessage message={errors.root?.message} />
+    <Form.Root onSubmit={handleSubmit(onSubmit)}>
+      <Form.ErrorMessage message={errors.root?.message} />
       <h1 className="text-xl font-semibold">Sign in</h1>
-
-      <div>
-        <ErrorMessage message={errors.email?.message} />
-        <Input placeholder="Email" {...register('email')} />
-      </div>
-      <div>
-        <ErrorMessage message={errors.password?.message} />
+      <FormGroup label="Email" htmlFor="email" error={errors.email?.message}>
         <Input
-          type="password"
+          id="email"
+          placeholder="Email"
+          {...register('email')}
+          layout="block"
+        />
+      </FormGroup>
+      <FormGroup
+        label="Password"
+        htmlFor="password"
+        error={errors.password?.message}
+      >
+        <Input
+          id="password"
           placeholder="Password"
+          type="password"
           {...register('password')}
         />
-      </div>
-
-      <Button type="submit" variant="default" textSize="sm">
+      </FormGroup>
+      <Button type="submit" variant="default" height="md" textSize="sm">
         {isSubmitting ? 'Signing in...' : 'Sign in'}
       </Button>
-    </form>
+    </Form.Root>
   );
 }
