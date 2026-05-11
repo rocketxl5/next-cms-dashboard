@@ -1,10 +1,15 @@
 import {z} from "zod";
-import { emailSchema, nameSchema, passwordSchema, roleEnum } from "../common";
+import {
+  emailSchema,
+  nameSchema,
+  strongPasswordSchema,
+  roleEnum,
+} from '../common';
 
 export const createUserSchema = z.object({
   name: nameSchema,
   email: emailSchema,
-  password: passwordSchema,
+  password: strongPasswordSchema,
   role: roleEnum.default('USER'),
 });
 
