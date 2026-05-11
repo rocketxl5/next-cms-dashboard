@@ -4,11 +4,9 @@ import debounce from 'debounce';
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { Select, Box } from '@/components/ui';
-import { Input } from '@/components/ui/form';
+import { Box, Input, Select } from '@/components/ui';
 
 import { cn } from '@/lib/utils';
-
 import { updateQueryParams } from '@/lib/url/update-query-params';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
 

@@ -1,13 +1,11 @@
 import { ReactNode } from 'react';
 
 import { Box } from './layout';
-import { Label } from './form/Label';
+import { Label } from './Label';
 
-import {
-  type LabelVariants,
-} from '@/lib/ui/variants/label.variants';
-import { sizeAdapters } from '@/lib/ui/tokens/adapters/layout';
+import { type LabelVariants } from '@/lib/ui/variants/label.variants';
 import { type BoxVariants } from '@/lib/ui/variants';
+import { sizeAdapters } from '@/lib/ui/tokens/adapters/layout';
 
 interface FieldGroupProps extends BoxVariants {
   children: ReactNode;
