@@ -30,16 +30,23 @@ export const size = {
   },
   width: {
     auto: 'w-auto',
-    sm: 'h-8',
-    md: 'h-9',
-    lg: 'h-10',
     full: 'w-full',
     fit: 'w-fit',
     square: 'aspect-square p-0 flex items-center justify-center',
+
+    xs: 'w-64',
+    sm: 'w-80',
+    md: 'w-96', // 384px
+    lg: 'w-[28rem]',
+    xl: 'w-[32rem]',
   },
   interactive: {
     sm: 'min-h-8',
     md: 'min-h-10',
     lg: 'min-h-12',
+  },
+  shape: {
+    square: 'aspect-square p-0',
+    pill: 'rounded-full',
   },
 } as const;

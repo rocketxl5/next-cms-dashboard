@@ -12,7 +12,7 @@ export const inputVariants = cva(inputTokens.base, {
 
   defaultVariants: {
     variant: 'default',
-    height: 'md',
+    height: 'lg',
     padding: 'md',
     layout: 'block',
     border: 'default',

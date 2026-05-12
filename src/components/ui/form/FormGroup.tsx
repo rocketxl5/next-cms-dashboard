@@ -10,6 +10,7 @@ type FormGroupProps = {
   children: ReactNode;
 
   label?: ReactNode;
+  labelAside?: ReactNode;
   htmlFor?: string;
 
   error?: string;
@@ -24,6 +25,7 @@ type FormGroupProps = {
 export function FormGroup({
   children,
   label,
+  labelAside,
   htmlFor,
   error = '',
   description,
@@ -33,13 +35,16 @@ export function FormGroup({
 }: FormGroupProps) {
   return (
     <Box layout="col" gap="xs" className={className}>
-      {error ? (
-        <ErrorMessage message={error} />
-      ) : label ? (
-        <Label htmlFor={htmlFor} required={required}>
-          {label}
-        </Label>
-      ) : null}
+      <div className="flex items-center justify-between w-full">
+        {error ? (
+          <ErrorMessage message={error} />
+        ) : label ? (
+          <Label htmlFor={htmlFor} required={required}>
+            {label}
+          </Label>
+        ) : null}
+        {labelAside}
+      </div>
       <div className={cn('space-y-1 w-full', contentClassName)}>
         {children}
 
