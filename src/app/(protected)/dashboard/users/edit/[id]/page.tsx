@@ -1,7 +1,7 @@
 import prisma from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 
-import { UpdateUserValues } from '../../form/_schema/user-form.schema';
+import { EditUserFormValues } from '@/lib/validators/users';
 import { EditUserFormWrapper } from '../../form/_client/EditUserFormWrapper';
 
 import { mapDatabaseThemeToCss } from '@/lib/theme';
@@ -22,7 +22,7 @@ export default async function EditUserPage({
 
   if (!user) notFound();
 
-  const defaultValues: UpdateUserValues = {
+  const defaultValues: EditUserFormValues = {
     name: user.name!,
     email: user.email,
     role: user.role,
