@@ -1,5 +1,5 @@
 import z from 'zod';
-import { emailSchema, signinPasswordSchema } from '@/lib/validators';
+import { emailSchema, signinPasswordSchema } from '@/lib/validators/common';
 
 export const signinFormSchema = z.object({
   email: emailSchema,

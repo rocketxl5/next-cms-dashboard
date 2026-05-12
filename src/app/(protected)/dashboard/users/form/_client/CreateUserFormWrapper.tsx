@@ -5,10 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { UserForm } from './UserForm';
 
-import {
-  createUserSchema,
-  CreateUserValues,
-} from '../_schema/user-form.schema';
+import { createUserSchema, CreateUserValues } from '@/lib/validators/users';
 import { createUserAction } from '../_server/create-user.action';
 
 import { useAsyncFormSubmit } from '@/hooks';

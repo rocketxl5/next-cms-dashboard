@@ -1,28 +1,22 @@
 'use server';
 
 import { Prisma } from '@prisma/client/edge';
-import prisma from '@/lib/prisma';
-import { editUserSchema, UpdateUserValues } from '../_schema/user-form.schema';
 import { hash } from 'bcryptjs';
-import { mapCssThemeToDatabase } from '@/lib/theme';
 
-export async function editUserAction(id: string, values: UpdateUserValues) {
+import prisma from '@/lib/prisma';
+import { mapCssThemeToDatabase } from '@/lib/theme';
+import { editUserSchema, EditUserFormValues } from '@/lib/validators/users';
+
+export async function editUserAction(id: string, values: EditUserFormValues) {
   const parsed = editUserSchema.safeParse(values);
 
   if (!parsed.success) throw new Error('Invalid form data');
 
-  const data = parsed.data;
-
-  const password =
-    data.password && data.password !== '' ? data.password : undefined;
-
-  const { name, email, role, status, theme } = data;
+  const { password, theme, ...data } = parsed.data;
 
   const updateData: Prisma.UserUpdateInput = {
-    name,
-    email,
-    role,
-    status,
+    ...data,
+
     theme: mapCssThemeToDatabase(theme),
   };
 
