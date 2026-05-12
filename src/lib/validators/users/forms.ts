@@ -4,14 +4,12 @@ import { baseUserSchema } from './base';
 
 import { strongPasswordSchema } from '../common';
 
-export const createUserSchema =
-  baseUserSchema.extend({
-    password: strongPasswordSchema,
-  });
+export const createUserSchema = baseUserSchema.extend({
+  password: strongPasswordSchema,
+});
 
-export const editUserSchema =
-  baseUserSchema.extend({
-    password: z
+export const editUserSchema = baseUserSchema.extend({
+  password: z
     .string()
     .trim()
     .optional()
@@ -22,6 +20,6 @@ export const editUserSchema =
       },
       {
         message: 'Password is not strong enough',
-      }
+      },
     ),
-  });
+});
