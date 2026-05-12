@@ -5,7 +5,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { UserForm } from './UserForm';
 
-import { editUserSchema, UpdateUserValues } from '../_schema/user-form.schema';
+import { editUserSchema, EditUserFormValues } from '@/lib/validators/users';
+
 import { editUserAction } from '../_server/edit-user.action';
 
 import { useAsyncFormSubmit } from '@/hooks';
@@ -14,7 +15,7 @@ import { FormField } from '@/types/form';
 
 interface EditUserProps {
   id: string;
-  defaultValues: UpdateUserValues;
+  defaultValues: EditUserFormValues;
   fields: FormField[];
 }
 
@@ -23,14 +24,14 @@ export function EditUserFormWrapper({
   defaultValues,
   fields,
 }: EditUserProps) {
-  const form = useForm<UpdateUserValues>({
+  const form = useForm<EditUserFormValues>({
     resolver: zodResolver(editUserSchema),
     defaultValues,
   });
 
   const { onSubmit, loading } = useAsyncFormSubmit(
     form,
-    async (values: UpdateUserValues) => {
+    async (values) => {
       await editUserAction(id, values);
     },
     {
@@ -38,6 +39,7 @@ export function EditUserFormWrapper({
         title: 'User updated',
         message: 'Changes saved successfully',
       },
+
       errorToast: {
         title: 'Update failed',
         message: 'Something went wrong',
@@ -46,7 +48,7 @@ export function EditUserFormWrapper({
   );
 
   return (
-    <UserForm<UpdateUserValues>
+    <UserForm<EditUserFormValues>
       form={form}
       fields={fields}
       loading={loading}

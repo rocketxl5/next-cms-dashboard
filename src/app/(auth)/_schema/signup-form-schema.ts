@@ -3,7 +3,7 @@ import {
   nameSchema,
   emailSchema,
   strongPasswordSchema,
-} from '@/lib/validators';
+} from '@/lib/validators/common';
 
 /**
  * Signup form schema
