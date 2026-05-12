@@ -1,6 +1,6 @@
 import { CreateUserFormWrapper } from '../form/_client/CreateUserFormWrapper';
 
-import { CreateUserValues } from '../form/_schema/user-form.schema';
+import { CreateUserValues } from '@/lib/validators/users';
 import { APP_ROLES, USER_STATUS } from '@/types/enums';
 import { FormField } from '@/types/form';
 
