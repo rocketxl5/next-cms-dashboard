@@ -3,16 +3,13 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Button, Form, Input } from '@/components/ui/';
+import { FormGroup } from '@/components/ui/form';
+import { Button, Form, Input, Link } from '@/components/ui/';
 
 import { useAuthSubmit } from '../_hook/useAuthSubmit';
-import {
-  signinFormSchema,
-  SigninFormData,
-} from '../_schema/signin-form-schema';
+import { signinFormSchema, SigninFormData } from '../_schema';
 
 import { SessionUser } from '@/types/shared';
-import { FormGroup } from '@/components/ui/form';
 
 type SigninFormProps = {
   onSuccess?: (user: SessionUser) => void;
@@ -41,19 +38,22 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
   return (
     <Form.Root onSubmit={handleSubmit(onSubmit)}>
       <Form.ErrorMessage message={errors.root?.message} />
-      <h1 className="text-xl font-semibold">Sign in</h1>
+      <h1 className="text-xl text-center font-semibold">Sign in</h1>
       <FormGroup label="Email" htmlFor="email" error={errors.email?.message}>
-        <Input
-          id="email"
-          placeholder="Email"
-          {...register('email')}
-          layout="block"
-        />
+        <Input id="email" placeholder="Email" {...register('email')} />
       </FormGroup>
       <FormGroup
         label="Password"
         htmlFor="password"
         error={errors.password?.message}
+        labelAside={
+          <Link
+            href="/forgot-password"
+            className="text-sm text-primary hover:underline h-0 p-0"
+          >
+            Forgot password?
+          </Link>
+        }
       >
         <Input
           id="password"
@@ -62,7 +62,7 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
           {...register('password')}
         />
       </FormGroup>
-      <Button type="submit" variant="default" height="md" textSize="sm">
+      <Button type="submit" variant="success" height="lg" textSize="base">
         {isSubmitting ? 'Signing in...' : 'Sign in'}
       </Button>
     </Form.Root>

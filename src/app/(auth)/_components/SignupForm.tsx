@@ -3,11 +3,11 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Button, Input } from '@/components/ui';
-import { ErrorMessage } from '@/components/ui/form';
+import { FormGroup } from '@/components/ui/form';
+import { Button, Form, Input, Link } from '@/components/ui';
 
 import { useAuthSubmit } from '../_hook/useAuthSubmit';
-import { signupFormSchema, SignupFormData } from '../_schema/signup-form-schema';
+import { signupFormSchema, SignupFormData } from '../_schema';
 
 type SigninFormProps = {
   onSuccess?: () => void;
@@ -17,7 +17,7 @@ export function SignupForm({ onSuccess }: SigninFormProps) {
   const {
     register,
     handleSubmit,
-    // setError,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<SignupFormData>({
     resolver: zodResolver(signupFormSchema),
@@ -36,41 +36,40 @@ export function SignupForm({ onSuccess }: SigninFormProps) {
     endpoint: '/api/auth/signup',
     transform: ({ confirmPassword, ...payload }) => payload,
     onSuccess,
+    setError,
   });
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="mx-auto mt-20 max-w-sm space-y-6 rounded border p-6"
-    >
-      <h1 className="text-xl font-semibold">Sign up</h1>
-      <div>
-        <ErrorMessage message={errors.name?.message} />
-        <Input placeholder="Name" {...register('name')} />
-      </div>
-      <div>
-        <ErrorMessage message={errors.email?.message} />
-        <Input type="email" placeholder="Email" {...register('email')} />
-      </div>
-      <div>
-        <ErrorMessage message={errors.password?.message} />
+    <Form.Root onSubmit={handleSubmit(onSubmit)}>
+      <Form.ErrorMessage message={errors.root?.message} />
+      <h1 className="text-xl text-center font-semibold">Sign Up</h1>
+      <FormGroup label="Name" htmlFor="name" error={errors.name?.message}>
+        <Input id="name" placeholder="Name" {...register('name')} />
+      </FormGroup>
+      <FormGroup label="Email" htmlFor="email" error={errors.email?.message}>
+        <Input id="email" placeholder="Email" {...register('email')} />
+      </FormGroup>
+      <FormGroup
+        label="Password"
+        htmlFor="password"
+        error={errors.password?.message}
+      >
+        <Input id="password" placeholder="Password" {...register('password')} />
+      </FormGroup>
+      <FormGroup
+        label="Confirm password"
+        htmlFor="confirmPassword"
+        error={errors.confirmPassword?.message}
+      >
         <Input
-          type="password"
-          placeholder="Password"
-          {...register('password')}
-        />
-      </div>
-      <div>
-        <ErrorMessage message={errors.confirmPassword?.message} />
-        <Input
-          type="password"
+          id="confirmPassword"
           placeholder="Confirm password"
           {...register('confirmPassword')}
         />
-      </div>
-      <Button type="submit" layout="block" variant="default">
+      </FormGroup>
+      <Button type="submit" variant="success" height="lg" textSize="base">
         {isSubmitting ? 'Creating account...' : 'Sign up'}
       </Button>
-    </form>
+    </Form.Root>
   );
 }
