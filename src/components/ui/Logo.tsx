@@ -6,36 +6,33 @@ type ZapLogoProps = {
   size?: number;
 };
 
-export function ZapLogo({
-  className,
-  size = 20,
-}: ZapLogoProps) {
+export function ZapLogo({ className, size = 24 }: ZapLogoProps) {
+  const iconSize = Math.round(size * 0.6);
+
   return (
     <div
       className={cn(
-        'inline-flex items-center justify-center rounded-full aspect-square w-16 border-2',
-        className
+        'inline-flex items-center justify-center rounded-full border-2',
+        className,
       )}
       style={{
         width: size,
         height: size,
-
-        // inverse adaptive background
         backgroundColor: 'hsl(var(--foreground))',
         borderColor: 'hsl(var(--foreground))',
       }}
     >
-      <Zap
-        size={size * 0.7}
-        strokeWidth={0.1}
-        style={{
-          // translucent outline
-          stroke: 'hsl(var(--background))',
-
-          // "cutout" interior using app background color
-          fill: 'hsl(var(--background))',
-        }}
-      />
+      <div className="flex items-center justify-center w-full h-full">
+        <Zap
+          size={iconSize}
+          strokeWidth={0.1}
+          className="block"
+          style={{
+            stroke: 'hsl(var(--background))',
+            fill: 'hsl(var(--background))',
+          }}
+        />
+      </div>
     </div>
   );
 }
