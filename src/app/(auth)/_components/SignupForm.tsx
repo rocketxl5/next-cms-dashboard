@@ -4,7 +4,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { FormGroup } from '@/components/ui/form';
-import { Button, Form, Input, Link } from '@/components/ui';
+import { AuthFormHeader } from './AuthFormHeader';
+import { Button, Form, Input, Link, Title, ZapLogo } from '@/components/ui';
 
 import { useAuthSubmit } from '../_hook/useAuthSubmit';
 import { signupFormSchema, SignupFormData } from '../_schema';
@@ -42,7 +43,12 @@ export function SignupForm({ onSuccess }: SigninFormProps) {
   return (
     <Form.Root onSubmit={handleSubmit(onSubmit)}>
       <Form.ErrorMessage message={errors.root?.message} />
-      <h1 className="text-xl text-center font-semibold">Sign Up</h1>
+      <AuthFormHeader>
+        <ZapLogo size={50} />
+        <Title as="h1" size="2xl" weight="bold">
+          Sign up to Zap
+        </Title>
+      </AuthFormHeader>
       <FormGroup label="Name" htmlFor="name" error={errors.name?.message}>
         <Input id="name" placeholder="Name" {...register('name')} />
       </FormGroup>

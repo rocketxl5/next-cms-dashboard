@@ -74,7 +74,7 @@ export function UsersTable({
   if (!users.length) return <div className="p4">No users found</div>;
 
   return (
-    <Box layout="col" gap="lg">
+    <Box direction="col" gap="lg">
       <table className={tableTokens.base.table}>
         <thead>
           <tr className={tableTokens.base.headerRow}>

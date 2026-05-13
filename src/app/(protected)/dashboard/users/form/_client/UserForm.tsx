@@ -37,7 +37,7 @@ export function UserForm<T extends FieldValues>({
   } = form;
 
   return (
-    <Box width="fit" layout="col" gap="lg" className="mx-auto">
+    <Box width="fit" direction="col" gap="lg" className="mx-auto">
       <form onSubmit={onSubmit}>
         <Grid>
           {fields.map((field) => {

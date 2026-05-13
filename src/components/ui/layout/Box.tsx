@@ -7,16 +7,21 @@ export interface BoxProps
 
 export function Box({ className, ...props }: BoxProps) {
   const {
-    layout,
-    surface,
-    position,
-    border,
-    radius,
-    padding,
-    paddingY,
+    display,
+    direction,
+    align,
+    justify,
     gap,
+    layout,
     width,
     height,
+    padding,
+    paddingY,
+    border,
+    radius,
+    surface,
+    position,
+    interactive,
     ...rest
   } = props;
 
@@ -24,16 +29,21 @@ export function Box({ className, ...props }: BoxProps) {
     <div
       className={cn(
         boxVariants({
-          layout,
-          surface,
-          position,
-          border,
-          radius,
-          padding,
-          paddingY,
+          display,
+          direction,
+          align,
+          justify,
           gap,
+          layout,
           width,
           height,
+          padding,
+          paddingY,
+          border,
+          radius,
+          surface,
+          position,
+          interactive,
         }),
         className,
       )}

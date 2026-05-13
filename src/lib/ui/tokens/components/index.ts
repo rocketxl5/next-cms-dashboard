@@ -8,4 +8,5 @@ export * from './input.tokens';
 export * from './link.tokens';
 export * from './select.tokens';
 export * from './table.tokens';
+export * from './title.tokens';
 export * from './toast.tokens';

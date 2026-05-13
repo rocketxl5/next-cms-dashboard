@@ -60,7 +60,7 @@ export function UsersFilters({
           </span>
         </Dropdown.Trigger>
         <Dropdown.Content align="start" className="p-3">
-          <Box layout="row">
+          <Box>
             <FieldGroup
               className="pt-1"
               htmlFor="created"

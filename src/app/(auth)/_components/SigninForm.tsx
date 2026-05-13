@@ -3,8 +3,17 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { AuthFormHeader } from './AuthFormHeader';
 import { FormGroup } from '@/components/ui/form';
-import { Button, Form, Input, Link } from '@/components/ui/';
+import {
+  Box,
+  Button,
+  Form,
+  Input,
+  Link,
+  Title,
+  ZapLogo,
+} from '@/components/ui/';
 
 import { useAuthSubmit } from '../_hook/useAuthSubmit';
 import { signinFormSchema, SigninFormData } from '../_schema';
@@ -37,8 +46,15 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
 
   return (
     <Form.Root onSubmit={handleSubmit(onSubmit)}>
-      <Form.ErrorMessage message={errors.root?.message} />
-      <h1 className="text-xl text-center font-semibold">Sign in</h1>
+      <Box direction="col">
+        <AuthFormHeader>
+          <ZapLogo size={50} />
+          <Title as="h1" size="2xl" weight="bold">
+            Sign in to Zap
+          </Title>
+        </AuthFormHeader>
+        <Form.ErrorMessage message={errors.root?.message} />
+      </Box>
       <FormGroup label="Email" htmlFor="email" error={errors.email?.message}>
         <Input id="email" placeholder="Email" {...register('email')} />
       </FormGroup>

@@ -29,5 +29,6 @@ export const buttonTokens = {
   height: size.height,
   width: sizeAdapters.width,
   radius: radiusAdapters,
-  textSize: textAdapters,
+  textSize: textAdapters.size,
+  textWeight: textAdapters.weight,
 } as const;

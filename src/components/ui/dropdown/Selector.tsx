@@ -9,7 +9,7 @@ type DropdownSelectorProps = {
 
 export function Selector({ children, className }: DropdownSelectorProps) {
   return (
-    <Box  className={cn('p-1 gap-1', className)} layout="col">
+    <Box className={cn('p-1 gap-1', className)} direction="col">
       {children}
     </Box>
   );

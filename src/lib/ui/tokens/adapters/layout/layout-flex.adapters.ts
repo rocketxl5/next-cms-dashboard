@@ -2,6 +2,8 @@ export const align = {
   start: 'items-start',
   center: 'items-center',
   end: 'items-end',
+  stretch: 'items-stretch',
+  baseline: 'items-baseline',
 } as const;
 
 export const justify = {

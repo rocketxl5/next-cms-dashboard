@@ -41,7 +41,8 @@ export function FieldGroup({
   return (
     <Box
       className={className}
-      layout={inline ? 'row' : 'col'}
+      direction={inline ? 'row' : 'col'}
+      align="start"
       padding={padding}
       gap={spacing}
       border={border}

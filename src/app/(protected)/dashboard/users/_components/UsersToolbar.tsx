@@ -72,7 +72,7 @@ export function UsersToolbar({
   };
 
   return (
-    <Box width="full" layout="between" gap="lg">
+    <Box width="full" justify="between" gap="lg">
       <UsersBulkActions
         allowedBulkActions={allowedBulkActions}
         hasSelection={hasSelection}
