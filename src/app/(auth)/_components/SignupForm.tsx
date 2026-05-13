@@ -42,7 +42,6 @@ export function SignupForm({ onSuccess }: SigninFormProps) {
 
   return (
     <Form.Root onSubmit={handleSubmit(onSubmit)}>
-      <Form.ErrorMessage message={errors.root?.message} />
       <AuthFormHeader>
         <ZapLogo size={50} />
         <Title as="h1" size="2xl" weight="bold">

@@ -62,14 +62,6 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
         label="Password"
         htmlFor="password"
         error={errors.password?.message}
-        labelAside={
-          <Link
-            href="/forgot-password"
-            className="text-sm text-primary hover:underline h-0 p-0"
-          >
-            Forgot password?
-          </Link>
-        }
       >
         <Input
           id="password"
@@ -77,6 +69,12 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
           type="password"
           {...register('password')}
         />
+        <Link
+          href="/forgot-password"
+          className="absolute right-0 p-0 -top-2 text-sm text-primary hover:underline"
+        >
+          Forgot password?
+        </Link>
       </FormGroup>
       <Button type="submit" variant="success" height="lg" textSize="base">
         {isSubmitting ? 'Signing in...' : 'Sign in'}

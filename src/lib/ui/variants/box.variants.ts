@@ -37,7 +37,7 @@ export const boxVariants = cva(boxTokens.base, {
     direction: 'row',
 
     align: 'center',
-    justify: 'start',
+    // justify: 'start',
 
     position: 'static',
 
