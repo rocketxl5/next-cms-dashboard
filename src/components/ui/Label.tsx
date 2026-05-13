@@ -31,7 +31,7 @@ export function Label({
         className,
       )}
     >
-      <span className="inline-flex items-center gap-1">
+      <span className="inline-flex items-center gap-1 font-semibold">
         {children}
         {required && <span className="text-destructive">*</span>}
       </span>

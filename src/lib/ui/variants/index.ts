@@ -6,4 +6,5 @@ export * from './label.variants';
 export * from './link.variants';
 export * from './select.variants';
 export * from './spinner.variants';
+export * from './title.variants';
 export * from './toast.variants';

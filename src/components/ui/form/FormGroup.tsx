@@ -34,7 +34,7 @@ export function FormGroup({
   contentClassName,
 }: FormGroupProps) {
   return (
-    <Box layout="col" gap="xs" className={className}>
+    <Box direction="col" gap="xs" className={className}>
       <div className="flex items-center justify-between w-full">
         {error ? (
           <ErrorMessage message={error} />

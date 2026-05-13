@@ -9,31 +9,48 @@ import { size, surface } from '../primitives';
 
 export const boxTokens = {
   base: '',
+
+  display: {
+    block: 'block',
+    flex: 'flex',
+    inlineFlex: 'inline-flex',
+    grid: 'grid',
+  },
+
+  direction: {
+    row: flex.direction.row,
+    col: flex.direction.col,
+  },
+
+  align: {
+    start: flex.align.start,
+    center: flex.align.center,
+    end: flex.align.end,
+    stretch: flex.align.stretch,
+    baseline: flex.align.baseline,
+  },
+
+  justify: {
+    start: flex.justify.start,
+    center: flex.justify.center,
+    end: flex.justify.end,
+    between: flex.justify.between,
+    around: flex.justify.around,
+    evenly: flex.justify.evenly,
+  },
+
+  // optional ergonomic preset
   layout: {
     flex: 'flex',
     inlineFlex: 'inline-flex',
 
-    row: [
-      'flex',
-      flex.direction.row,
-      flex.align.center,
-      flex.justify.start,
-    ].join(' '),
+    row: ['flex', flex.direction.row].join(' '),
 
-    col: [
-      'flex',
-      flex.direction.col,
-      flex.align.start,
-      flex.justify.start,
-    ].join(' '),
+    col: ['flex', flex.direction.col].join(' '),
 
     center: ['flex', flex.align.center, flex.justify.center].join(' '),
 
     between: ['flex', flex.align.center, flex.justify.between].join(' '),
-
-    start: ['flex', flex.align.start, flex.justify.start].join(' '),
-
-    end: ['flex', flex.align.end, flex.justify.end].join(' '),
   },
 
   surface: {
@@ -77,12 +94,12 @@ export const boxTokens = {
       borderAdapters.color.muted,
     ].join(' '),
   },
+  gap: sizeAdapters.gap,
   padding: size.padding,
   paddingY: size.paddingY,
   height: size.height,
   width: size.width,
-  gap: sizeAdapters.gap,
+  interactive: size.interactive,
   radius: radiusAdapters,
   position: positionAdapters,
-  interactive: size.interactive,
 } as const;
