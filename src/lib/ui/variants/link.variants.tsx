@@ -31,13 +31,13 @@ export const linkVariants = cva(linkTokens.base, {
     radius: 'md',
   },
 
-  compoundVariants: [
-    {
-      variant: 'nav',
-      active: true,
-      className: 'bg-muted font-medium',
-    },
-  ],
+  // compoundVariants: [
+  //   {
+  //     variant: 'nav',
+  //     active: true,
+  //     className: 'bg-muted font-medium',
+  //   },
+  // ],
 });
 
 export type LinkVariants = VariantProps<typeof linkVariants>;
