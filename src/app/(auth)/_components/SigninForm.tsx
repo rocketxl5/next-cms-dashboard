@@ -82,17 +82,18 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
           {isSubmitting ? 'Signing in...' : 'Sign in'}
         </Button>
       </Form.Root>
-      <AuthFormFooter className="h-0 w-full text-center">
-        <Divider border="subtle" />
-        <span className="text-sm">New to Zap? </span>
-        <Link
-          href="/signup"
-          height="auto"
-          textSize="sm"
-          className="text-primary hover:underline p-0"
-        >
-          Create an account
-        </Link>
+      <Divider border="subtle" spacing="lg" />
+      <AuthFormFooter>
+        <Box className="h-0" gap="sm">
+          <span className="text-sm">New to Zap? </span>
+          <Link
+            href="/signup"
+            textSize="sm"
+            className="text-primary hover:underline p-0"
+          >
+            Create an account
+          </Link>
+        </Box>
       </AuthFormFooter>
     </Box>
   );

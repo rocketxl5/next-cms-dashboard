@@ -7,8 +7,8 @@ type FormHeaderProps = {
 
 export function AuthFormFooter({ children, className }: FormHeaderProps) {
   return (
-    <div className={className}>
+    <Box direction="col" width="full" className={className}>
       {children}
-    </div>
+    </Box>
   );
 }
