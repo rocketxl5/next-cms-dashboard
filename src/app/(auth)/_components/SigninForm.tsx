@@ -3,11 +3,12 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { AuthFormHeader } from './AuthFormHeader';
+import { AuthFormHeader, AuthFormFooter } from './';
 import { FormGroup } from '@/components/ui/form';
 import {
   Box,
   Button,
+  Divider,
   Form,
   Input,
   Link,
@@ -45,40 +46,54 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
   });
 
   return (
-    <Form.Root onSubmit={handleSubmit(onSubmit)}>
-      <Box direction="col">
-        <AuthFormHeader>
-          <ZapLogo size={50} />
-          <Title as="h1" size="2xl" weight="bold">
-            Sign in to Zap
-          </Title>
-        </AuthFormHeader>
+    <Box direction="col">
+      <AuthFormHeader>
+        <ZapLogo size={50} />
+        <Title as="h1" size="2xl" weight="bold">
+          Sign in to Zap
+        </Title>
+      </AuthFormHeader>
+      <Form.Root onSubmit={handleSubmit(onSubmit)}>
         <Form.ErrorMessage message={errors.root?.message} />
-      </Box>
-      <FormGroup label="Email" htmlFor="email" error={errors.email?.message}>
-        <Input id="email" placeholder="Email" {...register('email')} />
-      </FormGroup>
-      <FormGroup
-        label="Password"
-        htmlFor="password"
-        error={errors.password?.message}
-      >
-        <Input
-          id="password"
-          placeholder="Password"
-          type="password"
-          {...register('password')}
-        />
-        <Link
-          href="/forgot-password"
-          className="absolute right-0 p-0 -top-2 text-sm text-primary hover:underline"
+        <FormGroup label="Email" htmlFor="email" error={errors.email?.message}>
+          <Input id="email" placeholder="Email" {...register('email')} />
+        </FormGroup>
+        <FormGroup
+          label="Password"
+          htmlFor="password"
+          error={errors.password?.message}
         >
-          Forgot password?
+          <Input
+            id="password"
+            placeholder="Password"
+            type="password"
+            {...register('password')}
+          />
+          <Link
+            href="/forgot-password"
+            textSize="sm"
+            padding="none"
+            className="absolute right-0 -top-2 text-primary hover:underline"
+          >
+            Forgot password?
+          </Link>
+        </FormGroup>
+        <Button type="submit" variant="success" height="lg" textSize="base">
+          {isSubmitting ? 'Signing in...' : 'Sign in'}
+        </Button>
+      </Form.Root>
+      <AuthFormFooter className="h-0 w-full text-center">
+        <Divider border="subtle" />
+        <span className="text-sm">New to Zap? </span>
+        <Link
+          href="/signup"
+          height="auto"
+          textSize="sm"
+          className="text-primary hover:underline p-0"
+        >
+          Create an account
         </Link>
-      </FormGroup>
-      <Button type="submit" variant="success" height="lg" textSize="base">
-        {isSubmitting ? 'Signing in...' : 'Sign in'}
-      </Button>
-    </Form.Root>
+      </AuthFormFooter>
+    </Box>
   );
 }

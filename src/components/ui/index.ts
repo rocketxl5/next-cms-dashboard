@@ -1,5 +1,6 @@
 export { Checkbox } from './Checkbox';
 export { DateSelector } from './DateSelector';
+export { Divider } from './Divider';
 export { FieldGroup } from './FieldGroup';
 export { Footer } from './Footer';
 export { Header } from './Header';
