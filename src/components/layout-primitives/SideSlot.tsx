@@ -1,11 +1,17 @@
-// src/layout-primitives/SidebarSlot.tsx
-type SideSlotProps = {
-    children: React.ReactNode;
-    className?: string;
-}
+import { Box } from '../ui';
 
-export function SideSlot({children, className}: SideSlotProps) {
-    return(
-    <aside className={`hidden md:flex w-64 shrink-0 border-r ${className ?? ''}`}>{children}</aside>
-    )
+import { cn } from '@/lib/utils';
+
+export function SideSlot({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <aside className={cn('w-64 shrink-0 border-r overflow-y-auto', className)}>
+      {children}
+    </aside>
+  );
 }

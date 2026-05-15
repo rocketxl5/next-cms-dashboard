@@ -29,9 +29,12 @@
   /* --muted-foreground: 215 16% 47%; */
   --muted-foreground: 215 16% 52%;
 
-  /* Dark */
+  /* Dark blue */
   --contrast: 222 47% 44%;
-  --contrast-foreground: 0 0% 100%;
+  --contrast-foreground: 210 40% 98%;
+
+  --dark: 222 47% 11%;
+  --dark-foreground: 210 40% 98%;
 
   /* Feedback colors */
   --success: 145 63% 40%;
@@ -92,8 +95,11 @@
   --muted: 223 47% 15%;
   --muted-foreground: 215 20% 65%;
 
-  --contrast: 0 0% 100%;
-  --contrast-foreground: 222 47% 11%;
+  /* --contrast: 210 40% 98%;
+  --contrast-foreground: 222 47% 11%; */
+
+  --dark: 210 40% 98%;
+  --dark-foreground: 222 47% 11%;
 
   --border: 217 33% 17%;
   --border-subtle: 217 25% 22%;

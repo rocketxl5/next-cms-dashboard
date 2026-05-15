@@ -1,8 +1,8 @@
-//src/layout-primitives/AppShell.tsx
+import { Box } from '../ui';
 type AppShellProps = {
-    children: React.ReactNode;
-}
+  children: React.ReactNode;
+};
 
-export function AppShell({children}: AppShellProps) {
-    return <div className="h-screen w-full flex">{children}</div>;
+export function AppShell({ children }: AppShellProps) {
+  return <div className="min-h-screen w-full flex flex-col">{children}</div>;
 }

@@ -52,6 +52,13 @@
     color: hsl(var(--contrast-foreground));
   }
 
+  .bg-dark {
+    background-color: hsl(var(--dark));
+  }
+  .text-dark-foreground {
+    color: hsl(var(--dark-foreground));
+  }
+
   /* Text intent colors */
   .text-success {
     color: hsl(var(--success));

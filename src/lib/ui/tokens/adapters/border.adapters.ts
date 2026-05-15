@@ -10,6 +10,7 @@ const color = {
   subtle: 'border-subtle',
   muted: 'border-muted',
   strong: 'border-strong',
+  foreground: 'border-foreground',
   primary: 'border-primary',
   success: 'border-success',
   warning: 'border-warning',

@@ -1,27 +1,43 @@
 import { redirect } from 'next/navigation';
-import { getSession } from '@/lib/server';
-import { AppShell } from '@/components/layout-primitives';
-import { DashboardRole } from '@/types/shared';
+
+import {
+  AppShell,
+  HeaderSlot,
+  MainSlot,
+  SideSlot,
+  ContentShell,
+} from '@/components/layout-primitives';
+
 import { DashboardHeader, DashboardSideBar, DashboardMain } from './components';
 
-type DashboardLayoutProps = {
-  children: React.ReactNode;
-};
+import { getSession } from '@/lib/server';
+
+import { DashboardRole } from '@/types/shared';
 
 export default async function DashboardLayout({
   children,
-}: DashboardLayoutProps) {
+}: {
+  children: React.ReactNode;
+}) {
   const session = await getSession();
 
   if (!session) redirect('/signin');
 
   return (
     <AppShell>
-      <DashboardSideBar role={session.user.role as DashboardRole} />
-      <div className="flex flex-col flex-1">
+      <HeaderSlot>
         <DashboardHeader />
-        <DashboardMain>{children}</DashboardMain>
-      </div>
+      </HeaderSlot>
+
+      <ContentShell>
+        <SideSlot>
+          <DashboardSideBar role={session.user.role as DashboardRole} />
+        </SideSlot>
+
+        <MainSlot>
+          <DashboardMain>{children}</DashboardMain>
+        </MainSlot>
+      </ContentShell>
     </AppShell>
   );
 }

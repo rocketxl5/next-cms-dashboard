@@ -31,7 +31,7 @@ export function ToggleThemeBtn() {
   };
 
   return (
-    <Button className="mx-2" onClick={handleClick} variant="muted" height="md">
+    <Button className="mx-2" onClick={handleClick} variant="dark" height="md">
       {theme === 'light' ? <Moon size={24} /> : <Sun size={24} />}
     </Button>
   );
