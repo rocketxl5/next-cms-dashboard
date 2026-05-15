@@ -9,6 +9,7 @@ export const buttonTokens = {
     success: `${color.success.background} ${color.success.foreground}`,
     warning: `${color.warning.background} ${color.warning.foreground}`,
     contrast: `${color.contrast.background} ${color.contrast.foreground}`,
+    dark: `${color.dark.background} ${color.dark.foreground}`,
     info: `${color.info.background} ${color.info.foreground}`,
     link: `${color.link.default} ${color.link.foreground}`,
     muted: `${color.muted.background} ${color.foreground}`,

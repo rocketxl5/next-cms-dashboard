@@ -58,7 +58,7 @@ export function SignoutBtn() {
     <Button
       onClick={handleSignOut}
       disabled={loading}
-      variant="muted"
+      variant="contrast"
       height="md"
       width="fit"
     >

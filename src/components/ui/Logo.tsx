@@ -12,7 +12,12 @@ export function ZapLogo({ className, size = 24 }: ZapLogoProps) {
   const iconSize = Math.round(size * 0.6);
 
   return (
-    <Link href="/" aria-label="Go to homepage" className="inline-flex">
+    <Link
+      href="/"
+      aria-label="Go to homepage"
+      className="inline-flex"
+      padding="none"
+    >
       <div
         className={cn(
           'inline-flex items-center justify-center rounded-full border-2',

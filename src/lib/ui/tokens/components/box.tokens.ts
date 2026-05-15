@@ -88,6 +88,12 @@ export const boxTokens = {
       borderAdapters.color.strong,
     ].join(' '),
 
+    foreground: [
+      borderAdapters.side.bottom,
+      borderAdapters.color.foreground,
+      borderAdapters.width.hairline,
+    ],
+
     divider: [
       borderAdapters.side.bottom,
       borderAdapters.width.hairline,

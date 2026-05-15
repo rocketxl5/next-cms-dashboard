@@ -2,15 +2,17 @@
 
 import { HeaderSlot } from '@/components/layout-primitives';
 
-import { Box, SignoutBtn, ToggleThemeBtn } from '@/components/ui';
+import { Box, SignoutBtn, ToggleThemeBtn, ZapLogo } from '@/components/ui';
 
 export function DashboardHeader() {
   return (
     <HeaderSlot>
-      <h2>Dashboard Header</h2>
-      <Box>
-        <ToggleThemeBtn />
-        <SignoutBtn />
+      <Box justify="between" align="center" width="full" padding="md">
+        <ZapLogo size={35} />
+        <Box>
+          <ToggleThemeBtn />
+          <SignoutBtn />
+        </Box>
       </Box>
     </HeaderSlot>
   );
