@@ -33,8 +33,6 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     },
     ref,
   ) => {
-    console.log(id);
-
     return (
       <div className="relative">
         <select

@@ -1,7 +1,6 @@
 'use client';
 
 import { Box } from '@/components/ui';
-import { SideSlot } from '@/components/layout-primitives';
 import { DashboardLink } from './link/DashboardLink';
 
 import { LinkVariants } from '@/lib/ui/variants';
@@ -15,22 +14,17 @@ interface DashboardSideBarProps extends LinkVariants {
 
 export function DashboardSideBar({ role }: DashboardSideBarProps) {
   return (
-    <SideSlot>
-      <Box width="full" direction="col" gap="xs" padding="md" align="start">
-        <DashboardLink href="/dashboard">Dashboard</DashboardLink>
+    <Box width="full" direction="col" gap="xs" padding="md" align="start">
+      <DashboardLink href="/dashboard">Dashboard</DashboardLink>
 
-        {/* Section navigation */}
-        {allowedDashboardNav(role).map((item) => {
-          return (
-            <DashboardLink key={item.href} href={item.href}>
-              {item.label}
-            </DashboardLink>
-          );
-        })}
-      </Box>
-      {/* <nav className="w-full flex flex-col gap-1 p-4"> */}
-      {/* Dashboard root */}
-      {/* </nav> */}
-    </SideSlot>
+      {/* Section navigation */}
+      {allowedDashboardNav(role).map((item) => {
+        return (
+          <DashboardLink key={item.href} href={item.href}>
+            {item.label}
+          </DashboardLink>
+        );
+      })}
+    </Box>
   );
 }
