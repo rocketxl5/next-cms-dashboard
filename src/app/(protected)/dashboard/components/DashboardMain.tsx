@@ -1,9 +1,11 @@
-import { MainSlot } from '@/components/layout-primitives';
+'use client';
+
+import { Box } from '@/components/ui';
 
 type DashboardMainProps = {
   children: React.ReactNode;
 };
 
 export function DashboardMain({ children }: DashboardMainProps) {
-  return <MainSlot>{children}</MainSlot>;
+  return <Box>{children}</Box>;
 }
