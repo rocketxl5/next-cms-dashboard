@@ -13,7 +13,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       variant,
       layout,
       height,
-      padding,
+      paddingX,
+      paddingY,
       border,
       ...props
     }: InputProps,
@@ -24,7 +25,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         type={type}
         className={cn(
-          inputVariants({ variant, layout, height, padding, border }),
+          inputVariants({
+            variant,
+            layout,
+            height,
+            paddingX,
+            paddingY,
+            border,
+          }),
           className,
         )}
         {...props}

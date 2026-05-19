@@ -53,6 +53,7 @@ export function EditUserFormWrapper({
       fields={fields}
       loading={loading}
       onSubmit={onSubmit}
+      type="edit"
     />
   );
 }

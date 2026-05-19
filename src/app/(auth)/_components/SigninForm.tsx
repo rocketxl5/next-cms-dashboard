@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { AuthFormHeader, AuthFormFooter } from './';
-import { FormGroup } from '@/components/ui/form';
+
 import {
   Box,
   Button,
@@ -55,10 +55,10 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
       </AuthFormHeader>
       <Form.Root onSubmit={handleSubmit(onSubmit)}>
         <Form.ErrorMessage message={errors.root?.message} />
-        <FormGroup label="Email" htmlFor="email" error={errors.email?.message}>
+        <Form.Group label="Email" htmlFor="email" error={errors.email?.message}>
           <Input id="email" placeholder="Email" {...register('email')} />
-        </FormGroup>
-        <FormGroup
+        </Form.Group>
+        <Form.Group
           label="Password"
           htmlFor="password"
           error={errors.password?.message}
@@ -77,7 +77,7 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
           >
             Forgot password?
           </Link>
-        </FormGroup>
+        </Form.Group>
         <Button type="submit" variant="success" height="lg" textSize="base">
           {isSubmitting ? 'Signing in...' : 'Sign in'}
         </Button>

@@ -6,14 +6,16 @@ export const inputVariants = cva(inputTokens.base, {
     variant: inputTokens.variant,
     layout: inputTokens.layout,
     height: inputTokens.height,
-    padding: inputTokens.padding,
+    paddingX: inputTokens.paddingX,
+    paddingY: inputTokens.paddingY,
     border: inputTokens.border,
   },
 
   defaultVariants: {
     variant: 'default',
     height: 'lg',
-    padding: 'md',
+    paddingX: 'md',
+    paddingY: 'sm',
     layout: 'block',
     border: 'default',
   },

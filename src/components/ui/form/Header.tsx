@@ -1,11 +1,11 @@
 import { Box } from '@/components/ui';
 
-type FormFooterProps = {
+type FormHeaderProps = {
   children: React.ReactNode;
   className?: string;
 };
 
-export function AuthFormFooter({ children, className }: FormFooterProps) {
+export function Header({ children, className }: FormHeaderProps) {
   return (
     <Box direction="col" width="full" className={className}>
       {children}
