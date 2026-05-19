@@ -5,15 +5,15 @@ import { FieldValues, Path, UseFormReturn } from 'react-hook-form';
 import {
   Box,
   Button,
-  Grid,
+  Form,
   Input,
   Label,
   Select,
   Spinner,
+  Title,
 } from '@/components/ui';
-import { ErrorMessage } from '@/components/ui/form';
 
-
+import { description } from '@/lib/form';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 import { FormField } from '@/types/form';
@@ -22,6 +22,7 @@ interface UserFormProps<T extends FieldValues> {
   form: UseFormReturn<T>;
   fields: FormField[];
   onSubmit: React.SubmitEventHandler<HTMLFormElement>;
+  type: string;
   loading: boolean;
 }
 
@@ -29,6 +30,7 @@ export function UserForm<T extends FieldValues>({
   form,
   fields,
   onSubmit,
+  type,
   loading,
 }: UserFormProps<T>) {
   const {
@@ -37,49 +39,63 @@ export function UserForm<T extends FieldValues>({
   } = form;
 
   return (
-    <Box width="fit" direction="col" gap="lg" className="mx-auto">
-      <form onSubmit={onSubmit}>
-        <Grid>
-          {fields.map((field) => {
-            const fieldName = field.name as Path<T>;
-            return (
-              <div key={fieldName}>
-                <ErrorMessage message={errors[field.name]?.message as string} />
-                <Label htmlFor={String(field.name)}>{field.label}</Label>
-                {field.type === 'select' && field.options ? (
-                  <Select {...register(fieldName)}>
-                    {field.options.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {normalizeDisplayString(option.value)}
-                      </option>
-                    ))}
-                  </Select>
-                ) : (
-                  <Input
-                    id={fieldName}
-                    type={field.type ?? 'text'}
-                    {...register(fieldName)}
-                  />
-                )}
-              </div>
-            );
-          })}
-        </Grid>
-      </form>
-      <Button
-        type="submit"
-        variant="success"
-        layout="block"
-        disabled={loading || !isDirty}
-      >
-        {loading ? (
-          <>
-            <Spinner size="sm" className="mr-2" />
-          </>
-        ) : (
-          'Submit'
-        )}
-      </Button>
+    <Box width="lg" className="mx-auto">
+      <Form.Root onSubmit={onSubmit}>
+        <Form.Header>
+          <Title as="h1" size="2xl" weight="bold">
+            {type === 'create' ? 'Create user' : 'Edit user'}
+          </Title>
+        </Form.Header>
+        {fields.map((field) => {
+          const fieldName = field.name as Path<T>;
+          return (
+            <Form.Group
+              key={fieldName}
+              description={
+                fieldName === 'password' || fieldName === 'name'
+                  ? description[String(fieldName)]
+                  : null
+              }
+            >
+              <Form.ErrorMessage
+                message={errors[field.name]?.message as string}
+              />
+              <Label htmlFor={String(field.name)}>{field.label}</Label>
+              {field.type === 'select' && field.options ? (
+                <Select {...register(fieldName)} height="lg">
+                  {field.options.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {normalizeDisplayString(option.value)}
+                    </option>
+                  ))}
+                </Select>
+              ) : (
+                <Input
+                  id={fieldName}
+                  type={field.type ?? 'text'}
+                  {...register(fieldName)}
+                />
+              )}
+            </Form.Group>
+          );
+        })}
+        <Button
+          type="submit"
+          variant="success"
+          layout="block"
+          height="lg"
+          className="mt-4"
+          disabled={loading || !isDirty}
+        >
+          {loading ? (
+            <>
+              <Spinner size="sm" className="mr-2" />
+            </>
+          ) : (
+            'Submit'
+          )}
+        </Button>
+      </Form.Root>
     </Box>
   );
 }

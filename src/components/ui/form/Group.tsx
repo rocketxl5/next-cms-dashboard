@@ -22,7 +22,7 @@ type FormGroupProps = {
   contentClassName?: string;
 };
 
-export function FormGroup({
+export function Group({
   children,
   label,
   htmlFor,
@@ -35,16 +35,17 @@ export function FormGroup({
   return (
     <Box direction="col" gap="xs" position="relative" className={className}>
       <div className="flex items-center justify-between w-full">
-        {error ? (
-          <ErrorMessage message={error} />
-        ) : label ? (
+        {label ? (
           <Label htmlFor={htmlFor} required={required}>
             {label}
           </Label>
         ) : null}
       </div>
+
       <div className={cn('space-y-1 w-full', contentClassName)}>
         {children}
+
+        {error ? <ErrorMessage message={error} /> : null}
 
         {description ? (
           <p className="text-muted-foreground text-sm">{description}</p>

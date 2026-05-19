@@ -7,7 +7,6 @@ import { focusTokens } from './focus.tokens';
 export const inputTokens = {
   base: `
     rounded-md
-    text-sm
     text-foreground
     border
     ${focusTokens.base}
@@ -37,7 +36,8 @@ export const inputTokens = {
   },
 
   height: size.height,
-  padding: size.padding,
+  paddingX: size.paddingX,
+  paddingY: size.paddingY,
 
   layout: {
     block: sizeAdapters.width.full, // default form usage

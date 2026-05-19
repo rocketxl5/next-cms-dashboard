@@ -42,6 +42,7 @@ export function CreateUserFormWrapper({
       },
     },
   );
+  
 
   return (
     <UserForm<CreateUserValues>
@@ -49,6 +50,7 @@ export function CreateUserFormWrapper({
       onSubmit={onSubmit}
       fields={fields}
       loading={loading}
+      type="create"
     />
   );
 }
