@@ -3,6 +3,10 @@ export const gap = {
   sm: 'gap-2',
   md: 'gap-4',
   lg: 'gap-6',
+  xl: 'gap-8',
+  '2xl': 'gap-12',
+  '3xl': 'gap-16',
+  '4xl': 'gap-20',
 } as const;
 
 export const width = {

@@ -8,7 +8,7 @@ export type TableColumn<T, TContext> = {
   render: (row: T, ctx: TContext) => React.ReactNode;
 
   // styling (CVA layer)
-  variant?: CellVariants['variant'];
+  preset?: CellVariants['preset'];
   size?: CellVariants['size'];
 
   // layout layer

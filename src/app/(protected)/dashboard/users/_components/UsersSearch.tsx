@@ -62,7 +62,7 @@ export function UsersSearch({ filters, onSearchChange }: UsersSearchProps) {
   return (
     <Box gap="lg">
       <Box
-        height="sm"
+        height="lg"
         className={cn(
           'flex items-stretch rounded-md',
           'border border-[hsl(var(--border))]',

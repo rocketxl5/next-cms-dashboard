@@ -75,7 +75,7 @@ export function DashboardLink({ href, children }: DashboardLinkProps) {
   const isActive = isRouteActive(pathname, href, '/dashboard');
 
   return (
-    <Link href={href} variant="nav" active={isActive}>
+    <Link href={href} variant="contrast" active={isActive} width="full">
       {children}
     </Link>
   );

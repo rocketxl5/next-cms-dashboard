@@ -10,7 +10,7 @@ import { buildUsersColumns } from './factory/build-users-columns';
 import { cn } from '@/lib/utils';
 import { cellVariants } from '@/lib/ui/variants';
 import { updateUserRoleAction } from '@/lib/domain/users/actions/single';
-import { cellTokens, tableTokens } from '@/lib/ui/tokens';
+import { tableTokens } from '@/lib/ui/tokens';
 
 import { AppRole } from '@/types/enums';
 import { CurrentDashboardUser, PaginationMeta } from '@/types/shared';
@@ -62,7 +62,7 @@ export function UsersTable({
   const resolvedColumns = columns.map((col) => ({
     ...col,
     className: cellVariants({
-      variant: col.variant,
+      preset: col.preset,
       size: col.size,
       width: col.width,
       grow: col.grow,
@@ -74,15 +74,14 @@ export function UsersTable({
   if (!users.length) return <div className="p4">No users found</div>;
 
   return (
-    <Box direction="col" gap="lg">
-      <table className={tableTokens.base.table}>
+    <Box direction="col" gap="lg" className={tableTokens.wrapper.responsive}>
+      <table className={tableTokens.base}>
         <thead>
-          <tr className={tableTokens.base.headerRow}>
+          <tr className={tableTokens.row.base}>
             {resolvedColumns.map((column, i) => (
               <th
                 key={column.key}
                 className={cn(
-                  cellTokens.base.header,
                   column.className,
                   i === 0 && 'w-11 whitespace-nowrap',
                 )}
@@ -96,11 +95,14 @@ export function UsersTable({
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr key={user.id} className={` ${tableTokens.base.row}`}>
+            <tr
+              key={user.id}
+              className={cn(tableTokens.row.base, tableTokens.row.striped)}
+            >
               {resolvedColumns.map((column) => (
                 <td
                   key={column.key}
-                  className={cn(cellTokens.base.cell, column.className)}
+                  className={cn(tableTokens.cell.content, column.className)}
                 >
                   {column.render(user, tableContext)}
                 </td>

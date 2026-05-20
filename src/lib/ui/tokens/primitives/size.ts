@@ -24,6 +24,7 @@ export const size = {
   },
   height: {
     auto: 'h-auto',
+    xs: 'h-6',
     sm: 'h-8',
     md: 'h-9',
     lg: 'h-10',
