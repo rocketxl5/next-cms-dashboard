@@ -1,20 +1,22 @@
 import { size } from '../primitives';
 
 export const cellTokens = {
-  base: {
-    cell: `
-      align-middle
-      px-4 py-2
-      border-t border-[hsl(var(--border))]
-      group-odd:bg-[hsl(var(--muted))]
-      transition-colors
+  base: `
+    align-middle
+    leading-5
+    border-t border-[hsl(var(--border))]
+    transition-colors
     `,
-    header: 'px-4 py-1 text-left',
-  },
+
+  content: `
+      min-h-10
+      flex
+      items-center
+    `,
 
   size: {
-    sm: 'px-2 py-1 text-sm',
-    md: 'px-4 py-1 text-sm',
+    sm: 'px-2 text-sm',
+    md: 'px-4 text-sm',
     lg: 'px-4 py-3 text-base',
   },
 

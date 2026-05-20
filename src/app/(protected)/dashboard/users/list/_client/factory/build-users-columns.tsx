@@ -27,7 +27,7 @@ export const buildUsersColumns = (): TableColumn<UserRow, UsersTableContext>[] =
         />
       );
     },
-    variant: 'checkbox',
+    preset: 'checkbox',
     width: 'sm',
     align: 'center',
     render: (user, ctx) => {
@@ -48,6 +48,7 @@ export const buildUsersColumns = (): TableColumn<UserRow, UsersTableContext>[] =
     key: 'email',
     header: 'Email',
     width: 'lg',
+    align: 'left',
     overflow: 'truncate',
     render: (user) => user.email,
   },
@@ -57,6 +58,7 @@ export const buildUsersColumns = (): TableColumn<UserRow, UsersTableContext>[] =
     width: 'md',
     grow: false,
     overflow: 'truncate',
+    align: 'left',
     render: (user) => user.name,
   },
   {

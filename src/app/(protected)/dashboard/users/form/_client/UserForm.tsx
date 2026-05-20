@@ -6,6 +6,7 @@ import {
   Box,
   Button,
   Form,
+  GoBackBtn,
   Input,
   Label,
   Select,
@@ -42,7 +43,7 @@ export function UserForm<T extends FieldValues>({
     <Box width="lg" className="mx-auto">
       <Form.Root onSubmit={onSubmit}>
         <Form.Header>
-          <Title as="h1" size="2xl" weight="bold">
+          <Title as="h1" size="2xl" weight="bold" align="center">
             {type === 'create' ? 'Create user' : 'Edit user'}
           </Title>
         </Form.Header>

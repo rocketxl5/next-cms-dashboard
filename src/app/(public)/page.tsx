@@ -1,8 +1,20 @@
-// app/(public)/page.tsx
+import { Box, Title, ZapLogo } from '@/components/ui';
+
 export default function HomePage() {
   return (
-    <main className="h-screen w-full flex items-center">
-      <h1 className="w-full text-center">Welcome to ACME</h1>
+    <main>
+      <Box
+        direction="col"
+        gap="4xl"
+        align="center"
+        justify="center"
+        className="h-screen w-full"
+      >
+        <ZapLogo size={100} />
+        <Title size="3xl" className="w-full text-center">
+          <span className="font-bold">Zap</span>
+        </Title>
+      </Box>
     </main>
   );
 }

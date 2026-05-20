@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils/cn';
 type ZapLogoProps = {
   className?: string;
   size?: number;
+  variant?: string;
 };
 
 export function ZapLogo({ className, size = 24 }: ZapLogoProps) {

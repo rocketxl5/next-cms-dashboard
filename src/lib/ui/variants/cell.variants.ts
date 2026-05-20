@@ -1,14 +1,31 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cellTokens } from '../tokens';
 
-export const cellVariants = cva(cellTokens.base.cell, {
+export const cellVariants = cva(cellTokens.base, {
   variants: {
-    variant: {
-      text: '',
-      numeric: 'text-right tabular-nums',
-      badge: 'text-center',
-      actions: 'text-right whitespace-nowrap',
-      checkbox: 'w-[48px]',
+    preset: {
+      text: 'text-left',
+
+      numeric: `
+        text-right
+        tabular-nums
+      `,
+
+      badge: `
+        text-center
+        whitespace-nowrap
+      `,
+
+      actions: `
+        text-center
+        whitespace-nowrap
+      `,
+
+      checkbox: `
+        w-[48px]
+        text-center
+        whitespace-nowrap
+      `,
     },
 
     size: cellTokens.size,
@@ -19,7 +36,7 @@ export const cellVariants = cva(cellTokens.base.cell, {
   },
 
   defaultVariants: {
-    variant: 'text',
+    preset: 'text',
     size: 'md',
     width: 'md',
     overflow: 'truncate',

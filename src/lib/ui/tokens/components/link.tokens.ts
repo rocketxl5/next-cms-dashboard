@@ -7,7 +7,7 @@ import {
 } from '../adapters';
 
 export const linkTokens = {
-  base: 'inline-flex items-center transition-colors',
+  base: 'inline-flex items-center transition-colors hover:opacity-90',
   variant: {
     default: `${color.muted.foreground} hover:${color.foreground}`,
     subtle: `${color.muted.foreground} hover:${color.foreground}`,
@@ -16,8 +16,8 @@ export const linkTokens = {
     nav: `hover:${color.foreground}`,
 
     // button-like
-    primary: `${color.primary.background} ${color.primary.foreground} hover:opacity-90`,
-    success: `${color.success.background} ${color.success.foreground} hover:opacity-90`,
+    primary: `${color.primary.background} ${color.primary.foreground}`,
+    success: `${color.success.background} ${color.success.foreground}`,
     contrast: `${color.contrast.background} ${color.contrast.foreground}`,
     muted: `${color.muted.background} ${color.link.muted}`,
     foreground: `${color.muted.background} ${color.link.foreground}`,
