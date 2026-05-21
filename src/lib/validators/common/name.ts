@@ -9,9 +9,8 @@ import z from "zod";
 export const nameSchema = z
   .string()
   .trim()
-  .min(3, {
-    message: 'Name must be at least 3 characters long',
-  })
+  .min(1, 'Name is required')
+  .min(3, 'Name must be at least 3 characters long')
   .regex(/^[a-zA-Z0-9]+$/, {
-    message: 'Name can only contain letters and numbers',
+    message: 'Name may contain letters and numbers only',
   });

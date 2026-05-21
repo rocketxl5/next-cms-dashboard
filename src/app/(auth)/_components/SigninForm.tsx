@@ -33,6 +33,7 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
     formState: { errors, isSubmitting },
   } = useForm<SigninFormData>({
     resolver: zodResolver(signinFormSchema),
+    shouldFocusError: false,
     defaultValues: {
       email: '',
       password: '',
@@ -56,7 +57,12 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
       <Form.Root onSubmit={handleSubmit(onSubmit)}>
         <Form.ErrorMessage message={errors.root?.message} />
         <Form.Group label="Email" htmlFor="email" error={errors.email?.message}>
-          <Input id="email" placeholder="Email" {...register('email')} />
+          <Input
+            id="email"
+            placeholder="Email"
+            {...register('email')}
+            variant={errors.email ? 'error' : 'default'}
+          />
         </Form.Group>
         <Form.Group
           label="Password"
@@ -67,6 +73,7 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
             id="password"
             placeholder="Password"
             type="password"
+            variant={errors.password ? 'error' : 'default'}
             {...register('password')}
           />
           <Link
