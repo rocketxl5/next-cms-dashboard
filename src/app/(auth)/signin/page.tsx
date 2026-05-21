@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { SigninForm } from '../_components/SigninForm';
+import { SigninForm } from '../_components/forms/SigninForm';
 import { getRedirectPathname } from '@/lib/shared';
 import { Theme } from '@/types/enums/theme';
 import { useTheme } from '@/providers';

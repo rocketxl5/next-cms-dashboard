@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { AuthFormHeader, AuthFormFooter } from './';
+import { AuthFormHeader, AuthFormFooter } from '..';
 import {
   Box,
   Button,
@@ -16,8 +16,8 @@ import {
 } from '@/components/ui';
 import { description } from '@/lib/form';
 
-import { useAuthSubmit } from '../_hook/useAuthSubmit';
-import { signupFormSchema, SignupFormData } from '../_schema';
+import { useAuthSubmit } from '../../_hook/useAuthSubmit';
+import { signupFormSchema, SignupFormData } from '../../_schema';
 
 type SigninFormProps = {
   onSuccess?: () => void;
