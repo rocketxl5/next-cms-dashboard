@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { AuthFormHeader, AuthFormFooter } from './';
+import { AuthFormHeader, AuthFormFooter } from '..';
 
 import {
   Box,
@@ -16,8 +16,8 @@ import {
   ZapLogo,
 } from '@/components/ui/';
 
-import { useAuthSubmit } from '../_hook/useAuthSubmit';
-import { signinFormSchema, SigninFormData } from '../_schema';
+import { useAuthSubmit } from '../../_hook/useAuthSubmit';
+import { signinFormSchema, SigninFormData } from '../../_schema';
 
 import { SessionUser } from '@/types/shared';
 
