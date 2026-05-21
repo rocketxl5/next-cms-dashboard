@@ -5,8 +5,6 @@ import * as React from 'react';
 import { Button } from '../button';
 
 import { useDropdown } from '@/providers/hooks';
-
-import { cn } from '@/lib/utils';
 import { composeEventHandlers } from '@/lib/utils';
 
 import { ButtonVariants } from '@/lib/ui/variants';

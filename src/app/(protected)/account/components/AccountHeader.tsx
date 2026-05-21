@@ -1,13 +1,15 @@
-import { SignoutBtn, ToggleThemeBtn } from '@/components/ui/button';
+'use client';
+
+import { Box, SignoutBtn, ToggleThemeBtn, ZapLogo } from '@/components/ui';
 
 export function AccountHeader() {
   return (
-    <>
-      <h2>Account Header</h2>
-      <div>
+    <Box justify="between" align="center" width="full" padding="md">
+      <ZapLogo size={35} />
+      <Box>
         <ToggleThemeBtn />
         <SignoutBtn />
-      </div>
-    </>
+      </Box>
+    </Box>
   );
 }

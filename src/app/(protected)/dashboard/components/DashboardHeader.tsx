@@ -1,7 +1,5 @@
 'use client';
 
-import { HeaderSlot } from '@/components/layout-primitives';
-
 import { Box, SignoutBtn, ToggleThemeBtn, ZapLogo } from '@/components/ui';
 
 export function DashboardHeader() {
