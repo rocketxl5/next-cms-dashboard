@@ -1,3 +1,5 @@
+'use client';
+
 import { RoleBadge, StatusBadge } from '../components';
 import { Box, Button, Checkbox, Link, Select } from '@/components/ui';
 import { SquarePen, Trash } from 'lucide-react';
@@ -15,7 +17,10 @@ import {
 } from '@/lib/permissions/resources';
 import { APP_ROLES, AppRole } from '@/types/enums';
 
-export const buildUsersColumns = (): TableColumn<UserRow, UsersTableContext>[] => [
+export const buildUsersColumns = (): TableColumn<
+  UserRow,
+  UsersTableContext
+>[] => [
   {
     key: 'checkbox',
     header: (ctx: UsersTableContext) => {
