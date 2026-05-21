@@ -31,6 +31,7 @@ export function SignupForm({ onSuccess }: SigninFormProps) {
     formState: { errors, isSubmitting },
   } = useForm<SignupFormData>({
     resolver: zodResolver(signupFormSchema),
+    shouldFocusError: false,
     defaultValues: {
       name: '',
       email: '',
@@ -64,10 +65,20 @@ export function SignupForm({ onSuccess }: SigninFormProps) {
           error={errors.name?.message}
           description={description.name}
         >
-          <Input id="name" placeholder="Name" {...register('name')} />
+          <Input
+            id="name"
+            placeholder="Name"
+            {...register('name')}
+            variant={errors.name ? 'error' : 'default'}
+          />
         </Form.Group>
         <Form.Group label="Email" htmlFor="email" error={errors.email?.message}>
-          <Input id="email" placeholder="Email" {...register('email')} />
+          <Input
+            id="email"
+            placeholder="Email"
+            {...register('email')}
+            variant={errors.email ? 'error' : 'default'}
+          />
         </Form.Group>
         <Form.Group
           label="Password"
@@ -79,6 +90,7 @@ export function SignupForm({ onSuccess }: SigninFormProps) {
             id="password"
             placeholder="Password"
             {...register('password')}
+            variant={errors.password ? 'error' : 'default'}
           />
         </Form.Group>
         <Form.Group
@@ -90,6 +102,7 @@ export function SignupForm({ onSuccess }: SigninFormProps) {
             id="confirmPassword"
             placeholder="Confirm password"
             {...register('confirmPassword')}
+            variant={errors.confirmPassword ? 'error' : 'default'}
           />
         </Form.Group>
         <Button

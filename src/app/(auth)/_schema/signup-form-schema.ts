@@ -18,11 +18,14 @@ export const signupFormSchema = z
     name: nameSchema,
     email: emailSchema,
     password: strongPasswordSchema,
-    confirmPassword: z.string(),
+    confirmPassword: z.string().min(1, 'Please confirm your password'),
   })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: 'Passwords do not match',
-    path: ['confirmPassword'],
-  });
+  .refine(
+    (data) => !data.confirmPassword || data.password === data.confirmPassword,
+    {
+      message: 'Passwords do not match',
+      path: ['confirmPassword'],
+    },
+  );
 
 export type SignupFormData = z.infer<typeof signupFormSchema>;

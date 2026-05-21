@@ -3,7 +3,8 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import { inputVariants, type InputVariants } from '@/lib/ui/variants';
 
-type InputProps = React.InputHTMLAttributes<HTMLInputElement> & InputVariants;
+type InputProps = React.InputHTMLAttributes<HTMLInputElement> &
+  InputVariants & { error?: boolean };
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
