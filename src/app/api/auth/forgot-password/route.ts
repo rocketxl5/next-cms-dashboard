@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { forgotPasswordSchema } from '@/app/(auth)/_schema';
 
-// import { sendResetPasswordEmail } from '@/lib/mail';
-// import { generateResetToken } from '@/lib/auth';
+import { sendResetPasswordEmail } from '@/lib/auth';
+import { createResetToken } from '@/lib/auth';
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,16 +16,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           message: 'Invalid request data',
-          errors: parsed.error.flatten().fieldErrors,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     const { email } = parsed.data;
+    const emailNormalized = email.toLocaleLowerCase().trim();
 
     const user = await prisma.user.findUnique({
-      where: { email },
+      where: { email: emailNormalized },
     });
 
     /**
@@ -38,42 +38,49 @@ export async function POST(req: NextRequest) {
           message:
             'If an account exists for this email, a reset link has been sent.',
         },
-        { status: 200 }
+        { status: 200 },
       );
     }
 
     /**
+     * Delete any existing token before creating new one
+     */
+    await prisma.passwordResetToken.deleteMany({
+      where: { userId: user.id },
+    });
+
+    /**
      * Generate token + expiration
      */
-    // const token = generateResetToken();
+    const token = createResetToken();
 
-    // const expires = new Date(Date.now() + 1000 * 60 * 15);
+    const expires = new Date(Date.now() + 1000 * 60 * 15);
 
     /**
      * Save token to database
      */
-    // await prisma.passwordResetToken.create({
-    //   data: {
-    //     userId: user.id,
-    //     token,
-    //     expires,
-    //   },
-    // });
+    await prisma.passwordResetToken.create({
+      data: {
+        userId: user.id,
+        token,
+        expires,
+      },
+    });
 
     /**
      * Send email
      */
-    // await sendResetPasswordEmail({
-    //   to: user.email,
-    //   token,
-    // });
+    await sendResetPasswordEmail({
+      to: user.email,
+      token,
+    });
 
     return NextResponse.json(
       {
         message:
           'If an account exists for this email, a reset link has been sent.',
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error('Forgot password error:', error);
@@ -82,7 +89,7 @@ export async function POST(req: NextRequest) {
       {
         message: 'Something went wrong',
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

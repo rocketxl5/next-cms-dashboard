@@ -60,7 +60,7 @@ export function ResetPasswordForm({
   });
 
   return (
-    <Box direction="col" width="lg">
+    <Box direction="col">
       <Form.Root onSubmit={handleSubmit(onSubmit)}>
         <AuthFormHeader>
           <ZapLogo size={50} />
@@ -109,9 +109,7 @@ export function ResetPasswordForm({
           textSize="base"
           className="mt-4"
         >
-          {isSubmitting
-            ? 'Resetting password...'
-            : 'Reset password'}
+          {isSubmitting ? 'Resetting password...' : 'Reset password'}
         </Button>
       </Form.Root>
 
@@ -119,9 +117,7 @@ export function ResetPasswordForm({
 
       <AuthFormFooter>
         <Box className="h-0" gap="sm">
-          <span className="text-sm">
-            Remember your password?
-          </span>
+          <span className="text-sm">Remember your password?</span>
 
           <Link
             href="/signin"
