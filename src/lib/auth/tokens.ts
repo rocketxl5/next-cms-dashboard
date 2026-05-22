@@ -49,7 +49,6 @@
  * -------------------------------------------------------
  */
 
-
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { jwtVerify } from 'jose';
 import { authConfig } from './config';
@@ -80,6 +79,17 @@ export function createRefreshToken(payload: { id: string }) {
   return jwt.sign(payload, authConfig.refreshSecret, {
     expiresIn: authConfig.refreshExpires,
   });
+}
+
+/**
+ * Create short-lived reset token
+ */
+export function createResetToken() {
+  const bytes = crypto.getRandomValues(new Uint8Array(32));
+
+  return Array.from(bytes)
+    .map((byte) => byte.toString(16).padStart(2, '0'))
+    .join('');
 }
 
 /**
