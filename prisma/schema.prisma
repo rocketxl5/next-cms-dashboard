@@ -53,23 +53,42 @@ enum Theme {
 // -------------------------------------------------------
 
 model User {
-  id                String    @id @default(cuid())
-  name              String?
-  email             String    @unique
-  password          String
-  role              Role      @default(USER)
-  theme             Theme     @default(SYSTEM)
+  id                  String    @id @default(cuid())
+  name                String?
+  email               String    @unique
+  password            String
+  role                Role      @default(USER)
+  theme               Theme     @default(SYSTEM)
 
   // Refresh token rotation
-  refreshTokenHash  String?
+  refreshTokenHash    String?
 
-  contents          ContentItem[]
+  contents            ContentItem[]
 
-  status            Status    @default(ACTIVE)
-  isSeed            Boolean   @default(false) 
+  passwordResetTokens PasswordResetToken[]
 
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  status              Status    @default(ACTIVE)
+  isSeed              Boolean   @default(false) 
+
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+// -------------------------------------------------------
+// PASSWORD RESET MODEL
+// -------------------------------------------------------
+
+model PasswordResetToken {
+  id            String   @id @default(cuid())
+  token         String   @unique
+  expires       DateTime
+
+  userId        String
+  user          User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt     DateTime @default(now())
+
+  @@index([userId])
 }
 
 // -------------------------------------------------------
