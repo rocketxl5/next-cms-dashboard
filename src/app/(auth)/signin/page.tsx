@@ -1,10 +1,13 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
+
 import { SigninForm } from '../_components/forms/SigninForm';
-import { getRedirectPathname } from '@/lib/shared';
-import { Theme } from '@/types/enums/theme';
+
 import { useTheme } from '@/providers';
+import { getRedirectPathname } from '@/lib/shared';
+
+import { Theme } from '@/types/enums/theme';
 import { SessionUser } from '@/types/shared';
 
 export default function SigninPage() {

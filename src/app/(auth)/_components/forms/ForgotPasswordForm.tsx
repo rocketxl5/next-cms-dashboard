@@ -1,9 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { AuthFormFooter, AuthFormHeader } from '..';
+import { SentConfirmationMessage } from './SentConfirmationMessage';
 import {
   Box,
   Button,
@@ -15,16 +17,12 @@ import {
   ZapLogo,
 } from '@/components/ui';
 
-import { useAuthSubmit } from '../../_hook/useAuthSubmit';
+import { useFormSubmit } from '../../_hook';
 import { forgotPasswordSchema, ForgotPasswordData } from '../../_schema';
 
-type ForgotPasswordFormProps = {
-  onSuccess?: () => void;
-};
+export function ForgotPasswordForm() {
+  const [sent, setSent] = useState(false);
 
-export function ForgotPasswordForm({
-  onSuccess,
-}: ForgotPasswordFormProps) {
   const {
     register,
     handleSubmit,
@@ -38,11 +36,15 @@ export function ForgotPasswordForm({
     },
   });
 
-  const onSubmit = useAuthSubmit<ForgotPasswordData>({
+  const onSubmit = useFormSubmit<ForgotPasswordData>({
     endpoint: '/api/auth/forgot-password',
-    onSuccess,
+    onSuccess: () => setSent(true),
     setError,
   });
+
+  if (sent) {
+    return <SentConfirmationMessage />;
+  }
 
   return (
     <Box direction="col">
@@ -59,11 +61,7 @@ export function ForgotPasswordForm({
           </p>
         </AuthFormHeader>
 
-        <Form.Group
-          label="Email"
-          htmlFor="email"
-          error={errors.email?.message}
-        >
+        <Form.Group label="Email" htmlFor="email" error={errors.email?.message}>
           <Input
             id="email"
             type="email"
