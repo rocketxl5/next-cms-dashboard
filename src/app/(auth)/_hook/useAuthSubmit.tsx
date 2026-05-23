@@ -1,4 +1,6 @@
-import { FieldValues, UseFormSetError } from 'react-hook-form';
+'use client';
+
+import { UseFormSetError } from 'react-hook-form';
 
 import { apiFetch } from '@/lib/api/api-fetch';
 import { submitForm } from '@/lib/form';

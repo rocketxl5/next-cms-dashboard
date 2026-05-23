@@ -16,7 +16,7 @@ import {
 } from '@/components/ui';
 import { description } from '@/lib/form';
 
-import { useAuthSubmit } from '../../_hook/useAuthSubmit';
+import { useAuthSubmit } from '../../_hook';
 import { signupFormSchema, SignupFormData } from '../../_schema';
 
 type SigninFormProps = {
