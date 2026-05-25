@@ -61,9 +61,13 @@ export function SignoutBtn() {
       disabled={loading}
       variant="contrast"
       height="md"
-      width="fit"
+      // width="fit"
     >
-      {loading ? <Spinner /> : <LogOut size={22} />}
+      {loading ? (
+        <Spinner variant="contrast" size={24} />
+      ) : (
+        <LogOut size={24} />
+      )}
     </Button>
   );
 }
