@@ -1,2 +1,2 @@
 export * as bulkActions from './bulk';
-export * as singleActions from './single';
+export { updateUserRoleAction } from './update-user-role.action';

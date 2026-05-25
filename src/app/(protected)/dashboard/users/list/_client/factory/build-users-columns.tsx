@@ -1,6 +1,6 @@
 'use client';
 
-import { RoleBadge, StatusBadge } from '../components';
+import { RoleBadge, StatusBadge } from '../_components';
 import { Box, Button, Checkbox, Link, Select } from '@/components/ui';
 import { SquarePen, Trash } from 'lucide-react';
 

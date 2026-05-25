@@ -1,20 +1,17 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-
 import { Box, Pagination } from '@/components/ui';
 
 import { useUserSelection } from '@/providers';
 import { buildUsersColumns } from './factory/build-users-columns';
 
 import { cn } from '@/lib/utils';
-import { cellVariants } from '@/lib/ui/variants';
-import { updateUserRoleAction } from '@/lib/domain/users/actions/single';
 import { tableTokens } from '@/lib/ui/tokens';
+import { cellVariants } from '@/lib/ui/variants';
+import { useUpdateRoleAction } from '../../_hooks/useUpdateRoleActoin';
 
-import { AppRole } from '@/types/enums';
-import { CurrentDashboardUser, PaginationMeta } from '@/types/shared';
 import { UserRow, UsersTableContext } from '../_domain';
+import { CurrentDashboardUser, PaginationMeta } from '@/types/shared';
 
 type UsersTableProps = {
   users: UserRow[];
@@ -35,16 +32,11 @@ export function UsersTable({
     isIndeterminate,
     hasSelection,
   } = useUserSelection();
-  const router = useRouter();
 
-  async function handleUserRoleUpdate(userId: string, role: AppRole) {
-    await updateUserRoleAction(userId, role);
-    router.refresh();
-  }
+  const roleUpdate = useUpdateRoleAction();
 
   const tableContext: UsersTableContext = {
     currentUser,
-
     // 🔹 selection (from provider)
     selectedUserIds,
     toggleUserSelection,
@@ -52,9 +44,8 @@ export function UsersTable({
     isAllSelected,
     isIndeterminate,
     hasSelection,
-
     // 🔹 domain
-    handleUserRoleUpdate,
+    handleUserRoleUpdate: roleUpdate.execute,
   };
 
   const columns = buildUsersColumns();
