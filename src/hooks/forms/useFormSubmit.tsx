@@ -2,6 +2,8 @@
 
 import { FieldValues, UseFormSetError } from 'react-hook-form';
 
+import { useAsyncAction } from '../useAsyncAction';
+
 import { apiFetch } from '@/lib/api/api-fetch';
 import { submitForm } from '@/lib/form';
 
@@ -26,6 +28,30 @@ export function useFormSubmit<
   onSuccess,
   setError,
 }: UseFormSubmitOptions<TData, TPayload>) {
+  // const { execute, loading } = useAsyncAction(
+  //   async (data: TData) => {
+  //     const payload = transform ? transform(data) : data;
+
+  //     await submitForm<TData, void>({
+  //       setError,
+
+  //       action: async () => {
+  //         await apiFetch(endpoint, {
+  //           method: 'POST',
+  //           body: payload,
+  //         });
+  //       },
+  //     });
+  //   },
+  //   {
+  //     onSuccess,
+  //   },
+  // );
+
+  // return {
+  //   submit: execute,
+  //   loading,
+  // };
   return async function submit(data: TData) {
     const payload = transform ? transform(data) : data;
 
