@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import { Button } from '../Button';
+import { Box } from '../../layout';
 
 type GoBackBtnProps = {
   label?: string;
@@ -16,7 +17,7 @@ export function GoBackBtn({
   label = 'Go back',
   className,
   fallbackHref = '/',
-  size = 20
+  size = 20,
 }: GoBackBtnProps) {
   const router = useRouter();
 
@@ -29,11 +30,7 @@ export function GoBackBtn({
     }
   }
   return (
-    <Button
-      onClick={handleBack}
-      variant="link"
-      className={className}
-    >
+    <Button onClick={handleBack} variant="link" className={className}>
       <ArrowLeft size={size} /> <span>{label}</span>
     </Button>
   );

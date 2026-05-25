@@ -31,6 +31,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useTheme } from '@/providers';
 
+import { Spinner } from '../../Spinner';
 import { Button } from '../Button';
 import { LogOut } from 'lucide-react';
 
@@ -62,7 +63,7 @@ export function SignoutBtn() {
       height="md"
       width="fit"
     >
-      {loading ? 'Signing out...' : <LogOut size={22} />}
+      {loading ? <Spinner /> : <LogOut size={22} />}
     </Button>
   );
 }

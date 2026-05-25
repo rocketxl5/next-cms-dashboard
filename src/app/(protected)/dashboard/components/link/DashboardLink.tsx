@@ -58,25 +58,34 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+
 import { Link } from '@/components/ui';
+
 import { isRouteActive } from '@/lib/utils';
 
+import { NavItem } from '@/types/ui';
+
 interface DashboardLinkProps {
-  href: string;
-  children: React.ReactNode;
+  item: NavItem;
 }
 
-export function DashboardLink({ href, children }: DashboardLinkProps) {
+export function DashboardLink({ item }: DashboardLinkProps) {
   const pathname = usePathname();
 
-  /**
-   * Determines active navigation state.
-   */
-  const isActive = isRouteActive(pathname, href, '/dashboard');
+  const isActive = isRouteActive(pathname, item);
+
+  const Icon = item.icon;
 
   return (
-    <Link href={href} variant="contrast" active={isActive} width="full">
-      {children}
+    <Link
+      href={item.href}
+      variant="contrast"
+      active={isActive}
+      width="full"
+      className="justify-start gap-2 rounded-xl"
+    >
+      {Icon && <Icon size={18} />}
+      {item.label}
     </Link>
   );
 }

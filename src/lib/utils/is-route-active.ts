@@ -1,14 +1,9 @@
-export function isRouteActive(
-  pathname: string,
-  href: string,
- rootBoundary: string,
-) {
+import { NavItem } from '@/types/ui';
 
-  // Prevent root sections from activating on children
-  if (rootBoundary === href) {
-    return pathname === href;
+export function isRouteActive(pathname: string, item: NavItem) {
+  if (item.href === '/dashboard') {
+    return pathname === '/dashboard';
   }
 
-  // else
-  return pathname === href || pathname.startsWith(`${href}`);
+  return pathname.startsWith(item.href);
 }

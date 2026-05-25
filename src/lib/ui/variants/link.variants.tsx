@@ -14,7 +14,7 @@ export const linkVariants = cva(linkTokens.base, {
     radius: linkTokens.radius,
 
     active: {
-      true: '',
+      true: 'bg-muted/40 text-foreground font-medium',
       false: '',
     },
   },
