@@ -1,17 +1,12 @@
 export const spinnerTokens = {
-  base: 'inline-flex items-center justify-center animate-spin',
-
-  size: {
-    sm: 'h-4 w-4',
-    md: 'h-5 w-5',
-    lg: 'h-6 w-6',
-  },
+  base: 'inline-flex items-center justify-center animate-spin transparent',
 
   variant: {
     default: 'text-primary',
     muted: 'text-muted-foreground',
     primary: 'text-primary',
     success: 'text-success',
+    contrast: 'text-contrast',
     destructive: 'text-destructive',
   },
 } as const;

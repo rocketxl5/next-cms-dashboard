@@ -4,11 +4,9 @@ import { spinnerTokens } from '../tokens/components/spinner.tokens';
 export const spinnerVariants = cva(spinnerTokens.base, {
   variants: {
     variant: spinnerTokens.variant,
-    size: spinnerTokens.size,
   },
 
   defaultVariants: {
-    size: 'md',
     variant: 'default',
   },
 });

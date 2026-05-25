@@ -86,12 +86,13 @@ export function UserForm<T extends FieldValues>({
           variant="success"
           layout="block"
           height="lg"
-          className="mt-4"
+          textSize="base"
+          className="mt-4 font-semibold"
           disabled={loading || !isDirty}
         >
           {loading ? (
             <>
-              <Spinner size="sm" className="mr-2" />
+              <Spinner size={24} />
             </>
           ) : (
             'Submit'
