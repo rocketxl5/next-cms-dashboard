@@ -11,6 +11,7 @@ type UseAsyncFormSubmitOptions = {
   successToast?: AddToastInput;
   errorToast?: AddToastInput;
   minDuration?: number; // ensure visible loading
+  onSuccess?: () => void;
 };
 
 export function useAsyncFormSubmit<T extends FieldValues>(
@@ -35,6 +36,8 @@ export function useAsyncFormSubmit<T extends FieldValues>(
       if (options?.successToast) {
         success(options.successToast);
       }
+
+      options?.onSuccess?.();
     } catch (error) {
       if (options?.errorToast) {
         destructive(options.errorToast);

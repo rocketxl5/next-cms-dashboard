@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -9,7 +10,7 @@ import { editUserSchema, EditUserFormValues } from '@/lib/validators/users';
 
 import { editUserAction } from '../_server/edit-user.action';
 
-import { useAsyncFormSubmit } from '@/hooks';
+import { useAsyncFormSubmit } from '@/hooks/forms';
 
 import { FormField } from '@/types/form';
 
@@ -24,6 +25,8 @@ export function EditUserFormWrapper({
   defaultValues,
   fields,
 }: EditUserProps) {
+  const router = useRouter();
+
   const form = useForm<EditUserFormValues>({
     resolver: zodResolver(editUserSchema),
     defaultValues,
@@ -43,6 +46,9 @@ export function EditUserFormWrapper({
       errorToast: {
         title: 'Update failed',
         message: 'Something went wrong',
+      },
+      onSuccess: () => {
+        router.push('/dashboard/users');
       },
     },
   );

@@ -32,7 +32,7 @@ import { useState } from 'react';
 import { useTheme } from '@/providers';
 
 import { Button } from '../Button';
-import { PowerOff } from 'lucide-react';
+import { LogOut } from 'lucide-react';
 
 import { signOut } from '@/lib/shared';
 
@@ -62,7 +62,7 @@ export function SignoutBtn() {
       height="md"
       width="fit"
     >
-      {loading ? 'Signing out...' : <PowerOff size={20} />}
+      {loading ? 'Signing out...' : <LogOut size={22} />}
     </Button>
   );
 }
