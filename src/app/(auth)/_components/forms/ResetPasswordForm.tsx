@@ -15,7 +15,7 @@ import {
   ZapLogo,
 } from '@/components/ui';
 
-import { useAuthSubmit } from '../../_hook/useAuthSubmit';
+import { useAuthSubmit } from '../../_hooks';
 import {
   resetPasswordSchema,
   ResetPasswordData,

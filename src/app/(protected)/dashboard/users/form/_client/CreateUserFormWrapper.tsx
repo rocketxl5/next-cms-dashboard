@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -8,7 +9,7 @@ import { UserForm } from './UserForm';
 import { createUserSchema, CreateUserValues } from '@/lib/validators/users';
 import { createUserAction } from '../_server/create-user.action';
 
-import { useAsyncFormSubmit } from '@/hooks';
+import { useAsyncFormSubmit } from '@/hooks/forms';
 
 import { FormField } from '@/types/form';
 
@@ -21,6 +22,8 @@ export function CreateUserFormWrapper({
   defaultValues,
   fields,
 }: CreateUserProps) {
+  const router = useRouter();
+
   const form = useForm<CreateUserValues>({
     resolver: zodResolver(createUserSchema),
     defaultValues,
@@ -40,9 +43,11 @@ export function CreateUserFormWrapper({
         title: 'Update failed',
         message: 'Something went wrong',
       },
+      onSuccess: () => {
+        router.push('/dashboard/users');
+      },
     },
   );
-  
 
   return (
     <UserForm<CreateUserValues>

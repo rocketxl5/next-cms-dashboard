@@ -16,7 +16,7 @@ import {
   ZapLogo,
 } from '@/components/ui/';
 
-import { useAuthSubmit } from '../../_hook/useAuthSubmit';
+import { useAuthSubmit } from '../../_hooks';
 import { signinFormSchema, SigninFormData } from '../../_schema';
 
 import { SessionUser } from '@/types/shared';

@@ -17,7 +17,7 @@ import {
   ZapLogo,
 } from '@/components/ui';
 
-import { useFormSubmit } from '../../_hook';
+import { useFormSubmit } from '@/hooks/forms';
 import { forgotPasswordSchema, ForgotPasswordData } from '../../_schema';
 
 export function ForgotPasswordForm() {
