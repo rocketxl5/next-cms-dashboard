@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils";
 import { spinnerVariants,  SpinnerVariants} from "@/lib/ui/variants/spinner.variants";
 
 type SpinnerProps = SpinnerVariants & {
-    className?: string;
-} 
+  className?: string;
+}; 
 
 export function Spinner({size, variant, className}: SpinnerProps) {
     return (

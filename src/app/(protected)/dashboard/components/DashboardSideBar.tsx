@@ -15,15 +15,9 @@ interface DashboardSideBarProps extends LinkVariants {
 export function DashboardSideBar({ role }: DashboardSideBarProps) {
   return (
     <Box width="full" direction="col" gap="xs" padding="md" align="start">
-      <DashboardLink href="/dashboard">Dashboard</DashboardLink>
-
       {/* Section navigation */}
       {allowedDashboardNav(role).map((item) => {
-        return (
-          <DashboardLink key={item.href} href={item.href}>
-            {item.label}
-          </DashboardLink>
-        );
+        return <DashboardLink key={item.href} item={item} />;
       })}
     </Box>
   );

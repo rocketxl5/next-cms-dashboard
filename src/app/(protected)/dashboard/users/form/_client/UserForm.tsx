@@ -6,12 +6,12 @@ import {
   Box,
   Button,
   Form,
-  GoBackBtn,
   Input,
   Label,
   Select,
   Spinner,
   Title,
+  GoBackBtn,
 } from '@/components/ui';
 
 import { description } from '@/lib/form';
@@ -40,7 +40,8 @@ export function UserForm<T extends FieldValues>({
   } = form;
 
   return (
-    <Box width="lg" className="mx-auto">
+    <Box width="lg" className="mx-auto" position="relative">
+      <GoBackBtn className="absolute -bottom-16 font-semibold text-lg" />
       <Form.Root onSubmit={onSubmit}>
         <Form.Header>
           <Title as="h1" size="2xl" weight="bold" align="center">
