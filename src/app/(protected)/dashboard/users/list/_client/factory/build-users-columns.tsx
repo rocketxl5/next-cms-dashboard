@@ -1,21 +1,21 @@
 'use client';
 
+import { SquarePen, Trash } from 'lucide-react';
 import { RoleBadge, StatusBadge } from '../_components';
 import { Box, Button, Checkbox, Link, Select } from '@/components/ui';
-import { SquarePen, Trash } from 'lucide-react';
 
-import { normalizeDateTime } from '@/lib/utils/normalizers';
-import { normalizeDisplayString } from '@/lib/utils/normalizers';
-
-import { UserRow } from '../../_domain';
-import { UsersTableContext } from '../../_domain/users-table-context';
-import { TableColumn } from '@/types/ui';
-
+import {
+  normalizeDateTime,
+  normalizeDisplayString,
+} from '@/lib/utils/normalizers';
 import {
   getUserRowPermissions,
   userActions,
 } from '@/lib/permissions/resources';
+
+import { TableColumn } from '@/types/ui';
 import { APP_ROLES, AppRole } from '@/types/enums';
+import { UserRow, UsersTableContext } from '../../_domain';
 
 export const buildUsersColumns = (): TableColumn<
   UserRow,
