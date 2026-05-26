@@ -5,7 +5,7 @@ import { UsersToolbar } from '../../_components';
 import { UsersTable } from './UsersTable';
 
 import { useUserSelection } from '@/providers';
-import { getAllowedBulkActions, getSelectedUsers } from '@/lib/domain';
+import { getAllowedBulkActions, getSelectedUsers } from '@/lib/domain/users';
 
 import { UserRow } from '../_domain';
 import { CurrentDashboardUser } from '@/types/shared';
