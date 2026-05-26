@@ -3,7 +3,7 @@ import {
   UserRow,
 } from '@/app/(protected)/dashboard/users/list/_domain';
 import { CurrentDashboardUser } from '@/types/shared';
-import { BULK_ACTION_PERMISSION_MAP } from './map-bulk-actions';
+import { MAP_BULK_USERS_ACTION_PERMISSION } from './map-bulk-users-action';
 import { getUniformValue } from '@/lib/utils';
 
 type SelectedUsersProps = {
@@ -30,7 +30,7 @@ export function getAllowedBulkActions({
   const uniformValue = getUniformValue(selectedUsers, 'status');
 
   return BULK_USER_ACTIONS.filter((action) => {
-    const resolver = BULK_ACTION_PERMISSION_MAP[action.key];
+    const resolver = MAP_BULK_USERS_ACTION_PERMISSION[action.key];
 
     if (!resolver) return false;
 

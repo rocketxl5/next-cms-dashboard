@@ -1,3 +1,3 @@
 export * from './actions';
-export * from './allowed-bulk-actions';
-export * from './handle-bulk-actions';
+export * from './allowed-bulk-users-action';
+export * from './handle-bulk-users-action';
