@@ -1,15 +1,15 @@
 'use client';
 
-import { useState } from 'react';
-
 import { Box, Dropdown } from '@/components/ui';
 import { Layers } from 'lucide-react';
 
-import { useUserSelection } from '@/providers';
+// import { useUserSelection } from '@/providers';
+// import { UseBulkUserAction } from '../_hooks/useBulkUserAction';
 
-import { handleBulkAction } from '@/lib/domain';
+// import { handleBulkAction } from '@/lib/domain';
 
-import { BulkUserAction, BulkUserActionKey } from '../list/_domain';
+import { BulkUserAction } from '../list/_domain';
+import { UseBulkUserAction } from '../_hooks/useBulkUserAction';
 
 type UsersActionProps = {
   allowedBulkActions: BulkUserAction[];
@@ -20,36 +20,39 @@ export function UsersBulkActions({
   allowedBulkActions,
   hasSelection,
 }: UsersActionProps) {
-  const { isLoading, setIsLoading, selectedUserIds, clearSelection } =
-    useUserSelection();
+  // const { isLoading, setIsLoading, selectedUserIds, clearSelection } =
+  //   useUserSelection();
 
-  const [action, setAction] = useState<BulkUserActionKey | ''>('');
+  // const [action, setAction] = useState<BulkUserActionKey | ''>('');
 
-  const handleSelect = async (actionKey: BulkUserActionKey) => {
-    try {
-      setIsLoading(true);
-      setAction(actionKey);
+  // const handleSelect = async (actionKey: BulkUserActionKey) => {
+  //   try {
+  //     setIsLoading(true);
+  //     setAction(actionKey);
 
-      await handleBulkAction(actionKey, selectedUserIds, clearSelection);
-    } finally {
-      setAction('');
-      setIsLoading(false);
-    }
-  };
+  //     await handleBulkAction(actionKey, selectedUserIds, clearSelection);
+  //   } finally {
+  //     setAction('');
+  //     setIsLoading(false);
+  //   }
+  // };
+
+  const {currentAction, handleSelect, loading} = UseBulkUserAction();
+
 
   return (
     <Dropdown.Root>
       <Box position="relative">
         <Dropdown.Trigger
           variant="contrast"
-          disabled={!hasSelection || isLoading}
+          disabled={!hasSelection || loading}
           aria-label="Bulk actions"
         >
           <span className="flex items-center gap-2">
             <Layers size={20} />
-            {isLoading && action && (
+            {loading && currentAction && (
               <span className="text-xs">
-                {allowedBulkActions.find((a) => a.key === action)?.label}
+                {allowedBulkActions.find((a) => a.key === currentAction)?.label}
               </span>
             )}
           </span>
