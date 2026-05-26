@@ -10,7 +10,7 @@ import { handleBulkAction } from '@/lib/domain';
 
 import { BulkUserActionKey } from '../list/_domain';
 
-export function UseBulkUserAction() {
+export function useBulkUserAction() {
   const { selectedUserIds, clearSelection } = useUserSelection();
 
   const [action, setAction] = useState<BulkUserActionKey | ''>('');
