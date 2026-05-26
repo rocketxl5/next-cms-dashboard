@@ -1,7 +1,7 @@
 import { ActionConfig } from "@/lib/ui/toast";
 import { UserActionKey } from "@/types/actions";
 
-export const USER_ACTIONS: Record<
+export const USER_ACTION_TOASTS: Record<
   UserActionKey,
   ActionConfig
 > = {

@@ -8,7 +8,7 @@ import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toastVariants } from '@/lib/ui/variants/toast.variants';
 
-import { ToastItem } from '@/types/ui';
+import { ToastItem } from '@/types/ui/toast';
 
 type ToastProps = {
   toast: ToastItem;

@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { UserForm } from './UserForm';
 
-import { USER_ACTIONS } from '@/lib/ui/toast';
+import { USER_ACTION_TOASTS } from '@/lib/ui/toast';
 import { useAsyncFormSubmit } from '@/hooks/forms';
 import { createUserAction } from '../_server/create-user.action';
 import { createUserSchema, CreateUserValues } from '@/lib/validators/users';
@@ -23,7 +23,7 @@ export function CreateUserFormWrapper({
   fields,
 }: CreateUserProps) {
   const router = useRouter();
-  const toasts = USER_ACTIONS.create;
+  const toasts = USER_ACTION_TOASTS.create;
 
   const form = useForm<CreateUserValues>({
     resolver: zodResolver(createUserSchema),

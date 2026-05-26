@@ -8,7 +8,7 @@ import { UserForm } from './UserForm';
 
 import { useAsyncFormSubmit } from '@/hooks/forms';
 
-import { USER_ACTIONS } from '@/lib/ui/toast';
+import { USER_ACTION_TOASTS } from '@/lib/ui/toast';
 import { editUserAction } from '../_server/edit-user.action';
 import { editUserSchema, EditUserFormValues } from '@/lib/validators/users';
 
@@ -26,7 +26,7 @@ export function EditUserFormWrapper({
   fields,
 }: EditUserProps) {
   const router = useRouter();
-  const toasts = USER_ACTIONS.create;
+  const toasts = USER_ACTION_TOASTS.create;
 
   const form = useForm<EditUserFormValues>({
     resolver: zodResolver(editUserSchema),

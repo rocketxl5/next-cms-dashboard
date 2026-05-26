@@ -1,2 +1,2 @@
-export { USER_ACTIONS } from './user-actions';
-export * from './action-configs';
+export { USER_ACTION_TOASTS } from './user-action-toasts';
+export * from './action-config';
