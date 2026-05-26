@@ -13,7 +13,7 @@ type BulkActionPermissionResolver = (
   user: UserRow,
 ) => boolean;
 
-export const BULK_ACTION_PERMISSION_MAP: Record<
+export const MAP_BULK_USERS_ACTION_PERMISSION: Record<
   BulkUserActionKey,
   BulkActionPermissionResolver
 > = {

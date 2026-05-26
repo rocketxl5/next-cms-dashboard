@@ -6,7 +6,7 @@ import { useAsyncAction } from '@/hooks/useAsyncAction';
 
 import { useUserSelection } from '@/providers';
 
-import { handleBulkAction } from '@/lib/domain';
+import { handleBulkUsersAction } from '@/lib/domain/users';
 
 import { BulkUserActionKey } from '../list/_domain';
 
@@ -21,7 +21,7 @@ export function useBulkUserAction() {
     async (actionKey: BulkUserActionKey) => {
       setAction(actionKey);
 
-      await handleBulkAction(actionKey, selectedUserIds, clearSelection);
+      await handleBulkUsersAction(actionKey, selectedUserIds, clearSelection);
     },
     {
       onSuccess: () => {
