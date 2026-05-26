@@ -9,7 +9,7 @@ import { Layers } from 'lucide-react';
 // import { handleBulkAction } from '@/lib/domain';
 
 import { BulkUserAction } from '../list/_domain';
-import { UseBulkUserAction } from '../_hooks/useBulkUserAction';
+import { useBulkUserAction } from '../_hooks';
 
 type UsersActionProps = {
   allowedBulkActions: BulkUserAction[];
@@ -37,8 +37,7 @@ export function UsersBulkActions({
   //   }
   // };
 
-  const {currentAction, handleSelect, loading} = UseBulkUserAction();
-
+  const { currentAction, handleSelect, loading } = useBulkUserAction();
 
   return (
     <Dropdown.Root>

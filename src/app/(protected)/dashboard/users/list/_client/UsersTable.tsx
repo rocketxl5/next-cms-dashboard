@@ -8,7 +8,7 @@ import { buildUsersColumns } from './factory/build-users-columns';
 import { cn } from '@/lib/utils';
 import { tableTokens } from '@/lib/ui/tokens';
 import { cellVariants } from '@/lib/ui/variants';
-import { useUpdateRoleAction } from '../../_hooks/useUpdateRoleAction';
+import { useUpdateRoleAction } from '../../_hooks';
 
 import { UserRow, UsersTableContext } from '../_domain';
 import { CurrentDashboardUser, PaginationMeta } from '@/types/shared';
