@@ -7,7 +7,7 @@ import {
   useCallback,
   ReactNode,
 } from 'react';
-import { ToastItem, ToastContextValue, AddToastInput } from '@/types/ui';
+import { ToastItem, ToastContextValue, AddToastInput } from '@/types/ui/toast';
 
 const ToastContext = createContext<ToastContextValue | null>(null);
 

@@ -10,6 +10,8 @@ import { handleBulkAction } from '@/lib/domain';
 
 import { BulkUserActionKey } from '../list/_domain';
 
+import { USER_ACTIONS } from '@/lib/ui/toast/user-actions';
+
 export function useBulkUserAction() {
   const { selectedUserIds, clearSelection } = useUserSelection();
 
@@ -30,15 +32,9 @@ export function useBulkUserAction() {
         setAction('');
       },
 
-      successToast: {
-        title: 'Bulk action completed',
-        message: 'Selected users updated successfully',
-      },
+      successToast: (_, actionKey) => USER_ACTIONS[actionKey].successToast,
 
-      errorToast: {
-        title: 'Bulk action failed',
-        message: 'Could not update users',
-      },
+      errorToast: (_, actionKey) => USER_ACTIONS[actionKey].errorToast,
     },
   );
 

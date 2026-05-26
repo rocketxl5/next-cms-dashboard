@@ -1,31 +1,27 @@
 'use client';
 
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
-import { useAsyncAction } from "@/hooks/useAsyncAction";
+import { useAsyncAction } from '@/hooks/useAsyncAction';
 
-import { updateUserRoleAction } from "@/lib/domain/users";
+import { USER_ACTIONS } from '@/lib/ui/toast';
+import { updateUserRoleAction } from '@/lib/domain/users';
 
-import { AppRole } from "@/types/enums";
+import { AppRole } from '@/types/enums';
 
 export function useUpdateRoleAction() {
-    const router = useRouter();
+  const router = useRouter();
+  const toasts = USER_ACTIONS.role;
 
-    return useAsyncAction(
-        async (userId: string, role: AppRole) => {
-            await updateUserRoleAction(userId, role);
+  return useAsyncAction(
+    async (userId: string, role: AppRole) => {
+      await updateUserRoleAction(userId, role);
 
-            router.refresh();
-        },
-          {
-      successToast: {
-        title: 'Role updated',
-        message: 'User role updated successfully',
-      },
-      errorToast: {
-        title: 'Update failed',
-        message: 'Could not update user role',
-      },
+      router.refresh();
     },
-    )
+    {
+      successToast: toasts.successToast,
+      errorToast: toasts.errorToast,
+    },
+  );
 }
