@@ -4,11 +4,15 @@ import { useState } from 'react';
 
 import { useToast } from '@/providers';
 
-import { AddToastInput } from '@/types/ui';
+import { AddToastInput } from '@/types/ui/toast';
 
-type UseAsyncActionOptions<TResult> = {
-  successToast?: AddToastInput;
-  errorToast?: AddToastInput;
+type ToastResolver<TArgs extends unknown[], TResult> =
+  | AddToastInput
+  | ((result: TResult, ...args: TArgs) => AddToastInput);
+
+type UseAsyncActionOptions<TArgs extends unknown[], TResult> = {
+  successToast?: ToastResolver<TArgs, TResult>;
+  errorToast?: ToastResolver<TArgs, TResult>;
   minDuration?: number;
   onSuccess?: (result: TResult) => void;
   onError?: (error: unknown) => void;
@@ -16,7 +20,7 @@ type UseAsyncActionOptions<TResult> = {
 
 export function useAsyncAction<TArgs extends unknown[], TResult>(
   action: (...args: TArgs) => Promise<TResult>,
-  options?: UseAsyncActionOptions<TResult>,
+  options?: UseAsyncActionOptions<TArgs, TResult>,
 ) {
   const [loading, setLaoding] = useState(false);
 
@@ -30,14 +34,26 @@ export function useAsyncAction<TArgs extends unknown[], TResult>(
     try {
       const result = await action(...args);
 
-      if (options?.successToast) {
-        success(options.successToast);
+      const successToast =
+        typeof options?.successToast === 'function'
+          ? options.successToast(result, ...args)
+          : options?.successToast;
+
+      if (successToast) {
+        success(successToast);
       }
+
+      options?.onSuccess?.(result);
 
       return result;
     } catch (error) {
-      if (options?.errorToast) {
-        destructive(options.errorToast);
+      const errorToast =
+        typeof options?.errorToast === 'function'
+          ? options.errorToast(undefined as TResult, ...args)
+          : options?.errorToast;
+
+      if (errorToast) {
+        destructive(errorToast);
       }
 
       options?.onError?.(error);

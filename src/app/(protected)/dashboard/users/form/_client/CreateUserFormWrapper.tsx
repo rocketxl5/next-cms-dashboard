@@ -6,10 +6,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { UserForm } from './UserForm';
 
-import { createUserSchema, CreateUserValues } from '@/lib/validators/users';
-import { createUserAction } from '../_server/create-user.action';
-
+import { USER_ACTIONS } from '@/lib/ui/toast';
 import { useAsyncFormSubmit } from '@/hooks/forms';
+import { createUserAction } from '../_server/create-user.action';
+import { createUserSchema, CreateUserValues } from '@/lib/validators/users';
 
 import { FormField } from '@/types/form';
 
@@ -23,6 +23,7 @@ export function CreateUserFormWrapper({
   fields,
 }: CreateUserProps) {
   const router = useRouter();
+  const toasts = USER_ACTIONS.create;
 
   const form = useForm<CreateUserValues>({
     resolver: zodResolver(createUserSchema),
@@ -35,14 +36,9 @@ export function CreateUserFormWrapper({
       await createUserAction(values);
     },
     {
-      successToast: {
-        title: 'User created',
-        message: 'Changes saved successfully',
-      },
-      errorToast: {
-        title: 'Update failed',
-        message: 'Something went wrong',
-      },
+      successToast: toasts.successToast,
+      errorToast: toasts.errorToast,
+
       onSuccess: () => {
         router.push('/dashboard/users');
       },

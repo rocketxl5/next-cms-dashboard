@@ -2,7 +2,7 @@ import { toastTokens } from '@/lib/ui/tokens';
 
 export type ToastEmphasis = keyof typeof toastTokens.emphasis;
 
-export type TaostVariant = keyof typeof toastTokens.variant;
+export type ToastVariant = keyof typeof toastTokens.variant;
 
 export type AddToastInput = {
   message: string;
@@ -27,6 +27,6 @@ export type ToastItem = {
   duration: number;
   persistent?: boolean;
   action?: ToastAction;
-  variant: TaostVariant;
+  variant: ToastVariant;
   emphasis: ToastEmphasis;
 };

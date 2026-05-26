@@ -3,11 +3,6 @@
 import { Box, Dropdown } from '@/components/ui';
 import { Layers } from 'lucide-react';
 
-// import { useUserSelection } from '@/providers';
-// import { UseBulkUserAction } from '../_hooks/useBulkUserAction';
-
-// import { handleBulkAction } from '@/lib/domain';
-
 import { BulkUserAction } from '../list/_domain';
 import { useBulkUserAction } from '../_hooks';
 
@@ -20,23 +15,6 @@ export function UsersBulkActions({
   allowedBulkActions,
   hasSelection,
 }: UsersActionProps) {
-  // const { isLoading, setIsLoading, selectedUserIds, clearSelection } =
-  //   useUserSelection();
-
-  // const [action, setAction] = useState<BulkUserActionKey | ''>('');
-
-  // const handleSelect = async (actionKey: BulkUserActionKey) => {
-  //   try {
-  //     setIsLoading(true);
-  //     setAction(actionKey);
-
-  //     await handleBulkAction(actionKey, selectedUserIds, clearSelection);
-  //   } finally {
-  //     setAction('');
-  //     setIsLoading(false);
-  //   }
-  // };
-
   const { currentAction, handleSelect, loading } = useBulkUserAction();
 
   return (

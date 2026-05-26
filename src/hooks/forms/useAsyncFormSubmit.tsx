@@ -5,7 +5,7 @@ import { FieldValues, UseFormReturn } from 'react-hook-form';
 
 import { useToast } from '@/providers';
 
-import { AddToastInput } from '@/types/ui';
+import { AddToastInput } from '@/types/ui/toast';
 
 type UseAsyncFormSubmitOptions = {
   successToast?: AddToastInput;

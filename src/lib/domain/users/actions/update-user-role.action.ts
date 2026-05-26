@@ -4,6 +4,7 @@ import { requireDashboardUser } from '@/lib/server';
 import { updateUserRole } from '@/lib/server/services';
 import { hasPermission } from '@/lib/permissions/has-permission';
 import { USER_CAPABILITIES } from '@/lib/permissions/model/capabilities/domains';
+
 import { AppRole } from '@/types/enums';
 
 export async function updateUserRoleAction(

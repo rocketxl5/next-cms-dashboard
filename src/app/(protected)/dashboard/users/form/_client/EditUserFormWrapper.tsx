@@ -6,11 +6,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { UserForm } from './UserForm';
 
-import { editUserSchema, EditUserFormValues } from '@/lib/validators/users';
-
-import { editUserAction } from '../_server/edit-user.action';
-
 import { useAsyncFormSubmit } from '@/hooks/forms';
+
+import { USER_ACTIONS } from '@/lib/ui/toast';
+import { editUserAction } from '../_server/edit-user.action';
+import { editUserSchema, EditUserFormValues } from '@/lib/validators/users';
 
 import { FormField } from '@/types/form';
 
@@ -26,6 +26,7 @@ export function EditUserFormWrapper({
   fields,
 }: EditUserProps) {
   const router = useRouter();
+  const toasts = USER_ACTIONS.create;
 
   const form = useForm<EditUserFormValues>({
     resolver: zodResolver(editUserSchema),
@@ -38,15 +39,9 @@ export function EditUserFormWrapper({
       await editUserAction(id, values);
     },
     {
-      successToast: {
-        title: 'User updated',
-        message: 'Changes saved successfully',
-      },
+      successToast: toasts.successToast,
+      errorToast: toasts.errorToast,
 
-      errorToast: {
-        title: 'Update failed',
-        message: 'Something went wrong',
-      },
       onSuccess: () => {
         router.push('/dashboard/users');
       },
