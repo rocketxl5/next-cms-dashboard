@@ -1,4 +1,5 @@
 export * from './CollapsibleProvider';
+export * from './DialogProvider';
 export * from './DropdownProvider';
 export * from './LoadingProvider';
 export * from './ThemeProvider';

@@ -3,14 +3,18 @@
 import { requireDashboardUser } from '@/lib/server';
 import { updateUserRole } from '@/lib/server/services';
 import { hasPermission } from '@/lib/permissions/has-permission';
-import { USER_CAPABILITIES } from '@/lib/permissions/model/capabilities/domains';
 
 import { AppRole } from '@/types/enums';
+import { USER_CAPABILITIES } from '@/lib/permissions/model/capabilities/domains';
 
-export async function updateUserRoleAction(
-  targetUserId: string,
-  role: AppRole,
-) {
+export type ActionContext = {
+  targetUserId: string;
+  role: AppRole;
+};
+export async function updateUserRoleAction({
+  targetUserId,
+  role,
+}: ActionContext) {
   const actor = await requireDashboardUser();
 
   if (
