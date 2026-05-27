@@ -7,14 +7,10 @@ import { hasPermission } from '@/lib/permissions/has-permission';
 import { AppRole } from '@/types/enums';
 import { USER_CAPABILITIES } from '@/lib/permissions/model/capabilities/domains';
 
-export type ActionContext = {
-  targetUserId: string;
-  role: AppRole;
-};
-export async function updateUserRoleAction({
-  targetUserId,
-  role,
-}: ActionContext) {
+export async function updateUserRoleAction(
+  targetUserId: string,
+  role: AppRole,
+) {
   const actor = await requireDashboardUser();
 
   if (
