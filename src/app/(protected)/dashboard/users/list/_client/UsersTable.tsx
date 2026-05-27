@@ -8,7 +8,7 @@ import { buildUsersColumns } from './factory/build-users-columns';
 import { cn } from '@/lib/utils';
 import { tableTokens } from '@/lib/ui/tokens';
 import { cellVariants } from '@/lib/ui/variants';
-import { useUpdateRoleAction } from '../../_hooks';
+import { useConfirmDeleteUser, useUpdateRoleAction } from '../../_hooks';
 
 import { UserRow, UsersTableContext } from '../_domain';
 import { CurrentDashboardUser, PaginationMeta } from '@/types/shared';
@@ -34,6 +34,7 @@ export function UsersTable({
   } = useUserSelection();
 
   const roleUpdate = useUpdateRoleAction();
+  const handleDeleteUser = useConfirmDeleteUser();
 
   const tableContext: UsersTableContext = {
     currentUser,
@@ -46,6 +47,7 @@ export function UsersTable({
     hasSelection,
     // 🔹 domain
     handleUserRoleUpdate: roleUpdate.execute,
+    handleDeleteUser,
   };
 
   const columns = buildUsersColumns();

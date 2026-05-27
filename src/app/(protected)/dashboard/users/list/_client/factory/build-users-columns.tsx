@@ -151,6 +151,9 @@ export const buildUsersColumns = (): TableColumn<
             height="sm"
             width="square"
             layout="inline"
+            onClick={() => {
+              ctx.handleDeleteUser(user);
+            }}
           >
             <Trash size={18} />
           </Button>
