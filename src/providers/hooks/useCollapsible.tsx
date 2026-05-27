@@ -1,13 +1,15 @@
-import { useContext } from "react"
+'use client';
 
-import { CollapsibleContext } from "../contexts/CollapsibleContex";
+import { useContext } from 'react';
+
+import { CollapsibleContext } from '../contexts/CollapsibleContex';
 
 export function useCollapsible() {
-    const context = useContext(CollapsibleContext);
+  const context = useContext(CollapsibleContext);
 
-    if(!context) {
-        throw new Error('useCollapsible must be used within CollapsibleProvider');
-    }
+  if (!context) {
+    throw new Error('useCollapsible must be used within CollapsibleProvider');
+  }
 
-    return context;
+  return context;
 }
