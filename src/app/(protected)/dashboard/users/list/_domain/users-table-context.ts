@@ -14,5 +14,6 @@ export type UsersTableContext = TableContext<UserRow> &
     isIndeterminate: boolean;
 
     // domain logic
-    handleUserRoleUpdate: (userId: string, role: AppRole) => void;
+    handleUserRoleUpdate: (userId: string, role: AppRole) => Promise<void>;
+    handleDeleteUser: (user: UserRow) => Promise<void>;
   };
