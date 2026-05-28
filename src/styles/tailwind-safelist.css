@@ -1,6 +1,14 @@
 @layer utilities {
   /* General */
 
+  /* Surface */
+  .bg-raised {
+    background-color: hsl(var(--background-raised));
+  }
+  .bg-overlay {
+    background-color: hsl(var(--background-overlay));
+  }
+
   /* Muted */
   .bg-muted {
     background-color: hsl(var(--muted));

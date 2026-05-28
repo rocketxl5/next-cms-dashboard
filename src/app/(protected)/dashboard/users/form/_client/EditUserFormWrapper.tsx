@@ -26,7 +26,7 @@ export function EditUserFormWrapper({
   fields,
 }: EditUserProps) {
   const router = useRouter();
-  const toasts = USER_ACTION_TOASTS.create;
+  const toasts = USER_ACTION_TOASTS.update;
 
   const form = useForm<EditUserFormValues>({
     resolver: zodResolver(editUserSchema),

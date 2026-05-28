@@ -5,14 +5,14 @@
 /* Base theme (light) */
 :root {
   /* Base */
-  --background: 0 0% 100%;
+  --background: 210 33% 98%;
   --foreground: 222 47% 11%;
 
   /* Surface */
-  --background-raised: 210 40% 98%; /* Card */
-  --background-overlay: 210 40% 98%; /* Modal */
+  --background-raised: 216 34% 95%; /* Card */
+  --background-overlay: 222 47% 11%/0.48; /* Modal */
 
-  --background-muted: 210 40% 96%;
+  --background-muted: 214 28% 93%;
 
   /* Button colors */
 
@@ -25,7 +25,7 @@
   --destructive-foreground: 0 60% 96%;
 
   /* Muted (unchanged) */
-  --muted: 210 40% 96%;
+  --muted: 214 28% 93%;
   /* --muted-foreground: 215 16% 47%; */
   --muted-foreground: 215 16% 52%;
 
@@ -82,7 +82,7 @@
 
   /* Surface */
   --background-raised: 222 47% 14%;
-  --background-overlay: 222 47% 18%;
+  --background-overlay: 222 47% 4%/0.72;
 
   --border: 217 33% 25%;
 
