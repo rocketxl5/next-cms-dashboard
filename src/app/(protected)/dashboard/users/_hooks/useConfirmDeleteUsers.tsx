@@ -1,11 +1,12 @@
 'use client';
 
-import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
+import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
+import { UserDialogContext } from '@/components/ui/dialog/UserDialogContex';
 
-import { useDialog } from "@/providers/hooks";
-import { useDeleteUserAction } from "./useDeleteUserAction";
+import { useDialog } from '@/providers/hooks';
+import { useDeleteUserAction } from './useDeleteUserAction';
 
-import { UserRow } from "../list/_domain";
+import { UserRow } from '../list/_domain';
 
 export function useConfirmDeleteUser() {
   const { openDialog } = useDialog();
@@ -16,9 +17,10 @@ export function useConfirmDeleteUser() {
     const confirmed = await openDialog<boolean>({
       render: ({ close, dismiss }) => (
         <ConfirmDialog
-          title="Delete user?"
+          title="Delete user"
           description="This action cannot be undone."
-          variant="danger"
+          context={<UserDialogContext user={user} />}
+          variant="destructive"
           confirmLabel="Delete"
           onConfirm={() => close(true)}
           onCancel={dismiss}
