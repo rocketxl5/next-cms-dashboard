@@ -1,10 +1,7 @@
-import { ActionConfig } from "@/lib/ui/toast";
-import { UserActionKey } from "@/types/actions";
+import { ActionConfig } from '@/lib/ui/toast';
+import { UserActionKey } from '@/types/actions/domains';
 
-export const USER_ACTION_TOASTS: Record<
-  UserActionKey,
-  ActionConfig
-> = {
+export const USER_ACTION_TOASTS: Record<UserActionKey, ActionConfig> = {
   create: {
     label: 'Create',
 
@@ -51,13 +48,13 @@ export const USER_ACTION_TOASTS: Record<
     label: 'Suspend',
 
     successToast: {
-      title: 'Users suspended',
-      message: 'Selected users suspended successfully',
+      title: 'User suspended',
+      message: 'Selected user suspended successfully',
     },
 
     errorToast: {
       title: 'Suspend failed',
-      message: 'Could not suspend selected users',
+      message: 'Could not suspend selected user',
     },
   },
 
@@ -65,13 +62,13 @@ export const USER_ACTION_TOASTS: Record<
     label: 'Activate',
 
     successToast: {
-      title: 'Users activated',
-      message: 'Selected users activated successfully',
+      title: 'User activated',
+      message: 'Selected user activated successfully',
     },
 
     errorToast: {
       title: 'Activation failed',
-      message: 'Could not activate selected users',
+      message: 'Could not activate selected user',
     },
   },
 
@@ -79,14 +76,14 @@ export const USER_ACTION_TOASTS: Record<
     label: 'Delete',
 
     successToast: {
-      title: 'Users deleted',
-      message: 'Selected users deleted successfully',
+      title: 'User deleted',
+      message: 'Selected user deleted successfully',
       variant: 'destructive',
     },
 
     errorToast: {
       title: 'Delete failed',
-      message: 'Could not delete selected users',
+      message: 'Could not delete selected user',
       variant: 'destructive',
     },
   },

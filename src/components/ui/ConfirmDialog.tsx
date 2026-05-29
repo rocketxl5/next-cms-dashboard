@@ -2,15 +2,13 @@ import { Box } from './layout';
 import { Button } from './button';
 import { Title } from './Title';
 
-type ConfirmDialogProps = {
-  title: string;
-  description?: string;
+import { ActionContent, ToneKey } from '@/types/actions';
+
+type ConfirmDialogProps = ActionContent & {
   context?: React.ReactNode;
+  cancelLabel: string;
 
-  confirmLabel?: string;
-  cancelLabel?: string;
-
-  variant?: string;
+  variant: ToneKey;
 
   onConfirm: () => void;
   onCancel: () => void;
@@ -46,13 +44,10 @@ export function ConfirmDialog({
           <div className="bg-background rounded-lg py-3 text-sm">{context}</div>
         ) : null}
         <div className="mt-6 flex justify-end gap-3">
-          <Button variant="warning" onClick={onCancel}>
+          <Button variant="muted" onClick={onCancel}>
             {cancelLabel}
           </Button>
-          <Button
-            variant={variant === 'destructive' ? variant : 'default'}
-            onClick={onConfirm}
-          >
+          <Button variant={variant} onClick={onConfirm}>
             {confirmLabel}
           </Button>
         </div>

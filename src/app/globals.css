@@ -25,7 +25,7 @@
   --destructive-foreground: 0 60% 96%;
 
   /* Muted (unchanged) */
-  --muted: 214 28% 93%;
+  --muted: 214 24% 89%;
   /* --muted-foreground: 215 16% 47%; */
   --muted-foreground: 215 16% 52%;
 
@@ -92,7 +92,7 @@
   --destructive: 0 63% 31%;
   --destructive-foreground: 210 40% 98%;
 
-  --muted: 223 47% 15%;
+  --muted: 223 40% 18%;
   --muted-foreground: 215 20% 65%;
 
   /* --contrast: 210 40% 98%;
