@@ -1,7 +1,6 @@
-export type UserActionKey =
+export type ActionKey =
   | 'create'
   | 'update'
   | 'delete'
   | 'activate'
-  | 'suspend'
-  | 'role';
+  | 'suspend';

@@ -1,4 +1,5 @@
 export { useBulkUserAction } from './useBulkUserAction';
-export { useConfirmDeleteUser } from './useConfirmDeleteUsers';
+export { useConfirmBulkUserAction } from './useConfirmBulkUserAction';
+export { useConfirmDeleteUser } from './useConfirmDeleteUser';
 export { useDeleteUserAction } from './useDeleteUserAction';
 export { useUpdateRoleAction } from './useUpdateRoleAction';
