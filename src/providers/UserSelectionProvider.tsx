@@ -95,7 +95,7 @@ export function UserSelectionProvider({
         selectedUserIds,
         toggleUserSelection,
 
-        hasSelection: selectedUserIds.size > 0,
+        hasSelection: selectedUserIds.size > 1,
 
         clearSelection,
 

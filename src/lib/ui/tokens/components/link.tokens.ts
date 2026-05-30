@@ -23,6 +23,11 @@ export const linkTokens = {
     foreground: `${color.muted.background} ${color.link.foreground}`,
   },
 
+  disabled: {
+    true: 'pointer-events-none opacity-50 cursor-not-allowed',
+    false: '',
+  },
+
   border: {
     none: borderAdapters.width.none,
     default: `${borderAdapters.width.hairline} ${borderAdapters.color.default}`,
