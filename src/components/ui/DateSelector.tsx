@@ -46,7 +46,7 @@ export function DateSelector({
           'h-8',
           'cursor-pointer',
           'rounded-md',
-          'border border-[hsl(var(--border))]',
+          'border border-base',
           isOpen && [
             'border-[hsl(var(--border-focus))]',
             'ring-1',

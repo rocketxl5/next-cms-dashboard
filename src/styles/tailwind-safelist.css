@@ -128,7 +128,10 @@
 
   /* Border colors */
   .border-base {
-    border-color: hsl(var(--border));
+    border-color: hsl(var(--border-base));
+  }
+  .border-muted {
+    border-color: hsl(var(--border-muted));
   }
   .border-subtle {
     border-color: hsl(var(--border-subtle));
@@ -137,21 +140,24 @@
     border-color: hsl(var(--border-strong));
   }
   .border-foreground {
-    border-color: hsl(var(--foreground));
+    border-color: hsl(var(--border-foreground));
+  }
+  .border-focus {
+    border-color: hsl(var(--border-foreground));
   }
   .border-primary {
     border-color: hsl(var(--border-primary));
   }
   .border-success {
-    border-color: hsl(var(--success));
+    border-color: hsl(var(--border-success));
+  }
+  .border-contrast {
+    border-color: hsl(var(--border-contrast));
+  }
+  .border-warning {
+    border-color: hsl(var(--border-warning));
   }
   .border-destructive {
-    border-color: hsl(var(--destructive));
-  }
-  .boder-warning {
-    border-color: hsl(var(--warning));
-  }
-  .border-muted {
-    border-color: hsl(var(--muted));
+    border-color: hsl(var(--border-destructive));
   }
 }

@@ -66,10 +66,16 @@
   --status-suspended-bg: 45 100% 90%; /* light yellow (10% opacity style) */
   --status-suspended-fg: 45 95% 37%; /* yellow text */
 
-  --border: 214 32% 91%; /* default */
+  --border-base: 214 32% 91%; /* default */
+  --border-muted: 210 23% 95%;
   --border-subtle: 214 18% 84%; /* darker than muted */
   --border-strong: 215 16% 70%; /* darker for emphasis */
+  --border-foreground: 222 47% 11%;
   --border-primary: 221 83% 53%;
+  --border-success: 145 63% 40%;
+  --border-warning: 45 100% 50%;
+  --border-destructive: 0 84% 60%;
+  --border-contrast: 222 47% 44%;
 
   /* Focus system */
   --border-focus: 221 83% 53%; /* primary */
@@ -102,7 +108,7 @@
   --dark: 210 40% 98%;
   --dark-foreground: 222 47% 11%;
 
-  --border: 217 33% 17%;
+  --border-base: 217 33% 17%;
   --border-subtle: 217 25% 22%;
   --border-strong: 215 20% 65%;
 }
