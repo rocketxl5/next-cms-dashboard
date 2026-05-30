@@ -4,7 +4,7 @@ export const cellTokens = {
   base: `
     align-middle
     leading-5
-    border-t border-[hsl(var(--border))]
+    border-t border-base
     transition-colors
     `,
 

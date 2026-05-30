@@ -65,7 +65,7 @@ export function UsersSearch({ filters, onSearchChange }: UsersSearchProps) {
         height="lg"
         className={cn(
           'flex items-stretch rounded-md',
-          'border border-[hsl(var(--border))]',
+          'border border-base',
           'focus-within:border-[hsl(var(--border-focus))]',
           'focus-within:ring-1 focus-within:ring-[hsl(var(--border-focus))]',
           'focus-within:ring-inset',

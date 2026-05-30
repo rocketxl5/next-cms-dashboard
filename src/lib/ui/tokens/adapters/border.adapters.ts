@@ -13,6 +13,7 @@ const color = {
   foreground: 'border-foreground',
   primary: 'border-primary',
   success: 'border-success',
+  contrast: 'border-contrast',
   warning: 'border-warning',
   destructive: 'border-destructive',
 } as const;
