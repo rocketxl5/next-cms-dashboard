@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { AuthFormHeader, AuthFormFooter } from '..';
+import { OAuthButtons } from './OAuthButtons';
 
 import {
   Box,
@@ -90,6 +91,7 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
         </Button>
       </Form.Root>
       <Divider border="subtle" spacing="lg" />
+      <OAuthButtons />
       <AuthFormFooter>
         <Box className="h-0" gap="sm">
           <span className="text-sm">New to Zap? </span>
