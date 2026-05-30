@@ -141,8 +141,9 @@ export const buildUsersColumns = (): TableColumn<
             width="square"
             height="sm"
             padding="none"
-            href={!isSelected ? `/dashboard/users/edit/${user.id}` : '#'}
-            variant={!isSelected ? 'success' : 'muted'}
+            href={`/dashboard/users/edit/${user.id}`}
+            variant="success"
+            disabled={isSelected}
           >
             <SquarePen size={18} />
           </Link>
@@ -151,6 +152,7 @@ export const buildUsersColumns = (): TableColumn<
             height="sm"
             width="square"
             layout="inline"
+            disabled={isSelected}
             onClick={() => {
               ctx.handleDeleteUser(user);
             }}

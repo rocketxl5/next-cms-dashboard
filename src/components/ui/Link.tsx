@@ -13,6 +13,7 @@ type LinkProps = React.ComponentProps<typeof NextLink> &
 export function Link({
   href,
   variant,
+  disabled,
   layout,
   active,
   height,
@@ -31,6 +32,7 @@ export function Link({
       className={cn(
         linkVariants({
           variant,
+          disabled,
           layout,
           height,
           width,
