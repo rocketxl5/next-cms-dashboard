@@ -140,7 +140,7 @@
     border-color: hsl(var(--foreground));
   }
   .border-primary {
-    border-color: hsl(var(--primary));
+    border-color: hsl(var(--border-primary));
   }
   .border-success {
     border-color: hsl(var(--success));

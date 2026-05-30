@@ -25,7 +25,7 @@
   --destructive-foreground: 0 60% 96%;
 
   /* Muted (unchanged) */
-  --muted: 214 24% 89%;
+  --muted: 210 23% 95%;
   /* --muted-foreground: 215 16% 47%; */
   --muted-foreground: 215 16% 52%;
 
@@ -67,8 +67,9 @@
   --status-suspended-fg: 45 95% 37%; /* yellow text */
 
   --border: 214 32% 91%; /* default */
-  --border-subtle: 210 20% 94%; /* lighter than border */
+  --border-subtle: 214 18% 84%; /* darker than muted */
   --border-strong: 215 16% 70%; /* darker for emphasis */
+  --border-primary: 221 83% 53%;
 
   /* Focus system */
   --border-focus: 221 83% 53%; /* primary */
@@ -92,7 +93,7 @@
   --destructive: 0 63% 31%;
   --destructive-foreground: 210 40% 98%;
 
-  --muted: 223 40% 18%;
+  --muted: 223 47% 15%;
   --muted-foreground: 215 20% 65%;
 
   /* --contrast: 210 40% 98%;

@@ -3,8 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { AuthFormHeader, AuthFormFooter } from '..';
-import { OAuthButtons } from './OAuthButtons';
+import { AuthFormHeader, AuthFormFooter, OAuthButtons } from '..';
 
 import {
   Box,
@@ -91,19 +90,21 @@ export function SigninForm({ onSuccess }: SigninFormProps) {
         </Button>
       </Form.Root>
       <Divider border="subtle" spacing="lg" />
-      <OAuthButtons />
-      <AuthFormFooter>
-        <Box className="h-0" gap="sm">
-          <span className="text-sm">New to Zap? </span>
-          <Link
-            href="/signup"
-            textSize="sm"
-            className="text-primary hover:underline p-0"
-          >
-            Create an account
-          </Link>
-        </Box>
-      </AuthFormFooter>
+      <Box direction="col" gap="lg" width="full">
+        <OAuthButtons />
+        <AuthFormFooter>
+          <Box className="h-0" gap="sm">
+            <span className="text-sm">New to Zap? </span>
+            <Link
+              href="/signup"
+              textSize="sm"
+              className="text-primary hover:underline p-0"
+            >
+              Create an account
+            </Link>
+          </Box>
+        </AuthFormFooter>
+      </Box>
     </Box>
   );
 }

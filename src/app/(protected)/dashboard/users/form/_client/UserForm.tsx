@@ -41,7 +41,7 @@ export function UserForm<T extends FieldValues>({
 
   return (
     <Box width="lg" className="mx-auto" position="relative">
-      <GoBackBtn className="absolute -bottom-16 font-semibold text-lg" />
+      <GoBackBtn className="absolute -bottom-16 text-lg" />
       <Form.Root onSubmit={onSubmit}>
         <Form.Header>
           <Title as="h1" size="2xl" weight="bold" align="center">
@@ -87,7 +87,7 @@ export function UserForm<T extends FieldValues>({
           layout="block"
           height="lg"
           textSize="base"
-          className="mt-4 font-semibold"
+          className="mt-4"
           disabled={loading || !isDirty}
         >
           {loading ? (
