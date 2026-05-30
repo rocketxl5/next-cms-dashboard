@@ -21,7 +21,6 @@ export function Pagination({ pagination }: PaginationProps) {
         textSize="sm"
         onClick={prevPage}
         disabled={!hasPrevious}
-        className="font-semibold"
       >
         Previous
       </Button>
@@ -31,7 +30,6 @@ export function Pagination({ pagination }: PaginationProps) {
         textSize="sm"
         onClick={nextPage}
         disabled={!hasNext}
-        className="font-semibold"
       >
         Next
       </Button>

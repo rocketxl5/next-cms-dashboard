@@ -9,8 +9,9 @@ export const buttonVariants = cva(buttonTokens.base, {
     paddingX: buttonTokens.paddingX,
     paddingY: buttonTokens.paddingY,
     width: buttonTokens.width,
-    textSize: buttonTokens.textSize,
     radius: buttonTokens.radius,
+    textSize: buttonTokens.textSize,
+    textWeight: buttonTokens.textWeight,
   },
 
   defaultVariants: {
@@ -22,6 +23,7 @@ export const buttonVariants = cva(buttonTokens.base, {
     paddingY: 'none',
     radius: 'md',
     textSize: 'sm',
+    textWeight: 'semibold',
   },
 
   compoundVariants: [
