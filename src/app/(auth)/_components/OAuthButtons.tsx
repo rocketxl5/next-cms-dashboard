@@ -19,7 +19,7 @@ export const OAUTH_PROVIDERS = [
 
 export function OAuthButtons() {
   const handleOAuthSignin = async (provider: OAuthProvider) => {
-    // next-auth / auth.js / custom implementation
+     location.assign(`/api/auth/oauth/${provider}`);
   };
 
   return (
