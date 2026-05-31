@@ -65,7 +65,7 @@ model User {
   id                  String    @id @default(cuid())
   name                String?
   email               String    @unique
-  password            String?
+  password            String
   role                Role      @default(USER)
   theme               Theme     @default(SYSTEM)
 
@@ -85,7 +85,7 @@ model User {
   updatedAt           DateTime  @updatedAt
 }
 
-// ------------------------------------------------------- 
+// -------------------------------------------------------
 // OAUTH ACCOUNT MODEL
 // -------------------------------------------------------
 
@@ -93,15 +93,13 @@ model OAuthAccount {
   id                String @id @default(cuid())
 
   provider          OAuthProvider
-  providerAccountId String
 
-  email             String?
+  providerAccountId String
 
   userId            String
   user              User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
 
   @@unique([provider, providerAccountId])
 }
