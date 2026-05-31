@@ -11,7 +11,7 @@ export async function sendResetPasswordEmail({
   to,
   token,
 }: SendResetPasswordEmailParams) {
-  const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL}/reset-password?token=${token}`;
+  const resetUrl = `${process.env.APP_URL}/reset-password?token=${token}`;
 
   await resend.emails.send({
     from: 'Zap <onboarding@resend.dev>',
