@@ -85,7 +85,7 @@ model User {
   updatedAt           DateTime  @updatedAt
 }
 
-// -------------------------------------------------------
+// ------------------------------------------------------- 
 // OAUTH ACCOUNT MODEL
 // -------------------------------------------------------
 
@@ -104,7 +104,6 @@ model OAuthAccount {
   updatedAt         DateTime @updatedAt
 
   @@unique([provider, providerAccountId])
-  @@index([provider, providerAccountId])
 }
 
 // -------------------------------------------------------
