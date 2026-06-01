@@ -1,38 +1,41 @@
 import { Box, Button} from '@/components/ui';
 import { FcGoogle } from 'react-icons/fc';
-import { FaApple } from 'react-icons/fa';
+// import { FaApple } from 'react-icons/fa';
+import { OAuthProviderId } from '@/lib/auth/oauth';
 
-type OAuthProvider = 'google' | 'apple';
-
-export const OAUTH_PROVIDERS = [
+const OAUTH_PROVIDER_UI: Record<
+  OAuthProviderId,
   {
-    id: 'google',
+    label: string;
+    icon: React.ReactNode;
+  }
+> = {
+  google: {
     label: 'Continue with Google',
     icon: <FcGoogle size={20} />,
   },
-  {
-    id: 'apple',
-    label: 'Continue with Apple',
-    icon: <FaApple size={20} />,
-  },
-] as const;
+  // apple: {
+  //   label: 'Continue with Apple',
+  //   icon: <FaApple size={20} />,
+  // },
+};
 
 export function OAuthButtons() {
-  const handleOAuthSignin = async (provider: OAuthProvider) => {
-     location.assign(`/api/auth/oauth/${provider}`);
+  const handleOAuthSignin = async (provider: OAuthProviderId) => {
+    location.assign(`/api/auth/oauth/${provider}`);
   };
 
   return (
     <Box direction="col" gap="sm" width="full">
-      {OAUTH_PROVIDERS.map(({ id, label, icon }) => (
+      {Object.entries(OAUTH_PROVIDER_UI).map(([id, { label, icon }]) => (
         <Button
           key={id}
           variant="muted"
           width="full"
           height="lg"
-          onClick={() => handleOAuthSignin(id)}
+          onClick={() => handleOAuthSignin(id as OAuthProviderId)}
         >
-          <Box width="full" justify="center">
+          <Box width="full" justify="center" gap="sm">
             {icon}
             {label}
           </Box>
