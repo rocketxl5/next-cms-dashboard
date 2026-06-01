@@ -119,6 +119,10 @@ export async function POST(req: NextRequest) {
       return unauthorized('Invalid email or password');
     }
 
+    if (!user.password) {
+      return unauthorized('This account uses OAuth to sign in');
+    }
+
     const isValid = await bcrypt.compare(password, user.password);
 
     if (!isValid) {

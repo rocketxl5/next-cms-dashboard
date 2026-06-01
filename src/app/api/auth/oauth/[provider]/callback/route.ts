@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { OAuthProvider } from '@/types/enums';
-import { oauthEnv } from '@/lib/auth/oauth/oauth-env';
+import {
+  oauthEnv,
+  OAuthProviderId,
+  OAUTH_PROVIDER_MAP,
+} from '@/lib/auth/oauth';
 import { prisma } from '@/lib/prisma';
 
 export async function GET(
@@ -8,14 +11,20 @@ export async function GET(
   {
     params,
   }: {
-    params: Promise<{ provider: OAuthProvider }>;
+    params: Promise<{ provider: OAuthProviderId }>;
   },
 ) {
   const { provider } = await params;
 
-  if (provider !== 'GOOGLE') {
+  // convert: google → GOOGLE
+  const providerKey = OAUTH_PROVIDER_MAP[provider];
+
+  // -------------------------------------------------------
+  // 1. Provider guard (simple + explicit)
+  // -------------------------------------------------------
+  if (!providerKey) {
     return NextResponse.json(
-      { error: 'Provider not supported yet' },
+      { error: 'Unsupported provider' },
       { status: 400 },
     );
   }
@@ -27,15 +36,14 @@ export async function GET(
 
   const storedState = req.cookies.get('oauth_state')?.value;
 
+  // -------------------------------------------------------
+  // 2. CSRF / state validation
+  // -------------------------------------------------------
   if (!code || !state || state !== storedState) {
-    return NextResponse.json(
-      { error: 'Invalid OAuth state' }, 
-      { status: 400 }
-    );
+    return NextResponse.json({ error: 'Invalid OAuth state' }, { status: 400 });
   }
 
-  const { clientId, clientSecret } =
-    oauthEnv.providers.GOOGLE;
+  const { clientId, clientSecret } = oauthEnv.providers[providerKey];
 
   if (!clientId || !clientSecret) {
     return NextResponse.json(
@@ -44,27 +52,27 @@ export async function GET(
     );
   }
 
-  const redirectUri =
-    `${oauthEnv.appUrl}/api/auth/oauth/google/callback`;
+  // -------------------------------------------------------
+  // 3. Redirect URI MUST match Google Console config
+  // -------------------------------------------------------
+  const redirectUri = `${oauthEnv.appUrl}/api/auth/oauth/${provider}/callback`;
 
-  // 1. Exchange code for tokens
-  const tokenRes = await fetch(
-    'https://oauth2.googleapis.com/token',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type':
-          'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams({
-        code,
-        client_id: clientId,
-        client_secret: clientSecret,
-        redirect_uri: redirectUri,
-        grant_type: 'authorization_code',
-      }),
+  // -------------------------------------------------------
+  // 4. Exchange code for access token
+  // -------------------------------------------------------
+  const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
     },
-  );
+    body: new URLSearchParams({
+      code,
+      client_id: clientId,
+      client_secret: clientSecret,
+      redirect_uri: redirectUri,
+      grant_type: 'authorization_code',
+    }),
+  });
 
   if (!tokenRes.ok) {
     return NextResponse.json(
@@ -75,15 +83,14 @@ export async function GET(
 
   const tokens = await tokenRes.json();
 
-  // 2. Fetch user profile
-  const userRes = await fetch(
-    'https://www.googleapis.com/oauth2/v2/userinfo',
-    {
-      headers: {
-        Authorization: `Bearer ${tokens.access_token}`,
-      },
+  // -------------------------------------------------------
+  // 5. Fetch Google user profile
+  // -------------------------------------------------------
+  const userRes = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
+    headers: {
+      Authorization: `Bearer ${tokens.access_token}`,
     },
-  );
+  });
 
   if (!userRes.ok) {
     return NextResponse.json(
@@ -94,7 +101,19 @@ export async function GET(
 
   const profile = await userRes.json();
 
-  // 3. Find or create user
+  // -------------------------------------------------------
+  // 6. Safety check (IMPORTANT FIX)
+  // -------------------------------------------------------
+  if (!profile.email) {
+    return NextResponse.json(
+      { error: 'Google account missing email' },
+      { status: 400 },
+    );
+  }
+
+  // -------------------------------------------------------
+  // 7. Find or create user
+  // -------------------------------------------------------
   let user = await prisma.user.findUnique({
     where: { email: profile.email },
   });
@@ -103,29 +122,56 @@ export async function GET(
     user = await prisma.user.create({
       data: {
         email: profile.email,
-        name: profile.name,
-        password: 'null', // OAuth user
+        name: profile.name ?? null,
+
+        // FIX: explicitly allow OAuth user
+        password: null,
       },
     });
   }
 
-  // 4. Create session (placeholder for now)
-  // You can plug in your existing session system here
-  const response = NextResponse.redirect(
-    `${oauthEnv.appUrl}/dashboard`,
-  );
+  // -------------------------------------------------------
+  // 8. Link OAuth account
+  // -------------------------------------------------------
+  await prisma.oAuthAccount.upsert({
+    where: {
+      provider_providerAccountId: {
+        provider: providerKey,
+        providerAccountId: profile.id,
+      },
+    },
+    create: {
+      provider: providerKey,
+      providerAccountId: profile.id,
+      userId: user.id,
+    },
+    update: {
+      userId: user.id,
+    },
+  });
+  // -------------------------------------------------------
+  // 9. Redirect user into app
+  // -------------------------------------------------------
+  const response = NextResponse.redirect(`${oauthEnv.appUrl}/dashboard`);
 
-  // cleanup cookies
+  // -------------------------------------------------------
+  // 10. Cleanup OAuth cookies
+  // -------------------------------------------------------
   response.cookies.set('oauth_state', '', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'lax',
+    path: '/',
     maxAge: 0,
   });
 
   response.cookies.set('oauth_provider', '', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'lax',
+    path: '/',
     maxAge: 0,
   });
 
   return response;
-
-
-  // return NextResponse.redirect('/dashboard');
 }
