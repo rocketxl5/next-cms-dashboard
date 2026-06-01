@@ -2,20 +2,26 @@ import { NextRequest, NextResponse } from 'next/server';
 import { randomBytes } from 'crypto';
 
 import { oauthEnv } from '@/lib/auth/oauth/oauth-env';
-import { OAUTH_CONFIG } from '@/lib/auth/oauth/oauth-config';
-import { OAuthProvider } from '@/types/enums';
+import {
+  OAUTH_CONFIG,
+  OAuthProviderId,
+  OAUTH_PROVIDER_MAP,
+} from '@/lib/auth/oauth';
 
 export async function GET(
   request: NextRequest,
   {
     params,
   }: {
-    params: Promise<{ provider: OAuthProvider }>;
+    params: Promise<{ provider: OAuthProviderId }>;
   },
 ) {
   const { provider } = await params;
 
-  const config = OAUTH_CONFIG[provider];
+  // convert: google → GOOGLE
+  const providerKey = OAUTH_PROVIDER_MAP[provider];
+
+  const config = OAUTH_CONFIG[providerKey];
 
   if (!config) {
     return NextResponse.json(
@@ -28,11 +34,11 @@ export async function GET(
 
   const redirectUri = `${oauthEnv.appUrl}/api/auth/oauth/${provider}/callback`;
 
-  const clientId = oauthEnv.providers[provider]?.clientId;
+  const clientId = oauthEnv.providers[providerKey]?.clientId;
 
   if (!clientId) {
     return NextResponse.json(
-      { error: `Missing OAuth clientId for ${provider}` },
+      { error: `Missing OAuth clientId for ${providerKey}` },
       { status: 500 },
     );
   }
