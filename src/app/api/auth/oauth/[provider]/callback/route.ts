@@ -1,9 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import {
-  oauthEnv,
-  OAuthProviderId,
-  OAUTH_PROVIDER_MAP,
-} from '@/lib/auth/oauth';
+import { oauthEnv, OAUTH_PROVIDER_MAP } from '@/lib/auth/oauth';
 import { prisma } from '@/lib/prisma';
 
 export async function GET(
@@ -11,7 +7,7 @@ export async function GET(
   {
     params,
   }: {
-    params: Promise<{ provider: OAuthProviderId }>;
+    params: Promise<{ provider: string }>;
   },
 ) {
   const { provider } = await params;

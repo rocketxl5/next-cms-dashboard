@@ -2,18 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import { randomBytes } from 'crypto';
 
 import { oauthEnv } from '@/lib/auth/oauth/oauth-env';
-import {
-  OAUTH_CONFIG,
-  OAuthProviderId,
-  OAUTH_PROVIDER_MAP,
-} from '@/lib/auth/oauth';
+import { OAUTH_CONFIG, OAUTH_PROVIDER_MAP } from '@/lib/auth/oauth';
 
 export async function GET(
   request: NextRequest,
   {
     params,
   }: {
-    params: Promise<{ provider: OAuthProviderId }>;
+    params: Promise<{ provider: string }>;
   },
 ) {
   const { provider } = await params;
