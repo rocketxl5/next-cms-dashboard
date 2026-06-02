@@ -30,6 +30,8 @@ export async function GET(
 
   const redirectUri = `${oauthEnv.appUrl}/api/auth/oauth/${provider}/callback`;
 
+  console.log('AUTH REDIRECT URI:', redirectUri);
+
   const clientId = oauthEnv.providers[providerKey]?.clientId;
 
   if (!clientId) {
