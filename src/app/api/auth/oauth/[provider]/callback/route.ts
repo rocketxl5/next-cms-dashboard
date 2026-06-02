@@ -14,8 +14,12 @@ export async function GET(
 ) {
   const { provider } = await params;
 
+  console.log('provider', provider);
+
   // convert: google → GOOGLE
   const providerKey = OAUTH_PROVIDER_MAP[provider];
+
+  console.log('providerKey', providerKey);
 
   // -------------------------------------------------------
   // 1. Provider guard (simple + explicit)
@@ -55,6 +59,8 @@ export async function GET(
   // -------------------------------------------------------
   const redirectUri = `${oauthEnv.appUrl}/api/auth/oauth/${provider}/callback`;
 
+  console.log('TOKEN REDIRECT URI:', redirectUri);
+
   // -------------------------------------------------------
   // 4. Exchange code for access token
   // -------------------------------------------------------
@@ -73,6 +79,13 @@ export async function GET(
   });
 
   if (!tokenRes.ok) {
+    const text = await tokenRes.text();
+
+    console.error('GOOGLE TOKEN ERROR:', {
+      status: tokenRes.status,
+      body: text,
+      redirectUri,
+    });
     return NextResponse.json(
       { error: 'Failed to exchange code' },
       { status: 500 },
