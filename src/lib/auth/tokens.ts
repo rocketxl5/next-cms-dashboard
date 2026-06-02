@@ -51,7 +51,7 @@
 
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { jwtVerify } from 'jose';
-import { authConfig } from './config';
+import { authConfig } from './auth-config';
 
 /**
  * Token payload shared across auth flows
@@ -60,6 +60,7 @@ type TokenPayload = {
   id: string;
   email?: string;
   role?: string;
+  theme?: string;
 };
 
 /**

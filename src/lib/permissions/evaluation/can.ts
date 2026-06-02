@@ -38,16 +38,16 @@
  * ---------------------------------------------------------------------------
  */
 
-import { DashboardRole } from '@/types/shared';
-import { SYSTEM_ROLE_CAPABILITIES } from '@/lib/permissions/model/capabilities/system-role.capabilities';
 import { Capability } from '@/lib/permissions/model/capabilities';
+import { SYSTEM_ROLE_CAPABILITIES } from '@/lib/permissions/model/capabilities/system-role.capabilities';
+
+import { DashboardRole } from '@/types/shared';
 
 export function can(role: DashboardRole, capability: Capability): boolean {
   // Widen literal role capability arrays to generic Capability[]
   // to allow safe union-based membership checking.
-  const roleCapabilities = SYSTEM_ROLE_CAPABILITIES[
-    role
-  ] as readonly Capability[];
+  const roleCapabilities =
+    (SYSTEM_ROLE_CAPABILITIES[role] as readonly Capability[]) ?? [];
 
   return roleCapabilities.includes(capability);
 }
