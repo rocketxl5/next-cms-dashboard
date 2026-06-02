@@ -18,6 +18,7 @@ export const linkTokens = {
     // button-like
     primary: `${color.primary.background} ${color.primary.foreground}`,
     success: `${color.success.background} ${color.success.foreground}`,
+    warning: `${color.warning.background} ${color.warning.foreground}`,
     contrast: `${color.contrast.background} ${color.contrast.foreground}`,
     muted: `${color.muted.background} ${color.link.muted}`,
     foreground: `${color.muted.background} ${color.link.foreground}`,

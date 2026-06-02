@@ -11,7 +11,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="en" className={theme} suppressHydrationWarning>
-      <body>
+      <body className="min-h-screen">
         <Providers initialTheme={theme}>{children}</Providers>
       </body>
     </html>
