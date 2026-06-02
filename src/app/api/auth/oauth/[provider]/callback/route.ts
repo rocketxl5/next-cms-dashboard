@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { oauthEnv, OAUTH_PROVIDER_MAP } from '@/lib/auth/oauth';
+
 import { prisma } from '@/lib/prisma';
+import { createUserSession, getLoginRedirectPath } from '@/lib/auth';
+import { oauthEnv, OAUTH_PROVIDER_MAP } from '@/lib/auth/oauth';
 
 export async function GET(
   req: NextRequest,
@@ -145,10 +147,14 @@ export async function GET(
       userId: user.id,
     },
   });
+
   // -------------------------------------------------------
   // 9. Redirect user into app
   // -------------------------------------------------------
-  const response = NextResponse.redirect(`${oauthEnv.appUrl}/dashboard`);
+  const redirectPath = getLoginRedirectPath(user.role);
+  const response = NextResponse.redirect(`${oauthEnv.appUrl}${redirectPath}`);
+
+  await createUserSession(user, response);
 
   // -------------------------------------------------------
   // 10. Cleanup OAuth cookies

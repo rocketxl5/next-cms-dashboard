@@ -10,7 +10,7 @@ import {
 import { AccountHeader, AccountMain } from './components';
 import { getSession } from '@/lib/server';
 
-export default async function DashboardLayout({
+export default async function AccountLayout({
   children,
 }: {
   children: React.ReactNode;

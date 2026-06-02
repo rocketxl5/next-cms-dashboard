@@ -38,11 +38,7 @@ import {
   normalizeObject,
   assertRequired,
 } from '@/lib/utils/normalizers';
-import {
-  createAccessToken,
-  createRefreshToken,
-  setAuthCookies,
-} from '@/lib/auth';
+import { createUserSession } from '@/lib/auth';
 import { mapDatabaseThemeToCss } from '@/lib/theme';
 import { unauthorized, internalServerError } from '@/lib/http';
 
@@ -129,41 +125,6 @@ export async function POST(req: NextRequest) {
       return unauthorized('Invalid email or password');
     }
 
-    /**
-     * 6️⃣ Create access & refresh tokens
-     *
-     * - Access token: short-lived, contains identity & role
-     * - Refresh token: long-lived, stored hashed in DB
-     */
-    const accessToken = createAccessToken({
-      id: user.id,
-      email: user.email,
-      role: user.role,
-    });
-
-    const refreshToken = createRefreshToken({
-      id: user.id,
-    });
-
-    /**
-     * 7️⃣ Hash refresh token before storing
-     *
-     * - Never store raw refresh tokens
-     * - Same principle as password hashing
-     */
-    const hashedRefresh = await bcrypt.hash(refreshToken, 10);
-
-    await prisma.user.update({
-      where: { id: user.id },
-      data: { refreshTokenHash: hashedRefresh },
-    });
-
-    /**
-     * 8️⃣ Build response payload
-     *
-     * - Return only safe user fields
-     * - Force role to uppercase for frontend consistency
-     */
     const res = NextResponse.json({
       message: 'Signin successful',
       user: {
@@ -175,13 +136,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    /**
-     * 9️⃣ Attach auth cookies
-     *
-     * - HTTP-only cookies
-     * - Access + refresh token pair
-     */
-    setAuthCookies(res, { accessToken, refreshToken });
+    await createUserSession(user, res);
 
     return res;
   } catch (error) {
