@@ -2,14 +2,21 @@ import { Link } from './Link';
 import { Zap } from 'lucide-react';
 
 import { cn } from '@/lib/utils/cn';
+import { type LinkVariants } from '@/lib/ui/variants';
 
-type ZapLogoProps = {
+type ZapLogoProps = LinkVariants & {
   className?: string;
+  color?: string;
   size?: number;
-  variant?: string;
+  stroke?: number;
 };
 
-export function ZapLogo({ className, size = 24 }: ZapLogoProps) {
+export function ZapLogo({
+  className,
+  color = 'foreground',
+  size = 24,
+  stroke = 0.1,
+}: ZapLogoProps) {
   const iconSize = Math.round(size * 0.6);
 
   return (
@@ -22,22 +29,23 @@ export function ZapLogo({ className, size = 24 }: ZapLogoProps) {
       <div
         className={cn(
           'inline-flex items-center justify-center rounded-full border-2',
+          color,
           className,
         )}
         style={{
           width: size,
           height: size,
-          backgroundColor: 'hsl(var(--foreground))',
-          borderColor: 'hsl(var(--foreground))',
+          backgroundColor: `hsl(var(--${color}))`,
+          borderColor: `hsl(var(--foreground))`,
         }}
       >
         <div className="flex items-center justify-center w-full h-full">
           <Zap
             size={iconSize}
-            strokeWidth={0.1}
+            strokeWidth={stroke}
             className="block"
             style={{
-              stroke: 'hsl(var(--background))',
+              stroke: 'hsl(var(--foreground))',
               fill: 'hsl(var(--background))',
             }}
           />
