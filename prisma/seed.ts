@@ -31,16 +31,11 @@ async function main() {
       email: 'superadmin@next.com',
       role: Role.SUPER_ADMIN,
     },
-    { name: 'Admin_1', email: 'admin1@next.com', role: Role.ADMIN },
-    { name: 'Admin_2', email: 'admin2@next.com', role: Role.ADMIN },
-    { name: 'Max', email: 'max@next.com', role: Role.USER },
-    { name: 'Frank', email: 'frank@next.com', role: Role.USER },
-    { name: 'Martin', email: 'martin@next.com', role: Role.USER },
-    { name: 'Gilles', email: 'gilles@next.com', role: Role.USER },
-    { name: 'Seb', email: 'seb@next.com', role: Role.USER },
-    { name: 'Maxime', email: 'maxime@next.com', role: Role.EDITOR },
-    { name: 'Bea', email: 'bea@next.com', role: Role.EDITOR },
-    { name: 'juliette', email: 'juliette@next.com', role: Role.EDITOR },
+    ...Array.from({ length: 100 }, (_, i) => ({
+      name: `User ${i + 1}`,
+      email: `user${i + 1}@next.com`,
+      role: i % 20 === 0 ? Role.ADMIN : i % 10 === 0 ? Role.EDITOR : Role.USER,
+    })),
   ];
 
 const createdUsers: Record<Role, User[]> = {
