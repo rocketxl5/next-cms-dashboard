@@ -29,8 +29,6 @@ export async function getSession(): Promise<Session> {
   // Get the access token from cookies (server-side)
   const token = await getCookie(COOKIE_KEYS.accessToken);
 
-   console.log('GET SESSION TOKEN', token);
-
   // No token → unauthenticated
   if (!token) return null;
 

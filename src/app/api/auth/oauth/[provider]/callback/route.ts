@@ -14,12 +14,8 @@ export async function GET(
 ) {
   const { provider } = await params;
 
-  console.log('provider', provider);
-
   // convert: google → GOOGLE
   const providerKey = OAUTH_PROVIDER_MAP[provider];
-
-  console.log('providerKey', providerKey);
 
   // -------------------------------------------------------
   // 1. Provider guard (simple + explicit)
@@ -58,8 +54,6 @@ export async function GET(
   // 3. Redirect URI MUST match Google Console config
   // -------------------------------------------------------
   const redirectUri = `${oauthEnv.appUrl}/api/auth/oauth/${provider}/callback`;
-
-  console.log('TOKEN REDIRECT URI:', redirectUri);
 
   // -------------------------------------------------------
   // 4. Exchange code for access token
