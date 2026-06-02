@@ -14,19 +14,19 @@ export async function handleBulkUsersAction(
     switch (actionKey) {
       case 'delete':
         await bulkDeleteUsers(userIds);
-        console.log('Deleted users:', userIds);
+        // console.log('Deleted users:', userIds);
         clearSelection();
         break;
 
       case 'activate':
         await bulkUpdateUsersStatus(userIds, 'ACTIVE');
-        console.log('Activated users:', userIds);
+        // console.log('Activated users:', userIds);
         clearSelection();
         break;
 
       case 'suspend':
         await bulkUpdateUsersStatus(userIds, 'SUSPENDED');
-        console.log('Suspended user:', userIds);
+        // console.log('Suspended user:', userIds);
         clearSelection();
         break;
 

@@ -1,4 +1,5 @@
 import { Link } from './Link';
+import { Box } from './layout';
 import { Zap } from 'lucide-react';
 
 import { cn } from '@/lib/utils/cn';
@@ -29,7 +30,6 @@ export function ZapLogo({
       <div
         className={cn(
           'inline-flex items-center justify-center rounded-full border-2',
-          color,
           className,
         )}
         style={{
@@ -39,7 +39,7 @@ export function ZapLogo({
           borderColor: `hsl(var(--foreground))`,
         }}
       >
-        <div className="flex items-center justify-center w-full h-full">
+        <Box justify="center" align="center" width="full">
           <Zap
             size={iconSize}
             strokeWidth={stroke}
@@ -49,7 +49,7 @@ export function ZapLogo({
               fill: 'hsl(var(--background))',
             }}
           />
-        </div>
+        </Box>
       </div>
     </Link>
   );
