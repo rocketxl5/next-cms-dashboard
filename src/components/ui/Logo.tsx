@@ -14,9 +14,9 @@ type ZapLogoProps = LinkVariants & {
 
 export function ZapLogo({
   className,
-  color = 'foreground',
+  color = 'warning',
   size = 24,
-  stroke = 0.1,
+  stroke = 0.75,
 }: ZapLogoProps) {
   const iconSize = Math.round(size * 0.6);
 
@@ -29,7 +29,7 @@ export function ZapLogo({
     >
       <div
         className={cn(
-          'inline-flex items-center justify-center rounded-full border-2',
+          'inline-flex items-center justify-center rounded-full',
           className,
         )}
         style={{
@@ -45,8 +45,8 @@ export function ZapLogo({
             strokeWidth={stroke}
             className="block"
             style={{
-              stroke: 'hsl(var(--foreground))',
-              fill: 'hsl(var(--background))',
+              stroke: 'hsl(var(--background))',
+              fill: 'hsl(var(--foreground))',
             }}
           />
         </Box>

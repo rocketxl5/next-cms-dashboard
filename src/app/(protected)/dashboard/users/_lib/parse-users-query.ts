@@ -27,7 +27,7 @@ export function parseUsersQuery(params: URLSearchParams): UsersQuery {
 
   // pagination
   const page = Math.max(1, Number(get('page') ?? 1));
-  const limit = Math.max(1, Number(get('limit') ?? 5));
+  const limit = Math.max(1, Number(get('limit') ?? 25));
 
   // filters
   const search = get('search') ?? undefined;

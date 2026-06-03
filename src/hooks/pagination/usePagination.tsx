@@ -11,7 +11,7 @@ export function usePagination(meta?: PaginationMeta) {
   const searchParams = useSearchParams();
 
   const page = Number(searchParams.get('page') ?? 1);
-  const limit = Number(searchParams.get('limit') ?? 5);
+  const limit = Number(searchParams.get('limit') ?? 25);
 
   function setPage(nextPage: number) {
     const query = updateQueryParams(searchParams, {
