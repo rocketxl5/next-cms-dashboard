@@ -32,7 +32,7 @@ export function UsersPageClient({
   });
 
   return (
-    <Box direction="col" gap="lg">
+    <Box direction="col" gap="lg" width="full">
       <UsersToolbar
         allowedBulkActions={allowedBulkActions}
         hasSelection={hasSelection}
