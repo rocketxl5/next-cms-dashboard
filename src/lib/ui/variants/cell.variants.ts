@@ -33,6 +33,7 @@ export const cellVariants = cva(cellTokens.base, {
     grow: cellTokens.grow,
     overflow: cellTokens.overflow,
     align: cellTokens.align,
+    stricky: cellTokens.sticky,
   },
 
   defaultVariants: {

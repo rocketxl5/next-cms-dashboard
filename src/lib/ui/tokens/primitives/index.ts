@@ -3,6 +3,7 @@ export * from './border';
 export * from './color';
 export * from './motion';
 export * from './radius';
+export * from './responsive';
 export * from './size';
 export * from './spacing';
 export * from './surface';

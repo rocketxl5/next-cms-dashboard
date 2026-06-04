@@ -1,15 +1,13 @@
 export const tableTokens = {
   base: `
-      w-full
-      table-fixed
-      border-separate
-      border-spacing-0
-    `,
+    w-full
+    table-fixed
+    border-separate
+    border-spacing-0
+  `,
 
   cell: {
-    content: `
-    text-center
-    `,
+    content: 'text-center',
   },
 
   row: {
@@ -20,6 +18,6 @@ export const tableTokens = {
   },
 
   wrapper: {
-    responsive: 'overflow-x-auto',
+    scroll: 'overflow-x-auto',
   },
 } as const;
