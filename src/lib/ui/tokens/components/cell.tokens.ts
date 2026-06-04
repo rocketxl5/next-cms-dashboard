@@ -50,4 +50,10 @@ export const cellTokens = {
     md: `${size.padding.md}`,
     lg: `${size.padding.lg}`,
   },
+
+  sticky: {
+    left: 'sticky left-0 bg-background z-10',
+    right: 'sticky right-0 bg-background z-10',
+  },
 } as const;
+

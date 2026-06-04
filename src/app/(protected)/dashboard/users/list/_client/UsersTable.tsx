@@ -67,7 +67,7 @@ export function UsersTable({
   if (!users.length) return <div className="p4">No users found</div>;
 
   return (
-    <Box direction="col" gap="lg" className={tableTokens.wrapper.responsive}>
+    <Box direction="col" gap="lg" className={tableTokens.wrapper.scroll}>
       <table className={tableTokens.base}>
         <thead>
           <tr className={tableTokens.row.base}>
