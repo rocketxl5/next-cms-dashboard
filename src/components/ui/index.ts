@@ -3,6 +3,7 @@ export { DateSelector } from './DateSelector';
 export { Divider } from './Divider';
 export { FieldGroup } from './FieldGroup';
 export { Footer } from './Footer';
+export { Hamburger } from './Hamburger';
 export { Header } from './Header';
 export { Input } from './Input';
 export { Label } from './Label';
