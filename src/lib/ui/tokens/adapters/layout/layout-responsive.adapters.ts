@@ -1,11 +1,18 @@
-export const page = {
-  container: 'w-full max-w-7xl mx-auto',
-  content: 'space-y-6',
+export const shell = {
+  content: 'flex flex-1 overflow-hidden',
 } as const;
 
-export const sidebar = {
-  desktop: 'hidden lg:flex',
-  mobile: 'lg:hidden',
+export const slot = {
+  header: 'w-full shrink-0 flex border-b',
+
+  sidebar: 'w-64 shrink-0 border-r overflow-y-auto',
+
+  main: 'flex-1 min-w-0 overflow-y-auto p-4 md:p-6',
+} as const;
+
+export const page = {
+  container: 'w-full',
+  content: 'space-y-6',
 } as const;
 
 export const grid = {
@@ -19,12 +26,14 @@ export const grid = {
 export const stack = {
   actions: 'flex flex-col sm:flex-row gap-2',
 
-  responsive: 'flex flex-col md:flex-row gap-4',
+  adaptive: 'flex flex-col md:flex-row gap-4',
 } as const;
 
 export const table = {
   mobile: 'md:hidden',
   desktop: 'hidden md:block',
+
+  scroll: 'overflow-x-auto',
 
   minWidth: {
     sm: 'min-w-[640px]',
@@ -41,9 +50,11 @@ export const dialog = {
 } as const;
 
 export const visibility = {
-  mobileOnly: 'block md:hidden',
+  belowTablet: 'block md:hidden',
   tabletUp: 'hidden md:block',
-  desktopOnly: 'hidden lg:block',
+
+  belowDesktop: 'block lg:hidden',
+  desktopUp: 'hidden lg:block',
 } as const;
 
 export const tableVisibility = {

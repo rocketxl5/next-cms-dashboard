@@ -1,24 +1,13 @@
-import { Box } from '@/components/ui';
-
 import { cn } from '@/lib/utils';
+import { responsive } from '@/lib/ui/tokens';
 
 type ContentShellProps = {
   children: React.ReactNode;
   className?: string;
 };
 
-export function ContentShell({
-  children,
-  className,
-}: ContentShellProps) {
+export function ContentShell({ children, className }: ContentShellProps) {
   return (
-    <div
-      className={cn(
-        'flex flex-1 overflow-hidden',
-        className
-      )}
-    >
-      {children}
-    </div>
+    <div className={cn(responsive.shell.content, className)}>{children}</div>
   );
 }

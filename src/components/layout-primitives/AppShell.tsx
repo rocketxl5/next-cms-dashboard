@@ -1,4 +1,3 @@
-import { Box } from '../ui';
 type AppShellProps = {
   children: React.ReactNode;
 };
