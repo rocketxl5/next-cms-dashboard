@@ -1,11 +1,11 @@
 'use client';
 
-import { Box } from '@/components/ui';
+import { responsive } from '@/lib/ui/tokens';
 
 type DashboardMainProps = {
   children: React.ReactNode;
 };
 
 export function DashboardMain({ children }: DashboardMainProps) {
-  return <Box>{children}</Box>;
+  return <div className={responsive.page.container}>{children}</div>;
 }

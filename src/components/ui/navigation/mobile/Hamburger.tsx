@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 type HamburgerProps = {
   open: boolean;
@@ -8,6 +8,7 @@ type HamburgerProps = {
 export function Hamburger({ open, onClick }: HamburgerProps) {
   return (
     <button
+      type="button"
       onClick={onClick}
       aria-label={open ? 'Close menu' : 'Open menu'}
       aria-expanded={open}
@@ -15,22 +16,22 @@ export function Hamburger({ open, onClick }: HamburgerProps) {
     >
       <span
         className={cn(
-          'absolute h-0.5 w-6 bg-current transition-all duration-200',
-          open ? 'rotate-45' : '-translate-y-2'
+          'absolute h-0.5 w-6 rounded-full bg-current transition-transform duration-200 ease-in-out',
+          open ? 'rotate-45' : '-translate-y-2',
         )}
       />
 
       <span
         className={cn(
-          'absolute h-0.5 w-6 bg-current transition-all duration-200',
-          open ? 'opacity-0' : 'opacity-100'
+          'absolute h-0.5 w-6 rounded-full bg-current transition-opacity duration-150 ease-in-out',
+          open ? 'opacity-0' : 'opacity-100',
         )}
       />
 
       <span
         className={cn(
-          'absolute h-0.5 w-6 bg-current transition-all duration-200',
-          open ? '-rotate-45' : 'translate-y-2'
+          'absolute h-0.5 w-6 rounded-full bg-current transition-transform duration-200 ease-in-out',
+          open ? '-rotate-45' : 'translate-y-2',
         )}
       />
     </button>

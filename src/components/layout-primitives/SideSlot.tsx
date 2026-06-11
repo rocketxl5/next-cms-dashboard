@@ -1,14 +1,20 @@
 import { cn } from '@/lib/utils';
+import { responsive } from '@/lib/ui/tokens';
 
-export function SideSlot({
-  children,
-  className,
-}: {
+type SideSlotProps = {
   children: React.ReactNode;
   className?: string;
-}) {
+};
+
+export function SideSlot({ children, className }: SideSlotProps) {
   return (
-    <aside className={cn('w-64 shrink-0 border-r overflow-y-auto', className)}>
+    <aside
+      className={cn(
+        responsive.visibility.desktopUp,
+        responsive.slot.sidebar,
+        className,
+      )}
+    >
       {children}
     </aside>
   );

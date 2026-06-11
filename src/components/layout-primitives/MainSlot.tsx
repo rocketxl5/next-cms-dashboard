@@ -1,7 +1,13 @@
+import { cn } from '@/lib/utils';
+import { responsive } from '@/lib/ui/tokens';
+
 type MainSlotProps = {
   children: React.ReactNode;
+  className?: string;
 };
 
-export function MainSlot({ children }: MainSlotProps) {
-  return <main className="flex-1 overflow-y-auto p-6">{children}</main>;
+export function MainSlot({ children, className }: MainSlotProps) {
+  return (
+    <main className={cn(responsive.slot.main, className)}>{children}</main>
+  );
 }
