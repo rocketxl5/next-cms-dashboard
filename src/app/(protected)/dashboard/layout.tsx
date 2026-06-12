@@ -11,6 +11,7 @@ import {
 import { DashboardHeader, DashboardSideBar, DashboardMain } from './components';
 
 import { getSession } from '@/lib/server';
+import { allowedDashboardNav } from './components/_lib/allowedDashboardNav';
 
 import { DashboardRole } from '@/types/shared';
 
@@ -23,6 +24,10 @@ export default async function DashboardLayout({
 
   if (!session) redirect('/signin');
 
+  const role = session.user.role as DashboardRole;
+
+  const navItems = allowedDashboardNav(role);
+
   return (
     <AppShell>
       <HeaderSlot>
@@ -31,7 +36,7 @@ export default async function DashboardLayout({
 
       <ContentShell>
         <SideSlot>
-          <DashboardSideBar role={session.user.role as DashboardRole} />
+          <DashboardSideBar navItems={navItems} />
         </SideSlot>
 
         <MainSlot>

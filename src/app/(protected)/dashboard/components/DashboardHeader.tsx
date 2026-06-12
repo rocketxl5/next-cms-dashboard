@@ -8,6 +8,7 @@ import { responsive } from '@/lib/ui/tokens';
 
 export function DashboardHeader() {
   const mobileMenu = useMobileMenu();
+
   return (
     <Box justify="between" align="center" width="full" padding="md">
       <Box>
