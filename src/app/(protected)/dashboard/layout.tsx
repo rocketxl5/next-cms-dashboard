@@ -31,7 +31,7 @@ export default async function DashboardLayout({
   return (
     <AppShell>
       <HeaderSlot>
-        <DashboardHeader />
+        <DashboardHeader navItems={navItems} />
       </HeaderSlot>
 
       <ContentShell>

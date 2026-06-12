@@ -1,12 +1,19 @@
 'use client';
 
+import { useMobileMenu } from '@/components/ui/navigation/mobile/_hooks';
+
 import { Hamburger, MobileMenu } from '@/components/ui/navigation';
 import { Box, SignoutBtn, ToggleThemeBtn, ZapLogo } from '@/components/ui';
 
-import { useMobileMenu } from '@/components/ui/navigation/mobile/hooks';
 import { responsive } from '@/lib/ui/tokens';
 
-export function DashboardHeader() {
+import { NavItem } from '@/types/ui';
+
+interface DashboardSideBarProps {
+  navItems: NavItem[];
+}
+
+export function DashboardHeader({ navItems }: DashboardSideBarProps) {
   const mobileMenu = useMobileMenu();
 
   return (
@@ -15,7 +22,11 @@ export function DashboardHeader() {
         <ZapLogo size={35} />
         <div className={responsive.visibility.belowDesktop}>
           <Hamburger open={mobileMenu.open} onClick={mobileMenu.toggle} />
-          <MobileMenu open={mobileMenu.open} items={[]} />
+          <MobileMenu
+            open={mobileMenu.open}
+            closeMenu={mobileMenu.closeMenu}
+            navItems={navItems}
+          />
         </div>
       </Box>
       <Box>

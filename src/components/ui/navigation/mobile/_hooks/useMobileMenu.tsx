@@ -9,7 +9,7 @@ export function useMobileMenu() {
     setOpen((prev) => !prev);
   }, []);
 
-  const close = useCallback(() => {
+  const closeMenu = useCallback(() => {
     setOpen(false);
   }, []);
 
@@ -20,7 +20,7 @@ export function useMobileMenu() {
   return {
     open,
     toggle,
-    close,
+    closeMenu,
     openMenu,
     setOpen,
   };

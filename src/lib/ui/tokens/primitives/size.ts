@@ -28,6 +28,7 @@ export const size = {
     sm: 'h-8',
     md: 'h-9',
     lg: 'h-10',
+    'xl': 'h-12',
   },
   width: {
     auto: 'w-auto',

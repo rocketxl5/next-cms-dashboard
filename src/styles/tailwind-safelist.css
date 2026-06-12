@@ -1,5 +1,8 @@
 @layer utilities {
   /* General */
+  .bg-base {
+     background-color: hsl(var(--background));
+  }
 
   /* Surface */
   .bg-raised {
