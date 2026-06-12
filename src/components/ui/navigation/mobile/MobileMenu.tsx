@@ -14,7 +14,7 @@ export function MobileMenu({ open, closeMenu, navItems }: MobileMenuProps) {
   return (
     <ul
       className={cn(
-        'fixed left-0 top-14 flex min-h-[calc(100vh-56px)] w-full flex-col transition-transform duration-200 ease-in-out lg:hidden z-20 border-t border-subtle',
+        'fixed left-0 top-14 flex min-h-screen w-full flex-col transition-transform duration-200 ease-in-out lg:hidden z-20 bg-base border-t border-subtle',
         open ? 'translate-x-0' : '-translate-x-full',
       )}
     >
