@@ -1,6 +1,6 @@
 'use client';
 
-import { Hamburger } from '@/components/ui/navigation';
+import { Hamburger, MobileMenu } from '@/components/ui/navigation';
 import { Box, SignoutBtn, ToggleThemeBtn, ZapLogo } from '@/components/ui';
 
 import { useMobileMenu } from '@/components/ui/navigation/mobile/hooks';
@@ -14,6 +14,7 @@ export function DashboardHeader() {
         <ZapLogo size={35} />
         <div className={responsive.visibility.belowDesktop}>
           <Hamburger open={mobileMenu.open} onClick={mobileMenu.toggle} />
+          <MobileMenu open={mobileMenu.open} items={[]} />
         </div>
       </Box>
       <Box>
