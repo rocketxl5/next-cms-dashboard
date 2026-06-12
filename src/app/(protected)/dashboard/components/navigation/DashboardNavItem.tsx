@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { Link } from '@/components/ui';
 
 import { isRouteActive } from '@/lib/utils';
+import { navIconMap } from '@/lib/ui/navigation/nav-icons';
 
 import { NavItem } from '@/types/ui';
 
@@ -17,7 +18,7 @@ export function DashboardNavItem({ item }: DashboardLinkProps) {
 
   const isActive = isRouteActive(pathname, item);
 
-  const Icon = item.icon;
+  const Icon = item.icon ? navIconMap[item.icon] : null;
 
   return (
     <Link
