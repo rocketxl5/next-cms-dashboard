@@ -27,6 +27,8 @@ export const stack = {
   actions: 'flex flex-col sm:flex-row gap-2',
 
   adaptive: 'flex flex-col md:flex-row gap-4',
+
+  toolbar: 'flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between',
 } as const;
 
 export const table = {

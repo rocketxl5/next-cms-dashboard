@@ -3,7 +3,7 @@ import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { Box, Dropdown, FieldGroup, Select, SearchDate } from '@/components/ui';
 import { SlidersHorizontal } from 'lucide-react';
 
-import { parseUsersQuery } from '../_lib/parse-users-query';
+import { parseUsersQuery } from '../../_lib/parse-users-query';
 import { updateQueryParams } from '@/lib/url/update-query-params';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
 

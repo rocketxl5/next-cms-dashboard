@@ -4,20 +4,17 @@ import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
 import { Box, Button, Link } from '@/components/ui';
 import { SearchSlash, UserRoundPlus } from 'lucide-react';
+import { UsersSearch, UsersFilters } from './_components';
 
-import { BulkUserAction } from '../list/_domain';
 import { parseUsersQuery } from '../_lib/parse-users-query';
 import { updateQueryParams } from '@/lib/url/update-query-params';
 
-import { UsersSearch, UsersFilters, UsersBulkActions } from './';
 
 type UsersToolbarProps = {
-  allowedBulkActions: BulkUserAction[];
   hasSelection: boolean;
 };
 
 export function UsersToolbar({
-  allowedBulkActions,
   hasSelection,
 }: UsersToolbarProps) {
   const router = useRouter();
@@ -72,47 +69,52 @@ export function UsersToolbar({
   };
 
   return (
-    <Box width="full" justify="between" gap="lg">
-      <UsersBulkActions
-        allowedBulkActions={allowedBulkActions}
-        hasSelection={hasSelection}
-      />
-      <Box gap="lg">
-        <UsersFilters
-          filters={filters}
-          onUpdate={update}
-          activeCount={activeCount}
-          isActive={isActive}
-          disabled={hasSelection}
-        />
+    <Box width="full" justify="between" align="center">
+      {/* center */}
+      <Box justify="center" align="center" gap="md" className="flex-1">
         <UsersSearch
           filters={{ search, type }}
           onSearchChange={(value: string) =>
             update({ search: value || undefined })
           }
         />
-        <Button
+       
+      </Box>
+
+      {/* right */}
+      <Box>
+        <UsersFilters
+          filters={filters}
+          onUpdate={update}
+          activeCount={activeCount}
+          isActive={isActive}
+          disabled={hasSelection}
+          aria-label="Search filters"
+        />
+         <Button
           height="sm"
           textSize="sm"
           width="auto"
           variant="contrast"
           onClick={handleReset}
           disabled={!isActive}
+          aria-label="Clear search and filters"
         >
           <SearchSlash size={20} />
         </Button>
+        <Link
+          className="h-10"
+          width="square"
+          padding="none"
+          radius="full"
+          variant="success"
+          href="/dashboard/users/create"
+          title="Create User"
+          aria-label="Create User"
+        >
+          <UserRoundPlus size={22} />
+        </Link>
       </Box>
-      <Link
-        className="h-10"
-        width="square"
-        padding="none"
-        radius="full"
-        variant="success"
-        href="/dashboard/users/create"
-        title="Create User"
-      >
-        <UserRoundPlus size={22} />
-      </Link>
     </Box>
   );
 }

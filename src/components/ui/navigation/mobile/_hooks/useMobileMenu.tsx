@@ -5,7 +5,7 @@ import { useState, useCallback } from 'react';
 export function useMobileMenu() {
   const [open, setOpen] = useState(false);
 
-  const toggle = useCallback(() => {
+  const toggleMenu = useCallback(() => {
     setOpen((prev) => !prev);
   }, []);
 
@@ -19,7 +19,7 @@ export function useMobileMenu() {
 
   return {
     open,
-    toggle,
+    toggleMenu,
     closeMenu,
     openMenu,
     setOpen,
