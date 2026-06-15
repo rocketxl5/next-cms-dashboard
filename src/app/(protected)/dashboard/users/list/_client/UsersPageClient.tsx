@@ -1,7 +1,7 @@
 'use client';
 
 import { Box } from '@/components/ui';
-import { UsersToolbar } from '../../_components';
+import { UsersToolbar, UsersBulkActions } from '../../toolbar/_components';
 import { UsersTable } from './UsersTable';
 
 import { useUserSelection } from '@/providers';
@@ -33,10 +33,14 @@ export function UsersPageClient({
 
   return (
     <Box direction="col" gap="lg" width="full">
-      <UsersToolbar
-        allowedBulkActions={allowedBulkActions}
-        hasSelection={hasSelection}
-      />
+      <UsersToolbar hasSelection={hasSelection} />
+
+      {hasSelection && (
+        <UsersBulkActions
+          allowedBulkActions={allowedBulkActions}
+          hasSelection={hasSelection}
+        />
+      )}
 
       <UsersTable
         users={users}

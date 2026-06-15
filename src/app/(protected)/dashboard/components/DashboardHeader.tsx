@@ -9,25 +9,28 @@ import { responsive } from '@/lib/ui/tokens';
 
 import { NavItem } from '@/types/ui';
 
-interface DashboardSideBarProps {
+interface DashboardHeaderProps {
   navItems: NavItem[];
 }
 
-export function DashboardHeader({ navItems }: DashboardSideBarProps) {
+export function DashboardHeader({ navItems }: DashboardHeaderProps) {
   const mobileMenu = useMobileMenu();
 
   return (
     <Box justify="between" align="center" width="full" padding="md">
-      <Box>
-        <ZapLogo size={35} />
-        <div className={responsive.visibility.belowDesktop}>
-          <Hamburger open={mobileMenu.open} onClick={mobileMenu.toggle} />
+      <Box align="center" gap="md">
+        <nav
+          className={responsive.visibility.belowDesktop}
+          aria-label="Mobile navigation"
+        >
+          <Hamburger open={mobileMenu.open} onClick={mobileMenu.toggleMenu} />
           <MobileMenu
             open={mobileMenu.open}
             closeMenu={mobileMenu.closeMenu}
             navItems={navItems}
           />
-        </div>
+        </nav>
+        <ZapLogo size={35} />
       </Box>
       <Box>
         <ToggleThemeBtn />
