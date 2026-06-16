@@ -1,7 +1,8 @@
 'use client';
 
 import { Box } from '@/components/ui';
-import { UsersToolbar, UsersBulkActions } from '../../toolbar/_components';
+import { UsersToolbar } from '../_toolbar';
+import { UsersBulkActions } from '../_selection/UsersBulkActions';
 import { UsersTable } from './UsersTable';
 
 import { useUserSelection } from '@/providers';

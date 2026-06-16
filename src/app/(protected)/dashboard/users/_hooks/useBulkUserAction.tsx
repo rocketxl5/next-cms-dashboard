@@ -1,6 +1,6 @@
 'use client';
 
-import { useAsyncAction } from '@/hooks/useAsyncAction';
+import { useAsyncAction } from '@/hooks';
 import { useUserSelection } from '@/providers';
 
 import { handleBulkUsersAction } from '@/lib/domain/users';

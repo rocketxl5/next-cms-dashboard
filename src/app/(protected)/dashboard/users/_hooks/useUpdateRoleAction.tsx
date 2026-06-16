@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import { useAsyncAction } from '@/hooks/useAsyncAction';
+import { useAsyncAction } from '@/hooks';
 
 import { USER_ACTION_TOASTS } from '@/lib/ui/toast';
 import { updateUserRoleAction } from '@/lib/domain/users';

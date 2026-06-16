@@ -18,7 +18,6 @@ export function Trigger({ children, onClick, ...props }: TriggerProps) {
   return (
     <Button
       ref={triggerRef as React.Ref<HTMLButtonElement>}
-      variant="muted"
       data-state={open ? 'open' : 'closed'}
       onClick={handleClick}
       {...props}

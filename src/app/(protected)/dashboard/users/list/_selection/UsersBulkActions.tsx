@@ -3,8 +3,8 @@
 import { Box, Dropdown } from '@/components/ui';
 import { Layers } from 'lucide-react';
 
-import { BulkUserAction } from '../../list/_domain';
-import { useConfirmBulkUserAction } from '../../_hooks';
+import { BulkUserAction } from '../_domain';
+import { useConfirmBulkUserAction } from '../../_hooks'
 
 type UsersActionProps = {
   allowedBulkActions: BulkUserAction[];

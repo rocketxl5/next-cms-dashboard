@@ -12,6 +12,7 @@ export const buttonVariants = cva(buttonTokens.base, {
     radius: buttonTokens.radius,
     textSize: buttonTokens.textSize,
     textWeight: buttonTokens.textWeight,
+    state: buttonTokens.state,
   },
 
   defaultVariants: {
