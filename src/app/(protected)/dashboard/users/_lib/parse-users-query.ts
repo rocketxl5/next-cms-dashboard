@@ -3,7 +3,9 @@ import {
   USER_SEARCH_FIELDS,
   ParsedSearchUsersParams,
 } from '@/types/shared/search';
+
 import { PaginationQuery } from '@/types/shared/pagination';
+
 import { AppRole, APP_ROLES, UserStatus, USER_STATUS } from '@/types/enums';
 
 export type UsersQuery = {
@@ -12,35 +14,32 @@ export type UsersQuery = {
 };
 
 export function parseUsersQuery(params: URLSearchParams): UsersQuery {
-  const get = (key: string): string | undefined => {
-    if (!params) return;
+  const get = (key: string): string | undefined => params.get(key) ?? undefined;
 
-    if (params instanceof URLSearchParams) {
-      return params.get(key) ?? undefined;
-    }
+  const pageValue = Number(get('page'));
+  const limitValue = Number(get('limit'));
 
-    const value = params[key];
-    if (typeof value === 'string') return value;
-    if (Array.isArray(value)) return value[0];
-    return undefined;
-  };
+  const page = Number.isFinite(pageValue) && pageValue > 0 ? pageValue : 1;
 
-  // pagination
-  const page = Math.max(1, Number(get('page') ?? 1));
-  const limit = Math.max(1, Number(get('limit') ?? 25));
+  const limit = Number.isFinite(limitValue) && limitValue > 0 ? limitValue : 25;
 
-  // filters
-  const search = get('search') ?? undefined;
-  const type = get('type') ?? undefined;
-  const role = get('role') ?? undefined;
-  const status = get('status') ?? undefined;
-  const createdFrom = get('createdFrom') ?? undefined;
-  const createdTo = get('createdTo') ?? undefined;
-  const updatedFrom = get('updatedFrom') ?? undefined;
-  const updatedTo = get('updatedTo') ?? undefined;
+  const search = get('search');
+  const type = get('type');
+
+  const role = get('role');
+  const status = get('status');
+
+  const createdFrom = get('createdFrom');
+  const createdTo = get('createdTo');
+
+  const updatedFrom = get('updatedFrom');
+  const updatedTo = get('updatedTo');
 
   return {
-    query: { page, limit },
+    query: {
+      page,
+      limit,
+    },
 
     filters: {
       search: search ?? '',
@@ -60,11 +59,11 @@ export function parseUsersQuery(params: URLSearchParams): UsersQuery {
           ? (status as UserStatus)
           : undefined,
 
-      createdFrom: createdFrom,
-      createdTo: createdTo,
+      createdFrom,
+      createdTo,
 
-      updatedFrom: updatedFrom,
-      updatedTo: updatedTo,
+      updatedFrom,
+      updatedTo,
     },
   };
 }

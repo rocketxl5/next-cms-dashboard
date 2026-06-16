@@ -2,24 +2,17 @@
 
 import debounce from 'debounce';
 import { useState, useEffect, useMemo } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
 
 import { Box, Input, Select } from '@/components/ui';
 
 import { cn } from '@/lib/utils';
-import { updateQueryParams } from '@/lib/url/update-query-params';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
+import { useUsersFilters } from '../../_hooks/useUsersFilters';
 
 import { UserSearchField, USER_SEARCH_FIELDS } from '@/types/shared/search';
 
-type UsersSearchProps = {
-  filters: Record<string, string | undefined>;
-  onSearchChange: (value: string) => void;
-};
-
-export function UsersSearch({ filters, onSearchChange }: UsersSearchProps) {
-  const searchParams = useSearchParams();
-  const router = useRouter();
+export function UsersSearch() {
+  const { filters, setSearch, setSearchType } = useUsersFilters();
 
   const { search, type } = filters;
 
@@ -32,33 +25,21 @@ export function UsersSearch({ filters, onSearchChange }: UsersSearchProps) {
   const debouncedSearch = useMemo(
     () =>
       debounce((value: string) => {
-        const query = updateQueryParams(searchParams, {
-          search: value,
-          type,
-          page: '1',
-        });
-
-        router.replace(`?${query}`);
+        setSearch(value || undefined);
       }, 300),
-    [router, searchParams, type],
+    [setSearch],
   );
 
-  // Cleanup debounce on unmount
   useEffect(() => {
     return () => {
       debouncedSearch.clear();
     };
   }, [debouncedSearch]);
 
-  const handleTypeChange = (value: UserSearchField) => {
-    const query = updateQueryParams(searchParams, {
-      type: value,
-      page: '1',
-    });
-
-    router.replace(`?${query}`);
+  const handleSearchChange = (value: string) => {
+    setSearchInput(value);
+    debouncedSearch(value);
   };
-
   return (
     <Box gap="lg">
       <Box
@@ -80,7 +61,7 @@ export function UsersSearch({ filters, onSearchChange }: UsersSearchProps) {
           )}
           value={searchInput}
           placeholder={`Search by ${normalizeDisplayString(type)}`}
-          onChange={(e) => onSearchChange(e.target.value)}
+          onChange={(e) => handleSearchChange(e.target.value)}
         />
 
         <Select
@@ -92,7 +73,7 @@ export function UsersSearch({ filters, onSearchChange }: UsersSearchProps) {
           border="none"
           focus={false}
           value={type}
-          onChange={(e) => handleTypeChange(e.target.value as UserSearchField)}
+          onChange={(e) => setSearchType(e.target.value as UserSearchField)}
         >
           {USER_SEARCH_FIELDS.map((field) => (
             <option key={field} value={field}>
