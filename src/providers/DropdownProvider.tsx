@@ -1,7 +1,8 @@
 'use client';
 
-import { DropdownContext } from './contexts/DropdownContext';
 import { ReactNode, useEffect, useRef, useState } from 'react';
+
+import { DropdownContext } from './contexts/DropdownContext';
 
 export type DropdownProviderProps = {
   children: ReactNode;
@@ -14,12 +15,23 @@ export function DropdownProvider({ children }: DropdownProviderProps) {
 
   const toggle = () => setOpen((o) => !o);
 
+  useEffect(() => {
+    if (open) return;
+
+    requestAnimationFrame(() => {
+      triggerRef.current?.blur();
+    });
+  }, [open]);
+
   // close on outside click
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       const target = e.target as Node;
 
-      if (!triggerRef.current?.contains(target) && !contentRef.current?.contains(target)) {
+      if (
+        !triggerRef.current?.contains(target) &&
+        !contentRef.current?.contains(target)
+      ) {
         setOpen(false);
       }
     }
@@ -34,7 +46,9 @@ export function DropdownProvider({ children }: DropdownProviderProps) {
   }, [open]);
 
   return (
-    <DropdownContext.Provider value={{ open, setOpen, toggle, triggerRef, contentRef }}>
+    <DropdownContext.Provider
+      value={{ open, setOpen, toggle, triggerRef, contentRef }}
+    >
       {children}
     </DropdownContext.Provider>
   );

@@ -13,7 +13,7 @@ export type DateInputProps = {
   value?: string;
   disabled?: DayPickerDisabled;
   onSelect: (key: DateKey, value: string) => void;
-  isOpen: boolean;
+  open: boolean;
   onToggle: () => void;
   ref: (node: HTMLElement | null) => void;
 };

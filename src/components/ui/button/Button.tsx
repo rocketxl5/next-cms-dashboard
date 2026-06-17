@@ -1,8 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import { buttonVariants, type ButtonVariants } from '@/lib/ui/variants';
+
 import { cn } from '@/lib/utils/cn';
+import { buttonVariants, type ButtonVariants } from '@/lib/ui/variants';
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>, ButtonVariants {}
@@ -16,6 +17,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       width,
       paddingX,
       textSize,
+      textWeight,
       radius,
       ...rest
     } = props;
@@ -32,6 +34,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             width,
             paddingX,
             textSize,
+            textWeight,
             radius,
           }),
           className,

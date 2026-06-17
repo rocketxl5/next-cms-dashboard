@@ -1,6 +1,7 @@
 import { color, size } from '../primitives';
 import {
   borderAdapters,
+  controlAdapters,
   radiusAdapters,
   sizeAdapters,
   textAdapters,
@@ -71,11 +72,11 @@ export const buttonTokens = {
       ${borderAdapters.color.subtle}
       ${borderAdapters.width.hairline}
     `,
-  },
 
-  state: {
-    open: 'data-[state=open]:opacity-100 data-[state=open]:ring-1 data-[state=open]:ring-[hsl(var(--border-strong))]',
-    closed: '', // optional, often not needed
+    control: `
+      ${controlAdapters.base}
+      ${controlAdapters.state.open}
+    `,
   },
 
   layout: {

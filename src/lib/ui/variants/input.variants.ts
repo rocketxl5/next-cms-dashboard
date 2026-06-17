@@ -1,20 +1,20 @@
-import { inputTokens, focusTokens } from '../tokens/components';
-
+import { inputTokens } from '../tokens/components';
+import { focusAdapters } from '../tokens';
 import { cn } from '@/lib/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 export const inputVariants = cva(inputTokens.base, {
   variants: {
     variant: {
-      default: cn(inputTokens.variant.default, focusTokens.variant.default),
+      default: cn(inputTokens.variant.default, focusAdapters.default),
 
-      subtle: cn(inputTokens.variant.subtle, focusTokens.variant.default),
+      subtle: cn(inputTokens.variant.subtle, focusAdapters.default),
 
-      ghost: cn(inputTokens.variant.ghost, focusTokens.variant.default),
+      ghost: cn(inputTokens.variant.ghost, focusAdapters.default),
 
-      error: cn(inputTokens.variant.error, focusTokens.variant.error),
+      error: cn(inputTokens.variant.error, focusAdapters.destructive),
 
-      success: cn(inputTokens.variant.success, focusTokens.variant.success),
+      success: cn(inputTokens.variant.success, focusAdapters.success),
     },
 
     layout: inputTokens.layout,

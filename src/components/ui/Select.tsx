@@ -28,7 +28,6 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       children,
       radius,
       variant,
-      focus,
       ...props
     },
     ref,
@@ -46,7 +45,6 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
               layout,
               radius,
               variant,
-              focus,
             }),
             className,
           )}
