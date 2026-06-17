@@ -85,7 +85,6 @@ export const buildUsersColumns = (): TableColumn<
         <Box layout="center">
           <Select
             height="sm"
-            focus={false}
             value={user.role}
             onChange={(e) =>
               ctx.handleUserRoleUpdate(user.id, e.target.value as AppRole)
