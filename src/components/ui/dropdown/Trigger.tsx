@@ -1,25 +1,32 @@
+'use client';
+
 import { Button } from '../button';
 
 import { useDropdown } from '@/providers/hooks';
-import { composeEventHandlers } from '@/lib/utils';
 
 import { ButtonVariants } from '@/lib/ui/variants';
 
 type TriggerProps = {
   children: React.ReactNode;
+  className?: string;
+  disabled?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement> &
   ButtonVariants;
 
-export function Trigger({ children, onClick, ...props }: TriggerProps) {
+export function Trigger({ children, disabled, ...props }: TriggerProps) {
   const { open, toggle, triggerRef } = useDropdown();
 
-  const handleClick = composeEventHandlers(onClick, () => toggle());
+  console.log('open', open);
 
   return (
     <Button
       ref={triggerRef as React.Ref<HTMLButtonElement>}
+      variant="control"
+      textWeight="normal"
+      height="md"
+      disabled={disabled}
+      onClick={toggle}
       data-state={open ? 'open' : 'closed'}
-      onClick={handleClick}
       {...props}
     >
       {children}

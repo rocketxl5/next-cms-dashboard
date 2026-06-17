@@ -7,17 +7,14 @@ type UsersFiltersProps = {
 };
 
 export function UsersDateFilter({ disabled }: UsersFiltersProps) {
-  //   const { createdFrom, createdTo, updatedFrom, updatedTo } = filters;
- const { filters, updateDateFilter } = useUsersFilters();
+  const { filters, updateDateFilter } = useUsersFilters();
 
   const today = new Date();
 
   return (
     <Dropdown.Root>
       <Box position="relative">
-        <Dropdown.Trigger variant="muted" height="md" disabled={disabled}>
-          Date
-        </Dropdown.Trigger>
+        <Dropdown.Trigger disabled={disabled}>Date</Dropdown.Trigger>
         <Dropdown.Content align="start" className="p-3">
           <Box>
             <FieldGroup

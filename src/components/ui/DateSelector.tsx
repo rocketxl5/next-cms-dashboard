@@ -5,6 +5,7 @@ import { Calendar } from 'lucide-react';
 import { DayPicker, getDefaultClassNames } from 'react-day-picker';
 
 import { cn } from '@/lib/utils';
+import { controlAdapters } from '@/lib/ui/tokens';
 import { dateToInputString, inputToDate, isoToInput } from '@/lib/date';
 
 import { DateInputProps } from '@/types/shared';
@@ -15,7 +16,7 @@ export function DateSelector({
   value,
   disabled,
   onSelect,
-  isOpen,
+  open,
   onToggle,
   ref,
 }: DateInputProps) {
@@ -36,25 +37,9 @@ export function DateSelector({
   };
 
   return (
-    <div className="" ref={ref}>
+    <div ref={ref}>
       <div
-        className={cn(
-          'relative',
-          'h-full',
-          'flex',
-          'items-center',
-          'h-8',
-          'cursor-pointer',
-          'rounded-md',
-          'border border-base',
-          isOpen && [
-            'border-[hsl(var(--border-focus))]',
-            'ring-1',
-            'ring-[hsl(var(--border-focus))]',
-            'ring-inset',
-          ],
-        )}
-        // className="relative my-auto cursor-pointer py-1 pl-2 border rounded-md border-[hsl(var(--border))]"
+        className={cn(controlAdapters.base, open && controlAdapters.open)}
         onClick={onToggle}
       >
         <div
@@ -83,7 +68,7 @@ export function DateSelector({
       </div>
 
       {/* Calendar popover */}
-      {isOpen && (
+      {open && (
         <div className="absolute z-50 mt-4">
           <DayPicker
             mode="single"

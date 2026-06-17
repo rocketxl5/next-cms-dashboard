@@ -1,13 +1,13 @@
 import { size } from '../primitives';
 import { borderAdapters } from '../adapters';
 import { sizeAdapters } from '@/lib/ui/tokens/adapters/layout';
-import { focusTokens } from './focus.tokens';
+import { focusAdapters } from '../adapters';
 
 export const inputTokens = {
   base: `
     rounded-md
     text-foreground
-    ${focusTokens.base}
+    ${focusAdapters.base}
     disabled:opacity-50
     disabled:cursor-not-allowed
   `,

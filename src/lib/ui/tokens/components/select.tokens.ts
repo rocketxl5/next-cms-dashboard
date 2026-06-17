@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import { color, size } from '../primitives';
 import { borderAdapters, radiusAdapters, selectAdapters } from '../adapters';
 import { sizeAdapters } from '@/lib/ui/tokens/adapters/layout';
-import { focusTokens } from './focus.tokens';
+import { focusAdapters } from '../adapters';
 
 export const selectTokens = {
   base: `
@@ -12,16 +12,16 @@ export const selectTokens = {
     text-foreground
     border
     bg-[hsl(var(--background))]
-    ${focusTokens.base}
+    ${focusAdapters.base}
     disabled:opacity-50
     disabled:pointer-events-none
   `,
 
   variant: {
-    default: '',
-    subtle: `${color.muted.background}`,
-    error: `${color.destructive.background} focus:ring-[hsl(var(--destructive))]`,
-    success: `${color.success.background} focus:ring-[hsl(var(--success))]`,
+    default: focusAdapters.default,
+    subtle: `${color.muted.background} ${focusAdapters.default}`,
+    error: `${color.destructive.background} ${focusAdapters.destructive}`,
+    success: `${color.success.background} ${focusAdapters.success}`,
   },
 
   height: size.height,
@@ -38,13 +38,7 @@ export const selectTokens = {
 
   border: {
     none: '',
-    default: cn(
-      borderAdapters.width.hairline,
-      borderAdapters.color.default,
-      'focus:border-[hsl(var(--border-focus))]',
-      'focus:ring-1',
-      'focus:ring-[hsl(var(--border-focus))]',
-    ),
+    default: cn(borderAdapters.width.hairline, borderAdapters.color.default),
     subtle: `${borderAdapters.width.hairline} ${borderAdapters.color.muted}`,
     strong: `${borderAdapters.width.hairline} ${borderAdapters.color.strong}`,
   },
@@ -63,10 +57,5 @@ export const selectTokens = {
     lg: radiusAdapters.lg,
     full: radiusAdapters.full,
     none: radiusAdapters.none,
-  },
-
-  focus: {
-    true: 'focus:ring-1 focus:ring-ring',
-    false: '',
   },
 } as const;

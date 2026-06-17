@@ -1,7 +1,6 @@
 export * from './box.tokens';
 export * from './button.tokens';
 export * from './cell.tokens';
-export * from './focus.tokens';
 export * from './icon.tokens';
 export * from './label.tokens';
 export * from './input.tokens';

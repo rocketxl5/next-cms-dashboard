@@ -11,57 +11,67 @@ export function useSharedToggle<T extends string>(
 ) {
   const [activeId, setActiveId] = useState<T | null>(options?.initial ?? null);
 
-  // store refs for each id
   const refs = useRef<Record<string, HTMLElement | null>>({});
 
-  const open = (id: T) => setActiveId(id);
+  const openId = (id: T) => setActiveId(id);
+  const closeId = () => setActiveId(null);
 
-  const close = () => setActiveId(null);
-
-  const toggle = (id: T) => {
-    setActiveId((prev) => prev === id ? null : id);
-  }
+  const toggle = (id: T) => setActiveId((prev) => (prev === id ? null : id));
 
   const isOpen = (id: T) => activeId === id;
 
-  const register = (id: T) => ({
-    isOpen: isOpen(id),
-    onToggle: () => toggle(id),
-    onOpen:() => open(id),
-    onClose: close,
-    ref: (node: HTMLElement | null) => {
-        refs.current[id] = node;
-    }
-  });
+  const register = (id: T) => {
+    const open = isOpen(id);
 
-  // click outside handler
+    return {
+      open,
+      onToggle: () => toggle(id),
+      onOpen: () => openId(id),
+      onClose: closeId,
+      ref: (node: HTMLElement | null) => {
+        refs.current[id] = node;
+      },
+    };
+  };
+
+  // outside click
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-        if(!activeId) return;
+      if (!activeId) return;
 
-        const activeElement = refs.current[activeId];
+      const activeElement = refs.current[activeId];
 
-        if(!activeElement) return;
-        
-        // if clicked element is not child of parent element (i.e. DataSelector)
-        if(!activeElement.contains(e.target as Node)) {
-            close();
-        }
+      if (!activeElement) return;
+
+      if (!activeElement.contains(e.target as Node)) {
+        closeId();
+      }
     }
 
     document.addEventListener('mousedown', handleClickOutside);
-    
+
     return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-    }
-  }, [activeId])
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [activeId]);
+
+  // focus cleanup (single source of truth)
+  useEffect(() => {
+    if (activeId !== null) return;
+
+    // blur previously active element
+    const el = Object.values(refs.current).find(Boolean);
+
+    if (!el) return;
+
+    requestAnimationFrame(() => {
+      el.blur?.();
+    });
+  }, [activeId]);
 
   return {
-    activeId,
-    open,
-    close,
     toggle,
     isOpen,
     register,
-  }
+  };
 }

@@ -1,7 +1,9 @@
 import { Select } from '@/components/ui';
-import { APP_ROLES, AppRole } from '@/types/enums';
-import { normalizeDisplayString } from '@/lib/utils/normalizers';
+
 import { useUsersFilters } from '../../_hooks/useUsersFilters';
+import { normalizeDisplayString } from '@/lib/utils/normalizers';
+
+import { APP_ROLES, AppRole } from '@/types/enums';
 
 export function UsersRoleFilter() {
   const { filters, setRole } = useUsersFilters();

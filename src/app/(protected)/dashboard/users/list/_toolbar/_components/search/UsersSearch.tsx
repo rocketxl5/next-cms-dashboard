@@ -71,7 +71,6 @@ export function UsersSearch() {
             'focus:ring-0 focus:outline-none pr-12',
           )}
           border="none"
-          focus={false}
           value={type}
           onChange={(e) => setSearchType(e.target.value as UserSearchField)}
         >

@@ -1,5 +1,7 @@
 export * from './border.adapters';
 export * from './color.adapters';
+export * from './control.adapters';
+export * from './focus.adapters';
 export * from './position.adapters';
 export * from './radius.adapters';
 export * from './select.adapters';
