@@ -1,4 +1,4 @@
-import { UserRow } from '../_domain';
+import { UserRow } from '../../_domain';
 import { DatabaseDashboardUser } from '@/types/db/database-dashboard-user';
 
 /**
