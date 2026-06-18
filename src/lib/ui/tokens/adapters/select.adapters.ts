@@ -1,7 +1,7 @@
 export const selectAdapters = {
   sm: {
     padding: 'pl-4 pr-6',
-    icon: 'right-2 text-xs',
+    icon: 'right-6 text-xs',
   },
   md: {
     padding: 'pl-4 pr-8',

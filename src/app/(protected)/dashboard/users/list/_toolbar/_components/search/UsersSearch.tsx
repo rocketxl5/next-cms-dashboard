@@ -6,6 +6,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Box, Input, Select } from '@/components/ui';
 
 import { cn } from '@/lib/utils';
+import { responsiveAdapters } from '@/lib/ui/tokens';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
 import { useUsersFilters } from '../../_hooks/useUsersFilters';
 
@@ -41,46 +42,44 @@ export function UsersSearch() {
     debouncedSearch(value);
   };
   return (
-    <Box gap="lg">
-      <Box
-        height="lg"
+    <Box
+      height="lg"
+      className={cn(
+        'flex items-stretch rounded-md',
+        'border border-base',
+        'focus-within:border-[hsl(var(--border-focus))]',
+        'focus-within:ring-1 focus-within:ring-[hsl(var(--border-focus))]',
+        'focus-within:ring-inset',
+        responsiveAdapters.toolbar.search,
+      )}
+    >
+      <Input
+        height="auto"
         className={cn(
-          'flex items-stretch rounded-md',
-          'border border-base',
-          'focus-within:border-[hsl(var(--border-focus))]',
-          'focus-within:ring-1 focus-within:ring-[hsl(var(--border-focus))]',
-          'focus-within:ring-inset',
+          'w-4/5 rounded-r-none border-0',
+          'focus:ring-0 focus:outline-none',
         )}
-      >
-        <Input
-          height="auto"
-          className={cn(
-            'w-sm',
-            'rounded-r-none border-0',
-            'focus:ring-0 focus:outline-none',
-          )}
-          value={searchInput}
-          placeholder={`Search by ${normalizeDisplayString(type)}`}
-          onChange={(e) => handleSearchChange(e.target.value)}
-        />
+        value={searchInput}
+        placeholder={`Search by ${normalizeDisplayString(type)}`}
+        onChange={(e) => handleSearchChange(e.target.value)}
+      />
 
-        <Select
-          className={cn(
-            'h-full appearance-none border-0',
-            'rounded-l-none bg-transparent!',
-            'focus:ring-0 focus:outline-none pr-12',
-          )}
-          border="none"
-          value={type}
-          onChange={(e) => setSearchType(e.target.value as UserSearchField)}
-        >
-          {USER_SEARCH_FIELDS.map((field) => (
-            <option key={field} value={field}>
-              {normalizeDisplayString(field)}
-            </option>
-          ))}
-        </Select>
-      </Box>
+      <Select
+        className={cn(
+          'h-full appearance-none border-0',
+          'rounded-l-none bg-transparent!',
+          'focus:ring-0 focus:outline-none pr-12',
+        )}
+        border="none"
+        value={type}
+        onChange={(e) => setSearchType(e.target.value as UserSearchField)}
+      >
+        {USER_SEARCH_FIELDS.map((field) => (
+          <option key={field} value={field}>
+            {normalizeDisplayString(field)}
+          </option>
+        ))}
+      </Select>
     </Box>
   );
 }

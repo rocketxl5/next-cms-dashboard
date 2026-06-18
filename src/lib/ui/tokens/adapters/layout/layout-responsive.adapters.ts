@@ -64,3 +64,8 @@ export const tableVisibility = {
   tabletUp: 'hidden md:table-cell',
   desktopOnly: 'hidden lg:table-cell',
 } as const;
+
+export const toolbar = {
+  search: 'w-full lg:w-150',
+  control: 'w-full lg:w-32',
+} as const;

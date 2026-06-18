@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { responsive } from '@/lib/ui/tokens';
+import { responsiveAdapters } from '@/lib/ui/tokens';
 
 type MainSlotProps = {
   children: React.ReactNode;
@@ -8,6 +8,8 @@ type MainSlotProps = {
 
 export function MainSlot({ children, className }: MainSlotProps) {
   return (
-    <main className={cn(responsive.slot.main, className)}>{children}</main>
+    <main className={cn(responsiveAdapters.slot.main, className)}>
+      {children}
+    </main>
   );
 }

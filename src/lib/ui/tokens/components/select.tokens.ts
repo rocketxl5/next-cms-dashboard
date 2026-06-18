@@ -1,8 +1,12 @@
 import { cn } from '@/lib/utils';
 import { color, size } from '../primitives';
-import { borderAdapters, radiusAdapters, selectAdapters } from '../adapters';
-import { sizeAdapters } from '@/lib/ui/tokens/adapters/layout';
-import { focusAdapters } from '../adapters';
+import {
+  borderAdapters,
+  focusAdapters,
+  radiusAdapters,
+  selectAdapters,
+  sizeAdapters,
+} from '../adapters';
 
 export const selectTokens = {
   base: `
@@ -25,6 +29,7 @@ export const selectTokens = {
   },
 
   height: size.height,
+  width: sizeAdapters.width,
 
   padding: {
     sm: selectAdapters.sm.padding,
@@ -41,14 +46,6 @@ export const selectTokens = {
     default: cn(borderAdapters.width.hairline, borderAdapters.color.default),
     subtle: `${borderAdapters.width.hairline} ${borderAdapters.color.muted}`,
     strong: `${borderAdapters.width.hairline} ${borderAdapters.color.strong}`,
-  },
-
-  layout: {
-    block: sizeAdapters.width.full,
-    inline: sizeAdapters.width.auto,
-    fit: sizeAdapters.width.fit,
-    grow: sizeAdapters.width.grow,
-    fixed: '',
   },
 
   radius: {

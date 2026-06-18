@@ -1,13 +1,15 @@
 'use client';
 
-import { Box, Button, Link } from '@/components/ui';
-import { SearchSlash, UserRoundPlus } from 'lucide-react';
+import { Box, Link } from '@/components/ui';
+import { UserRoundPlus } from 'lucide-react';
 import {
+  ClearSearch,
+  CreateUser,
   UsersSearch,
   UsersDateFilter,
   UsersRoleFilter,
   UsersStatusFilter,
-} from '.';
+} from '../_toolbar/_components';
 
 import { useUsersFilters } from './_hooks/useUsersFilters';
 
@@ -20,42 +22,20 @@ export function UsersToolbar({ hasSelection }: UsersToolbarProps) {
 
   return (
     <Box width="full" justify="between" align="center">
+      {/* <Box justify="center" align="center" gap="md" className="flex-1"> */}
+      <UsersSearch />
+      {/* </Box> */}
 
-      <Box justify="center" align="center" gap="md" className="flex-1">
-        <UsersSearch />
-      </Box>
-      
       <Box align="center" gap="sm">
-        <UsersRoleFilter />
+        <UsersRoleFilter disabled={hasSelection} />
 
-        <UsersStatusFilter />
+        <UsersStatusFilter disabled={hasSelection} />
 
         <UsersDateFilter disabled={hasSelection} />
 
-        <Button
-          height="sm"
-          textSize="sm"
-          width="auto"
-          variant="contrast"
-          onClick={clear}
-          disabled={!isActive}
-          aria-label="Clear search and filters"
-        >
-          <SearchSlash size={20} />
-        </Button>
+        <ClearSearch isActive={isActive} onClick={clear} />
 
-        <Link
-          className="h-10"
-          width="square"
-          padding="none"
-          radius="full"
-          variant="success"
-          href="/dashboard/users/create"
-          title="Create User"
-          aria-label="Create User"
-        >
-          <UserRoundPlus size={22} />
-        </Link>
+        <CreateUser />
       </Box>
     </Box>
   );

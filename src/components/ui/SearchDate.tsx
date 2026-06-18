@@ -17,7 +17,7 @@ export function SearchDate({ from, to, onSelect, maxDate }: SearchDateProps) {
 
   return (
     <Box width="fit" gap="lg">
-      <Box gap="md">
+      <Box direction="col" gap="md">
         <DateSelector
           placeholder="From"
           dateKey={from.dateKey}
