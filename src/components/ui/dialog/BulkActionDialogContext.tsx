@@ -1,7 +1,7 @@
 import { DialogContextField } from "./field/DialogContextField";
 import { DialogContextTemplate } from "./template/DialogContextTemplate";
 
-// import { UserRow } from "@/app/(protected)/dashboard/users/list/_domain";
+// import { UserRow } from "@/app/(protected)/dashboard/users/_domain";
 
 // type UserDialogContextProps = {
 //     user: UserRow;
