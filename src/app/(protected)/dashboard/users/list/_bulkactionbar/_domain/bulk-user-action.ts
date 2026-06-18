@@ -10,3 +10,9 @@ export const BULK_USER_ACTIONS: BulkUserAction[] = [
   { key: 'suspend', label: 'Suspend' },
   { key: 'delete', label: 'Delete' },
 ];
+
+export type UsersBulkActionContext = {
+  allowedBulkActions: BulkUserAction[];
+  hasSelection: boolean;
+  selectedCount: number;
+};

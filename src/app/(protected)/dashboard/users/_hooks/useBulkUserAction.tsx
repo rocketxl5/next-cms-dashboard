@@ -3,7 +3,7 @@
 import { useAsyncAction } from '@/hooks';
 import { useUserSelection } from '@/providers';
 
-import { handleBulkUsersAction } from '@/lib/domain/users';
+import { handleBulkUsersAction } from '@/app/(protected)/dashboard/users/list/_bulkactionbar/_domain';
 import { USER_ACTION_TOASTS } from '@/lib/ui/toast';
 
 import { BulkUserActionKey } from '../list/_domain';

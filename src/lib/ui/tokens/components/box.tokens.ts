@@ -2,7 +2,6 @@ import {
   borderAdapters,
   positionAdapters,
   radiusAdapters,
-  responsiveAdapters,
   sizeAdapters,
   flex,
 } from '../adapters';
@@ -105,7 +104,7 @@ export const boxTokens = {
   padding: size.padding,
   paddingY: size.paddingY,
   height: size.height,
-  width: { ...size.width, ...responsiveAdapters.toolbar },
+  width: size.width,
   interactive: size.interactive,
   radius: radiusAdapters,
   position: positionAdapters,

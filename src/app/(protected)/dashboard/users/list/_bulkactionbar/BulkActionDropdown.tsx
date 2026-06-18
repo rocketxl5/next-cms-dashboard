@@ -3,18 +3,14 @@
 import { Box, Dropdown } from '@/components/ui';
 import { Layers } from 'lucide-react';
 
-import { BulkUserAction } from '../_domain';
 import { useConfirmBulkUserAction } from '../../_hooks'
 
-type UsersActionProps = {
-  allowedBulkActions: BulkUserAction[];
-  hasSelection: boolean;
-};
+import { UsersBulkActionContext } from './_domain/bulk-user-action';
 
-export function UsersBulkActions({
+export function BulkActionDropdown({
   allowedBulkActions,
   hasSelection,
-}: UsersActionProps) {
+}: UsersBulkActionContext) {
   const { currentAction, handleSelect, loading } = useConfirmBulkUserAction();
 
   return (

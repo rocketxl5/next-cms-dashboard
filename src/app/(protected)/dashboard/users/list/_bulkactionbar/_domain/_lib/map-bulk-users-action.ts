@@ -1,13 +1,13 @@
-import { CurrentDashboardUser } from '@/types/shared';
 import {
   BulkUserActionKey,
-  UserRow,
-} from '@/app/(protected)/dashboard/users/list/_domain';
+} from '../bulk-user-action';
+import { UserRow } from '../../../_domain';
 import {
   canUpdateUserStatus,
   canDeleteUser,
 } from '@/lib/permissions/resources/users/actions';
 
+import { CurrentDashboardUser } from '@/types/shared';
 type BulkActionPermissionResolver = (
   currentUser: CurrentDashboardUser,
   user: UserRow,

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAsyncAction } from '@/hooks';
 
 import { USER_ACTION_TOASTS } from '@/lib/ui/toast';
-import { updateUserRoleAction } from '@/lib/domain/users';
+import { updateUserRoleAction } from '../list/_bulkactionbar/_domain/_actions/single';
 
 import { AppRole } from '@/types/enums';
 
