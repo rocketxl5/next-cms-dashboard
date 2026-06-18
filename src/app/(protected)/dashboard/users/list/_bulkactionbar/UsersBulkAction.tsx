@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Button } from '@/components/ui';
+import { Box, Button, Spinner } from '@/components/ui';
 
 import { BulkActionDropdown } from './BulkActionDropdown';
 
@@ -14,28 +14,45 @@ export function UsersBulkAction({
   selectedCount,
 }: UsersBulkActionContext) {
   const { currentAction, handleSelect, loading } = useConfirmBulkUserAction();
-  {
-    /* Desktop */
-  }
-  <Box align="center" gap="sm">
-    <p>{selectedCount} selected</p>
+  console.log(currentAction);
 
-    {/* Desktop */}
-    <Box className="hidden md:flex">
-      {allowedBulkActions.map((action) => (
-        <Button key={action.key} onClick={() => handleSelect(action.key)}>
-          {action.label}
-        </Button>
-      ))}
-    </Box>
+  return (
+    <Box align="center" justify="start" gap="sm" width="full">
+      {/* Desktop */}
+      <Box className="hidden md:flex">
+        {allowedBulkActions.map((action) => (
+          <Button
+            key={action.key}
+            textWeight="normal"
+            width="control"
+            variant={
+              action.label === 'Delete'
+                ? 'destructive'
+                : action.label === 'Suspend'
+                  ? 'warning'
+                  : 'success'
+            }
+            onClick={() => handleSelect(action.key)}
+          >
+            <Box>
+              {loading && currentAction === action.label.toLocaleLowerCase() ? (
+                <Spinner size={18} />
+              ) : (
+                action.label
+              )}
+            </Box>
+          </Button>
+        ))}
+      </Box>
 
-    {/* Mobile */}
-    <Box className="lg:hidden">
-      <BulkActionDropdown
-        allowedBulkActions={allowedBulkActions}
-        hasSelection={hasSelection}
-        selectedCount={selectedCount}
-      />
+      {/* Mobile */}
+      <Box className="md:hidden">
+        <BulkActionDropdown
+          allowedBulkActions={allowedBulkActions}
+          hasSelection={hasSelection}
+          selectedCount={selectedCount}
+        />
+      </Box>
     </Box>
-  </Box>;
+  );
 }
