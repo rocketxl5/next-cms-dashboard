@@ -2,11 +2,9 @@
 
 import { useAsyncAction } from '@/hooks';
 import { useUserSelection } from '@/providers';
-
-import { handleBulkUsersAction } from '@/app/(protected)/dashboard/users/list/_bulkactionbar/_domain';
+import { BulkUserActionKey } from '../_domain';
+import { handleBulkUsersAction } from '../_lib/handle-bulk-users-action';
 import { USER_ACTION_TOASTS } from '@/lib/ui/toast';
-
-import { BulkUserActionKey } from '../list/_domain';
 
 export function useBulkUserAction() {
   const { selectedUserIds, clearSelection } = useUserSelection();

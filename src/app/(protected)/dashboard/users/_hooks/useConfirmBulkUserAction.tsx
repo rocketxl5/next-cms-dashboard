@@ -8,7 +8,7 @@ import { useDialog } from '@/providers/hooks';
 
 import { ACTION_STRATEGIES, BULK_ACTION_CONTENT } from '@/lib/actions';
 
-import { BulkUserActionKey } from '../list/_domain';
+import { BulkUserActionKey } from '../_domain';
 
 import { useBulkUserAction } from './useBulkUserAction';
 

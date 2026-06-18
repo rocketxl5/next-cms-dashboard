@@ -7,7 +7,7 @@ import { useDialog } from '@/providers/hooks';
 import { useDeleteUserAction } from './useDeleteUserAction';
 import { ACTION_STRATEGIES, ACTION_CONTENT } from '@/lib/actions';
 
-import { UserRow } from '../list/_domain';
+import { UserRow } from '../_domain';
 
 export function useConfirmDeleteUser() {
   const { openDialog } = useDialog();

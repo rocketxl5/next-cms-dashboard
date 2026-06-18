@@ -5,7 +5,7 @@ import { Layers } from 'lucide-react';
 
 import { useConfirmBulkUserAction } from '../../_hooks'
 
-import { UsersBulkActionContext } from './_domain/bulk-user-action';
+import { UsersBulkActionContext } from '../../_domain';
 
 export function BulkActionDropdown({
   allowedBulkActions,
