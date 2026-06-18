@@ -9,7 +9,7 @@ import {
   ReactNode,
 } from 'react';
 
-import { UserSelectionState } from '@/app/(protected)/dashboard/users/list/_domain';
+import { UserSelectionState } from '@/app/(protected)/dashboard/users/_domain';
 
 type UserSelectionContextValue = UserSelectionState & {
   clearSelection: () => void;
