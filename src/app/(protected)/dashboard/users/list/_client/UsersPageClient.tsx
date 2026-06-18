@@ -2,7 +2,7 @@
 
 import { Box } from '@/components/ui';
 import { UsersToolbar } from '../_toolbar';
-import { BulkActionDropdown } from '../_bulkactionbar/BulkActionDropdown';
+import { UsersBulkAction } from '../_bulkactionbar/UsersBulkAction';
 import { UsersTable } from './UsersTable';
 
 import { useUserSelection } from '@/providers';
@@ -37,7 +37,7 @@ export function UsersPageClient({
       <UsersToolbar hasSelection={hasSelection} />
 
       {hasSelection && (
-        <BulkActionDropdown
+        <UsersBulkAction
           allowedBulkActions={allowedBulkActions}
           hasSelection={hasSelection}
           selectedCount={selectedUserIds.size}
