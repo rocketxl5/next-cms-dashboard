@@ -1,7 +1,4 @@
-import {
-  BulkUserActionKey,
-} from '../bulk-user-action';
-import { UserRow } from '../../../_domain';
+import { BulkUserActionKey, UserRow } from '../_domain';
 import {
   canUpdateUserStatus,
   canDeleteUser,

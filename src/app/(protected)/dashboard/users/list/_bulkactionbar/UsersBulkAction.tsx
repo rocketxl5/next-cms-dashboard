@@ -1,10 +1,12 @@
+'use client';
+
 import { Box, Button } from '@/components/ui';
 
 import { BulkActionDropdown } from './BulkActionDropdown';
 
 import { useConfirmBulkUserAction } from '../../_hooks';
 
-import { UsersBulkActionContext } from './_domain/bulk-user-action';
+import { UsersBulkActionContext } from '../../_domain';
 
 export function UsersBulkAction({
   allowedBulkActions,

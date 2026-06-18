@@ -9,7 +9,7 @@ import { requireDashboardUser } from '@/lib/server';
 
 import { parseUsersQuery } from './_lib/parse-users-query';
 
-import { UserRow } from './list/_domain';
+import { UserRow } from './_domain';
 
 type PageProps = {
   searchParams?: Promise<Record<string, string | string[] | undefined>>;

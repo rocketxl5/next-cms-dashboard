@@ -10,7 +10,7 @@ import { tableTokens } from '@/lib/ui/tokens';
 import { cellVariants } from '@/lib/ui/variants';
 import { useConfirmDeleteUser, useUpdateRoleAction } from '../../_hooks';
 
-import { UserRow, UsersTableContext } from '../_domain';
+import { UserRow, UsersTableContext } from '../../_domain';
 import { CurrentDashboardUser, PaginationMeta } from '@/types/shared';
 
 type UsersTableProps = {

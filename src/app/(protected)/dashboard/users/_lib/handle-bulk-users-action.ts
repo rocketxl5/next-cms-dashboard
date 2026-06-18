@@ -1,5 +1,5 @@
-import { BulkUserActionKey } from '..';
-import { bulkDeleteUsers, bulkUpdateUsersStatus } from '../_actions/bulk';
+import { BulkUserActionKey } from '../_domain';
+import { bulkDeleteUsers, bulkUpdateUsersStatus } from '.';
 
 export async function handleBulkUsersAction(
   actionKey: BulkUserActionKey,

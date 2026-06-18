@@ -6,12 +6,9 @@ import { BulkActionDropdown } from '../_bulkactionbar/BulkActionDropdown';
 import { UsersTable } from './UsersTable';
 
 import { useUserSelection } from '@/providers';
-import {
-  getAllowedBulkActions,
-  getSelectedUsers,
-} from '@/app/(protected)/dashboard/users/list/_bulkactionbar/_domain';
+import { getAllowedBulkActions, getSelectedUsers } from '../../_lib';
 
-import { UserRow } from '../_domain';
+import { UserRow } from '../../_domain';
 import { CurrentDashboardUser } from '@/types/shared';
 import { PaginationMeta } from '@/types/shared/pagination';
 
