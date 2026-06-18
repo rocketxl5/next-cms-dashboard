@@ -2,11 +2,14 @@
 
 import { Box } from '@/components/ui';
 import { UsersToolbar } from '../_toolbar';
-import { UsersBulkActions } from '../_selection/UsersBulkActions';
+import { BulkActionDropdown } from '../_bulkactionbar/BulkActionDropdown';
 import { UsersTable } from './UsersTable';
 
 import { useUserSelection } from '@/providers';
-import { getAllowedBulkActions, getSelectedUsers } from '@/lib/domain/users';
+import {
+  getAllowedBulkActions,
+  getSelectedUsers,
+} from '@/app/(protected)/dashboard/users/list/_bulkactionbar/_domain';
 
 import { UserRow } from '../_domain';
 import { CurrentDashboardUser } from '@/types/shared';
@@ -37,9 +40,10 @@ export function UsersPageClient({
       <UsersToolbar hasSelection={hasSelection} />
 
       {hasSelection && (
-        <UsersBulkActions
+        <BulkActionDropdown
           allowedBulkActions={allowedBulkActions}
           hasSelection={hasSelection}
+          selectedCount={selectedUserIds.size}
         />
       )}
 

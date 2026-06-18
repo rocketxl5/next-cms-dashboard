@@ -10,10 +10,10 @@ export function UsersRoleFilter({ disabled }: UsersDashboardFilters) {
   const { filters, setRole } = useUsersFilters();
 
   return (
-    <Box width="control">
+    <Box>
       <Select
         id="role"
-        width="fit"
+        width="control"
         value={filters.role ?? ''}
         disabled={disabled}
         onChange={(e) => setRole((e.target.value as AppRole) || undefined)}

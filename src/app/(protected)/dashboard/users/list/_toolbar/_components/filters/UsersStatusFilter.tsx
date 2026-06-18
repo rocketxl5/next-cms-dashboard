@@ -10,10 +10,10 @@ export function UsersStatusFilter({ disabled }: UsersDashboardFilters) {
   const { filters, setStatus } = useUsersFilters();
 
   return (
-    <Box width="control">
+    <Box>
       <Select
         id="status"
-        width="fit"
+        width="control"
         value={filters.status ?? ''}
         disabled={disabled}
         onChange={(e) => setStatus((e.target.value as UserStatus) || undefined)}

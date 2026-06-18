@@ -1,11 +1,9 @@
 import { getUniformValue } from '@/lib/utils';
 
 import { MAP_BULK_USERS_ACTION_PERMISSION } from './map-bulk-users-action';
+import { BULK_USER_ACTIONS } from '../bulk-user-action';
 
-import {
-  BULK_USER_ACTIONS,
-  UserRow,
-} from '@/app/(protected)/dashboard/users/list/_domain';
+import { UserRow } from '../../../_domain';
 import { CurrentDashboardUser } from '@/types/shared';
 
 type SelectedUsersProps = {
