@@ -10,7 +10,6 @@ export function ClearSearch({ isActive, onClick }: ClearSearchProps) {
     <Button
       height="md"
       textWeight="normal"
-      borderColor="contrast"
       variant="muted"
       onClick={onClick}
       disabled={!isActive}
