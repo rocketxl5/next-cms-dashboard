@@ -40,7 +40,7 @@ export function Content({
         ],
 
         // base styles
-        'min-w-65 w-max p-1 rounded-md border border-base bg-[hsl(var(--background))] shadow-md',
+        'min-fit w-max p-1 rounded-md border border-base bg-[hsl(var(--background))] shadow-md',
 
         // animation
         'transition-all duration-150 ease-out origin-top',

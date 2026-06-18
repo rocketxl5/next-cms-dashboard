@@ -24,7 +24,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       padding,
       height,
       border,
-      layout,
+      width,
       children,
       radius,
       variant,
@@ -33,7 +33,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     ref,
   ) => {
     return (
-      <div className="relative">
+      <div className="relative flex-1">
         <select
           id={id}
           ref={ref}
@@ -42,7 +42,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
               padding,
               height,
               border,
-              layout,
+              width,
               radius,
               variant,
             }),

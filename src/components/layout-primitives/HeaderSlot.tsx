@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { responsive } from '@/lib/ui/tokens';
+import { responsiveAdapters } from '@/lib/ui/tokens';
 
 type HeaderSlotProps = {
   children: React.ReactNode;
@@ -8,7 +8,7 @@ type HeaderSlotProps = {
 
 export function HeaderSlot({ children, className }: HeaderSlotProps) {
   return (
-    <header className={cn(responsive.slot.header, className)}>
+    <header className={cn(responsiveAdapters.slot.header, className)}>
       {children}
     </header>
   );

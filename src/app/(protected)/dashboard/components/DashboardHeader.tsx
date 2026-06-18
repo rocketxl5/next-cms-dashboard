@@ -5,7 +5,7 @@ import { useMobileMenu } from '@/components/ui/navigation/mobile/_hooks';
 import { Hamburger, MobileMenu } from '@/components/ui/navigation';
 import { Box, SignoutBtn, ToggleThemeBtn, ZapLogo } from '@/components/ui';
 
-import { responsive } from '@/lib/ui/tokens';
+import { responsiveAdapters } from '@/lib/ui/tokens';
 
 import { NavItem } from '@/types/ui';
 
@@ -20,7 +20,7 @@ export function DashboardHeader({ navItems }: DashboardHeaderProps) {
     <Box justify="between" align="center" width="full" padding="md">
       <Box align="center" gap="md">
         <nav
-          className={responsive.visibility.belowDesktop}
+          className={responsiveAdapters.visibility.belowDesktop}
           aria-label="Mobile navigation"
         >
           <Hamburger open={mobileMenu.open} onClick={mobileMenu.toggleMenu} />

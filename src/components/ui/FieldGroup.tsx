@@ -27,9 +27,10 @@ export function FieldGroup({
   label,
   htmlFor,
 
+  align = 'start',
   inline = false,
   labelVariant = 'default',
-  spacing = 'xs',
+  spacing = 'sm',
   border = 'none',
   padding = 'none',
 
@@ -42,7 +43,7 @@ export function FieldGroup({
     <Box
       className={className}
       direction={inline ? 'row' : 'col'}
-      align="start"
+      align={align}
       padding={padding}
       gap={spacing}
       border={border}

@@ -16,14 +16,13 @@ type TriggerProps = {
 export function Trigger({ children, disabled, ...props }: TriggerProps) {
   const { open, toggle, triggerRef } = useDropdown();
 
-  console.log('open', open);
-
   return (
     <Button
       ref={triggerRef as React.Ref<HTMLButtonElement>}
       variant="control"
       textWeight="normal"
       height="md"
+      width="control"
       disabled={disabled}
       onClick={toggle}
       data-state={open ? 'open' : 'closed'}

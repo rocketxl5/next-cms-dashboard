@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { responsive } from '@/lib/ui/tokens';
+import { responsiveAdapters } from '@/lib/ui/tokens';
 
 type ContentShellProps = {
   children: React.ReactNode;
@@ -8,6 +8,8 @@ type ContentShellProps = {
 
 export function ContentShell({ children, className }: ContentShellProps) {
   return (
-    <div className={cn(responsive.shell.content, className)}>{children}</div>
+    <div className={cn(responsiveAdapters.shell.content, className)}>
+      {children}
+    </div>
   );
 }

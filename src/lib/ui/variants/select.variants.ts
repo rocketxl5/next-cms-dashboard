@@ -9,7 +9,7 @@ export const selectVariants = cva(selectTokens.base, {
     paddingX: selectTokens.paddingX,
     paddingY: selectTokens.paddingY,
     border: selectTokens.border,
-    layout: selectTokens.layout,
+    width: selectTokens.width,
     radius: selectTokens.radius,
 
     active: {
@@ -22,7 +22,7 @@ export const selectVariants = cva(selectTokens.base, {
     variant: 'default',
     height: 'md',
     padding: 'lg',
-    layout: 'block',
+    width: 'full',
     border: 'default',
     radius: 'md',
     active: false,
