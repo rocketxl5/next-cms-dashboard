@@ -21,12 +21,10 @@ export function UsersToolbar({ hasSelection }: UsersToolbarProps) {
   const { isActive, clear } = useUsersFilters();
 
   return (
-    <Box width="full" justify="between" align="center">
-      {/* <Box justify="center" align="center" gap="md" className="flex-1"> */}
+    <Box width="full" justify="between">
       <UsersSearch />
-      {/* </Box> */}
 
-      <Box align="center" gap="sm">
+      <Box align="center" gap="md">
         <UsersRoleFilter disabled={hasSelection} />
 
         <UsersStatusFilter disabled={hasSelection} />
