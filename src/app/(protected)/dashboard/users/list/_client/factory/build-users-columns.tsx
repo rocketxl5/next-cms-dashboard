@@ -15,7 +15,7 @@ import {
 
 import { TableColumn } from '@/types/ui';
 import { APP_ROLES, AppRole } from '@/types/enums';
-import { UserRow, UsersTableContext } from '../../_domain';
+import { UserRow, UsersTableContext } from '../../../_domain';
 
 export const buildUsersColumns = (): TableColumn<
   UserRow,
