@@ -2,7 +2,7 @@ import { Box, Dropdown, FieldGroup, SearchDate } from '@/components/ui';
 
 import { useUsersFilters } from '../../../_hooks/useUsersFilters';
 
-import { UsersDashboardFilters } from '../domain/users-dashboard-filters';
+import { UsersDashboardFilters } from '../../domain/users-dashboard-filters';
 
 export function CreatedAtFilter({ disabled }: UsersDashboardFilters) {
   const { filters, updateDateFilter } = useUsersFilters();

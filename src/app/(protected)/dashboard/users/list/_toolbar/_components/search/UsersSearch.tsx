@@ -2,17 +2,18 @@
 
 import debounce from 'debounce';
 import { useState, useEffect, useMemo } from 'react';
+import { useUsersFilters } from '../../_hooks/useUsersFilters';
 
 import { Box, Input, Select } from '@/components/ui';
 
 import { cn } from '@/lib/utils';
 import { responsiveAdapters } from '@/lib/ui/tokens';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
-import { useUsersFilters } from '../../_hooks/useUsersFilters';
 
+import { UsersDashboardFilters } from '../domain/users-dashboard-filters';
 import { UserSearchField, USER_SEARCH_FIELDS } from '@/types/shared/search';
 
-export function UsersSearch() {
+export function UsersSearch({ disabled }: UsersDashboardFilters) {
   const { filters, setSearch, setSearchType } = useUsersFilters();
 
   const { search, type } = filters;
@@ -59,6 +60,7 @@ export function UsersSearch() {
           'w-4/5 rounded-r-none border-0',
           'focus:ring-0 focus:outline-none',
         )}
+        disabled={disabled}
         value={searchInput}
         placeholder={`Search by ${normalizeDisplayString(type)}`}
         onChange={(e) => handleSearchChange(e.target.value)}
@@ -71,6 +73,7 @@ export function UsersSearch() {
           'focus:ring-0 focus:outline-none pr-12',
         )}
         border="none"
+        disabled={disabled}
         value={type}
         onChange={(e) => setSearchType(e.target.value as UserSearchField)}
       >
