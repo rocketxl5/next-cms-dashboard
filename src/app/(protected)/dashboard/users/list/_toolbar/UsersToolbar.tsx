@@ -22,7 +22,7 @@ export function UsersToolbar({ hasSelection }: UsersToolbarProps) {
 
   return (
     <Box width="full" justify="between">
-      <UsersSearch />
+      <UsersSearch disabled={hasSelection} />
 
       <Box align="center" gap="md">
         <UsersRoleFilter disabled={hasSelection} />

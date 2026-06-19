@@ -4,7 +4,7 @@ import { useUsersFilters } from '../../_hooks/useUsersFilters';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 import { APP_ROLES, AppRole } from '@/types/enums';
-import { UsersDashboardFilters } from './domain/users-dashboard-filters';
+import { UsersDashboardFilters } from '../domain/users-dashboard-filters';
 
 export function UsersRoleFilter({ disabled }: UsersDashboardFilters) {
   const { filters, setRole } = useUsersFilters();
