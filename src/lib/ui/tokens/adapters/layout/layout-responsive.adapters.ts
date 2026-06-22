@@ -66,6 +66,16 @@ export const tableVisibility = {
 } as const;
 
 export const toolbar = {
-  search: 'w-full lg:w-150',
+  root: 'flex w-full flex-col gap-3 lg:flex-row lg:items-center lg:justify-between',
+
+  controls: 'flex items-center gap-2',
+
+  // search:
+  //   'w-full lg:max-w-[36rem]',
+  search: 'w-full lg:max-w-150',
+
+  filter: 'w-full sm:w-40',
+
+  action: 'w-full sm:w-auto',
   control: 'w-full lg:w-32',
 } as const;

@@ -1,7 +1,7 @@
 'use client';
 
-import { Box, Link } from '@/components/ui';
-import { UserRoundPlus } from 'lucide-react';
+import { Surface } from '@/components/ui';
+
 import {
   ClearSearch,
   CreateUser,
@@ -13,6 +13,8 @@ import {
 
 import { useUsersFilters } from './_hooks/useUsersFilters';
 
+import { responsiveAdapters } from '@/lib/ui/tokens';
+
 type UsersToolbarProps = {
   hasSelection: boolean;
 };
@@ -21,10 +23,10 @@ export function UsersToolbar({ hasSelection }: UsersToolbarProps) {
   const { isActive, clear } = useUsersFilters();
 
   return (
-    <Box width="full" justify="between">
+    <Surface className={responsiveAdapters.toolbar.root}>
       <UsersSearch disabled={hasSelection} />
 
-      <Box align="center" gap="md">
+      <Surface className={responsiveAdapters.toolbar.controls}>
         <UsersRoleFilter disabled={hasSelection} />
 
         <UsersStatusFilter disabled={hasSelection} />
@@ -34,7 +36,7 @@ export function UsersToolbar({ hasSelection }: UsersToolbarProps) {
         <ClearSearch isActive={isActive} onClick={clear} />
 
         <CreateUser />
-      </Box>
-    </Box>
+      </Surface>
+    </Surface>
   );
 }

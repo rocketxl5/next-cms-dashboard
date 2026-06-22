@@ -1,3 +1,3 @@
-export type UsersDashboardFilters = {
+export type UsersToolbarContext = {
   disabled?: boolean;
 };

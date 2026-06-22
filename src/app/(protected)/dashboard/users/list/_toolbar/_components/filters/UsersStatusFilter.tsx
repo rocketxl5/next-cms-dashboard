@@ -4,9 +4,9 @@ import { useUsersFilters } from '../../_hooks/useUsersFilters';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
 import { USER_STATUS, UserStatus } from '@/types/enums';
-import { UsersDashboardFilters } from '../domain/users-dashboard-filters';
+import { UsersToolbarContext } from '../domain/users-dashboard-filters';
 
-export function UsersStatusFilter({ disabled }: UsersDashboardFilters) {
+export function UsersStatusFilter({ disabled }: UsersToolbarContext) {
   const { filters, setStatus } = useUsersFilters();
 
   return (
