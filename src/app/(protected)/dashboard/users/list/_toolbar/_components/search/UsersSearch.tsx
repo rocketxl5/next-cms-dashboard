@@ -10,10 +10,10 @@ import { cn } from '@/lib/utils';
 import { responsiveAdapters } from '@/lib/ui/tokens';
 import { normalizeDisplayString } from '@/lib/utils/normalizers';
 
-import { UsersDashboardFilters } from '../domain/users-dashboard-filters';
+import { UsersToolbarContext } from '../domain/users-dashboard-filters';
 import { UserSearchField, USER_SEARCH_FIELDS } from '@/types/shared/search';
 
-export function UsersSearch({ disabled }: UsersDashboardFilters) {
+export function UsersSearch({ disabled }: UsersToolbarContext) {
   const { filters, setSearch, setSearchType } = useUsersFilters();
 
   const { search, type } = filters;

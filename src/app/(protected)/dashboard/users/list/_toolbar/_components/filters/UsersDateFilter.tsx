@@ -1,9 +1,9 @@
 import { Box } from '@/components/ui';
 import { CreatedAtFilter, UpdatedAtFilter } from './date';
 
-import { UsersDashboardFilters } from '../domain/users-dashboard-filters';
+import { UsersToolbarContext } from '../domain/users-dashboard-filters';
 
-export function UsersDateFilter({ disabled }: UsersDashboardFilters) {
+export function UsersDateFilter({ disabled }: UsersToolbarContext) {
   return (
     <Box position="relative">
       <CreatedAtFilter disabled={disabled} />

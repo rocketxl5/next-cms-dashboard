@@ -4,7 +4,6 @@ import { UserRoundPlus } from 'lucide-react';
 export function CreateUser() {
   return (
     <Link
-      height="md"
       layout="block"
       variant="success"
       href="/dashboard/users/create"

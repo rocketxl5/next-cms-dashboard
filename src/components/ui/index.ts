@@ -13,6 +13,7 @@ export { SearchDate } from './SearchDate';
 export { SearchField } from './SearchField';
 export { Select } from './Select';
 export { Spinner } from './Spinner';
+export { Surface } from './Surface';
 export { Title } from './Title';
 export { Toast } from './Toast';
 export * from './button';

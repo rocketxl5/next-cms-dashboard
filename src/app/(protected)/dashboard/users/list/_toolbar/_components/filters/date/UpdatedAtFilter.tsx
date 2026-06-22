@@ -2,9 +2,9 @@ import { Box, Dropdown, FieldGroup, SearchDate } from '@/components/ui';
 
 import { useUsersFilters } from '../../../_hooks/useUsersFilters';
 
-import { UsersDashboardFilters } from '../../domain/users-dashboard-filters';
+import { UsersToolbarContext } from '../../domain/users-dashboard-filters';
 
-export function UpdatedAtFilter({ disabled }: UsersDashboardFilters) {
+export function UpdatedAtFilter({ disabled }: UsersToolbarContext) {
   const { filters, updateDateFilter } = useUsersFilters();
 
   const today = new Date();
