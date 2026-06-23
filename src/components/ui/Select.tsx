@@ -33,7 +33,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     ref,
   ) => {
     return (
-      <div className="relative flex-1">
+      <div className="relative">
         <select
           id={id}
           ref={ref}

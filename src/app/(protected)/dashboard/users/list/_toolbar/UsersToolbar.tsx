@@ -27,11 +27,20 @@ export function UsersToolbar({ hasSelection }: UsersToolbarProps) {
       <UsersSearch disabled={hasSelection} />
 
       <Surface className={responsiveAdapters.toolbar.controls}>
-        <UsersRoleFilter disabled={hasSelection} />
+        <UsersRoleFilter
+          disabled={hasSelection}
+          className={responsiveAdapters.toolbar.filter}
+        />
 
-        <UsersStatusFilter disabled={hasSelection} />
+        <UsersStatusFilter
+          disabled={hasSelection}
+          className={responsiveAdapters.toolbar.filter}
+        />
 
-        <UsersDateFilter disabled={hasSelection} />
+        <UsersDateFilter
+          disabled={hasSelection}
+          className={responsiveAdapters.toolbar.filter}
+        />
 
         <ClearSearch isActive={isActive} onClick={clear} />
 

@@ -70,11 +70,9 @@ export const toolbar = {
 
   controls: 'flex items-center gap-2',
 
-  // search:
-  //   'w-full lg:max-w-[36rem]',
   search: 'w-full lg:max-w-150',
 
-  filter: 'w-full sm:w-40',
+  filter: 'w-28',
 
   action: 'w-full sm:w-auto',
   control: 'w-full lg:w-32',

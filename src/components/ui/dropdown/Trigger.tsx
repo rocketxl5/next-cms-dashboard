@@ -22,7 +22,6 @@ export function Trigger({ children, disabled, ...props }: TriggerProps) {
       variant="control"
       textWeight="normal"
       height="md"
-      width="control"
       disabled={disabled}
       onClick={toggle}
       data-state={open ? 'open' : 'closed'}

@@ -16,6 +16,7 @@ import {
 import { TableColumn } from '@/types/ui';
 import { APP_ROLES, AppRole } from '@/types/enums';
 import { UserRow, UsersTableContext } from '../../../_domain';
+import { responsiveAdapters } from '@/lib/ui/tokens';
 
 export const buildUsersColumns = (): TableColumn<
   UserRow,
@@ -85,8 +86,7 @@ export const buildUsersColumns = (): TableColumn<
         <Box layout="center">
           <Select
             height="sm"
-            width="control"
-            padding="sm"
+            className={responsiveAdapters.toolbar.filter}
             value={user.role}
             onChange={(e) =>
               ctx.handleUserRoleUpdate(user.id, e.target.value as AppRole)
