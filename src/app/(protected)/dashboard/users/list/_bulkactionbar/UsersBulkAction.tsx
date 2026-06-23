@@ -24,7 +24,6 @@ export function UsersBulkAction({
           <Button
             key={action.key}
             textWeight="normal"
-            width="control"
             variant={
               action.label === 'Delete'
                 ? 'destructive'
