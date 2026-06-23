@@ -22,7 +22,6 @@ export const selectVariants = cva(selectTokens.base, {
     variant: 'default',
     height: 'md',
     padding: 'lg',
-    width: 'full',
     border: 'default',
     radius: 'md',
     active: false,

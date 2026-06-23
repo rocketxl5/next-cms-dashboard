@@ -4,7 +4,7 @@ import { useUsersFilters } from '../../../_hooks/useUsersFilters';
 
 import { UsersToolbarContext } from '../../domain/users-dashboard-filters';
 
-export function CreatedAtFilter({ disabled }: UsersToolbarContext) {
+export function CreatedAtFilter({ disabled, className }: UsersToolbarContext) {
   const { filters, updateDateFilter } = useUsersFilters();
 
   const today = new Date();
@@ -12,7 +12,9 @@ export function CreatedAtFilter({ disabled }: UsersToolbarContext) {
   return (
     <Dropdown.Root>
       <Box position="relative">
-        <Dropdown.Trigger disabled={disabled}>Created</Dropdown.Trigger>
+        <Dropdown.Trigger className={className} disabled={disabled}>
+          Created
+        </Dropdown.Trigger>
         <Dropdown.Content align="start" className="p-3">
           <FieldGroup className="pt-1" htmlFor="created" label="Created">
             <SearchDate

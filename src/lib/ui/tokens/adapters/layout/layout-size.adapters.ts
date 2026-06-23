@@ -1,5 +1,3 @@
-import { responsiveAdapters } from '.';
-
 export const gap = {
   xs: 'gap-1',
   sm: 'gap-2',
@@ -17,7 +15,6 @@ export const width = {
   fit: 'w-fit',
   grow: 'flex-1 min-w-0',
   square: 'aspect-square p-0 flex items-center justify-center',
-  ...responsiveAdapters.toolbar,
 
   // optional (safe here, not in components)
   '1/4': 'w-1/4',
