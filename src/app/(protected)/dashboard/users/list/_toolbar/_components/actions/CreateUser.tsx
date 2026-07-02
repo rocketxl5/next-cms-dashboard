@@ -1,10 +1,12 @@
 import { Link } from '@/components/ui';
 import { UserRoundPlus } from 'lucide-react';
 
-export function CreateUser() {
+import { UsersToolbarContext } from '../domain/users-dashboard-filters';
+
+export function CreateUser({ className }: UsersToolbarContext) {
   return (
     <Link
-      layout="block"
+      className={className}
       variant="success"
       href="/dashboard/users/create"
       title="Create User"

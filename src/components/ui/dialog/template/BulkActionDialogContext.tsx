@@ -1,5 +1,5 @@
-import { DialogContextField } from "./field/DialogContextField";
-import { DialogContextTemplate } from "./template/DialogContextTemplate";
+import { DialogContextField } from "../field/DialogContextField";
+import { DialogContextTemplate } from "./DialogContextTemplate";
 
 // import { UserRow } from "@/app/(protected)/dashboard/users/_domain";
 
