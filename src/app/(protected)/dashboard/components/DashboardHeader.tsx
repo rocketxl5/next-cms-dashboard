@@ -20,7 +20,7 @@ export function DashboardHeader({ navItems }: DashboardHeaderProps) {
     <Box justify="between" align="center" width="full" padding="md">
       <Box align="center" gap="md">
         <nav
-          className={responsiveAdapters.visibility.belowDesktop}
+          className={responsiveAdapters.visibility.underXl}
           aria-label="Mobile navigation"
         >
           <Hamburger open={mobileMenu.open} onClick={mobileMenu.toggleMenu} />

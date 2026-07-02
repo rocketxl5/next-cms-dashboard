@@ -1,7 +1,7 @@
 'use client';
 
 import { Box } from '@/components/ui';
-import { DashboardNavItem } from './DashboardNavItem';
+import { DashboardNavItem } from './navigation/DashboardNavItem';
 
 import { LinkVariants } from '@/lib/ui/variants';
 

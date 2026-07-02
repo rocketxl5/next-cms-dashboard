@@ -55,10 +55,10 @@ export function UsersSearch({ disabled }: UsersToolbarContext) {
       )}
     >
       <Input
-        height="auto"
         className={cn(
           'w-4/5 rounded-r-none border-0',
           'focus:ring-0 focus:outline-none',
+          'md:h-auto',
         )}
         disabled={disabled}
         value={searchInput}

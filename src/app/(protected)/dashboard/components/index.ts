@@ -1,3 +1,3 @@
 export { DashboardHeader } from './DashboardHeader';
 export { DashboardMain } from './DashboardMain';
-export { DashboardSideBar } from './navigation/DashboardSideBar';
+export { DashboardSideBar } from './DashboardSideBar';

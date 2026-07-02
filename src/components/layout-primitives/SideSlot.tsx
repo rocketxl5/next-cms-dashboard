@@ -3,19 +3,8 @@ import { responsiveAdapters } from '@/lib/ui/tokens';
 
 type SideSlotProps = {
   children: React.ReactNode;
-  className?: string;
 };
 
-export function SideSlot({ children, className }: SideSlotProps) {
-  return (
-    <aside
-      className={cn(
-        responsiveAdapters.visibility.desktopUp,
-        responsiveAdapters.slot.sidebar,
-        className,
-      )}
-    >
-      {children}
-    </aside>
-  );
+export function SideSlot({ children }: SideSlotProps) {
+  return <aside className={responsiveAdapters.slot.sidebar}>{children}</aside>;
 }

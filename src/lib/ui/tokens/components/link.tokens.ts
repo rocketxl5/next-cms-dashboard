@@ -7,7 +7,7 @@ import {
 } from '../adapters';
 
 export const linkTokens = {
-  base: 'inline-flex items-center transition-colors hover:opacity-90',
+  base: 'inline-flex items-center justify-center transition-colors hover:opacity-90',
   variant: {
     default: `${color.muted.foreground} hover:${color.foreground}`,
     subtle: `${color.muted.foreground} hover:${color.foreground}`,

@@ -19,7 +19,7 @@ export function UsersRoleFilter({ disabled, className }: UsersToolbarContext) {
     >
       <option value="">Role</option>
       {APP_ROLES.map((r) => (
-        <option key={r} value={r}>
+        <option key={r} value={r} className="max-h-[20px]">
           {normalizeDisplayString(r)}
         </option>
       ))}
